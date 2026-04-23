@@ -26,6 +26,56 @@
     overflow-x: hidden;
   }
 
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(44,44,44,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(245,240,232,0.06);
+  }
+
+  .nav-brand {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--sage);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    color: rgba(245,240,232,0.5);
+    text-decoration: none;
+    transition: color 0.2s;
+    font-weight: 400;
+  }
+
+  .nav-links a:hover { color: var(--cream); }
+
+  .nav-cta {
+    background: var(--sage) !important;
+    color: var(--charcoal) !important;
+    font-weight: 600 !important;
+    padding: 8px 20px;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--sage-light) !important; }
+
   /* HERO */
   .hero {
     background: var(--charcoal);
@@ -33,7 +83,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 80px 40px;
+    padding: 100px 40px 80px;
     position: relative;
     overflow: hidden;
   }
@@ -106,10 +156,7 @@
     margin-bottom: 48px;
   }
 
-  .hero-sub strong {
-    color: var(--cream);
-    font-weight: 500;
-  }
+  .hero-sub strong { color: var(--cream); font-weight: 500; }
 
   .cta-primary {
     display: inline-block;
@@ -154,20 +201,14 @@
     font-weight: 300;
   }
 
-  /* SECTION BASE */
-  section {
-    padding: 80px 40px;
-  }
+  section { padding: 80px 40px; }
 
   .section-inner {
     max-width: 860px;
     margin: 0 auto;
   }
 
-  /* PROBLEM SECTION */
-  .problem {
-    background: var(--white);
-  }
+  .problem { background: var(--white); }
 
   .section-label {
     font-size: 11px;
@@ -207,24 +248,10 @@
     margin-bottom: 12px;
   }
 
-  .problem-card h3 {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: var(--charcoal);
-  }
+  .problem-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 10px; color: var(--charcoal); }
+  .problem-card p { font-size: 14px; color: #666; line-height: 1.6; font-weight: 300; }
 
-  .problem-card p {
-    font-size: 14px;
-    color: #666;
-    line-height: 1.6;
-    font-weight: 300;
-  }
-
-  /* WHAT YOU GET */
-  .what-you-get {
-    background: var(--cream);
-  }
+  .what-you-get { background: var(--cream); }
 
   .what-you-get h2 {
     font-family: 'DM Serif Display', serif;
@@ -280,25 +307,10 @@
     z-index: 1;
   }
 
-  .step-content h3 {
-    font-size: 17px;
-    font-weight: 600;
-    margin-bottom: 8px;
-    padding-top: 10px;
-  }
+  .step-content h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; padding-top: 10px; }
+  .step-content p { font-size: 14px; color: #666; line-height: 1.7; font-weight: 300; }
 
-  .step-content p {
-    font-size: 14px;
-    color: #666;
-    line-height: 1.7;
-    font-weight: 300;
-  }
-
-  /* AUDIT SCORECARD */
-  .audit {
-    background: var(--charcoal);
-    color: var(--cream);
-  }
+  .audit { background: var(--charcoal); color: var(--cream); }
 
   .audit h2 {
     font-family: 'DM Serif Display', serif;
@@ -317,11 +329,7 @@
     line-height: 1.7;
   }
 
-  .audit-form {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
+  .audit-form { display: flex; flex-direction: column; gap: 4px; }
 
   .audit-q {
     background: rgba(245,240,232,0.04);
@@ -335,28 +343,9 @@
     background: rgba(122,158,126,0.08);
   }
 
-  .audit-q-text {
-    font-size: 15px;
-    font-weight: 400;
-    color: var(--cream);
-    margin-bottom: 16px;
-    line-height: 1.5;
-  }
-
-  .audit-q-num {
-    font-size: 11px;
-    letter-spacing: 2px;
-    color: var(--sage);
-    text-transform: uppercase;
-    margin-bottom: 8px;
-    font-weight: 600;
-  }
-
-  .answer-options {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
+  .audit-q-text { font-size: 15px; font-weight: 400; color: var(--cream); margin-bottom: 16px; line-height: 1.5; }
+  .audit-q-num { font-size: 11px; letter-spacing: 2px; color: var(--sage); text-transform: uppercase; margin-bottom: 8px; font-weight: 600; }
+  .answer-options { display: flex; gap: 8px; flex-wrap: wrap; }
 
   .answer-btn {
     background: transparent;
@@ -369,10 +358,7 @@
     transition: all 0.15s ease;
   }
 
-  .answer-btn:hover {
-    border-color: var(--sage);
-    color: var(--cream);
-  }
+  .answer-btn:hover { border-color: var(--sage); color: var(--cream); }
 
   .answer-btn.selected {
     background: var(--sage);
@@ -381,24 +367,11 @@
     font-weight: 600;
   }
 
-  .audit-submit {
-    margin-top: 32px;
-    display: none;
-  }
+  .audit-submit { margin-top: 32px; display: none; }
+  .audit-submit.visible { display: block; }
 
-  .audit-submit.visible {
-    display: block;
-  }
-
-  /* RESULTS */
-  .results-panel {
-    display: none;
-    margin-top: 16px;
-  }
-
-  .results-panel.visible {
-    display: block;
-  }
+  .results-panel { display: none; margin-top: 16px; }
+  .results-panel.visible { display: block; }
 
   .score-display {
     background: rgba(245,240,232,0.05);
@@ -407,42 +380,12 @@
     text-align: center;
   }
 
-  .score-number {
-    font-family: 'DM Serif Display', serif;
-    font-size: 80px;
-    line-height: 1;
-    color: var(--sage-light);
-  }
+  .score-number { font-family: 'DM Serif Display', serif; font-size: 80px; line-height: 1; color: var(--sage-light); }
+  .score-label { font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: rgba(245,240,232,0.4); margin-top: 8px; }
+  .score-interpretation { font-size: 22px; font-family: 'DM Serif Display', serif; color: var(--cream); margin-top: 16px; }
+  .score-detail { font-size: 15px; color: rgba(245,240,232,0.65); margin-top: 12px; line-height: 1.7; font-weight: 300; }
 
-  .score-label {
-    font-size: 13px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(245,240,232,0.4);
-    margin-top: 8px;
-  }
-
-  .score-interpretation {
-    font-size: 22px;
-    font-family: 'DM Serif Display', serif;
-    color: var(--cream);
-    margin-top: 16px;
-  }
-
-  .score-detail {
-    font-size: 15px;
-    color: rgba(245,240,232,0.65);
-    margin-top: 12px;
-    line-height: 1.7;
-    font-weight: 300;
-  }
-
-  .gap-list {
-    margin-top: 28px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
+  .gap-list { margin-top: 28px; display: flex; flex-direction: column; gap: 4px; }
 
   .gap-item {
     background: rgba(196,133,58,0.12);
@@ -453,198 +396,35 @@
     line-height: 1.6;
   }
 
-  .gap-item strong {
-    color: var(--cream);
-    display: block;
-    font-weight: 600;
-    margin-bottom: 4px;
-  }
+  .gap-item strong { color: var(--cream); display: block; font-weight: 600; margin-bottom: 4px; }
 
-  /* CTA SECTION */
-  .cta-section {
-    background: var(--sage);
-    padding: 80px 40px;
-  }
+  .about { background: var(--white); }
 
-  .cta-section .section-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 48px;
-    flex-wrap: wrap;
-  }
+  .about-inner { display: flex; gap: 64px; align-items: flex-start; flex-wrap: wrap; }
 
-  .cta-copy h2 {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(28px, 4vw, 42px);
-    color: var(--charcoal);
-    line-height: 1.2;
-    margin-bottom: 16px;
-    max-width: 480px;
-  }
+  .about-text { flex: 1; min-width: 280px; }
 
-  .cta-copy p {
-    font-size: 16px;
-    color: rgba(44,44,44,0.7);
-    line-height: 1.7;
-    font-weight: 300;
-    max-width: 420px;
-  }
+  .about-text h2 { font-family: 'DM Serif Display', serif; font-size: 32px; margin-bottom: 20px; }
+  .about-text p { font-size: 15px; line-height: 1.8; color: #555; font-weight: 300; margin-bottom: 16px; }
+  .about-text p strong { color: var(--charcoal); font-weight: 500; }
 
-  .cta-box {
-    background: var(--charcoal);
-    padding: 40px;
-    min-width: 300px;
-    flex-shrink: 0;
-  }
+  .about-creds { display: flex; flex-direction: column; gap: 12px; min-width: 240px; }
 
-  .cta-box p {
-    font-size: 13px;
-    color: rgba(245,240,232,0.5);
-    margin-bottom: 20px;
-    line-height: 1.6;
-    font-weight: 300;
-  }
+  .cred-item { display: flex; align-items: flex-start; gap: 14px; padding: 16px; background: var(--cream); }
+  .cred-dot { width: 8px; height: 8px; background: var(--sage); flex-shrink: 0; margin-top: 6px; }
+  .cred-item p { font-size: 13px; color: #666; line-height: 1.5; font-weight: 300; }
+  .cred-item p strong { color: var(--charcoal); font-weight: 600; display: block; margin-bottom: 2px; }
 
-  .cta-box input {
-    width: 100%;
-    background: rgba(245,240,232,0.07);
-    border: 1px solid rgba(245,240,232,0.15);
-    color: var(--cream);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    padding: 14px 16px;
-    margin-bottom: 10px;
-    outline: none;
-    transition: border-color 0.2s;
-  }
+  footer { background: var(--charcoal); padding: 32px 40px; text-align: center; }
+  footer p { font-size: 12px; color: rgba(245,240,232,0.3); letter-spacing: 0.5px; }
+  footer span { color: var(--sage); }
 
-  .cta-box input::placeholder { color: rgba(245,240,232,0.3); }
-  .cta-box input:focus { border-color: var(--sage); }
-
-  .cta-box button {
-    width: 100%;
-    background: var(--sage);
-    border: none;
-    color: var(--charcoal);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    padding: 16px;
-    cursor: pointer;
-    letter-spacing: 0.5px;
-    margin-top: 6px;
-    transition: background 0.2s;
-  }
-
-  .cta-box button:hover { background: var(--sage-light); }
-
-  .no-pitch {
-    font-size: 12px;
-    color: rgba(245,240,232,0.3) !important;
-    margin-top: 14px !important;
-    text-align: center;
-  }
-
-  /* ABOUT */
-  .about {
-    background: var(--white);
-  }
-
-  .about-inner {
-    display: flex;
-    gap: 64px;
-    align-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  .about-text {
-    flex: 1;
-    min-width: 280px;
-  }
-
-  .about-text h2 {
-    font-family: 'DM Serif Display', serif;
-    font-size: 32px;
-    margin-bottom: 20px;
-  }
-
-  .about-text p {
-    font-size: 15px;
-    line-height: 1.8;
-    color: #555;
-    font-weight: 300;
-    margin-bottom: 16px;
-  }
-
-  .about-text p strong {
-    color: var(--charcoal);
-    font-weight: 500;
-  }
-
-  .about-creds {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    min-width: 240px;
-  }
-
-  .cred-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    padding: 16px;
-    background: var(--cream);
-  }
-
-  .cred-dot {
-    width: 8px;
-    height: 8px;
-    background: var(--sage);
-    flex-shrink: 0;
-    margin-top: 6px;
-  }
-
-  .cred-item p {
-    font-size: 13px;
-    color: #666;
-    line-height: 1.5;
-    font-weight: 300;
-  }
-
-  .cred-item p strong {
-    color: var(--charcoal);
-    font-weight: 600;
-    display: block;
-    margin-bottom: 2px;
-  }
-
-  /* FOOTER */
-  footer {
-    background: var(--charcoal);
-    padding: 32px 40px;
-    text-align: center;
-  }
-
-  footer p {
-    font-size: 12px;
-    color: rgba(245,240,232,0.3);
-    letter-spacing: 0.5px;
-  }
-
-  footer span {
-    color: var(--sage);
-  }
-
-  /* ANIMATIONS */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
-  .hero-inner > * {
-    animation: fadeUp 0.7s ease both;
-  }
+  .hero-inner > * { animation: fadeUp 0.7s ease both; }
   .hero-inner > *:nth-child(1) { animation-delay: 0.1s; }
   .hero-inner > *:nth-child(2) { animation-delay: 0.25s; }
   .hero-inner > *:nth-child(3) { animation-delay: 0.4s; }
@@ -653,15 +433,25 @@
 
   @media (max-width: 600px) {
     section { padding: 60px 24px; }
-    .hero { padding: 60px 24px; }
+    .hero { padding: 80px 24px 60px; }
     .hero-stat-row { gap: 32px; }
-    .cta-section .section-inner { flex-direction: column; }
     .audit-q { padding: 20px 16px; }
     .score-display { padding: 28px 20px; }
+    nav { padding: 16px 24px; }
+    .nav-links li:not(:last-child) { display: none; }
   }
 </style>
 </head>
 <body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#">QAMW Consulting</a>
+  <ul class="nav-links">
+    <li><a href="#audit-section">Take the Audit</a></li>
+    <li><a href="framework-download.html" class="nav-cta">Get the Framework →</a></li>
+  </ul>
+</nav>
 
 <!-- HERO -->
 <section class="hero">
@@ -675,18 +465,9 @@
       Take the Free Audit →
     </button>
     <div class="hero-stat-row">
-      <div class="hero-stat">
-        <span>10</span>
-        <p>Questions. 5 minutes.</p>
-      </div>
-      <div class="hero-stat">
-        <span>Free</span>
-        <p>No call required to get results</p>
-      </div>
-      <div class="hero-stat">
-        <span>Instant</span>
-        <p>Score + gap summary on screen</p>
-      </div>
+      <div class="hero-stat"><span>10</span><p>Questions. 5 minutes.</p></div>
+      <div class="hero-stat"><span>Free</span><p>No call required to get results</p></div>
+      <div class="hero-stat"><span>Instant</span><p>Score + gap summary on screen</p></div>
     </div>
   </div>
 </section>
@@ -778,7 +559,6 @@
     <p class="intro">Answer honestly — this is for your benefit, not a sales qualifier. You'll get an instant score and a breakdown of your highest-priority gaps.</p>
 
     <div class="audit-form" id="auditForm">
-
       <div class="audit-q" id="q1">
         <div class="audit-q-num">Question 01</div>
         <div class="audit-q-text">Can a new patient book an appointment on your website right now — without calling or emailing your office?</div>
@@ -788,7 +568,6 @@
           <button class="answer-btn" onclick="selectAnswer('q1', 'no', 0, this)">No, they have to call</button>
         </div>
       </div>
-
       <div class="audit-q" id="q2">
         <div class="audit-q-num">Question 02</div>
         <div class="audit-q-text">If someone submits a contact form or books online at 9pm on a Friday, what happens?</div>
@@ -798,7 +577,6 @@
           <button class="answer-btn" onclick="selectAnswer('q2', 'nothing', 0, this)">Honestly, not sure</button>
         </div>
       </div>
-
       <div class="audit-q" id="q3">
         <div class="audit-q-num">Question 03</div>
         <div class="audit-q-text">Do new patients receive automated appointment reminders before their visit?</div>
@@ -808,7 +586,6 @@
           <button class="answer-btn" onclick="selectAnswer('q3', 'no', 0, this)">No reminders go out</button>
         </div>
       </div>
-
       <div class="audit-q" id="q4">
         <div class="audit-q-num">Question 04</div>
         <div class="audit-q-text">Are intake forms completed digitally before the first visit, or do patients fill out paper forms when they arrive?</div>
@@ -818,7 +595,6 @@
           <button class="answer-btn" onclick="selectAnswer('q4', 'paper', 0, this)">Paper forms at the front desk</button>
         </div>
       </div>
-
       <div class="audit-q" id="q5">
         <div class="audit-q-num">Question 05</div>
         <div class="audit-q-text">When a patient misses an appointment, what's the automatic follow-up process?</div>
@@ -828,7 +604,6 @@
           <button class="answer-btn" onclick="selectAnswer('q5', 'nothing', 0, this)">Nothing formal — it just gets noted</button>
         </div>
       </div>
-
       <div class="audit-q" id="q6">
         <div class="audit-q-num">Question 06</div>
         <div class="audit-q-text">Do you have an automated reactivation process for patients you haven't seen in 60–90 days?</div>
@@ -838,7 +613,6 @@
           <button class="answer-btn" onclick="selectAnswer('q6', 'no', 0, this)">No — patients have to reach back out to us</button>
         </div>
       </div>
-
       <div class="audit-q" id="q7">
         <div class="audit-q-num">Question 07</div>
         <div class="audit-q-text">Can you see your no-show rate, active vs. inactive patient counts, and monthly new patient numbers in a single place — without pulling it manually?</div>
@@ -848,7 +622,6 @@
           <button class="answer-btn" onclick="selectAnswer('q7', 'no', 0, this)">No — I mostly go by feel</button>
         </div>
       </div>
-
       <div class="audit-q" id="q8">
         <div class="audit-q-num">Question 08</div>
         <div class="audit-q-text">After a patient's visit, do they automatically receive a review request or care plan follow-up message?</div>
@@ -858,7 +631,6 @@
           <button class="answer-btn" onclick="selectAnswer('q8', 'no', 0, this)">No post-visit follow-up goes out</button>
         </div>
       </div>
-
       <div class="audit-q" id="q9">
         <div class="audit-q-num">Question 09</div>
         <div class="audit-q-text">Do you know which marketing channel (Google, referrals, social, etc.) brings in the most patients who actually stay?</div>
@@ -868,7 +640,6 @@
           <button class="answer-btn" onclick="selectAnswer('q9', 'no', 0, this)">No — I don't track that</button>
         </div>
       </div>
-
       <div class="audit-q" id="q10">
         <div class="audit-q-num">Question 10</div>
         <div class="audit-q-text">How much of your patient communication — reminders, follow-ups, reactivation, intake — currently runs without anyone on your staff initiating it?</div>
@@ -878,7 +649,6 @@
           <button class="answer-btn" onclick="selectAnswer('q10', 'none', 0, this)">Almost none — staff drives everything</button>
         </div>
       </div>
-
     </div>
 
     <div class="audit-submit" id="auditSubmit">
@@ -893,31 +663,19 @@
         <div class="score-detail" id="scoreDetail">—</div>
       </div>
       <div class="gap-list" id="gapList"></div>
-      <div style="margin-top:40px;padding:28px;background:rgba(122,158,126,0.12);border-left:3px solid var(--sage);">
-        <p style="font-size:15px;color:var(--cream);line-height:1.7;font-weight:300;">
-          Want to walk through what these gaps look like in your specific practice — and what it would take to close them? 
-          <strong style="color:var(--sage-light);font-weight:500;">No pitch. No package. Just a real conversation about what you're working with.</strong>
+      <div style="margin-top:40px;padding:36px;background:rgba(122,158,126,0.12);border-left:3px solid var(--sage);">
+        <p style="font-size:15px;color:var(--cream);line-height:1.7;font-weight:300;margin-bottom:8px;">
+          Now you know where the gaps are. The next step is understanding what it actually takes to close them.
         </p>
-        <button class="cta-primary" style="margin-top:20px;" onclick="document.getElementById('cta-form').scrollIntoView({behavior:'smooth'})">
-          Let's Talk Through It →
-        </button>
+        <p style="font-size:14px;color:rgba(245,240,232,0.55);line-height:1.7;font-weight:300;margin-bottom:24px;">
+          Watch a short walkthrough of the full patient acquisition framework — and book a 20-minute practice review if you want to map it to your specific setup.
+        </p>
+        <a class="cta-primary" href="framework-download.html">
+          Get the Framework + Book a Call →
+        </a>
       </div>
     </div>
 
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta-section">
-  <div class="section-inner">
-    <div class="cta-copy">
-      <h2>Not ready to talk yet? That's fine too.</h2>
-      <p>Drop your name and email and I'll send you a short breakdown of what a fully automated patient acquisition system looks like for an independent practice — no software pitch, just the framework. You can decide what to do with it.</p>
-    </div>
-    <<iframe data-tally-src="https://tally.so/embed/ODBRbR?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="718" frameborder="0" marginheight="0" marginwidth="0" title="Get the Framework Sent to you"></iframe>
-<script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>>
-      <p class="no-pitch">No sales call. No follow-up pitch. Just the resource.</p>
-    </div>
   </div>
 </section>
 
@@ -960,7 +718,7 @@
 </section>
 
 <footer>
-  <p>© 2025 <span>QAMW Consulting</span> · Seattle, WA · qamwconsulting.com</p>
+  <p>© 2026 <span>QAMW Consulting</span> · Seattle, WA · qamwconsulting.com</p>
 </footer>
 
 <script>
@@ -983,17 +741,13 @@
 
   function selectAnswer(qId, value, score, btn) {
     const wasAnswered = answers[qId] !== undefined;
-    
     const options = btn.parentElement.querySelectorAll('.answer-btn');
     options.forEach(b => b.classList.remove('selected'));
     btn.classList.add('selected');
-    
     document.getElementById(qId).classList.add('answered');
-    
     if (!wasAnswered) answeredCount++;
     answers[qId] = value;
     scores[qId] = score;
-
     if (answeredCount >= 10) {
       document.getElementById('auditSubmit').classList.add('visible');
     }
@@ -1001,10 +755,8 @@
 
   function showResults() {
     const total = Object.values(scores).reduce((a, b) => a + b, 0);
-    const max = 20;
-    
     document.getElementById('scoreNumber').textContent = total;
-    
+
     let interpretation, detail;
     if (total >= 16) {
       interpretation = "Your systems are largely in place.";
@@ -1033,7 +785,6 @@
       header.style.cssText = 'font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,240,232,0.4);margin-bottom:8px;font-weight:600;';
       header.textContent = 'Your highest-priority gaps:';
       gapList.appendChild(header);
-
       lowScoreQs.forEach(([qId]) => {
         const gap = gaps[qId];
         const item = document.createElement('div');
@@ -1046,14 +797,6 @@
     document.getElementById('auditSubmit').style.display = 'none';
     document.getElementById('resultsPanel').classList.add('visible');
     document.getElementById('resultsPanel').scrollIntoView({ behavior: 'smooth' });
-  }
-
-  function handleSubmit() {
-    const name = document.getElementById('contactName').value;
-    const email = document.getElementById('contactEmail').value;
-    if (!name || !email) { alert('Name and email are required.'); return; }
-    const box = document.querySelector('.cta-box');
-    box.innerHTML = `<p style="color:var(--sage-light);font-family:'DM Serif Display',serif;font-size:22px;line-height:1.4;">Got it, ${name.split(' ')[0]}.<br><span style="font-size:16px;font-family:'DM Sans',sans-serif;font-weight:300;color:rgba(245,240,232,0.6);">Check your inbox — I'll keep it short and useful.</span></p>`;
   }
 </script>
 </body>
