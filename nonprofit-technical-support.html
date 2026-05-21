@@ -53,14 +53,23 @@
   .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
   .container-narrow { max-width: 680px; margin: 0 auto; padding: 0 24px; }
 
-  nav { position: sticky; top: 0; z-index: 100; background: rgba(10,10,10,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
-  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.08em; color: var(--white); text-decoration: none; }
+ /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 24px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+ .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.08em; color: var(--white); text-decoration: none; }
   .nav-logo span { color: var(--accent); }
-.nav-links { display: flex; gap: 28px; list-style: none; flex: 1; justify-content: center; }}
+  .nav-links { display: flex; gap: 28px; list-style: none; }
   .nav-links a { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
   .nav-links a:hover { color: var(--white); }
   .nav-cta { background: var(--accent); color: var(--white); font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.05em; text-decoration: none; padding: 10px 20px; transition: background 0.2s; }
   .nav-cta:hover { background: var(--accent-dim); }
+
 
   .breadcrumb { border-bottom: 1px solid var(--border); padding: 12px 24px; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); }
   .breadcrumb a { color: var(--accent); text-decoration: none; }
