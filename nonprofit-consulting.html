@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nonprofit Technology Consulting — QAMW Consulting | Seattle, WA</title>
+<meta name="description" content="Black-owned, women-owned nonprofit technology consulting firm in Seattle. QAMW Consulting helps nonprofits fix their data systems, reporting, and operations so mission-critical work doesn't get lost in spreadsheet chaos.">
+<meta name="keywords" content="nonprofit technology consulting Seattle, nonprofit systems consultant, Black-owned nonprofit consultant, women-owned consulting firm Seattle, MWBE nonprofit consulting, nonprofit data consulting, nonprofit operations consultant, nonprofit CRM Seattle">
+<link rel="canonical" href="https://qamwconsulting.com/nonprofit-consulting.html">
+
+<meta property="og:title" content="Nonprofit Technology Consulting — QAMW Consulting | Seattle, WA">
+<meta property="og:description" content="A Black-owned, women-owned consulting practice that helps nonprofits get their systems, data, and reporting under control — so staff can focus on mission, not spreadsheets.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://qamwconsulting.com/nonprofit-consulting.html">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "QAMW Consulting — Nonprofit Technology Consulting",
+  "description": "Black-owned, women-owned nonprofit technology consulting practice in Seattle, WA. Specializing in data systems, reporting, CRM, and operational infrastructure for nonprofits and social impact organizations.",
+  "url": "https://qamwconsulting.com/nonprofit-consulting.html",
+  "founder": {
+    "@type": "Person",
+    "name": "Quinita Whitfield",
+    "jobTitle": "Founder & Systems Consultant"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Seattle",
+    "addressRegion": "WA",
+    "addressCountry": "US"
+  },
+  "areaServed": ["Seattle, WA", "Pacific Northwest", "United States"],
+  "serviceType": ["Nonprofit Technology Consulting", "Nonprofit Data Systems", "Nonprofit CRM", "Nonprofit Reporting"],
+  "keywords": "Black-owned consulting, women-owned consulting, MWBE, nonprofit technology, nonprofit systems, Seattle"
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #0a0a0a;
+    --off-black: #111111;
+    --dark: #1a1a1a;
+    --mid: #2a2a2a;
+    --border: #2f2f2f;
+    --muted: #666;
+    --body: #b8b8b8;
+    --white: #f2f0eb;
+    --accent: #8c52ff;
+    --accent-dim: #7340d4;
+    --accent-soft: rgba(140,82,255,0.1);
+    --green: #47c47e;
+    --red: #e85c47;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--body);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 17px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 999; opacity: 0.4;
+  }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+  .container-narrow { max-width: 680px; margin: 0 auto; padding: 0 24px; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 24px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.08em; color: var(--white); text-decoration: none; }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta { background: var(--accent); color: var(--white); font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.05em; text-decoration: none; padding: 10px 20px; transition: background 0.2s; }
+  .nav-cta:hover { background: var(--accent-dim); }
+
+  /* BREADCRUMB */
+  .breadcrumb {
+    border-bottom: 1px solid var(--border);
+    padding: 12px 24px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+  .breadcrumb a { color: var(--accent); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  /* PAGE HEADER — editorial style */
+  .page-header {
+    padding: 72px 0 56px;
+    border-bottom: 1px solid var(--border);
+  }
+  .page-kicker {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .page-kicker::after { content: ''; display: block; width: 48px; height: 1px; background: var(--accent); }
+  .page-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 8vw, 84px);
+    line-height: 0.95;
+    letter-spacing: 0.01em;
+    color: var(--white);
+    margin-bottom: 28px;
+  }
+  .page-title em { font-style: normal; color: var(--accent); }
+  .page-deck {
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--body);
+    max-width: 620px;
+    line-height: 1.6;
+  }
+  .ownership-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 28px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 8px 14px;
+  }
+  .ownership-badge span { color: var(--accent); }
+
+  /* ARTICLE BODY */
+  .article-section { padding: 72px 0; border-bottom: 1px solid var(--border); }
+  .article-section:last-of-type { border-bottom: none; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.0;
+    color: var(--white);
+    letter-spacing: 0.02em;
+    margin-bottom: 24px;
+  }
+
+  h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 12px;
+    margin-top: 36px;
+  }
+  h3:first-child { margin-top: 0; }
+
+  .prose p { margin-bottom: 20px; }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose strong { color: var(--white); font-weight: 500; }
+  .prose a { color: var(--accent); text-decoration: none; }
+  .prose a:hover { text-decoration: underline; }
+
+  /* PULL QUOTE */
+  .pull-quote {
+    border-left: 3px solid var(--accent);
+    padding: 24px 32px;
+    background: var(--off-black);
+    margin: 40px 0;
+  }
+  .pull-quote p {
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.55;
+    margin: 0;
+  }
+  .pull-quote cite {
+    display: block;
+    margin-top: 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-style: normal;
+  }
+
+  /* CALLOUT BOX */
+  .callout {
+    background: var(--accent-soft);
+    border: 1px solid rgba(140,82,255,0.3);
+    padding: 28px 32px;
+    margin: 36px 0;
+  }
+  .callout-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .callout p { font-size: 15px; color: var(--body); line-height: 1.65; margin: 0; }
+
+  /* PROBLEM TABLE */
+  .problem-table { width: 100%; border-collapse: collapse; margin: 32px 0; }
+  .problem-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .problem-table th.col-bad { color: var(--red); }
+  .problem-table th.col-good { color: var(--green); }
+  .problem-table td {
+    padding: 14px 16px;
+    font-size: 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.55;
+  }
+  .problem-table tr:last-child td { border-bottom: none; }
+  .problem-table td:first-child { color: var(--muted); border-right: 1px solid var(--border); }
+  .problem-table td:last-child { color: var(--body); }
+
+  /* CHECKLIST */
+  .checklist { list-style: none; display: flex; flex-direction: column; gap: 2px; margin: 28px 0; }
+  .checklist li {
+    display: flex; gap: 14px; align-items: flex-start;
+    padding: 14px 18px;
+    background: var(--off-black);
+    border: 1px solid var(--border);
+    font-size: 15px;
+    line-height: 1.55;
+  }
+  .checklist li .check { color: var(--green); font-family: 'DM Mono', monospace; font-size: 12px; flex-shrink: 0; margin-top: 2px; }
+  .checklist li .check-bad { color: var(--red); font-family: 'DM Mono', monospace; font-size: 12px; flex-shrink: 0; margin-top: 2px; }
+
+  /* SERVICES LIST — editorial row style */
+  .service-rows { display: flex; flex-direction: column; gap: 2px; margin-top: 32px; }
+  .service-row {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 0;
+    border: 1px solid var(--border);
+    background: var(--off-black);
+    transition: border-color 0.2s;
+  }
+  .service-row:hover { border-color: var(--accent); }
+  .service-row-label {
+    padding: 24px 20px;
+    border-right: 1px solid var(--border);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    line-height: 1.4;
+    display: flex; align-items: flex-start;
+  }
+  .service-row-body { padding: 24px 24px; }
+  .service-row-title { font-weight: 700; color: var(--white); font-size: 16px; margin-bottom: 6px; }
+  .service-row-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+  /* STAT ROW */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    margin: 40px 0;
+  }
+  .stat-cell {
+    background: var(--off-black);
+    padding: 32px 24px;
+    text-align: center;
+  }
+  .stat-cell .num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    line-height: 1;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 6px;
+  }
+  .stat-cell .lbl {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* FAQ */
+  .faq-list { display: flex; flex-direction: column; margin-top: 32px; }
+  .faq-item { border-bottom: 1px solid var(--border); padding: 28px 0; }
+  .faq-item:first-child { border-top: 1px solid var(--border); }
+  .faq-q { font-weight: 600; font-size: 16px; color: var(--white); margin-bottom: 10px; }
+  .faq-a { font-size: 15px; color: var(--muted); line-height: 1.7; }
+
+  /* CTA SECTION */
+  .cta-section {
+    padding: 96px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: 'NONPROFIT';
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(80px, 18vw, 200px);
+    color: var(--off-black);
+    pointer-events: none; white-space: nowrap; letter-spacing: 0.05em; z-index: 0;
+  }
+  .cta-section .container { position: relative; z-index: 1; }
+  .cta-section h2 { margin-bottom: 16px; }
+  .cta-section p { max-width: 500px; margin: 0 auto 40px; font-size: 18px; font-weight: 300; }
+
+  .btn-primary {
+    background: var(--accent); color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700; font-size: 15px;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    padding: 18px 36px;
+    display: inline-block;
+    transition: background 0.2s, transform 0.15s;
+    position: relative;
+  }
+  .btn-primary::after {
+    content: '';
+    position: absolute; bottom: -4px; right: -4px;
+    width: 100%; height: 100%;
+    border: 1px solid var(--accent);
+    transition: transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--accent-dim); transform: translate(-2px, -2px); }
+  .btn-primary:hover::after { transform: translate(4px, 4px); }
+
+  .btn-ghost {
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
+    transition: color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--accent); }
+  .btn-ghost span { color: var(--accent); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 13px; color: var(--muted); flex-wrap: wrap; gap: 16px;
+  }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+  .footer-links { display: flex; gap: 24px; }
+
+  @media (max-width: 680px) {
+    .nav-links { display: none; }
+    .service-row { grid-template-columns: 1fr; }
+    .service-row-label { border-right: none; border-bottom: 1px solid var(--border); }
+    .stat-row { grid-template-columns: 1fr; }
+    .problem-table { font-size: 13px; }
+    .footer-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/index.html">QAMW<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="/nonprofit-consulting.html">Nonprofit</a></li>
+    <li><a href="/systems-integration-consulting.html">Systems</a></li>
+    <li><a href="/nonprofit-technical-support.html">Tech Support</a></li>
+  </ul>
+  <a href="/index.html#cta" class="nav-cta">Book Your Audit →</a>
+</nav>
+
+<div class="breadcrumb">
+  <a href="/index.html">QAMW Consulting</a> &nbsp;/&nbsp; Nonprofit Technology Consulting
+</div>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div class="container">
+    <div class="page-kicker">Nonprofit Consulting</div>
+    <h1 class="page-title">When the mission<br>is bigger than<br><em>the spreadsheet chaos</em></h1>
+    <p class="page-deck">Nonprofits run on people who care deeply — and systems that often can't keep up. QAMW Consulting helps mission-driven organizations get their data, tools, and reporting under control so staff can focus on the work that actually matters.</p>
+    <div class="ownership-badge">
+      <span>■</span> Black-owned &nbsp;·&nbsp; <span>■</span> Women-owned &nbsp;·&nbsp; Seattle, WA
+    </div>
+  </div>
+</header>
+
+<!-- THE REAL PROBLEM -->
+<section class="article-section">
+  <div class="container-narrow">
+    <div class="section-label">The Problem We See Most</div>
+    <h2>Nonprofits don't have a mission problem. They have a systems problem.</h2>
+
+    <div class="prose">
+      <p>Most nonprofits we work with have the right people, the right programs, and genuine community impact. What they're missing is the operational infrastructure to sustain it — the kind that keeps the data clean, the reports trustworthy, and the team from rebuilding the same spreadsheet every quarter.</p>
+
+      <p>This shows up in a specific pattern: program staff using five different tools that don't talk to each other. Development tracking client outcomes in Excel. Finance reconciling grants manually. Leadership trying to write impact reports from three systems that all say different things. Nobody has time to fix it because everyone is too busy doing the actual work.</p>
+    </div>
+
+    <div class="pull-quote">
+      <p>"We were collecting all this data about our clients — and we couldn't tell you how many people we served last quarter without manually counting records."</p>
+      <cite>— Common sentiment from nonprofit ops leads across our engagements</cite>
+    </div>
+
+    <div class="prose">
+      <p>The stakes are higher for nonprofits than most people recognize. Bad data doesn't just slow you down internally — it affects grant reporting, funder relationships, and your ability to demonstrate impact when it counts most. If your program data and your financial data live in separate systems that don't agree, that's a risk to the organization, not just an operational inconvenience.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE SEE -->
+<section class="article-section" style="background: var(--off-black);">
+  <div class="container">
+    <div class="section-label">Before vs. After</div>
+    <h2>What changes when systems actually work</h2>
+    <p style="max-width: 620px; margin-bottom: 8px;">Here's the pattern we see in almost every nonprofit engagement — and what it looks like six months after the work is done.</p>
+
+    <table class="problem-table">
+      <thead>
+        <tr>
+          <th class="col-bad">Where most nonprofits are</th>
+          <th class="col-good">Where we get them</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Program data in spreadsheets, donor data in a CRM, finance in QuickBooks — none connected</td>
+          <td>Single source of truth with automated data flows between systems</td>
+        </tr>
+        <tr>
+          <td>Impact reports built manually every quarter from exported CSVs</td>
+          <td>Live dashboards that pull current data — ready any time, not just at reporting deadlines</td>
+        </tr>
+        <tr>
+          <td>Grant reporting takes two weeks of staff time each cycle</td>
+          <td>Grant-ready data that can be pulled in hours, with consistent methodology across funders</td>
+        </tr>
+        <tr>
+          <td>Leadership doesn't trust the numbers enough to quote them confidently</td>
+          <td>Verified, consistent metrics leadership can cite in board meetings, grant proposals, and public communications</td>
+        </tr>
+        <tr>
+          <td>New staff spend months learning "how we actually track things" from informal tribal knowledge</td>
+          <td>Documented systems and processes that work the same regardless of who's in the seat</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- WHAT WE DO -->
+<section class="article-section">
+  <div class="container">
+    <div class="section-label">Services</div>
+    <h2>What a nonprofit systems engagement actually looks like</h2>
+    <p style="max-width: 620px;">We don't prescribe the same solution to every organization. But here's what we most commonly build for nonprofits at different stages.</p>
+
+    <div class="service-rows">
+      <div class="service-row">
+        <div class="service-row-label">Systems Audit</div>
+        <div class="service-row-body">
+          <div class="service-row-title">Revenue Leak & Systems Audit — Nonprofit Edition</div>
+          <div class="service-row-desc">Our foundational two-week engagement adapted for nonprofit operations. We map your current tools, data flows, grant tracking, and reporting processes — then deliver a prioritized breakdown of what's broken and what it's costing the organization in staff time, grant risk, and missed reporting opportunities. Flat-rate, written deliverable, no vague recommendations.</div>
+        </div>
+      </div>
+      <div class="service-row">
+        <div class="service-row-label">Data &amp; Reporting</div>
+        <div class="service-row-body">
+          <div class="service-row-title">Impact Reporting Infrastructure</div>
+          <div class="service-row-desc">We build the data infrastructure that makes impact reporting reliable — connecting your program tracking, CRM, and finance tools into a coherent system that produces consistent, defensible numbers. Power BI dashboards, automated data pipelines, and grant-ready metrics structures that hold up to funder scrutiny.</div>
+        </div>
+      </div>
+      <div class="service-row">
+        <div class="service-row-label">CRM &amp; Tools</div>
+        <div class="service-row-body">
+          <div class="service-row-title">CRM Implementation & Cleanup</div>
+          <div class="service-row-desc">Whether you're on Salesforce Nonprofit Success Pack, Bloomerang, Little Green Light, or a frankenstack of spreadsheets and contact lists — we assess what you have, migrate what's worth keeping, and build the structure that makes your CRM actually reflect your programs. We've done this for organizations ranging from 5-person teams to 80-person operations.</div>
+        </div>
+      </div>
+      <div class="service-row">
+        <div class="service-row-label">Ongoing Support</div>
+        <div class="service-row-body">
+          <div class="service-row-title">Fractional Systems Support</div>
+          <div class="service-row-desc">For organizations that need ongoing technical capacity without a full-time hire. A dedicated point of contact for systems questions, tool evaluations, reporting cycles, and new integrations as your programs grow. Priced as a monthly retainer, scoped to your actual needs — not a bloated contract.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY QAMW -->
+<section class="article-section" style="background: var(--off-black);">
+  <div class="container">
+    <div class="section-label">Why QAMW</div>
+    <h2>A different kind of consulting relationship</h2>
+
+    <div class="stat-row">
+      <div class="stat-cell">
+        <span class="num">13+</span>
+        <span class="lbl">Years in data systems &amp; operations</span>
+      </div>
+      <div class="stat-cell">
+        <span class="num">$500K+</span>
+        <span class="lbl">Operational inefficiencies found in a single audit</span>
+      </div>
+      <div class="stat-cell">
+        <span class="num">200+</span>
+        <span class="lbl">Professionals trained on Power BI</span>
+      </div>
+    </div>
+
+    <div class="prose">
+      <h3>We understand the nonprofit context — not just the tools</h3>
+      <p>Nonprofit operations have constraints that standard business consulting doesn't account for: restricted vs. unrestricted funds, grant-specific reporting requirements, high staff turnover, volunteer data complexity, and the reality that most of your team didn't sign up to be data managers. We build systems that work within those constraints, not around them.</p>
+
+      <h3>Black-owned and women-owned — by design, not just on paper</h3>
+      <p>QAMW Consulting is a <strong>Black-owned, women-owned small business</strong> based in Seattle. For nonprofits with supplier diversity goals or DEI procurement commitments, we're a verified diverse vendor. But more than the designation — we bring a perspective on community, access, and what it actually takes to build systems that serve people equitably. That shapes how we approach the work.</p>
+
+      <h3>We build things you can actually maintain</h3>
+      <p>Consulting that leaves an organization dependent on the consultant isn't consulting — it's a subscription. Everything we build comes with documentation and handoff training so your team owns it when we're done. The goal is that you don't need us for day-to-day operations. You need us when something significant changes, or when you're ready to grow.</p>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Case Result — R3 Academy</div>
+      <p>R3 Academy was collecting student feedback every term with no way to act on it. We built a sentiment analysis pipeline and Power BI dashboard that turned raw survey exports into an executive-ready action report — delivered on time, every cycle. "As usual, you have blown it out of the water." — Juan Ramos, CEO, R3 Academy</p>
+    </div>
+  </div>
+</section>
+
+<!-- IS THIS RIGHT FOR YOU -->
+<section class="article-section">
+  <div class="container-narrow">
+    <div class="section-label">Fit Check</div>
+    <h2>Organizations we work best with</h2>
+    <p style="margin-bottom: 8px;">Our engagements work well for a specific type of organization. Here's an honest picture of where we add the most value.</p>
+
+    <ul class="checklist">
+      <li><span class="check">✓</span> Nonprofits with 5–100+ staff who feel like operations "just run too hard" for the size of the organization</li>
+      <li><span class="check">✓</span> Organizations with multiple funding sources that require separate but consistent impact data</li>
+      <li><span class="check">✓</span> Teams that have bought the tools (Salesforce, QuickBooks, Asana, etc.) but can't get them to work together</li>
+      <li><span class="check">✓</span> Leadership that wants to cite real numbers in grant proposals and board reports — and currently can't trust what they have</li>
+      <li><span class="check">✓</span> Organizations prioritizing MWBE vendors and diverse supplier relationships</li>
+      <li><span class="check-bad">✕</span> Startups or early-stage nonprofits with minimal operational complexity — not the right investment yet</li>
+      <li><span class="check-bad">✕</span> Organizations looking for someone to implement a predetermined solution without a diagnostic phase</li>
+    </ul>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="article-section" style="background: var(--off-black);">
+  <div class="container-narrow">
+    <div class="section-label">Questions</div>
+    <h2>What nonprofits ask first</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">Do you have experience with Salesforce Nonprofit Success Pack?</div>
+        <div class="faq-a">Yes. We've worked with NPSP as well as other nonprofit CRMs including Bloomerang, Little Green Light, and Airtable-based systems. We assess what you have, what's actually being used, and whether the tool is the problem or just the implementation — those are often different answers.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Are you listed as a certified MWBE vendor?</div>
+        <div class="faq-a">QAMW Consulting is a Black-owned, women-owned small business. We are in the process of pursuing formal WOSB and MBE certifications. If your procurement process requires specific certification documentation, reach out and we'll discuss what we can provide and your timeline.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">We don't have a big budget. Is there a smaller starting point?</div>
+        <div class="faq-a">Yes. Our Systems Audit is designed as a defined, flat-rate engagement ($5,000) that gives you a clear picture of what to fix before spending anything else. Many organizations start there, implement some fixes on their own, and come back when they're ready for deeper work. We'd rather give you real value in a scoped engagement than sell you a retainer you don't need yet.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How much staff time does this require on our end?</div>
+        <div class="faq-a">For an audit, we need access to your tools and a few hours from key staff in week one — usually the executive director or ops lead and one program person. After that, most of the work happens on our end. For larger implementations, we'll scope the internal time requirement honestly before you commit.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="section-label">Get Started</div>
+    <h2>Ready to get your systems under control?</h2>
+    <p>Start with a 20-minute discovery call — no pitch, just an honest conversation about what's not working and whether we're the right fit.</p>
+    <a href="https://calendar.app.google/Mt5zX895H8pj6VpL6" class="btn-primary">Book a Free Discovery Call</a>
+    <br>
+    <a href="/index.html" class="btn-ghost">Or learn about the full Systems Audit <span>→</span></a>
+  </div>
+</section>
+
+<footer>
+  <a class="nav-logo" href="/index.html" style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:0.08em;color:var(--white);">QAMW<span style="color:var(--accent)">.</span></a>
+  <div class="footer-links">
+    <a href="/nonprofit-consulting.html">Nonprofit Consulting</a>
+    <a href="/nonprofit-technical-support.html">Tech Support</a>
+    <a href="/systems-integration-consulting.html">Systems Integration</a>
+    <a href="/index.html">Systems Audit</a>
+  </div>
+  <span>© 2025 QAMW LLC · Seattle, WA · Black-owned · Women-owned</span>
+</footer>
+
+</body>
+</html>
