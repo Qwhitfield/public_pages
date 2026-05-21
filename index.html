@@ -116,8 +116,12 @@
     font-size: 22px;
     letter-spacing: 0.08em;
     color: var(--white);
+    text-decoration: none;
   }
   .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--white); }
   .nav-cta {
     background: var(--accent);
     color: var(--white);
@@ -128,9 +132,9 @@
     text-decoration: none;
     padding: 10px 20px;
     display: inline-block;
-    transition: background 0.2s, transform 0.15s;
+    transition: background 0.2s;
   }
-  .nav-cta:hover { background: var(--accent-dim); transform: translateY(-1px); }
+  .nav-cta:hover { background: var(--accent-dim); }
 
   /* ── HERO ── */
   #hero {
@@ -642,7 +646,13 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">QAMW<span>.</span></div>
+  <a class="nav-logo" href="/index.html">QAMW<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="/about.html">About</a></li>
+    <li><a href="/systems-integration-consulting.html">Systems</a></li>
+    <li><a href="/nonprofit-consulting.html">Nonprofit</a></li>
+    <li><a href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ15nMUd-xrJZMKbigqOvRNMZ-YROcrfsyRV_OB94s4Vnn_8jNUffJ6uAApGh5BK04e7RvigTtue?gv=true" target="_blank" rel="noopener">Free Discovery Call</a></li>
+  </ul>
   <a href="#cta" class="nav-cta">Book Your Audit →</a>
 </nav>
 
@@ -1008,6 +1018,7 @@
     <div style="font-size:12px;color:var(--muted);margin-top:4px;">Black-owned · Women-owned · Seattle, WA</div>
   </div>
   <div style="display:flex;gap:24px;flex-wrap:wrap;">
+    <a href="/about.html">About</a>
     <a href="/nonprofit-consulting.html">Nonprofit Consulting</a>
     <a href="/nonprofit-technical-support.html">Tech Support</a>
     <a href="/systems-integration-consulting.html">Systems Integration</a>
