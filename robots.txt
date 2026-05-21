@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /construction/
+Disallow: /practice/
+
+Sitemap: https://qamwconsulting.com/sitemap.xml

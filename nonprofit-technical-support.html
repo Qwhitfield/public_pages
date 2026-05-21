@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nonprofit Technical Support & IT Consulting — QAMW Consulting | Seattle</title>
+<meta name="description" content="Ongoing technical support for nonprofits in Seattle and nationwide. Black-owned, women-owned consulting practice offering CRM support, data help, reporting fixes, and fractional systems expertise — without a full-time hire.">
+<meta name="keywords" content="nonprofit technical support Seattle, nonprofit IT consulting, nonprofit CRM support, Salesforce nonprofit support, fractional IT nonprofit, MWBE nonprofit tech support, Black-owned tech consulting Seattle, women-owned IT consulting nonprofit">
+<link rel="canonical" href="https://qamwconsulting.com/nonprofit-technical-support.html">
+
+<meta property="og:title" content="Nonprofit Technical Support & IT Consulting — QAMW Consulting">
+<meta property="og:description" content="Fractional technical support for nonprofits. CRM help, reporting fixes, integrations, and data systems expertise — without the cost of a full-time hire. Black-owned, women-owned, Seattle-based.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://qamwconsulting.com/nonprofit-technical-support.html">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "QAMW Consulting — Nonprofit Technical Support",
+  "description": "Ongoing technical support for nonprofits — CRM management, reporting infrastructure, data systems, and integrations. Black-owned, women-owned consulting practice based in Seattle, WA.",
+  "url": "https://qamwconsulting.com/nonprofit-technical-support.html",
+  "founder": { "@type": "Person", "name": "Quinita Whitfield" },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Seattle",
+    "addressRegion": "WA",
+    "addressCountry": "US"
+  },
+  "areaServed": ["Seattle, WA", "Pacific Northwest", "United States"],
+  "serviceType": ["Nonprofit Technical Support", "Nonprofit CRM Support", "Fractional IT Nonprofit", "Nonprofit Reporting"],
+  "keywords": "nonprofit technical support, nonprofit IT, MWBE, Black-owned consulting, women-owned consulting, Seattle"
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #0a0a0a; --off-black: #111111; --dark: #1a1a1a; --mid: #2a2a2a;
+    --border: #2f2f2f; --muted: #666; --body: #b8b8b8; --white: #f2f0eb;
+    --accent: #8c52ff; --accent-dim: #7340d4; --accent-soft: rgba(140,82,255,0.1);
+    --green: #47c47e; --red: #e85c47;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--body); font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 1.7; overflow-x: hidden; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E"); pointer-events: none; z-index: 999; opacity: 0.4; }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+  .container-narrow { max-width: 680px; margin: 0 auto; padding: 0 24px; }
+
+  nav { position: sticky; top: 0; z-index: 100; background: rgba(10,10,10,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.08em; color: var(--white); text-decoration: none; }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta { background: var(--accent); color: var(--white); font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.05em; text-decoration: none; padding: 10px 20px; transition: background 0.2s; }
+  .nav-cta:hover { background: var(--accent-dim); }
+
+  .breadcrumb { border-bottom: 1px solid var(--border); padding: 12px 24px; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); }
+  .breadcrumb a { color: var(--accent); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  /* HEADER — two column editorial */
+  .page-header { padding: 72px 0 0; border-bottom: 1px solid var(--border); }
+  .header-grid { display: grid; grid-template-columns: 1fr 340px; gap: 60px; align-items: start; padding-bottom: 64px; }
+  .page-kicker { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+  .page-kicker::after { content: ''; display: block; width: 48px; height: 1px; background: var(--accent); }
+  .page-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(44px, 7vw, 76px); line-height: 0.95; letter-spacing: 0.01em; color: var(--white); margin-bottom: 24px; }
+  .page-title em { font-style: normal; color: var(--accent); }
+  .page-deck { font-size: 18px; font-weight: 300; color: var(--body); line-height: 1.6; }
+
+  /* SIDEBAR CARD */
+  .sidebar-card { border: 1px solid var(--border); background: var(--off-black); padding: 28px 24px; position: sticky; top: 88px; }
+  .sidebar-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+  .sidebar-item { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 14px; color: var(--body); display: flex; gap: 10px; }
+  .sidebar-item:last-of-type { border-bottom: none; }
+  .sidebar-item::before { content: '→'; color: var(--accent); font-family: 'DM Mono', monospace; font-size: 11px; flex-shrink: 0; margin-top: 2px; }
+  .sidebar-cta { margin-top: 20px; display: block; background: var(--accent); color: var(--white); text-align: center; padding: 14px; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; text-decoration: none; transition: background 0.2s; }
+  .sidebar-cta:hover { background: var(--accent-dim); }
+  .ownership-badge { display: flex; align-items: center; gap: 8px; margin-top: 16px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  .ownership-badge span { color: var(--accent); }
+
+  /* ARTICLE SECTIONS */
+  .article-section { padding: 72px 0; border-bottom: 1px solid var(--border); }
+  .article-section:last-of-type { border-bottom: none; }
+  .section-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+
+  h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px, 5vw, 52px); line-height: 1.0; color: var(--white); letter-spacing: 0.02em; margin-bottom: 24px; }
+  h3 { font-family: 'DM Sans', sans-serif; font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 12px; margin-top: 40px; }
+  h3:first-child { margin-top: 0; }
+
+  .prose p { margin-bottom: 20px; }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose strong { color: var(--white); font-weight: 500; }
+
+  /* SCENARIO LAYOUT — numbered situations */
+  .scenario-list { display: flex; flex-direction: column; gap: 2px; margin-top: 28px; }
+  .scenario {
+    display: grid; grid-template-columns: 60px 1fr;
+    background: var(--off-black); border: 1px solid var(--border);
+    transition: border-color 0.2s;
+  }
+  .scenario:hover { border-color: var(--accent); }
+  .scenario-num {
+    display: flex; align-items: flex-start; justify-content: center;
+    padding: 28px 0 28px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px; line-height: 1;
+    color: var(--border);
+    border-right: 1px solid var(--border);
+    transition: color 0.2s;
+  }
+  .scenario:hover .scenario-num { color: var(--accent); }
+  .scenario-body { padding: 24px 28px; }
+  .scenario-title { font-weight: 700; font-size: 16px; color: var(--white); margin-bottom: 8px; }
+  .scenario-desc { font-size: 14px; color: var(--muted); line-height: 1.65; }
+  .scenario-tag { display: inline-block; margin-top: 10px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); background: var(--accent-soft); padding: 3px 8px; }
+
+  /* PRICING TIERS */
+  .tier-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); margin-top: 36px; }
+  .tier-card { background: var(--off-black); padding: 36px 32px; }
+  .tier-card.featured { background: var(--dark); border: 1px solid var(--accent); position: relative; }
+  .tier-badge { position: absolute; top: -1px; left: 50%; transform: translateX(-50%); background: var(--accent); color: var(--white); font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; padding: 4px 12px; white-space: nowrap; }
+  .tier-name { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+  .tier-price { font-family: 'Bebas Neue', sans-serif; font-size: 48px; line-height: 1; color: var(--white); margin-bottom: 4px; }
+  .tier-price sup { font-size: 24px; vertical-align: top; margin-top: 8px; color: var(--accent); }
+  .tier-cadence { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); margin-bottom: 24px; }
+  .tier-includes { list-style: none; display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--border); padding-top: 20px; }
+  .tier-includes li { padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 14px; color: var(--body); display: flex; gap: 10px; }
+  .tier-includes li:last-child { border-bottom: none; }
+  .tier-includes li::before { content: '✓'; color: var(--green); font-family: 'DM Mono', monospace; font-size: 11px; flex-shrink: 0; margin-top: 2px; }
+
+  /* PULL QUOTE */
+  .pull-quote { border-left: 3px solid var(--accent); padding: 24px 32px; background: var(--off-black); margin: 40px 0; }
+  .pull-quote p { font-size: 20px; font-weight: 300; color: var(--white); line-height: 1.55; margin: 0; }
+  .pull-quote cite { display: block; margin-top: 12px; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-style: normal; }
+
+  /* CALLOUT */
+  .callout { background: var(--accent-soft); border: 1px solid rgba(140,82,255,0.3); padding: 28px 32px; margin: 36px 0; }
+  .callout-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+  .callout p { font-size: 15px; color: var(--body); line-height: 1.65; margin: 0; }
+
+  /* TOOLS GRID */
+  .tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); margin: 32px 0; }
+  .tool-cell { background: var(--off-black); padding: 20px 18px; }
+  .tool-name { font-weight: 700; font-size: 14px; color: var(--white); margin-bottom: 4px; }
+  .tool-context { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+  /* FAQ */
+  .faq-list { display: flex; flex-direction: column; margin-top: 32px; }
+  .faq-item { border-bottom: 1px solid var(--border); padding: 28px 0; }
+  .faq-item:first-child { border-top: 1px solid var(--border); }
+  .faq-q { font-weight: 600; font-size: 16px; color: var(--white); margin-bottom: 10px; }
+  .faq-a { font-size: 15px; color: var(--muted); line-height: 1.7; }
+
+  /* CTA */
+  .cta-section { padding: 96px 0; text-align: center; position: relative; overflow: hidden; }
+  .cta-section::before { content: 'SUPPORT'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: 'Bebas Neue', sans-serif; font-size: clamp(80px, 18vw, 200px); color: var(--off-black); pointer-events: none; white-space: nowrap; letter-spacing: 0.05em; z-index: 0; }
+  .cta-section .container { position: relative; z-index: 1; }
+  .cta-section h2 { margin-bottom: 16px; }
+  .cta-section p { max-width: 500px; margin: 0 auto 40px; font-size: 18px; font-weight: 300; }
+
+  .btn-primary { background: var(--accent); color: var(--white); font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: 0.03em; text-decoration: none; padding: 18px 36px; display: inline-block; transition: background 0.2s, transform 0.15s; position: relative; }
+  .btn-primary::after { content: ''; position: absolute; bottom: -4px; right: -4px; width: 100%; height: 100%; border: 1px solid var(--accent); transition: transform 0.2s; }
+  .btn-primary:hover { background: var(--accent-dim); transform: translate(-2px, -2px); }
+  .btn-primary:hover::after { transform: translate(4px, 4px); }
+  .btn-ghost { color: var(--muted); font-family: 'DM Mono', monospace; font-size: 13px; text-decoration: none; display: inline-block; margin-top: 20px; transition: color 0.2s; }
+  .btn-ghost:hover { color: var(--accent); }
+  .btn-ghost span { color: var(--accent); }
+
+  footer { border-top: 1px solid var(--border); padding: 32px 24px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); flex-wrap: wrap; gap: 16px; }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+  .footer-links { display: flex; gap: 24px; }
+
+  @media (max-width: 780px) {
+    .nav-links { display: none; }
+    .header-grid { grid-template-columns: 1fr; }
+    .sidebar-card { position: static; }
+    .tier-grid { grid-template-columns: 1fr; }
+    .tools-grid { grid-template-columns: 1fr 1fr; }
+    .scenario { grid-template-columns: 1fr; }
+    .scenario-num { border-right: none; border-bottom: 1px solid var(--border); padding: 16px 28px; justify-content: flex-start; }
+    .footer-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/index.html">QAMW<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="/nonprofit-consulting.html">Nonprofit</a></li>
+    <li><a href="/systems-integration-consulting.html">Systems</a></li>
+    <li><a href="/nonprofit-technical-support.html">Tech Support</a></li>
+  </ul>
+  <a href="/index.html#cta" class="nav-cta">Book Your Audit →</a>
+</nav>
+
+<div class="breadcrumb">
+  <a href="/index.html">QAMW Consulting</a> &nbsp;/&nbsp; Nonprofit Technical Support
+</div>
+
+<!-- HEADER -->
+<header class="page-header">
+  <div class="container">
+    <div class="header-grid">
+      <div>
+        <div class="page-kicker">Nonprofit Tech Support</div>
+        <h1 class="page-title">The tech help<br>your team<br><em>actually needs</em></h1>
+        <p class="page-deck">Your CRM isn't working right. Your reports are wrong. Something broke in the integration and nobody knows why. You need help — but not a $15,000 implementation project. You need a trusted technical partner who picks up the phone.</p>
+      </div>
+      <div class="sidebar-card">
+        <div class="sidebar-label">What's included</div>
+        <div class="sidebar-item">CRM support & troubleshooting</div>
+        <div class="sidebar-item">Reporting & dashboard fixes</div>
+        <div class="sidebar-item">Integration maintenance</div>
+        <div class="sidebar-item">Data cleanup & migration help</div>
+        <div class="sidebar-item">Staff training & documentation</div>
+        <div class="sidebar-item">Tool evaluation & procurement</div>
+        <a href="https://calendar.app.google/Mt5zX895H8pj6VpL6" class="sidebar-cta">Book a Discovery Call →</a>
+        <div class="ownership-badge"><span>■</span> Black-owned &nbsp;·&nbsp; <span>■</span> Women-owned · Seattle</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- WHO THIS IS FOR -->
+<section class="article-section">
+  <div class="container-narrow">
+    <div class="section-label">The Situation</div>
+    <h2>Most nonprofits aren't ready for a full implementation. They just need help.</h2>
+
+    <div class="prose">
+      <p>There's a gap in the nonprofit technology market that nobody talks about honestly: the space between "we'll figure it out ourselves" and "we need to hire a consultant for a six-month project." Most nonprofits live in that gap. They have real technical problems that need real expertise — but not necessarily a full engagement.</p>
+
+      <p>What they actually need is someone they can reach when the Salesforce integration stops syncing. Or when the board report is due Friday and the Power BI dashboard is pulling the wrong numbers. Or when a key staff member leaves and takes the institutional knowledge of how the systems actually work with them.</p>
+    </div>
+
+    <div class="pull-quote">
+      <p>"We had a consultant set everything up two years ago. Now we can't change anything without being afraid we'll break it — and they're not available anymore."</p>
+      <cite>— A pattern we hear constantly from nonprofit ops leads</cite>
+    </div>
+
+    <div class="prose">
+      <p>QAMW's technical support retainer is built specifically for this. It's not a help desk. It's a <strong>dedicated technical partner</strong> who knows your systems, understands your programs, and can handle everything from a quick data question to a mid-sized integration fix — without a new statement of work every time.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE HANDLE -->
+<section class="article-section" style="background: var(--off-black);">
+  <div class="container">
+    <div class="section-label">What Gets Handled</div>
+    <h2>The situations we're built for</h2>
+    <p style="max-width: 620px; margin-bottom: 8px;">These are the actual scenarios that come up in a support retainer. Not hypothetical — these are real tickets from real nonprofit clients.</p>
+
+    <div class="scenario-list">
+      <div class="scenario">
+        <div class="scenario-num">01</div>
+        <div class="scenario-body">
+          <div class="scenario-title">The grant report is due and the numbers don't match</div>
+          <div class="scenario-desc">Your program tracker says 347 clients served. Your CRM says 312. Your finance team says 389. You have three days. We find the discrepancy, explain where it came from, and deliver a defensible reconciliation — with documentation so it doesn't happen next cycle.</div>
+          <span class="scenario-tag">Reporting · Data Reconciliation</span>
+        </div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-num">02</div>
+        <div class="scenario-body">
+          <div class="scenario-title">The Salesforce sync broke and no one knows why</div>
+          <div class="scenario-desc">An integration that was working stopped working. Data isn't flowing. Records are duplicating. Or worse — nothing seems wrong until you look closely and realize nothing has synced in three weeks. We diagnose, fix, and document what happened so you know if it's likely to recur.</div>
+          <span class="scenario-tag">CRM · Integration · Salesforce NPSP</span>
+        </div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-num">03</div>
+        <div class="scenario-body">
+          <div class="scenario-title">A staff member left and took the system knowledge with them</div>
+          <div class="scenario-desc">The person who knew how everything worked is gone. Now there's a Power BI dashboard nobody can update, a Zapier automation nobody understands, and a QuickBooks setup that "just works somehow." We audit what was built, document how it works, and train the team that's left.</div>
+          <span class="scenario-tag">Documentation · Training · Knowledge Transfer</span>
+        </div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-num">04</div>
+        <div class="scenario-body">
+          <div class="scenario-title">Leadership wants a new dashboard for the board meeting</div>
+          <div class="scenario-desc">The executive director needs to show the board real-time program outcomes, donor retention, and budget variance — next Thursday. We build it, connect it to the right data sources, and make sure it updates automatically so it's still useful after the meeting.</div>
+          <span class="scenario-tag">Power BI · Board Reporting · Data Viz</span>
+        </div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-num">05</div>
+        <div class="scenario-body">
+          <div class="scenario-title">You're evaluating a new tool and don't know if it's actually better</div>
+          <div class="scenario-desc">A vendor is pitching you on a new CRM, grant management platform, or data tool. They say it integrates with everything. We've heard that before. We evaluate the actual integration capability, the data migration path, the real cost of implementation, and give you an honest recommendation — not one shaped by a sales incentive.</div>
+          <span class="scenario-tag">Tool Evaluation · Procurement · Tech Strategy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS WE SUPPORT -->
+<section class="article-section">
+  <div class="container">
+    <div class="section-label">Tools We Know</div>
+    <h2>Platforms we support across nonprofit tech stacks</h2>
+    <p style="max-width: 620px;">This isn't a comprehensive vendor list — it's the tools we've worked with repeatedly enough to know where they break and how to fix them quickly.</p>
+
+    <div class="tools-grid">
+      <div class="tool-cell">
+        <div class="tool-name">Salesforce NPSP</div>
+        <div class="tool-context">Donor management, program tracking, custom objects, flows</div>
+      </div>
+      <div class="tool-cell">
+        <div class="tool-name">Power BI</div>
+        <div class="tool-context">Dashboards, semantic models, DAX, automated refresh, board reports</div>
+      </div>
+      <div class="tool-cell">
+        <div class="tool-name">QuickBooks</div>
+        <div class="tool-context">Grant tracking, fund accounting, reconciliation with program data</div>
+      </div>
+      <div class="tool-cell">
+        <div class="tool-name">Bloomerang</div>
+        <div class="tool-context">Donor CRM, retention reporting, integration with email platforms</div>
+      </div>
+      <div class="tool-cell">
+        <div class="tool-name">Airtable</div>
+        <div class="tool-context">Program data tracking, volunteer management, multi-base workflows</div>
+      </div>
+      <div class="tool-cell">
+        <div class="tool-name">Zapier / Make</div>
+        <div class="tool-context">Automation maintenance, broken workflow diagnosis, new integrations</div>
+      </div>
+      <div class="tool-cell">
+        <div class="tool-name">Google Workspace</div>
+        <div class="tool-context">Sheets-based reporting cleanup, Forms integration, Drive data organization</div>
+      </div>
+      <div class="tool-cell">
+        <div class="tool-name">Little Green Light</div>
+        <div class="tool-context">Donor CRM, event tracking, reporting exports, migration to/from LGL</div>
+      </div>
+      <div class="tool-cell">
+        <div class="tool-name">Microsoft 365</div>
+        <div class="tool-context">SharePoint, Teams data, Power Automate, enterprise-side nonprofit setups</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Not on this list?</div>
+      <p>If it has an API, export capability, or a documented integration layer, we can almost certainly work with it. The specific platform matters less than understanding the underlying data model — and that's where 13 years of systems experience comes in.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="article-section" style="background: var(--off-black);">
+  <div class="container">
+    <div class="section-label">How It's Priced</div>
+    <h2>Retainer options built for nonprofit budgets</h2>
+    <p style="max-width: 620px;">We keep pricing simple and transparent. No hourly billing surprises, no scope creep invoices. You pick the level of support you need and we deliver within it.</p>
+
+    <div class="tier-grid">
+      <div class="tier-card">
+        <div class="tier-name">Essential Support</div>
+        <div class="tier-price"><sup>$</sup>1,500</div>
+        <div class="tier-cadence">per month · 3-month minimum</div>
+        <ul class="tier-includes">
+          <li>Up to 8 hours of technical support monthly</li>
+          <li>CRM troubleshooting and minor fixes</li>
+          <li>Reporting questions and dashboard updates</li>
+          <li>Email and async response within 24 hours</li>
+          <li>Monthly check-in call (30 min)</li>
+        </ul>
+      </div>
+      <div class="tier-card featured">
+        <div class="tier-badge">MOST COMMON</div>
+        <div class="tier-name" style="margin-top: 8px;">Systems Partner</div>
+        <div class="tier-price"><sup>$</sup>3,000</div>
+        <div class="tier-cadence">per month · 3-month minimum</div>
+        <ul class="tier-includes">
+          <li>Up to 20 hours of technical support monthly</li>
+          <li>CRM administration and configuration</li>
+          <li>Integration maintenance and fixes</li>
+          <li>Dashboard and reporting builds</li>
+          <li>Staff training and documentation</li>
+          <li>Priority response — same business day</li>
+          <li>Bi-weekly check-in call (45 min)</li>
+        </ul>
+      </div>
+    </div>
+
+    <p style="font-size: 14px; color: var(--muted); margin-top: 20px; text-align: center;">Need something outside these tiers? We scope custom engagements for larger organizations. <a href="https://calendar.app.google/Mt5zX895H8pj6VpL6" style="color: var(--accent); text-decoration: none;">Start with a discovery call.</a></p>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="article-section">
+  <div class="container-narrow">
+    <div class="section-label">About QAMW</div>
+    <h2>Who's actually doing the work</h2>
+
+    <div class="prose">
+      <p>QAMW Consulting was founded by <strong>Quinita Whitfield</strong>, a systems and data consultant with 13+ years of experience building BI infrastructure and integrating operational tools across healthcare, finance, retail, nonprofit, and field service organizations.</p>
+
+      <p>Before going independent, Quinita built reporting automation at enterprise scale — including a workflow at VEHO that eliminated a 12-hour weekly manual process and saved over $104,000 annually. She holds an M.S. in Business Analytics from the University of Washington and is a Microsoft Certified Power BI Data Analyst (DA-100).</p>
+
+      <p>QAMW is a <strong>Black-owned, women-owned small business</strong> based in Seattle, WA. For nonprofits with supplier diversity commitments or MWBE procurement requirements, we are a qualifying diverse vendor. But beyond the designation — we bring genuine perspective on the communities many nonprofits exist to serve, and that shapes how we approach the work.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="article-section" style="background: var(--off-black);">
+  <div class="container-narrow">
+    <div class="section-label">Questions</div>
+    <h2>What people ask before signing on</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">Is there a minimum contract length?</div>
+        <div class="faq-a">Yes — three months minimum on both tiers. Technical support works best when the consultant understands your specific systems and context. That takes a few weeks to develop, and a one-month engagement doesn't give us enough time to be genuinely useful. After three months, retainers renew monthly with 30-day notice to end.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What if we need more hours in a given month?</div>
+        <div class="faq-a">We'll let you know when you're approaching your cap and give you the option to add hours at a flat hourly rate for that month. We don't quietly go over and invoice you for it — we ask first.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do you work with nonprofits outside Seattle?</div>
+        <div class="faq-a">Yes — all support is delivered remotely. We have clients across the Pacific Northwest and nationwide. The Seattle base just means we're in your time zone and occasionally available for in-person meetings when that makes sense.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What's the difference between this and the Systems Audit?</div>
+        <div class="faq-a">The Systems Audit is a one-time diagnostic — it tells you what's broken and gives you a roadmap. Technical support is the ongoing relationship that handles the work. Many clients do the audit first to understand what they're dealing with, then move into a support retainer to implement and maintain the fixes.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="section-label">Get Started</div>
+    <h2>Ready for a technical partner who actually knows your systems?</h2>
+    <p>Start with a 20-minute discovery call. We'll talk through what you're dealing with and whether a support retainer is the right fit.</p>
+    <a href="https://calendar.app.google/Mt5zX895H8pj6VpL6" class="btn-primary">Book a Free Discovery Call</a>
+    <br>
+    <a href="/nonprofit-consulting.html" class="btn-ghost">Learn about full nonprofit consulting <span>→</span></a>
+  </div>
+</section>
+
+<footer>
+  <a class="nav-logo" href="/index.html" style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:0.08em;color:var(--white);">QAMW<span style="color:var(--accent)">.</span></a>
+  <div class="footer-links">
+    <a href="/nonprofit-consulting.html">Nonprofit Consulting</a>
+    <a href="/nonprofit-technical-support.html">Tech Support</a>
+    <a href="/systems-integration-consulting.html">Systems Integration</a>
+    <a href="/index.html">Systems Audit</a>
+  </div>
+  <span>© 2025 QAMW LLC · Seattle, WA · Black-owned · Women-owned</span>
+</footer>
+
+</body>
+</html>
