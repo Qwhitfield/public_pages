@@ -33,6 +33,8 @@
 }
 </script>
 
+<link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
+<script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -198,7 +200,7 @@
     <li><a href="/systems-integration-consulting.html">Systems</a></li>
     <li><a href="/nonprofit-technical-support.html">Tech Support</a></li>
   </ul>
-  <a href="/index.html#cta" class="nav-cta">Book Your Audit →</a>
+  <a href="#cta" class="nav-cta">Book Your Audit →</a>
 </nav>
 
 <div class="breadcrumb">
@@ -222,7 +224,19 @@
         <div class="sidebar-item">Data cleanup & migration help</div>
         <div class="sidebar-item">Staff training & documentation</div>
         <div class="sidebar-item">Tool evaluation & procurement</div>
-        <a href="https://calendar.app.google/Mt5zX895H8pj6VpL6" class="sidebar-cta">Book a Discovery Call →</a>
+        <script>
+(function() {
+  var target = document.currentScript;
+  window.addEventListener('load', function() {
+    calendar.schedulingButton.load({
+      url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ21hqKMRx6-Rx-3cCQE_zESCF-BzmUPKurjzwuKLFt-5Pmc_9IRUggrKQcTyX-3l-APpX3iX1W3?gv=true',
+      color: '#8c52ff',
+      label: 'Book an appointment',
+      target,
+    });
+  });
+})();
+</script>
         <div class="ownership-badge"><span>■</span> Black-owned &nbsp;·&nbsp; <span>■</span> Women-owned · Seattle</div>
       </div>
     </div>
@@ -446,7 +460,19 @@
     <div class="section-label">Get Started</div>
     <h2>Ready for a technical partner who actually knows your systems?</h2>
     <p>Start with a 20-minute discovery call. We'll talk through what you're dealing with and whether a support retainer is the right fit.</p>
-    <a href="https://calendar.app.google/Mt5zX895H8pj6VpL6" class="btn-primary">Book a Free Discovery Call</a>
+    <script>
+(function() {
+  var target = document.currentScript;
+  window.addEventListener('load', function() {
+    calendar.schedulingButton.load({
+      url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ21hqKMRx6-Rx-3cCQE_zESCF-BzmUPKurjzwuKLFt-5Pmc_9IRUggrKQcTyX-3l-APpX3iX1W3?gv=true',
+      color: '#8c52ff',
+      label: 'Book an appointment',
+      target,
+    });
+  });
+})();
+</script>
     <br>
     <a href="/nonprofit-consulting.html" class="btn-ghost">Learn about full nonprofit consulting <span>→</span></a>
   </div>
