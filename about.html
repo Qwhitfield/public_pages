@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Quinita Whitfield — Founder, QAMW Consulting</title>
+<meta name="description" content="The founder story behind QAMW Consulting. Quinita Whitfield is a Black-owned, women-owned systems consultant in Seattle who finds the gap between how a business actually runs and how its systems think it runs.">
+<link rel="canonical" href="https://qamwconsulting.com/about.html">
+<meta property="og:title" content="About Quinita Whitfield — Founder, QAMW Consulting">
+<meta property="og:description" content="The founder story behind QAMW Consulting — and why stubborn is a feature, not a bug.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://qamwconsulting.com/about.html">
+
+<link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
+<script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --off-black: #111111;
+    --dark: #1a1a1a;
+    --mid: #2a2a2a;
+    --border: #2f2f2f;
+    --muted: #666;
+    --body: #b8b8b8;
+    --white: #f2f0eb;
+    --accent: #8c52ff;
+    --accent-dim: #7340d4;
+    --accent-soft: rgba(140,82,255,0.1);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--body);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 17px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 999; opacity: 0.4;
+  }
+
+  /* ── NAV (identical to index.html) ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 24px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px; letter-spacing: 0.08em;
+    color: var(--white);
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-cta {
+    background: var(--accent); color: var(--white);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px; font-weight: 500; letter-spacing: 0.05em;
+    text-decoration: none; padding: 10px 20px;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .nav-cta:hover { background: var(--accent-dim); transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .page-hero {
+    padding: 100px 24px 72px;
+    max-width: 900px; margin: 0 auto;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-kicker {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 28px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-kicker::after { content: ''; display: block; width: 48px; height: 1px; background: var(--accent); }
+  .page-hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 9vw, 96px);
+    line-height: 0.93; letter-spacing: 0.01em;
+    color: var(--white); margin-bottom: 20px;
+  }
+  .page-hero h1 em { font-style: normal; color: var(--accent); display: block; }
+  .page-hero .subhead {
+    font-size: 18px; font-weight: 300;
+    color: var(--body); max-width: 560px; line-height: 1.6;
+  }
+
+  /* ── FOUNDER SECTION ── */
+  .founder-section {
+    max-width: 900px; margin: 0 auto;
+    padding: 80px 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .founder-grid {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  /* Photo column */
+  .founder-photo-col { position: sticky; top: 88px; }
+  .founder-photo-wrap {
+    position: relative;
+  }
+  .founder-photo-wrap::after {
+    content: '';
+    position: absolute;
+    bottom: -8px; right: -8px;
+    width: 100%; height: 100%;
+    border: 1px solid var(--accent);
+    z-index: 0;
+    pointer-events: none;
+  }
+  .founder-photo-wrap img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    object-position: top center;
+    position: relative;
+    z-index: 1;
+    filter: grayscale(20%);
+  }
+  .founder-name {
+    margin-top: 20px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px; letter-spacing: 0.06em;
+    color: var(--white);
+  }
+  .founder-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--muted);
+    margin-top: 4px; line-height: 1.5;
+  }
+  .founder-badges {
+    display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px;
+  }
+  .badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 1px solid var(--border);
+    color: var(--muted); padding: 5px 10px;
+  }
+  .badge.accent { border-color: rgba(140,82,255,0.4); color: var(--accent); }
+
+  /* Story column */
+  .founder-story p {
+    margin-bottom: 22px;
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--body);
+  }
+  .founder-story p:last-child { margin-bottom: 0; }
+  .founder-story p strong { color: var(--white); font-weight: 500; }
+
+  /* ── ACCENT STATEMENT (case result box style) ── */
+  .accent-statement {
+    max-width: 900px; margin: 0 auto;
+    padding: 0 24px;
+  }
+  .accent-statement-inner {
+    border-left: 3px solid var(--accent);
+    background: var(--off-black);
+    padding: 32px 44px;
+  }
+  .accent-statement-inner p {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 6vw, 64px);
+    letter-spacing: 0.04em;
+    line-height: 1;
+    color: var(--white);
+  }
+  .accent-statement-inner p span { color: var(--accent); }
+
+  /* ── METHODOLOGY SECTION ── */
+  .method-section {
+    max-width: 900px; margin: 0 auto;
+    padding: 80px 24px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .method-kicker {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .method-section h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1; color: var(--white);
+    letter-spacing: 0.02em; margin-bottom: 48px;
+  }
+  .method-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--border);
+  }
+  .method-card {
+    background: var(--off-black);
+    padding: 36px 28px;
+  }
+  .method-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .method-card p {
+    font-size: 15px; color: var(--body);
+    line-height: 1.75;
+  }
+  .method-card strong { color: var(--white); font-weight: 500; }
+
+  /* ── CTA ── */
+  .cta-section {
+    padding: 96px 24px;
+    text-align: center;
+    max-width: 900px; margin: 0 auto;
+  }
+  .cta-kicker {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .cta-section h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 6vw, 60px);
+    line-height: 1; color: var(--white);
+    letter-spacing: 0.02em; margin-bottom: 16px;
+  }
+  .cta-section p {
+    font-size: 18px; font-weight: 300;
+    max-width: 480px; margin: 0 auto 40px;
+    color: var(--body);
+  }
+
+  /* ── FOOTER (identical to index.html) ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 13px; color: var(--muted);
+    flex-wrap: wrap; gap: 16px;
+  }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 720px) {
+    .founder-grid { grid-template-columns: 1fr; gap: 40px; }
+    .founder-photo-col { position: static; }
+    .founder-photo-wrap::after { display: none; }
+    .founder-photo-wrap img { aspect-ratio: 1 / 1; object-position: center top; max-height: 420px; }
+    .method-grid { grid-template-columns: 1fr; }
+    .accent-statement-inner { padding: 24px 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">QAMW<span>.</span></div>
+  <a href="/index.html" class="nav-cta">Book Your Audit →</a>
+</nav>
+
+<!-- HERO -->
+<header class="page-hero">
+  <div class="hero-kicker">Founder Story</div>
+  <h1>Stubborn enough<br>to find<br><em>the gap.</em></h1>
+  <p class="subhead">The person behind QAMW — and why being the one who stays in the problem is both a personality trait and a professional methodology.</p>
+</header>
+
+<!-- FOUNDER SECTION -->
+<section class="founder-section">
+  <div class="founder-grid">
+
+    <!-- Photo column -->
+    <div class="founder-photo-col">
+      <div class="founder-photo-wrap">
+        <img src="Quinita-headshot-2.jpg" alt="Quinita Whitfield, Founder of QAMW Consulting">
+      </div>
+      <div class="founder-name">Quinita Whitfield</div>
+      <div class="founder-title">Founder, QAMW Consulting<br>Systems & Data Consultant</div>
+      <div class="founder-badges">
+        <span class="badge accent">Black-owned</span>
+        <span class="badge accent">Women-owned</span>
+        <span class="badge">Seattle, WA</span>
+        <span class="badge">M.S. Business Analytics, UW</span>
+        <span class="badge">Power BI DA-100</span>
+      </div>
+    </div>
+
+    <!-- Story column -->
+    <div class="founder-story">
+      <p>Growing up, I thought my dad's computer stuff was the nerdiest thing in the world.</p>
+
+      <p>Our house and garage were full of machines at every stage of building and use. I avoided helping him most of the time. But I couldn't avoid the arguments. My dad was a nerdy military man who was confident he knew everything. So was I. We argued about definitions, concepts, words. Once I used the word "innate" to describe someone's response and he swore I had it wrong. I didn't. I looked it up and held my ground.</p>
+
+      <p>That stubbornness stuck. So did the tech. Growing up surrounded by computers at every stage meant I was never afraid of them. I built PCs. Set up VoIP systems. Learned dinosaur-age coding languages when the main developer retired and nobody else would touch it. Built company-wide reporting systems from scratch. I became a techy jack of all trades, not because I planned it, but because I was always the person willing to stay in the problem until it was solved.</p>
+
+      <p>That willingness is what took me to a last-mile logistics startup drowning in a report that took 12 hours to build every week and was still 20% off at the end of it. They couldn't set goals. They couldn't plan. They just argued about whose numbers were right.</p>
+
+      <p>I went in and looked at everything. The data warehouse. The operations managers. The regional structures. What I found wasn't a data problem. The business had grown, added locations, changed how it operated. The software was still frozen in the version of the company that existed in its first quarter. Nobody had ever gone back to close that gap.</p>
+
+      <p><strong>That's what I do.</strong> I find the space between how a business actually runs and how its systems think it runs. Smart people miss it. Senior engineers miss it. Executives miss it. Not because they aren't good at their jobs. Because closing that gap requires someone stubborn enough to keep looking after everyone else has moved on.</p>
+
+      <p>The girl who rolled her eyes at her dad's computer lab now does her best work when she's handed an unstructured beast of data and told nobody's been able to figure it out.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ACCENT STATEMENT -->
+<div class="accent-statement">
+  <div class="accent-statement-inner">
+    <p>Gap exposer. <span>Data destroyer.</span></p>
+  </div>
+</div>
+
+<!-- METHODOLOGY SECTION -->
+<section class="method-section">
+  <div class="method-kicker">The Methodology</div>
+  <h2>What immersive systems research<br>means in practice</h2>
+  <div class="method-grid">
+    <div class="method-card">
+      <div class="method-num">01 — Go in</div>
+      <p>Immersive means sitting with the people who actually do the work — not just reviewing documentation or interviewing leadership. <strong>The real system is rarely the documented one.</strong> It's in the workarounds ops managers built three years ago, the spreadsheet someone emails themselves every Friday, and the Slack message that functions as the company's actual data pipeline.</p>
+    </div>
+    <div class="method-card">
+      <div class="method-num">02 — Ask the obvious questions</div>
+      <p>Most systems problems persist because everyone assumes someone else has already asked the obvious question. <strong>Nobody has.</strong> Immersive research means slowing down long enough to ask why a report is built the way it is, when the original business logic was last reviewed, and whether the tool still reflects how the company actually operates — or just how it operated when the tool was configured.</p>
+    </div>
+    <div class="method-card">
+      <div class="method-num">03 — Stay until it closes</div>
+      <p>A gap identified but not closed is just a better-documented problem. <strong>The work isn't done when the audit is delivered</strong> — it's done when someone understands what changed, why it matters, and exactly what to do next. That's the difference between a report that gets read once and a system that actually runs differently on the other side of an engagement.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="cta">
+  <div class="cta-kicker">Work Together</div>
+  <h2>Ready to find your gap?</h2>
+  <p>Start with a free 20-minute discovery call. No pitch — just an honest look at what's not working.</p>
+  <script>
+(function() {
+  var target = document.currentScript;
+  window.addEventListener('load', function() {
+    calendar.schedulingButton.load({
+      url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ15nMUd-xrJZMKbigqOvRNMZ-YROcrfsyRV_OB94s4Vnn_8jNUffJ6uAApGh5BK04e7RvigTtue?gv=true',
+      color: '#8c52ff',
+      label: 'Book an appointment',
+      target,
+    });
+  });
+})();
+</script>
+</section>
+
+<!-- FOOTER (identical to index.html) -->
+<footer>
+  <div>
+    <div class="nav-logo">QAMW<span style="color:var(--accent)">.</span></div>
+    <div style="font-size:12px;color:var(--muted);margin-top:4px;">Black-owned · Women-owned · Seattle, WA</div>
+  </div>
+  <div style="display:flex;gap:24px;flex-wrap:wrap;">
+    <a href="/nonprofit-consulting.html">Nonprofit Consulting</a>
+    <a href="/nonprofit-technical-support.html">Tech Support</a>
+    <a href="/systems-integration-consulting.html">Systems Integration</a>
+  </div>
+  <span>© 2025 QAMW LLC · <a href="https://www.linkedin.com/in/quinita-whitfield" target="_blank" rel="noopener">LinkedIn</a></span>
+</footer>
+
+</body>
+</html>
