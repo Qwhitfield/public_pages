@@ -37,6 +37,8 @@
 }
 </script>
 
+<link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
+<script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -412,7 +414,7 @@
     <li><a href="/systems-integration-consulting.html">Systems</a></li>
     <li><a href="/nonprofit-technical-support.html">Tech Support</a></li>
   </ul>
-  <a href="/index.html#cta" class="nav-cta">Book Your Audit →</a>
+  <a href="#cta" class="nav-cta">Book Your Audit →</a>
 </nav>
 
 <div class="breadcrumb">
@@ -624,7 +626,19 @@
     <div class="section-label">Get Started</div>
     <h2>Ready to get your systems under control?</h2>
     <p>Start with a 20-minute discovery call — no pitch, just an honest conversation about what's not working and whether we're the right fit.</p>
-    <a href="https://calendar.app.google/Mt5zX895H8pj6VpL6" class="btn-primary">Book a Free Discovery Call</a>
+    <script>
+(function() {
+  var target = document.currentScript;
+  window.addEventListener('load', function() {
+    calendar.schedulingButton.load({
+      url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ21hqKMRx6-Rx-3cCQE_zESCF-BzmUPKurjzwuKLFt-5Pmc_9IRUggrKQcTyX-3l-APpX3iX1W3?gv=true',
+      color: '#8c52ff',
+      label: 'Book an appointment',
+      target,
+    });
+  });
+})();
+</script>
     <br>
     <a href="/index.html" class="btn-ghost">Or learn about the full Systems Audit <span>→</span></a>
   </div>
