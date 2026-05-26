@@ -119,7 +119,7 @@
     text-decoration: none;
   }
   .nav-logo span { color: var(--accent); }
-  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links { display: flex; gap: 28px; list-style: none; flex: 1; justify-content: center; }
   .nav-links a { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
   .nav-links a:hover { color: var(--white); }
   .nav-cta {
@@ -649,8 +649,10 @@
   <a class="nav-logo" href="/index.html">QAMW<span>.</span></a>
   <ul class="nav-links">
     <li><a href="/about.html">About</a></li>
-    <li><a href="/systems-integration-consulting.html">Systems</a></li>
+   <li><a href="/index.html">Systems Integration</a></li>
     <li><a href="/nonprofit-consulting.html">Nonprofit</a></li>
+    <li><a href="/systems-integration-consulting.html">Systems Audit</a></li>
+    <li><a href="/nonprofit-technical-support.html">Tech Support</a></li>
     <li><a href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ15nMUd-xrJZMKbigqOvRNMZ-YROcrfsyRV_OB94s4Vnn_8jNUffJ6uAApGh5BK04e7RvigTtue?gv=true" target="_blank" rel="noopener">Free Discovery Call</a></li>
   </ul>
   <a href="#cta" class="nav-cta">Book Your Audit →</a>
@@ -669,19 +671,7 @@
       Most businesses have the tools. The problem is <strong>everything is disconnected,</strong> the data can't be trusted, and AI fails before it even starts. I find exactly where your operations are bleeding time and money — and give you a clear plan to stop it.
     </p>
     <div class="cta-block fade-up">
-      <script>
-(function() {
-  var target = document.currentScript;
-  window.addEventListener('load', function() {
-    calendar.schedulingButton.load({
-      url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ21hqKMRx6-Rx-3cCQE_zESCF-BzmUPKurjzwuKLFt-5Pmc_9IRUggrKQcTyX-3l-APpX3iX1W3?gv=true',
-      color: '#8c52ff',
-      label: 'Book an appointment',
-      target,
-    });
-  });
-})();
-</script>
+     <a href="#cta" class="nav-cta">Book Your Audit →</a>
       <div class="price-badge">Starting at <strong>$5,000</strong> / flat fee</div>
     </div>
     <div class="hero-divider"></div>

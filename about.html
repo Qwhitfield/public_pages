@@ -67,6 +67,9 @@
     color: var(--white);
   }
   .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--white); }
   .nav-cta {
     background: var(--accent); color: var(--white);
     font-family: 'DM Mono', monospace;
@@ -75,6 +78,8 @@
     transition: background 0.2s, transform 0.15s;
   }
   .nav-cta:hover { background: var(--accent-dim); transform: translateY(-1px); }
+
+   
 
   /* ── HERO ── */
   .page-hero {
@@ -283,7 +288,14 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">QAMW<span>.</span></div>
+  <a class="nav-logo" href="/index.html">QAMW<span>.</span></a>
+  <ul class="nav-links">
+   <li><a href="/about.html">About</a></li>
+   <li><a href="/index.html">Systems Integration</a></li>
+    <li><a href="/nonprofit-consulting.html">Nonprofit</a></li>
+    <li><a href="/systems-integration-consulting.html">Systems Audit</a></li>
+    <li><a href="/nonprofit-technical-support.html">Tech Support</a></li>
+  </ul>
   <a href="/index.html" class="nav-cta">Book Your Audit →</a>
 </nav>
 
@@ -301,7 +313,7 @@
     <!-- Photo column -->
     <div class="founder-photo-col">
       <div class="founder-photo-wrap">
-        <img src="Quinita-headshot-2.jpg" alt="Quinita Whitfield, Founder of QAMW Consulting">
+        <img src="/Quinita-Headshot-2.jpg" alt="Quinita Whitfield, Founder of QAMW Consulting">
       </div>
       <div class="founder-name">Quinita Whitfield</div>
       <div class="founder-title">Founder, QAMW Consulting<br>Systems & Data Consultant</div>
