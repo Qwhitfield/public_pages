@@ -116,7 +116,7 @@
     <div class="gate-kicker">Free Resource</div>
     <div class="gate-title">Get the <em>AI Search</em><br>Cheatsheet</div>
     <p class="gate-subtitle">Enter your email for instant access to the 1-page guide helping businesses get found, trusted, and recommended by AI search.</p>
-    <button class="gate-btn" data-tally-open="QKOlOg" data-tally-emoji-text="👋" data-tally-emoji-animation="wave" data-tally-auto-close="2000">Get Instant Access →</button>
+    <button class="gate-btn" id="gate-btn">Get Instant Access →</button>
     <p class="gate-privacy">No spam. Unsubscribe anytime.</p>
   </div>
 </div>
@@ -137,12 +137,19 @@
     setTimeout(function () { gate.remove(); }, 550);
   }
 
-  // Tally fires this event when the form is submitted
-  window.addEventListener('message', function (e) {
-    if (e.data && e.data.type === 'TallyPopupFormSubmitted') {
-      unlock();
-    }
-  });
+  // Use Tally's JS API — wait for it to load, then wire up the button
+  function initTally() {
+    if (!window.Tally) { setTimeout(initTally, 50); return; }
+    document.getElementById('gate-btn').addEventListener('click', function () {
+      window.Tally.openPopup('QKOlOg', {
+        emojiText: '👋',
+        emojiAnimation: 'wave',
+        autoClose: 2000,
+        onSubmit: function () { unlock(); }
+      });
+    });
+  }
+  initTally();
 })();
 </script>
 
