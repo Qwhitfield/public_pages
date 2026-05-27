@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Search Optimization Cheatsheet — QAMW Consulting | Seattle, WA</title>
+<meta name="description" content="The 1-page guide to helping AI find, trust, and recommend your business. Free resource from QAMW Consulting.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://tally.so/widgets/embed.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #0a0a0a; --off-black: #111111; --dark: #1a1a1a; --mid: #2a2a2a;
+    --border: #2f2f2f; --muted: #666; --body: #b8b8b8; --white: #f2f0eb;
+    --accent: #8c52ff; --accent-dim: #7340d4; --accent-soft: rgba(140,82,255,0.1);
+    --green: #47c47e; --red: #e85c47;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--body); font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 1.7; overflow-x: hidden; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E"); pointer-events: none; z-index: 999; opacity: 0.4; }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+  .container-narrow { max-width: 680px; margin: 0 auto; padding: 0 24px; }
+
+  nav { position: sticky; top: 0; z-index: 100; background: rgba(10,10,10,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.08em; color: var(--white); text-decoration: none; }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta { background: var(--accent); color: var(--white); font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.05em; text-decoration: none; padding: 10px 20px; transition: background 0.2s; }
+  .nav-cta:hover { background: var(--accent-dim); }
+
+  .breadcrumb { border-bottom: 1px solid var(--border); padding: 12px 24px; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); }
+  .breadcrumb a { color: var(--accent); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  .page-header { padding: 72px 0 56px; border-bottom: 1px solid var(--border); }
+  .page-kicker { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+  .page-kicker::after { content: ''; display: block; width: 48px; height: 1px; background: var(--accent); }
+  .page-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 8vw, 88px); line-height: 0.93; letter-spacing: 0.01em; color: var(--white); margin-bottom: 24px; }
+  .page-title em { font-style: normal; color: var(--accent); }
+  .page-subtitle { font-size: 18px; font-weight: 300; color: var(--body); max-width: 560px; }
+
+  .article-section { padding: 72px 0; border-bottom: 1px solid var(--border); }
+  .article-section:last-of-type { border-bottom: none; }
+  .section-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+  h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px, 5vw, 52px); line-height: 1.0; color: var(--white); letter-spacing: 0.02em; margin-bottom: 24px; }
+
+  .callout { background: var(--accent-soft); border: 1px solid rgba(140,82,255,0.3); padding: 28px 32px; margin: 36px 0; }
+  .callout-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+  .callout p { font-size: 15px; color: var(--body); line-height: 1.65; margin: 0; }
+  .callout strong { color: var(--white); font-weight: 500; }
+
+  .sections-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); margin-top: 32px; }
+  .guide-section { background: var(--off-black); padding: 32px 28px; }
+  .section-num { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  .section-title { font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+  .guide-section ul { list-style: none; padding: 0; }
+  .guide-section li { font-size: 14px; color: var(--body); line-height: 1.55; padding: 10px 0; border-bottom: 1px solid var(--border); display: flex; gap: 10px; }
+  .guide-section li:last-child { border-bottom: none; padding-bottom: 0; }
+  .li-label { font-weight: 600; color: var(--white); display: block; margin-bottom: 2px; font-size: 13px; }
+  .guide-section li::before { content: '—'; color: var(--accent); font-family: 'DM Mono', monospace; flex-shrink: 0; }
+
+  .bio-section { display: grid; grid-template-columns: 64px 1fr; gap: 28px; align-items: start; }
+  .bio-avatar { width: 64px; height: 64px; border-radius: 50%; background: var(--accent-soft); border: 1px solid rgba(140,82,255,0.4); display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 0.08em; color: var(--accent); flex-shrink: 0; }
+  .bio-name { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+  .bio-role { font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+  .bio-body { font-size: 15px; color: var(--body); line-height: 1.65; }
+  .bio-link { display: inline-block; margin-top: 14px; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); text-decoration: none; }
+  .bio-link:hover { text-decoration: underline; }
+
+  .btn-primary { background: var(--accent); color: var(--white); font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: 0.03em; text-decoration: none; padding: 18px 36px; display: inline-block; transition: background 0.2s, transform 0.15s; position: relative; }
+  .btn-primary::after { content: ''; position: absolute; bottom: -4px; right: -4px; width: 100%; height: 100%; border: 1px solid var(--accent); transition: transform 0.2s; }
+  .btn-primary:hover { background: var(--accent-dim); transform: translate(-2px, -2px); }
+  .btn-primary:hover::after { transform: translate(4px, 4px); }
+
+  footer { border-top: 1px solid var(--border); padding: 32px 24px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); flex-wrap: wrap; gap: 16px; }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+  .footer-links { display: flex; gap: 24px; }
+
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+    .sections-grid { grid-template-columns: 1fr; }
+    .bio-section { grid-template-columns: 1fr; }
+    .bio-avatar { display: none; }
+    .footer-links { display: none; }
+  }
+
+  /* EMAIL GATE */
+  #gate { position: fixed; inset: 0; z-index: 1000; background: rgba(10,10,10,0.97); display: flex; align-items: center; justify-content: center; padding: 24px; transition: opacity 0.5s ease; }
+  #gate.unlocking { opacity: 0; pointer-events: none; }
+  #gate-inner { max-width: 480px; width: 100%; }
+  .gate-kicker { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+  .gate-kicker::after { content: ''; display: block; width: 32px; height: 1px; background: var(--accent); }
+  .gate-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 8vw, 64px); line-height: 0.95; color: var(--white); margin-bottom: 16px; }
+  .gate-title em { font-style: normal; color: var(--accent); }
+  .gate-subtitle { font-size: 15px; font-weight: 300; color: var(--body); line-height: 1.6; margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid var(--border); }
+  .gate-privacy { margin-top: 16px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--muted); text-align: center; }
+
+  .gate-btn { display: block; width: 100%; background: var(--accent); color: var(--white); font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 16px; letter-spacing: 0.03em; border: none; padding: 18px 28px; cursor: pointer; position: relative; transition: background 0.2s, transform 0.15s; text-align: center; }
+  .gate-btn::after { content: ''; position: absolute; bottom: -4px; right: -4px; width: 100%; height: 100%; border: 1px solid var(--accent); transition: transform 0.2s; }
+  .gate-btn:hover { background: var(--accent-dim); transform: translate(-2px, -2px); }
+  .gate-btn:hover::after { transform: translate(4px, 4px); }
+</style>
+</head>
+<body>
+
+<!-- EMAIL GATE -->
+<div id="gate">
+  <div id="gate-inner">
+    <div class="gate-kicker">Free Resource</div>
+    <div class="gate-title">Get the <em>AI Search</em><br>Cheatsheet</div>
+    <p class="gate-subtitle">Enter your email for instant access to the 1-page guide helping businesses get found, trusted, and recommended by AI search.</p>
+    <button class="gate-btn" id="gate-btn">Get Instant Access →</button>
+    <p class="gate-privacy">No spam. Unsubscribe anytime.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  var gate = document.getElementById('gate');
+  if (localStorage.getItem('qamw_cheatsheet_unlocked')) {
+    gate.remove();
+    return;
+  }
+  document.body.style.overflow = 'hidden';
+
+  function unlock() {
+    localStorage.setItem('qamw_cheatsheet_unlocked', '1');
+    gate.classList.add('unlocking');
+    document.body.style.overflow = '';
+    setTimeout(function () { gate.remove(); }, 550);
+  }
+
+  // Use Tally's JS API — wait for it to load, then wire up the button
+  function initTally() {
+    if (!window.Tally) { setTimeout(initTally, 50); return; }
+    document.getElementById('gate-btn').addEventListener('click', function () {
+      window.Tally.openPopup('QKOlOg', {
+        emojiText: '👋',
+        emojiAnimation: 'wave',
+        autoClose: 2000,
+        onSubmit: function () { unlock(); }
+      });
+    });
+  }
+  initTally();
+})();
+</script>
+
+<nav>
+  <a class="nav-logo" href="/index.html">QAMW<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="/nonprofit-consulting.html">Nonprofit</a></li>
+    <li><a href="/systems-integration-consulting.html">Systems</a></li>
+    <li><a href="/nonprofit-technical-support.html">Tech Support</a></li>
+  </ul>
+  <a href="https://calendar.app.google/Mt5zX895H8pj6VpL6" class="nav-cta">Book a Call →</a>
+</nav>
+
+<div class="breadcrumb">
+  <a href="/index.html">QAMW Consulting</a> &nbsp;/&nbsp; Free Resources &nbsp;/&nbsp; AI Search Cheatsheet
+</div>
+
+<header class="page-header">
+  <div class="container">
+    <div class="page-kicker">Free Resource</div>
+    <h1 class="page-title">AI Search<br>Optimization<br><em>Cheatsheet</em></h1>
+    <p class="page-subtitle">The 1-page guide to helping AI find, trust, and recommend your business.</p>
+  </div>
+</header>
+
+<section class="article-section">
+  <div class="container">
+    <div class="section-label">The New Rule</div>
+    <h2>Search has changed.<br>Have you?</h2>
+
+    <div class="callout">
+      <div class="callout-label">What's different now</div>
+      <p><strong>Search engines are now smart assistants.</strong> They don't just look for keywords. They want clean data, real proof you're trustworthy, and the ability to give users immediate, accurate answers.</p>
+    </div>
+
+    <div class="sections-grid">
+      <div class="guide-section">
+        <div class="section-num">Section 01</div>
+        <div class="section-title">Structure your website data</div>
+        <ul>
+          <li><div><span class="li-label">Site indexing &amp; sitemaps</span>Submit an updated XML sitemap so the AI knows every page you have.</div></li>
+          <li><div><span class="li-label">Clear navigation</span>A user and an AI should know what you do within seconds of landing.</div></li>
+          <li><div><span class="li-label">Spring cleaning</span>Delete or combine old, unused, or duplicate pages. Clutter confuses the AI.</div></li>
+          <li><div><span class="li-label">Descriptive page titles</span>Not "Services" — try "Emergency Plumbing Services in Seattle."</div></li>
+        </ul>
+      </div>
+
+      <div class="guide-section">
+        <div class="section-num">Section 02</div>
+        <div class="section-title">Visuals for AI</div>
+        <ul>
+          <li><div><span class="li-label">High-quality images</span>Well-lit, clear photos of your actual work — not stock photos.</div></li>
+          <li><div><span class="li-label">Add context with alt text</span>Label every image accurately. "fixing-leaky-sink-pipe.jpg" beats "IMG_1234.jpg".</div></li>
+          <li><div><span class="li-label">Show your process</span>Short videos of how you solve a problem are goldmines for AI discovery.</div></li>
+        </ul>
+      </div>
+
+      <div class="guide-section">
+        <div class="section-num">Section 03</div>
+        <div class="section-title">Build social proof &amp; authority</div>
+        <ul>
+          <li><div><span class="li-label">Reddit &amp; forums</span>Real community mentions carry heavy weight in AI ranking signals.</div></li>
+          <li><div><span class="li-label">YouTube</span>Educational videos linked to your business prove expertise.</div></li>
+          <li><div><span class="li-label">Local news &amp; digital PR</span>Getting mentioned in local coverage proves you're a real, active entity.</div></li>
+          <li><div><span class="li-label">LinkedIn articles</span>For B2B, publishing insightful articles establishes you as a thought leader the AI wants to quote.</div></li>
+        </ul>
+      </div>
+
+      <div class="guide-section">
+        <div class="section-num">Section 04</div>
+        <div class="section-title">The absolute essentials</div>
+        <ul>
+          <li><div><span class="li-label">Consistent contact info</span>Your business name, address, and phone must match everywhere — your site, Yelp, Google Profile.</div></li>
+          <li><div><span class="li-label">Business hours</span>List exact hours including holidays. Update them the moment anything changes.</div></li>
+          <li><div><span class="li-label">Pricing &amp; inventory</span>Clear pricing and live availability give the AI something concrete to surface to customers.</div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="article-section" style="background: var(--off-black);">
+  <div class="container-narrow">
+    <div class="section-label">About the Author</div>
+    <h2>Who made this</h2>
+
+    <div class="bio-section">
+      <div class="bio-avatar">QW</div>
+      <div>
+        <div class="bio-name">Quinita Whitfield</div>
+        <div class="bio-role">Founder, QAMW Consulting</div>
+        <p class="bio-body">I help small and mid-sized businesses make sense of the systems, data, and tools they already own. With 13+ years in business intelligence and operations, I work with companies that are growing but running on disconnected tools and gut-feel reporting. If your business depends on Google to bring in customers, this stuff matters now — not later.</p>
+        <a class="bio-link" href="https://qamwconsulting.com">qamwconsulting.com →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="article-section" style="text-align: center;">
+  <div class="container">
+    <div class="section-label">Next Step</div>
+    <h2>Want a full systems audit?</h2>
+    <p style="max-width: 500px; margin: 0 auto 40px; font-size: 18px; font-weight: 300;">Book a free 20-minute discovery call. We'll walk through your current setup and tell you honestly what's worth fixing first.</p>
+    <a href="https://calendar.app.google/Mt5zX895H8pj6VpL6" class="btn-primary">Book a Free Call →</a>
+  </div>
+</section>
+
+<footer>
+  <a class="nav-logo" href="/index.html" style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:0.08em;color:var(--white);">QAMW<span style="color:var(--accent)">.</span></a>
+  <div class="footer-links">
+    <a href="/nonprofit-consulting.html">Nonprofit Consulting</a>
+    <a href="/nonprofit-technical-support.html">Tech Support</a>
+    <a href="/systems-integration-consulting.html">Systems Integration</a>
+    <a href="/index.html">Systems Audit</a>
+  </div>
+  <span>© 2025 QAMW LLC · Seattle, WA · Black-owned · Women-owned</span>
+</footer>
+
+</body>
+</html>
