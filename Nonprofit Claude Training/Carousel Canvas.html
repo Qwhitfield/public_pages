@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>QAMW × Nonprofit — Carousel Canvas</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="stylesheet" href="carousel.css" />
+<style>
+  html, body { height: 100%; background: #1a1a1a; overflow: hidden; }
+  body { margin: 0; }
+  dc-artboard::part(label) { font-family: var(--font-mono); }
+</style>
+</head>
+<body>
+
+<div id="root" style="width:100vw;height:100vh;"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel" src="slides.jsx"></script>
+
+<script type="text/babel">
+function CanvasApp() {
+  const slides = window.QAMWSlides || [];
+  const labels = window.QAMWSlideLabels || [];
+
+  const board = (i) => (
+    <DCArtboard key={i}
+                id={`s${i+1}`}
+                label={`${String(i+1).padStart(2,'0')} · ${labels[i]}`}
+                width={1080} height={1080}>
+      {React.createElement(slides[i])}
+    </DCArtboard>
+  );
+
+  return (
+    <DesignCanvas title="Nonprofit · Claude Training Carousel"
+                  subtitle="Six 1080×1080 slides — drag to pan, scroll to zoom, click an artboard to focus.">
+      <DCSection id="hook" title="Hook · The Ask">
+        {board(0)}
+      </DCSection>
+
+      <DCSection id="diagnosis" title="Diagnosis">
+        {board(1)}
+      </DCSection>
+
+      <DCSection id="tracks" title="Three Tracks">
+        {board(2)}
+        {board(3)}
+        {board(4)}
+      </DCSection>
+
+      <DCSection id="cta" title="Close">
+        {board(5)}
+      </DCSection>
+    </DesignCanvas>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<CanvasApp />);
+</script>
+
+</body>
+</html>

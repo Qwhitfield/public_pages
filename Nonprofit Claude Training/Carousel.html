@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>QAMW × Nonprofit — Claude Training Carousel</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="stylesheet" href="carousel.css" />
+<style>
+  html, body {
+    height: 100%;
+    background: #050505;
+    color: var(--fg-1);
+    overflow: hidden;
+  }
+  #root { width: 100vw; height: 100vh; display: block; }
+
+  .stage {
+    position: relative;
+    width: 100vw; height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+
+  /* Scaled slide wrapper — kept square 1080×1080, transform: scale to fit */
+  .stage-inner {
+    width: 1080px; height: 1080px;
+    transform-origin: center center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide-track {
+    position: absolute; inset: 0;
+    display: flex;
+    transition: transform 0.55s cubic-bezier(0.7, 0, 0.2, 1);
+    will-change: transform;
+  }
+  .slide-track > .slot {
+    flex: 0 0 1080px;
+    width: 1080px; height: 1080px;
+  }
+
+  /* ── Side rail (prev / next arrows + slide counter) ────────────── */
+  .rail {
+    position: fixed; top: 0; bottom: 0;
+    width: 80px;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 50;
+  }
+  .rail.left { left: 0; }
+  .rail.right { right: 0; }
+  .nav-btn {
+    width: 56px; height: 56px;
+    background: rgba(20,20,20,0.85);
+    border: 1px solid var(--border);
+    color: var(--fg-1);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    transition: border-color var(--dur-base) var(--ease-out),
+                background var(--dur-base) var(--ease-out);
+    font-family: var(--font-mono);
+  }
+  .nav-btn:hover { border-color: var(--accent); background: rgba(140,82,255,0.15); }
+  .nav-btn:disabled { opacity: 0.25; cursor: not-allowed; }
+  .nav-btn:disabled:hover { border-color: var(--border); background: rgba(20,20,20,0.85); }
+
+  /* ── Bottom HUD: dots + label ─────────────────────────────────── */
+  .hud {
+    position: fixed; left: 0; right: 0; bottom: 18px;
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+    z-index: 50;
+    pointer-events: none;
+  }
+  .dots { display: flex; gap: 10px; pointer-events: auto; }
+  .nav-dot {
+    width: 28px; height: 4px;
+    background: var(--border);
+    border: none;
+    padding: 8px 0;
+    background-clip: content-box;
+    cursor: pointer;
+    transition: background var(--dur-base);
+  }
+  .nav-dot.active { background: var(--accent); background-clip: content-box; }
+  .nav-dot:hover  { background: var(--fg-2); background-clip: content-box; }
+  .nav-dot.active:hover { background: var(--accent); background-clip: content-box; }
+
+  .hud-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--fg-3);
+  }
+  .hud-label strong { color: var(--fg-1); font-weight: 500; }
+
+  /* ── Top HUD: tiny brand watermark ────────────────────────────── */
+  .topbar {
+    position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+    z-index: 50;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--fg-3);
+    display: flex; align-items: center; gap: 12px;
+    pointer-events: none;
+  }
+  .topbar .pill {
+    background: rgba(140,82,255,0.18);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 6px 12px;
+  }
+</style>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="slides.jsx"></script>
+
+<script type="text/babel">
+const { useState, useEffect, useRef, useMemo } = React;
+
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "accent": "#8c52ff",
+  "whimsy": true,
+  "grain": true,
+  "displayFont": "Bebas Neue"
+}/*EDITMODE-END*/;
+
+const ACCENT_OPTIONS = [
+  '#8c52ff',  // brand purple (default)
+  '#47c47e',  // brand green
+  '#e85c47',  // brand red
+  '#f59e0b',  // amber
+];
+
+const FONT_OPTIONS = [
+  'Bebas Neue',
+  'Anton',
+  'Oswald',
+  'Archivo Black',
+];
+
+function App() {
+  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  const [idx, setIdx] = useState(0);
+  const [scale, setScale] = useState(1);
+  const trackRef = useRef(null);
+  const dragState = useRef({ active: false, startX: 0, dx: 0 });
+
+  const slides = window.QAMWSlides || [];
+  const labels = window.QAMWSlideLabels || [];
+  const total = slides.length;
+
+  // Apply accent + font tweaks at document level
+  useEffect(() => {
+    document.documentElement.style.setProperty('--accent', t.accent);
+    // derive dim + soft
+    document.documentElement.style.setProperty('--accent-dim', t.accent);
+    document.documentElement.style.setProperty('--accent-soft', t.accent + '26');
+  }, [t.accent]);
+
+  useEffect(() => {
+    const fam = `'${t.displayFont}', 'Impact', sans-serif`;
+    document.documentElement.style.setProperty('--font-display', fam);
+    // Load Google Font for non-Bebas options
+    const id = '__display-font-link';
+    let link = document.getElementById(id);
+    if (!link) {
+      link = document.createElement('link');
+      link.id = id;
+      link.rel = 'stylesheet';
+      document.head.appendChild(link);
+    }
+    const fontParam = t.displayFont.replace(/ /g, '+');
+    link.href = `https://fonts.googleapis.com/css2?family=${fontParam}&display=swap`;
+  }, [t.displayFont]);
+
+  // Scale to fit viewport
+  useEffect(() => {
+    const fit = () => {
+      const pad = 120; // leave room for HUD + rails
+      const sx = (window.innerWidth - pad * 2) / 1080;
+      const sy = (window.innerHeight - pad) / 1080;
+      setScale(Math.min(sx, sy, 1));
+    };
+    fit();
+    window.addEventListener('resize', fit);
+    return () => window.removeEventListener('resize', fit);
+  }, []);
+
+  // Keyboard nav
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); setIdx(i => Math.min(total - 1, i + 1)); }
+      else if (e.key === 'ArrowLeft' || e.key === 'PageUp')                { e.preventDefault(); setIdx(i => Math.max(0, i - 1)); }
+      else if (e.key === 'Home')                                            { setIdx(0); }
+      else if (e.key === 'End')                                             { setIdx(total - 1); }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [total]);
+
+  // Pointer/touch swipe
+  const onPointerDown = (e) => {
+    dragState.current = { active: true, startX: e.clientX, dx: 0 };
+  };
+  const onPointerMove = (e) => {
+    if (!dragState.current.active) return;
+    dragState.current.dx = e.clientX - dragState.current.startX;
+    if (trackRef.current) {
+      const baseOffset = -idx * 1080;
+      // dampen drag (account for scale)
+      const dampedDx = dragState.current.dx / scale * 0.9;
+      trackRef.current.style.transition = 'none';
+      trackRef.current.style.transform = `translateX(${baseOffset + dampedDx}px)`;
+    }
+  };
+  const onPointerUp = () => {
+    if (!dragState.current.active) return;
+    const { dx } = dragState.current;
+    dragState.current.active = false;
+    if (trackRef.current) trackRef.current.style.transition = '';
+    const threshold = 80; // px in screen space
+    if (dx < -threshold && idx < total - 1) setIdx(idx + 1);
+    else if (dx > threshold && idx > 0)     setIdx(idx - 1);
+    else if (trackRef.current) {
+      trackRef.current.style.transform = `translateX(${-idx * 1080}px)`;
+    }
+  };
+
+  // Apply transform when idx changes
+  useEffect(() => {
+    if (trackRef.current) {
+      trackRef.current.style.transform = `translateX(${-idx * 1080}px)`;
+    }
+  }, [idx]);
+
+  return (
+    <>
+      <div className="topbar">
+        <span className="pill">CASE NOTES</span>
+        <span>QAMW · Nonprofit Claude Training</span>
+      </div>
+
+      <div className="stage"
+           onPointerDown={onPointerDown}
+           onPointerMove={onPointerMove}
+           onPointerUp={onPointerUp}
+           onPointerCancel={onPointerUp}
+           onPointerLeave={onPointerUp}>
+        <div className="stage-inner" style={{ transform: `scale(${scale})` }}>
+          <div className="slide-track" ref={trackRef}>
+            {slides.map((S, i) => (
+              <div className="slot" key={i}>
+                <S whimsy={t.whimsy} grain={t.grain} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="rail left">
+        <button className="nav-btn" onClick={() => setIdx(Math.max(0, idx - 1))} disabled={idx === 0} aria-label="Previous slide">‹</button>
+      </div>
+      <div className="rail right">
+        <button className="nav-btn" onClick={() => setIdx(Math.min(total - 1, idx + 1))} disabled={idx === total - 1} aria-label="Next slide">›</button>
+      </div>
+
+      <div className="hud">
+        <div className="dots">
+          {Array.from({ length: total }).map((_, i) => (
+            <button key={i} className={`nav-dot ${i === idx ? 'active' : ''}`}
+                    onClick={() => setIdx(i)} aria-label={`Go to slide ${i + 1}`} />
+          ))}
+        </div>
+        <div className="hud-label">
+          <strong>{String(idx + 1).padStart(2, '0')}</strong> / {String(total).padStart(2, '0')}
+          {labels[idx] ? <span style={{ marginLeft: 14 }}>· {labels[idx]}</span> : null}
+        </div>
+      </div>
+
+      <TweaksPanel title="Tweaks">
+        <TweakSection title="Accent color">
+          <TweakColor t={t} setTweak={setTweak} k="accent" options={ACCENT_OPTIONS} />
+        </TweakSection>
+        <TweakSection title="Display font">
+          <TweakSelect t={t} setTweak={setTweak} k="displayFont" options={FONT_OPTIONS} />
+        </TweakSection>
+        <TweakSection title="Whimsy">
+          <TweakToggle t={t} setTweak={setTweak} k="whimsy" label="Tape, stickers, confetti, squiggles" />
+          <TweakToggle t={t} setTweak={setTweak} k="grain"  label="Grain overlay" />
+        </TweakSection>
+      </TweaksPanel>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+
+</body>
+</html>
