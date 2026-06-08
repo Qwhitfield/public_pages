@@ -1,0 +1,248 @@
+/* =========================================================================
+   QAMW Consulting — Design Tokens
+   Source: github.com/Qwhitfield/public_pages → qamw.html (canonical)
+   Fonts: Bebas Neue (display), DM Sans (body), DM Mono (accents)
+   ========================================================================= */
+
+/* DM Sans — brand fonts (uploaded). Variable axes: opsz, wght (+ italic) */
+@font-face {
+  font-family: 'DM Sans';
+  src: url('fonts/DMSans-VariableFont_opsz_wght.ttf') format('truetype-variations'),
+       url('fonts/DMSans-VariableFont_opsz_wght.ttf') format('truetype');
+  font-weight: 100 1000;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'DM Sans';
+  src: url('fonts/DMSans-Italic-VariableFont_opsz_wght.ttf') format('truetype-variations'),
+       url('fonts/DMSans-Italic-VariableFont_opsz_wght.ttf') format('truetype');
+  font-weight: 100 1000;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Display + mono come from Google Fonts (no local files supplied) */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap');
+
+:root {
+  /* ── Color: Neutrals (dark-first) ─────────────────────────────── */
+  --black:        #0a0a0a;   /* page background */
+  --off-black:    #111111;   /* cards, lifted surfaces */
+  --dark:         #1a1a1a;   /* deeper containers */
+  --mid:          #2a2a2a;   /* hover surface */
+  --border:       #2f2f2f;   /* hairline divider */
+  --muted:        #666666;   /* tertiary text, captions */
+  --body:         #b8b8b8;   /* body text on dark */
+  --white:        #f2f0eb;   /* warm off-white — primary text on dark */
+  --pure-white:   #ffffff;
+
+  /* ── Color: Brand & Semantic ──────────────────────────────────── */
+  --accent:       #8c52ff;   /* primary purple — CTAs, focus, eyebrows */
+  --accent-dim:   #7340d4;   /* hover/pressed purple */
+  --accent-soft:  rgba(140, 82, 255, 0.15);  /* tag/chip backgrounds */
+  --red:          #e85c47;   /* "what's wrong" / warnings */
+  --green:        #47c47e;   /* success, "what's right" */
+  --amber:        #f59e0b;   /* legacy timeline callouts */
+
+  /* ── Foreground / Background semantics (dark theme) ───────────── */
+  --fg-1:         var(--white);   /* primary text */
+  --fg-2:         var(--body);    /* secondary text */
+  --fg-3:         var(--muted);   /* tertiary text, metadata */
+  --fg-accent:    var(--accent);
+  --bg-1:         var(--black);   /* page */
+  --bg-2:         var(--off-black);  /* card */
+  --bg-3:         var(--dark);    /* nested card */
+
+  /* ── Type families ────────────────────────────────────────────── */
+  --font-display: 'Bebas Neue', 'Impact', sans-serif;
+  --font-body:    'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono:    'DM Mono', 'JetBrains Mono', 'Menlo', monospace;
+
+  /* ── Type scale (px-anchored, fluid clamps for hero) ──────────── */
+  --fs-mono-xs:   10px;   /* 0.2em tracked labels */
+  --fs-mono-sm:   11px;
+  --fs-mono-md:   12px;
+  --fs-mono-lg:   13px;
+
+  --fs-body-sm:   14px;
+  --fs-body:      15px;
+  --fs-body-lg:   17px;   /* default body (qamw.html) */
+  --fs-lead:      20px;   /* hero sub, intro paragraphs */
+
+  --fs-h3:        17px;   /* deliverable titles */
+  --fs-h2:        clamp(40px, 6vw, 64px);
+  --fs-h1:        clamp(60px, 10vw, 110px);
+  --fs-statement: clamp(36px, 6vw, 72px);
+
+  /* ── Tracking ─────────────────────────────────────────────────── */
+  --track-display: 0.01em;   /* Bebas headlines */
+  --track-h2:      0.02em;
+  --track-mono-sm: 0.20em;   /* eyebrows, labels */
+  --track-mono-md: 0.15em;
+  --track-mono-lg: 0.10em;
+  --track-logo:    0.08em;
+
+  /* ── Line-height ──────────────────────────────────────────────── */
+  --lh-display:   0.92;
+  --lh-h2:        1.0;
+  --lh-tight:     1.2;
+  --lh-body:      1.65;
+  --lh-prose:     1.7;
+
+  /* ── Spacing scale ────────────────────────────────────────────── */
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-5:   20px;
+  --space-6:   24px;
+  --space-7:   32px;
+  --space-8:   40px;
+  --space-9:   48px;
+  --space-10:  64px;
+  --space-11:  80px;
+  --space-12:  96px;
+  --space-13: 120px;
+
+  /* ── Layout ───────────────────────────────────────────────────── */
+  --container-max: 900px;     /* qamw.html canonical */
+  --container-wide: 1200px;
+  --section-py:   96px;
+  --container-px: 24px;
+
+  /* ── Radii — system is SHARP ──────────────────────────────────── */
+  --radius-0:     0px;        /* default — sharp corners */
+  --radius-1:     4px;
+  --radius-2:     8px;        /* legacy lead-magnet pages only */
+  --radius-pill:  999px;      /* avoid; not in canonical brand */
+
+  /* ── Borders ──────────────────────────────────────────────────── */
+  --hair:         1px solid var(--border);
+  --hair-accent:  1px solid var(--accent);
+
+  /* ── Shadows — system is mostly FLAT ──────────────────────────── */
+  --shadow-0:     none;
+  --shadow-glow:  0 0 0 1px var(--accent);   /* timeline dot ring */
+  --shadow-lift:  0 20px 60px rgba(0, 0, 0, 0.3);  /* legacy only */
+
+  /* ── Motion ───────────────────────────────────────────────────── */
+  --ease-out:     cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast:     0.15s;
+  --dur-base:     0.20s;
+  --dur-slow:     0.6s;
+  --offset-hover: 2px;        /* btn-primary translate(-2px, -2px) */
+
+  /* ── Grain overlay (data-URI; reusable) ───────────────────────── */
+  --grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* =========================================================================
+   Base / element semantics
+   ========================================================================= */
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg-1);
+  color: var(--fg-2);
+  font-family: var(--font-body);
+  font-size: var(--fs-body-lg);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Display headlines — Bebas Neue */
+h1, .h1 {
+  font-family: var(--font-display);
+  font-size: var(--fs-h1);
+  line-height: var(--lh-display);
+  letter-spacing: var(--track-display);
+  color: var(--fg-1);
+  font-weight: 400;        /* Bebas Neue is a single weight */
+}
+h2, .h2 {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+  letter-spacing: var(--track-h2);
+  color: var(--fg-1);
+  font-weight: 400;
+}
+h3, .h3 {
+  font-family: var(--font-body);
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  color: var(--fg-1);
+  line-height: 1.4;
+}
+h4, .h4 {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  font-weight: 700;
+  color: var(--fg-1);
+}
+
+/* Big editorial statement */
+.statement {
+  font-family: var(--font-display);
+  font-size: var(--fs-statement);
+  line-height: 1.0;
+  letter-spacing: var(--track-h2);
+  color: var(--fg-1);
+}
+.statement em, .statement .accent { font-style: normal; color: var(--accent); }
+
+/* Body */
+p { font-size: var(--fs-body-lg); line-height: var(--lh-body); color: var(--fg-2); }
+.lead { font-size: var(--fs-lead); font-weight: 300; color: var(--fg-2); line-height: 1.6; }
+.body { font-size: var(--fs-body); color: var(--fg-2); }
+.small { font-size: var(--fs-body-sm); color: var(--fg-3); }
+
+/* Mono — labels, eyebrows, metadata, prices */
+.mono { font-family: var(--font-mono); }
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono-sm);
+  letter-spacing: var(--track-mono-sm);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono-xs);
+  letter-spacing: var(--track-mono-sm);
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+code, .code { font-family: var(--font-mono); font-size: 0.95em; color: var(--fg-1); }
+
+/* Links */
+a { color: var(--accent); text-decoration: none; transition: color var(--dur-base) var(--ease-out); }
+a:hover { color: var(--accent-dim); }
+
+/* Selection */
+::selection { background: var(--accent); color: var(--white); }
+
+/* Utility colors */
+.fg-1 { color: var(--fg-1); }
+.fg-2 { color: var(--fg-2); }
+.fg-3 { color: var(--fg-3); }
+.accent { color: var(--accent); }
+.red { color: var(--red); }
+.green { color: var(--green); }
+.muted { color: var(--muted); }
+
+/* Grain overlay helper */
+.with-grain { position: relative; }
+.with-grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--grain);
+  pointer-events: none;
+  opacity: 0.4;
+  z-index: 1;
+}

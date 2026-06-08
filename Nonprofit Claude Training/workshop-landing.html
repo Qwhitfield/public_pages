@@ -1,0 +1,1039 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Free Workshop: AI for Nonprofits — QAMW Consulting</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="90-minute free virtual workshop. June 15, 2026 at 10 AM Pacific. See what Claude can actually do for your nonprofit — live demo, hands-on start, zero cost." />
+
+<!-- Fonts: landing page UI + carousel display/mono -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800&family=Barlow+Condensed:wght@500;600;700&family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- Carousel CSS (imports tokens.css → DM Sans local font-face + CSS vars) -->
+<link rel="stylesheet" href="carousel.css" />
+
+<!-- Kit (ConvertKit) form embed -->
+<script async data-uid="612bf86f37" src="https://mbg-consulting.kit.com/612bf86f37/index.js"></script>
+
+<style>
+  /* ── Landing page base ─────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* Override tokens.css body (it sets DM Sans; we want Plus Jakarta Sans for the page chrome) */
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--black);
+    color: var(--white);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Embedded carousel track (not position:fixed like the standalone Carousel.html) */
+  .embed-track {
+    position: absolute; inset: 0;
+    display: flex;
+    transition: transform 0.55s cubic-bezier(0.7, 0, 0.2, 1);
+    will-change: transform;
+  }
+  .embed-slot { flex: 0 0 1080px; width: 1080px; height: 1080px; }
+
+  /* ── Navigation ──────────────────────────────────────────────────── */
+  nav {
+    height: 72px; padding: 0 52px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0;
+    background: var(--black); z-index: 100;
+  }
+  .nav-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 1rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--white); text-decoration: none;
+  }
+  .nav-logo span { color: var(--accent); }
+
+  /* ── Urgency banner ──────────────────────────────────────────────── */
+  .urgency-banner {
+    background: var(--accent-soft);
+    border-bottom: 1px solid var(--accent);
+    padding: 12px 52px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .urgency-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--green); flex-shrink: 0;
+    animation: pulse 1.8s infinite;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+  .urgency-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--body);
+  }
+  .urgency-text strong { color: var(--white); }
+
+  /* ── Eyebrow ─────────────────────────────────────────────────────── */
+  .lp-eyebrow {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 20px;
+  }
+  .lp-eyebrow::before {
+    content: ''; display: block;
+    width: 24px; height: 1px; background: var(--accent);
+  }
+
+  /* ── Buttons ─────────────────────────────────────────────────────── */
+  .btn-primary {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 0.78rem;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    background: var(--accent); color: #fff;
+    padding: 14px 28px; border: none; cursor: pointer;
+    text-decoration: none; display: inline-block;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: var(--accent-dim); }
+  .btn-ghost {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 0.78rem;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    border: 1px solid var(--border); color: var(--muted);
+    padding: 14px 28px; text-decoration: none; display: inline-block;
+    background: transparent; cursor: pointer; transition: all 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ── Sections ────────────────────────────────────────────────────── */
+  .section-dark { background: var(--black); padding: 100px 52px; border-bottom: 1px solid var(--border); }
+  .section-mid  { background: var(--off-black); padding: 100px 52px; border-bottom: 1px solid var(--border); }
+
+  .section-headline {
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 800; letter-spacing: -0.025em; line-height: 1.1;
+    color: var(--white); margin-bottom: 16px;
+  }
+  .section-body {
+    font-size: 0.95rem; font-weight: 300; color: var(--body);
+    max-width: 580px; line-height: 1.8; margin-bottom: 52px;
+  }
+
+  /* ── Hero ────────────────────────────────────────────────────────── */
+  .hero {
+    padding: 100px 52px 80px;
+    display: grid; grid-template-columns: 1fr 400px;
+    gap: 60px; align-items: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-headline {
+    font-size: clamp(2.8rem, 5vw, 4.4rem);
+    font-weight: 800; line-height: 1.05; letter-spacing: -0.03em;
+    color: var(--white); margin-bottom: 24px;
+  }
+  .hero-headline span { color: var(--accent); }
+  .hero-sub {
+    font-size: 1rem; font-weight: 300; color: var(--body);
+    max-width: 520px; line-height: 1.75; margin-bottom: 36px;
+  }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  /* ── Stat grid ───────────────────────────────────────────────────── */
+  .stat-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2px; background: var(--border);
+  }
+  .stat-card { background: var(--dark); padding: 28px 24px; }
+  .stat-card.accent-card { background: var(--accent); }
+  .stat-card.green-card  { background: var(--mid); border-top: 3px solid var(--green); }
+  .sc-num {
+    font-size: 2.6rem; font-weight: 800;
+    letter-spacing: -0.03em; line-height: 1;
+    margin-bottom: 6px; color: var(--white);
+  }
+  .stat-card.accent-card .sc-num { color: #fff; }
+  .stat-card.green-card  .sc-num { color: var(--green); }
+  .sc-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.68rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); line-height: 1.3;
+  }
+  .stat-card.accent-card .sc-label { color: rgba(255,255,255,0.7); }
+
+  /* ── Trust bar ───────────────────────────────────────────────────── */
+  .trust-bar {
+    background: var(--off-black); padding: 28px 52px;
+    display: flex; align-items: center; gap: 48px; flex-wrap: wrap;
+    border-bottom: 1px solid var(--border);
+  }
+  .trust-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.62rem; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--muted); white-space: nowrap; flex-shrink: 0;
+  }
+  .trust-items { display: flex; gap: 36px; flex-wrap: wrap; align-items: center; }
+  .trust-item {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--body);
+  }
+
+  /* ── Carousel container ──────────────────────────────────────────── */
+  .carousel-wrap {
+    position: relative; width: 100%; max-width: 580px;
+    margin: 0 auto; aspect-ratio: 1;
+    overflow: hidden; background: #050505; cursor: grab;
+  }
+  .carousel-wrap:active { cursor: grabbing; }
+  .carousel-scaler {
+    position: absolute; top: 0; left: 0;
+    width: 1080px; height: 1080px;
+    transform-origin: top left;
+  }
+  .emb-nav-btn {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 44px; height: 44px;
+    background: rgba(20,20,20,0.85); border: 1px solid var(--border);
+    color: var(--white); display: flex; align-items: center; justify-content: center;
+    cursor: pointer; backdrop-filter: blur(8px); font-size: 22px; z-index: 10;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .emb-nav-btn:hover { border-color: var(--accent); background: rgba(140,82,255,0.15); }
+  .emb-nav-btn:disabled { opacity: 0.2; cursor: not-allowed; }
+  .emb-nav-btn:disabled:hover { border-color: var(--border); background: rgba(20,20,20,0.85); }
+  .emb-nav-btn.prev { left: 10px; }
+  .emb-nav-btn.next { right: 10px; }
+  .emb-dots {
+    position: absolute; bottom: 12px; left: 0; right: 0;
+    display: flex; justify-content: center; gap: 8px; z-index: 10;
+  }
+  .emb-dot {
+    width: 20px; height: 4px; border: none;
+    padding: 6px 0; background-clip: content-box;
+    background: var(--border); cursor: pointer; transition: background 0.2s;
+  }
+  .emb-dot.active { background: var(--accent); background-clip: content-box; }
+
+  /* ── Workshop outline ────────────────────────────────────────────── */
+  .outline-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2px; background: var(--border);
+  }
+  .outline-card {
+    background: var(--dark); padding: 36px 32px;
+    border-left: 3px solid transparent; transition: border-color 0.2s;
+  }
+  .outline-card:hover { border-left-color: var(--accent); }
+  .outline-time {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--green); margin-bottom: 10px;
+  }
+  .outline-title {
+    font-size: 1rem; font-weight: 700;
+    color: var(--white); margin-bottom: 10px; line-height: 1.3;
+  }
+  .outline-body {
+    font-size: 0.84rem; font-weight: 300;
+    color: var(--body); line-height: 1.7;
+  }
+  .outline-body ul { padding-left: 16px; margin-top: 8px; }
+  .outline-body li { margin-bottom: 4px; }
+
+  /* ── Funnel note ─────────────────────────────────────────────────── */
+  .funnel-note {
+    border-left: 3px solid var(--accent);
+    padding: 28px 32px; background: var(--dark); max-width: 680px;
+  }
+  .funnel-note p {
+    font-size: 1rem; font-weight: 300; color: var(--white);
+    line-height: 1.75; margin-bottom: 16px;
+  }
+  .funnel-note .attr {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.66rem; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted);
+  }
+
+  /* ── For-grid ────────────────────────────────────────────────────── */
+  .for-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; max-width: 800px; }
+  .for-item { display: flex; gap: 16px; align-items: flex-start; }
+  .for-check {
+    width: 26px; height: 26px; background: var(--accent-soft);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; color: var(--accent); font-size: 0.75rem; margin-top: 2px;
+  }
+  .for-text { font-size: 0.88rem; font-weight: 400; color: var(--body); line-height: 1.6; }
+  .for-text strong { color: var(--white); font-weight: 600; display: block; margin-bottom: 2px; }
+
+  /* ── Testimonial ─────────────────────────────────────────────────── */
+  .testimonial {
+    border-left: 3px solid var(--accent);
+    padding: 28px 32px; background: var(--dark);
+    max-width: 680px; margin-top: 52px;
+  }
+  .testimonial p {
+    font-size: 1rem; font-style: italic; font-weight: 300;
+    color: var(--white); line-height: 1.75; margin-bottom: 16px;
+  }
+  .testimonial .attr {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.66rem; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted);
+  }
+
+  /* ── About ───────────────────────────────────────────────────────── */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); }
+  .about-stat { background: var(--dark); padding: 28px 24px; }
+  .about-stat-num {
+    font-size: 2.4rem; font-weight: 800; letter-spacing: -0.03em;
+    color: var(--accent); line-height: 1; margin-bottom: 6px;
+  }
+  .about-stat-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.64rem; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); line-height: 1.3;
+  }
+
+  /* ── CTA section ─────────────────────────────────────────────────── */
+  .cta-section { background: var(--accent); padding: 100px 52px; text-align: center; }
+  .cta-headline {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 800; letter-spacing: -0.025em;
+    color: #fff; margin-bottom: 16px;
+  }
+  .cta-sub {
+    font-size: 0.95rem; font-weight: 300;
+    color: rgba(255,255,255,0.75);
+    max-width: 480px; margin: 0 auto 36px; line-height: 1.75;
+  }
+  .cta-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(0,0,0,0.2); padding: 8px 18px; margin-bottom: 28px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+  }
+  .cta-btn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 0.8rem;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    background: var(--black); color: var(--white);
+    padding: 16px 36px; border: none; cursor: pointer; transition: background 0.2s;
+  }
+  .cta-btn:hover { background: var(--off-black); }
+
+  /* ── Footer ──────────────────────────────────────────────────────── */
+  footer {
+    background: var(--black); padding: 40px 52px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid var(--border);
+  }
+  .footer-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 0.85rem;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted);
+  }
+  .footer-logo span { color: var(--accent); }
+  .footer-text { font-size: 0.75rem; color: #444; }
+  .footer-text a { color: #666; text-decoration: none; }
+  .footer-text a:hover { color: var(--accent); }
+
+  /* ── Responsive ──────────────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    nav, .urgency-banner, .trust-bar { padding: 0 24px; }
+    .urgency-banner { padding: 12px 24px; }
+    .hero { grid-template-columns: 1fr; padding: 60px 24px; gap: 40px; }
+    .section-dark, .section-mid, .cta-section { padding: 60px 24px; }
+    .outline-grid, .for-grid, .about-grid { grid-template-columns: 1fr; }
+    .about-grid { gap: 40px; }
+    footer { padding: 28px 24px; flex-direction: column; gap: 10px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">QAMW<span>.</span>Consulting</a>
+  <!-- Replace YOUR_TALLY_FORM_ID with your Tally form ID -->
+  <button data-formkit-toggle="612bf86f37"class="btn-primary">
+    Reserve Free Spot
+  </button>
+</nav>
+
+<!-- URGENCY BANNER -->
+<div class="urgency-banner">
+  <div class="urgency-dot"></div>
+  <div class="urgency-text">
+    <strong>Free Workshop — June 15, 2026 at 10:00 AM Pacific</strong> · Virtual · 90 Minutes · Limited Seats
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="register">
+  <div>
+    <div class="lp-eyebrow">Free Workshop · June 15 · No Cost to Attend</div>
+    <h1 class="hero-headline">
+      AI for Nonprofits:<br/>
+      <span>What's Actually</span><br/>
+      Possible Right Now
+    </h1>
+    <p class="hero-sub">
+      90 minutes. Virtual. Free. Watch a live demo of an AI system built for a real nonprofit — then start building yours during the session. You leave with something working and a clear picture of what comes next.
+    </p>
+    <div class="hero-actions">
+      <button data-formkit-toggle="612bf86f37"class="btn-primary">
+        Reserve Your Free Spot
+      </button>
+      <a href="#what-well-cover" class="btn-ghost">See what we'll cover ↓</a>
+    </div>
+  </div>
+  <div class="stat-grid">
+    <div class="stat-card accent-card">
+      <div class="sc-num">Free</div>
+      <div class="sc-label">No cost to attend</div>
+    </div>
+    <div class="stat-card">
+      <div class="sc-num">90</div>
+      <div class="sc-label">Minutes · Virtual</div>
+    </div>
+    <div class="stat-card">
+      <div class="sc-num">Jun 15</div>
+      <div class="sc-label">10:00 AM Pacific</div>
+    </div>
+    <div class="stat-card green-card">
+      <div class="sc-num">Live</div>
+      <div class="sc-label">Demo + hands-on start</div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <span class="trust-label">Facilitator Credentials</span>
+  <div class="trust-items">
+    <span class="trust-item">Catchafire Superstar Volunteer</span>
+    <span class="trust-item">$63,874 Impact Value</span>
+    <span class="trust-item">AI · Data · Systems</span>
+    <span class="trust-item">M.S. Business Analytics</span>
+    <span class="trust-item">13+ Years Experience</span>
+  </div>
+</div>
+
+<!-- CAROUSEL SECTION -->
+<section class="section-dark" id="case-study">
+  <div class="lp-eyebrow">The Case Study We'll Walk Through Live</div>
+  <h2 class="section-headline">One man. Running an entire nonprofit.</h2>
+  <p class="section-body">He asked me to teach him to use Claude better. The real problem wasn't skill — his Claude didn't know his world. Here's what we actually built. Swipe or click through the 6 slides below.</p>
+  <div id="carousel-root"></div>
+</section>
+
+<!-- WHAT WE'LL COVER -->
+<section class="section-mid" id="what-well-cover">
+  <div class="lp-eyebrow">Workshop Outline · June 15 · 90 Minutes</div>
+  <h2 class="section-headline">Not a webinar. A working session.</h2>
+  <p class="section-body">You don't need to come with anything prepared. You leave with something started and a clear picture of what would move the needle for your organization.</p>
+  <div class="outline-grid">
+    <div class="outline-card">
+      <div class="outline-time">0–20 Min</div>
+      <div class="outline-title">The Landscape Reframe</div>
+      <div class="outline-body">What AI actually is for organizations like yours — and what it isn't. Three things most nonprofits get wrong when they start, and why starting wrong costs more later.</div>
+    </div>
+    <div class="outline-card">
+      <div class="outline-time">20–45 Min</div>
+      <div class="outline-title">Live Demo: Grant Proposal Agent</div>
+      <div class="outline-body">Watch a real AI agent built for a nonprofit — fed a live RFP, producing a real structured draft in minutes. The moment most attendees realize what's been eating their time.</div>
+    </div>
+    <div class="outline-card">
+      <div class="outline-time">45–75 Min</div>
+      <div class="outline-title">You Start Building Yours</div>
+      <div class="outline-body">
+        Guided live setup — you build your own Claude workspace during the session. You leave with something half-built and a clear path to finish.
+        <ul>
+          <li>Claude Projects setup</li>
+          <li>Org knowledge base structure</li>
+          <li>Your first prompt system</li>
+        </ul>
+      </div>
+    </div>
+    <div class="outline-card">
+      <div class="outline-time">75–90 Min</div>
+      <div class="outline-title">Where Most People Get Stuck</div>
+      <div class="outline-body">The 3 gaps between "I tried this" and "this actually works for my team." You'll know exactly which ones apply to your org — and what closing them actually looks like.</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT HAPPENS AFTER (gentle funnel reveal) -->
+<section class="section-dark">
+  <div class="lp-eyebrow">What Happens After</div>
+  <h2 class="section-headline">You'll leave knowing exactly<br/>what you can't do yet.</h2>
+  <p class="section-body">That's by design. The workshop gives you a real working start and a clear picture of what's possible. Most attendees leave energized — and with a very specific list of what they'd need to go further.</p>
+  <div class="funnel-note">
+    <p>
+      For organizations ready to go beyond the workshop, I run a small-group implementation cohort — 3 to 5 nonprofits, four weeks, implementation not education. You leave with a working grant proposal agent, a team-ready knowledge base, and an internal SOP. At the end of the free workshop I'll share the details and a time-limited offer for attendees only.
+    </p>
+    <div class="attr">Cohort starts week of June 16 · Alumni $500 · New Orgs $800 · 5 Spots Total</div>
+    <a href="cohort-offer.html" class="btn-ghost" style="display:inline-block; margin-top:20px; font-size:0.68rem;">See the full cohort details →</a>
+  </div>
+</section>
+
+<!-- WHO THIS IS FOR -->
+<section class="section-mid">
+  <div class="lp-eyebrow">Who This Is For</div>
+  <h2 class="section-headline">The workshop is free.<br/>Not everyone should come.</h2>
+  <p class="section-body">This is a working session, not passive viewing. It's designed for people ready to actually try something — not just watch.</p>
+  <div class="for-grid">
+    <div class="for-item">
+      <div class="for-check">✓</div>
+      <div class="for-text">
+        <strong>Nonprofit staff and leadership</strong>
+        Anyone involved in grant writing, communications, programs, or operations — this touches all of it.
+      </div>
+    </div>
+    <div class="for-item">
+      <div class="for-check">✓</div>
+      <div class="for-text">
+        <strong>Small to mid-size teams (1–15 staff)</strong>
+        The less capacity you have, the more this matters. One person doing three jobs is exactly who this was built for.
+      </div>
+    </div>
+    <div class="for-item">
+      <div class="for-check">✓</div>
+      <div class="for-text">
+        <strong>AI-curious, not AI-fluent</strong>
+        You don't need a technical background. You need curiosity and willingness to try something live in the session.
+      </div>
+    </div>
+    <div class="for-item">
+      <div class="for-check">✓</div>
+      <div class="for-text">
+        <strong>Previous Catchafire clients</strong>
+        You've already seen how I work. Alumni get first access to cohort spots at the lowest rate.
+      </div>
+    </div>
+  </div>
+  <div class="testimonial">
+    <p>"As usual you have blown it out of the water. Thank you so absolutely much for your amazing work. I can't express how much we appreciate this!"</p>
+    <div class="attr">— Juan Ramos · R3 Student Outreach · Catchafire Project</div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section-dark">
+  <div class="lp-eyebrow">Your Facilitator</div>
+  <div class="about-grid">
+    <div>
+      <h2 class="section-headline">Quinita Whitfield<br/>QAMW Consulting</h2>
+      <p class="section-body" style="margin-bottom:24px;">Business Intelligence and Systems Consultant based in Seattle, WA. For 13+ years I've helped organizations stop fighting their tools and start using them. On Catchafire, AI strategy is my most-requested skill — I've delivered training and consulting to 25+ nonprofits across education, health, environment, and community development.</p>
+      <p class="section-body" style="margin-bottom:0; color: var(--white);">I write proposals. I answer RFPs. I know this problem from the inside — and I built the solution I wished existed.</p>
+    </div>
+    <div class="about-stats">
+      <div class="about-stat">
+        <div class="about-stat-num">13+</div>
+        <div class="about-stat-label">Years BI & Systems</div>
+      </div>
+      <div class="about-stat">
+        <div class="about-stat-num">25+</div>
+        <div class="about-stat-label">Nonprofits Served</div>
+      </div>
+      <div class="about-stat">
+        <div class="about-stat-num">$63K</div>
+        <div class="about-stat-label">Catchafire Impact</div>
+      </div>
+      <div class="about-stat">
+        <div class="about-stat-num">M.S.</div>
+        <div class="about-stat-label">Business Analytics</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM CTA -->
+<section class="cta-section" id="register-bottom">
+  <h2 class="cta-headline">The workshop is June 15 at 10 AM.<br/>Seats are limited.</h2>
+  <p class="cta-sub">90 minutes. Free. Virtual. No replay offered — this is a live working session. Register now to hold your spot.</p>
+  <div><div class="cta-badge">⬤ &nbsp;June 15, 2026 · 10:00 AM Pacific · Virtual · Free</div></div>
+  <br/>
+  <!-- Replace YOUR_TALLY_FORM_ID with your Tally form ID -->
+  <button data-formkit-toggle="612bf86f37"class="cta-btn">
+    Reserve My Free Spot
+  </button>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">QAMW<span>.</span>Consulting</div>
+  <div class="footer-text">© 2026 QAMW Consulting · Seattle, WA · <a href="mailto:quinitaw@qamwconsulting.com">quinitaw@qamwconsulting.com</a></div>
+</footer>
+
+<!-- React + Babel CDN -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     Slides — inlined from slides.jsx so this file works as a single
+     standalone page without needing a local web server.
+     ═══════════════════════════════════════════════════════════════════ -->
+<script type="text/babel">
+const { useMemo } = React;
+
+const Squiggle = ({ width = 180, height = 40, color = 'currentColor', stroke = 3, style }) => (
+  <svg width={width} height={height} viewBox="0 0 180 40" fill="none"
+       className="scribble" style={style} aria-hidden="true">
+    <path d="M 4 22 C 18 4, 32 4, 46 22 S 74 40, 88 22 S 116 4, 130 22 S 158 40, 176 22"
+          stroke={color} strokeWidth={stroke} strokeLinecap="round" fill="none" />
+  </svg>
+);
+
+const SquiggleArrow = ({ width = 240, height = 56, color = 'currentColor', stroke = 3, style }) => (
+  <svg width={width} height={height} viewBox="0 0 240 56" fill="none"
+       className="scribble" style={style} aria-hidden="true">
+    <path d="M 6 30 C 30 12, 56 12, 78 30 S 124 48, 148 30 S 196 12, 220 28"
+          stroke={color} strokeWidth={stroke} strokeLinecap="round" fill="none" />
+    <path d="M 204 14 L 226 28 L 208 44"
+          stroke={color} strokeWidth={stroke} strokeLinecap="round" strokeLinejoin="round" fill="none" />
+  </svg>
+);
+
+const DownArrow = ({ width = 50, height = 120, color = 'currentColor', stroke = 3, style }) => (
+  <svg width={width} height={height} viewBox="0 0 50 120" fill="none"
+       className="scribble" style={style} aria-hidden="true">
+    <path d="M 25 6 C 14 28, 36 50, 22 72 S 32 102, 25 112"
+          stroke={color} strokeWidth={stroke} strokeLinecap="round" fill="none" />
+    <path d="M 13 100 L 25 114 L 38 100"
+          stroke={color} strokeWidth={stroke} strokeLinecap="round" strokeLinejoin="round" fill="none" />
+  </svg>
+);
+
+const MarkerCircle = ({ width = 360, height = 140, color = 'currentColor', stroke = 5, style }) => (
+  <svg width={width} height={height} viewBox="0 0 360 140" fill="none"
+       className="scribble" style={style} aria-hidden="true">
+    <path d="M 30 72 C 28 24, 120 8, 188 12 C 280 18, 340 38, 336 76 C 332 116, 230 132, 150 128 C 60 124, 18 100, 28 70 C 34 56, 76 46, 110 44"
+          stroke={color} strokeWidth={stroke} strokeLinecap="round" fill="none" opacity="0.85" />
+  </svg>
+);
+
+const MarkerUnderline = ({ width = 220, height = 22, color = 'currentColor', stroke = 5, style }) => (
+  <svg width={width} height={height} viewBox="0 0 220 22" fill="none"
+       className="scribble" style={style} aria-hidden="true">
+    <path d="M 6 14 C 50 6, 120 8, 170 12 S 208 18, 214 12"
+          stroke={color} strokeWidth={stroke} strokeLinecap="round" fill="none" opacity="0.9"/>
+  </svg>
+);
+
+const MarkerStrike = ({ width = 220, height = 18, color = 'currentColor', stroke = 5, style }) => (
+  <svg width={width} height={height} viewBox="0 0 220 18" fill="none"
+       className="scribble" style={style} aria-hidden="true">
+    <path d="M 4 10 C 50 4, 110 14, 170 8 S 210 12, 216 9"
+          stroke={color} strokeWidth={stroke} strokeLinecap="round" fill="none" opacity="0.9"/>
+  </svg>
+);
+
+const Sparkle = ({ size = 24, color = 'currentColor', style }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" style={style} aria-hidden="true">
+    <path d="M 12 1 L 13.5 9 L 23 12 L 13.5 15 L 12 23 L 10.5 15 L 1 12 L 10.5 9 Z" fill={color} />
+  </svg>
+);
+
+const Dot = ({ size = 8, color = 'currentColor', style }) => (
+  <span style={{ display: 'inline-block', width: size, height: size, background: color, borderRadius: '50%', ...style }} />
+);
+
+const Confetti = ({ items }) => (
+  <div className="confetti" aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none' }}>
+    {items.map((it, i) => {
+      const common = { position: 'absolute', top: it.top, left: it.left, transform: `rotate(${it.rot || 0}deg)` };
+      if (it.kind === 'sparkle') return <Sparkle key={i} size={it.size || 18} color={it.color} style={common} />;
+      if (it.kind === 'dot')     return <span key={i} style={{ ...common, width: it.size, height: it.size, background: it.color, borderRadius: '50%' }} />;
+      if (it.kind === 'cross')   return (
+        <svg key={i} width={it.size} height={it.size} viewBox="0 0 20 20" style={common} aria-hidden="true">
+          <path d="M 4 4 L 16 16 M 16 4 L 4 16" stroke={it.color} strokeWidth="3" strokeLinecap="round"/>
+        </svg>
+      );
+      if (it.kind === 'tick')    return (
+        <svg key={i} width={it.size} height={it.size} viewBox="0 0 20 20" style={common} aria-hidden="true">
+          <path d="M 3 11 L 8 16 L 17 5" stroke={it.color} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+        </svg>
+      );
+      return null;
+    })}
+  </div>
+);
+
+const SlideShell = ({ index, total = 6, label, showSwipe = true, whimsy = true, grain = true, children }) => (
+  <div className={`slide ${grain ? 'grain' : ''} ${whimsy ? '' : 'no-whimsy'}`}
+       data-screen-label={`${String(index).padStart(2,'0')} ${label || ''}`.trim()}>
+    {children}
+    <div className="slide-chrome">
+      <div className="slide-num">
+        <strong>{String(index).padStart(2,'0')}</strong> / {String(total).padStart(2,'0')}
+        {label ? <span style={{ marginLeft: 14, color: 'var(--fg-3)' }}>· {label}</span> : null}
+      </div>
+      <div className="slide-brand">
+        <span className="dot" /> QAMW Consulting
+      </div>
+      {showSwipe && index < total ? (
+        <div className="slide-swipe">
+          Swipe
+          <svg width="38" height="14" viewBox="0 0 38 14" fill="none" aria-hidden="true">
+            <path d="M 2 7 H 32 M 26 2 L 33 7 L 26 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+          </svg>
+        </div>
+      ) : null}
+    </div>
+  </div>
+);
+
+const Chip = ({ children }) => (
+  <span style={{
+    display: 'inline-block', padding: '10px 16px',
+    border: '1px solid var(--border)', fontFamily: 'var(--font-mono)',
+    fontSize: 13, letterSpacing: '0.2em', textTransform: 'uppercase',
+    color: 'var(--fg-2)', background: 'rgba(255,255,255,0.02)',
+  }}>{children}</span>
+);
+
+const TrackRow = ({ n, children }) => (
+  <div style={{
+    display: 'grid', gridTemplateColumns: '88px 1fr',
+    alignItems: 'baseline', gap: 24, padding: '22px 0',
+    borderTop: '1px solid var(--border)',
+  }}>
+    <div style={{ fontFamily: 'var(--font-display)', fontSize: 64, color: 'var(--accent)', lineHeight: 0.85, letterSpacing: '0.01em' }}>{n}</div>
+    <div style={{ fontFamily: 'var(--font-body)', fontSize: 24, lineHeight: 1.4, color: 'var(--fg-1)', fontWeight: 400 }}>{children}</div>
+  </div>
+);
+
+const Slide01 = (props) => (
+  <SlideShell index={1} label="The Ask" {...props}>
+    <div className="backdrop-glyph" style={{ fontSize: 320, top: -40, right: -90, opacity: 0.55 }}>CLAUDE</div>
+    <div className="tape" style={{ top: 90, right: -60, width: 280, transform: 'rotate(18deg)' }} />
+    <div className="tape tape-green" style={{ bottom: 220, left: -60, width: 240, transform: 'rotate(-12deg)' }} />
+    <Confetti items={[
+      { kind: 'sparkle', top: 180, left: 120, size: 22, color: 'var(--accent)', rot: 12 },
+      { kind: 'sparkle', top: 800, left: 940, size: 26, color: 'var(--accent)', rot: -8 },
+      { kind: 'dot',     top: 320, left: 880, size: 10, color: 'var(--green)' },
+      { kind: 'dot',     top: 640, left: 70,  size: 8,  color: 'var(--red)' },
+      { kind: 'cross',   top: 240, left: 760, size: 18, color: 'var(--fg-3)' },
+    ]} />
+    <div className="slide-content" style={{ justifyContent: 'center' }}>
+      <div style={{ marginTop: 20 }}>
+        <div className="eyebrow" style={{ marginBottom: 36 }}>The Ask · Inbox 9:14 AM</div>
+        <h1 className="display" style={{ fontSize: 96, marginBottom: 10, color: 'var(--fg-1)' }}>
+          <span style={{ color: 'var(--accent)' }}>"</span>Can you teach<br/>
+          me how to use<br/>
+          <span style={{ position: 'relative', display: 'inline-block', whiteSpace: 'nowrap' }}>
+            Claude better<span style={{ color: 'var(--accent)' }}>?"</span>
+            <MarkerUnderline width={620} height={22} color="var(--accent)" stroke={5}
+              style={{ position: 'absolute', left: 0, bottom: -10 }} />
+          </span>
+        </h1>
+        <div style={{ marginTop: 44, fontFamily: 'var(--font-body)', fontWeight: 300, fontStyle: 'italic', fontSize: 22, color: 'var(--fg-3)' }}>— that was the brief.</div>
+        <div style={{ marginTop: 56, display: 'flex', alignItems: 'center', gap: 14 }}>
+          <span style={{ width: 28, height: 1, background: 'var(--accent)' }} />
+          <span className="mono" style={{ fontSize: 12, color: 'var(--accent)', letterSpacing: '0.22em' }}>His Job, In Full</span>
+        </div>
+        <div style={{ fontFamily: 'var(--font-display)', fontSize: 52, lineHeight: 1.05, marginTop: 16, color: 'var(--fg-1)', letterSpacing: '0.01em' }}>
+          One man. Running an<br/>entire nonprofit.
+        </div>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginTop: 22 }}>
+          <Chip>Programs</Chip><Chip>Grants</Chip><Chip>Donors</Chip><Chip>Communications</Chip>
+        </div>
+        <div style={{ marginTop: 32, fontFamily: 'var(--font-display)', fontSize: 56, letterSpacing: '0.01em', lineHeight: 1.05, whiteSpace: 'nowrap' }}>
+          <span style={{ color: 'var(--accent)' }}>All of it.</span>
+          <span style={{ display: 'inline-block', width: 18 }} />
+          <span style={{ color: 'var(--fg-1)' }}>Just him.</span>
+        </div>
+      </div>
+    </div>
+    <div className="sticker accent" style={{ top: 56, right: 60, transform: 'rotate(8deg)' }}>Case&nbsp;Study&nbsp;//&nbsp;01</div>
+  </SlideShell>
+);
+
+const Slide02 = (props) => (
+  <SlideShell index={2} label="The Problem" {...props}>
+    <div className="tape tape-red" style={{ top: 80, right: 80, width: 200, transform: 'rotate(10deg)' }} />
+    <Confetti items={[
+      { kind: 'cross',   top: 220, left: 90,  size: 18, color: 'var(--red)' },
+      { kind: 'dot',     top: 940, left: 980, size: 8,  color: 'var(--green)' },
+      { kind: 'sparkle', top: 950, left: 90,  size: 20, color: 'var(--accent)' },
+    ]} />
+    <div className="slide-content">
+      <div className="eyebrow" style={{ marginBottom: 28, color: 'var(--red)' }}>Diagnosis · The Problem With That Ask</div>
+      <div style={{ fontFamily: 'var(--font-display)', fontSize: 56, lineHeight: 1.0, color: 'var(--fg-1)', letterSpacing: '0.01em' }}>
+        Claude training assumes<br/>the problem is{' '}
+        <span style={{ position: 'relative', display: 'inline-block', whiteSpace: 'nowrap' }}>
+          skill.
+          <MarkerStrike width={140} height={18} color="var(--red)" stroke={6} style={{ position: 'absolute', left: -6, top: '32%' }} />
+        </span>
+      </div>
+      <div style={{ marginTop: 18, fontFamily: 'var(--font-display)', fontSize: 64, color: 'var(--red)', letterSpacing: '0.01em' }}>It wasn't.</div>
+      <div style={{ marginTop: 32, fontFamily: 'var(--font-body)', fontSize: 22, lineHeight: 1.5, color: 'var(--fg-2)', maxWidth: 780, fontWeight: 300 }}>
+        He knew how to type a prompt. What he didn't have was a Claude that already knew{' '}
+        <span style={{ position: 'relative', display: 'inline-block', whiteSpace: 'nowrap', color: 'var(--accent)', fontWeight: 500 }}>
+          HIM
+          <MarkerUnderline width={60} height={14} color="var(--accent)" stroke={4} style={{ position: 'absolute', left: -4, bottom: -6 }} />
+        </span>.
+      </div>
+      <div style={{ marginTop: 36, display: 'flex', flexDirection: 'column', gap: 0 }}>
+        {[['Every session', 'started from zero.'], ['Every output', 'needed heavy editing.'], ['Every grant', 'sounded generic.']].map(([lead, tail], i) => (
+          <div key={i} style={{ display: 'grid', gridTemplateColumns: '260px 1fr', alignItems: 'baseline', gap: 24, padding: '14px 0', borderTop: '1px solid var(--border)' }}>
+            <span className="mono" style={{ fontSize: 13, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--accent)' }}>{lead}</span>
+            <span style={{ fontFamily: 'var(--font-body)', fontSize: 22, color: 'var(--fg-1)', fontWeight: 400, lineHeight: 1.4 }}>{tail}</span>
+          </div>
+        ))}
+        <div style={{ borderTop: '1px solid var(--border)' }} />
+      </div>
+      <div style={{ marginTop: 'auto', paddingTop: 32, fontFamily: 'var(--font-display)', fontSize: 44, lineHeight: 1.05, color: 'var(--fg-1)', letterSpacing: '0.01em' }}>
+        The problem wasn't the tool.<br/>It was that the tool{' '}
+        <span style={{ position: 'relative', display: 'inline-block', whiteSpace: 'nowrap', color: 'var(--accent)' }}>
+          didn't know his world.
+          <MarkerUnderline width={620} height={22} color="var(--accent)" stroke={5} style={{ position: 'absolute', left: -4, bottom: -10 }} />
+        </span>
+      </div>
+    </div>
+    <div className="sticker dark" style={{ top: 240, right: 70, transform: 'rotate(8deg)' }}>Wait —</div>
+  </SlideShell>
+);
+
+const TrackSlide = ({ index, label, trackEyebrow, trackTitle, headline, rows, kicker, decor, stickerLabel, stickerStyle }) => (
+  <SlideShell index={index} label={label}>
+    {decor}
+    <div className="slide-content" style={{ paddingBottom: 132 }}>
+      <div className="eyebrow" style={{ marginBottom: 14 }}>{trackEyebrow}</div>
+      <h2 className="display" style={{ fontSize: 132, lineHeight: 0.92, marginBottom: 36, letterSpacing: '0.02em' }}>{trackTitle}</h2>
+      <p style={{ fontFamily: 'var(--font-display)', fontSize: 44, lineHeight: 1.05, color: 'var(--fg-1)', margin: 0, letterSpacing: '0.01em', maxWidth: 880 }}>{headline}</p>
+      <div style={{ marginTop: 36, flex: 1 }}>
+        {rows.map((r, i) => <TrackRow key={i} n={r.n}>{r.text}</TrackRow>)}
+        <div style={{ borderTop: '1px solid var(--border)' }} />
+      </div>
+      <div style={{ marginTop: 20, display: 'flex', alignItems: 'baseline', gap: 18 }}>
+        <span style={{ width: 36, height: 1, background: 'var(--accent)' }} />
+        <span style={{ fontFamily: 'var(--font-display)', fontSize: 32, color: 'var(--accent)', letterSpacing: '0.01em', lineHeight: 1.1 }}>{kicker}</span>
+      </div>
+    </div>
+    {stickerLabel ? (
+      <div className="sticker" style={{ top: 60, right: 60, transform: 'rotate(8deg)', ...(stickerStyle || {}) }}>{stickerLabel}</div>
+    ) : null}
+  </SlideShell>
+);
+
+const Slide03 = (props) => (
+  <TrackSlide
+    index={3} label="Track A · Training"
+    trackEyebrow="Track A · 03" trackTitle="TRAINING"
+    headline="We built his Claude workspace from the ground up."
+    rows={[
+      { n: '01', text: <>Projects organized around how he <em style={{ fontStyle: 'normal', color: 'var(--accent)' }}>actually</em> works.</> },
+      { n: '02', text: <>Skills built for the tasks he <em style={{ fontStyle: 'normal', color: 'var(--accent)' }}>repeats every week.</em></> },
+      { n: '03', text: <>Cowork set up so nothing lives in his head alone.</> },
+    ]}
+    kicker="Now Claude knows his org before he types a word."
+    stickerLabel="Track A · 1 of 3"
+    stickerStyle={{ background: 'var(--accent)', color: 'var(--white)', boxShadow: '4px 4px 0 0 var(--white)' }}
+    decor={<>
+      <div className="tape tape-green" style={{ top: 90, right: -40, width: 240, transform: 'rotate(14deg)' }} />
+      <div className="backdrop-glyph" style={{ fontSize: 260, bottom: -60, right: -40, opacity: 0.45 }}>TRAIN</div>
+      <Confetti items={[
+        { kind: 'sparkle', top: 200, left: 90,  size: 22, color: 'var(--accent)' },
+        { kind: 'tick',    top: 940, left: 90,  size: 18, color: 'var(--green)' },
+        { kind: 'dot',     top: 880, left: 990, size: 10, color: 'var(--green)' },
+      ]} />
+    </>}
+  />
+);
+
+const Slide04 = (props) => (
+  <TrackSlide
+    index={4} label="Track B · Documents"
+    trackEyebrow="Track B · 04" trackTitle="DOCUMENTS"
+    headline="Grant writing was starting from scratch every time."
+    rows={[
+      { n: '01', text: <>Boilerplate templates built around his <em style={{ fontStyle: 'normal', color: 'var(--accent)' }}>actual programs.</em></> },
+      { n: '02', text: <>A repeatable grant and RFP workflow — intake to draft to send.</> },
+    ]}
+    kicker="Same quality. A fraction of the time."
+    stickerLabel="Track B · 2 of 3"
+    stickerStyle={{ background: 'var(--white)', color: 'var(--black)', boxShadow: '4px 4px 0 0 var(--accent)' }}
+    decor={<>
+      <div className="tape tape-amber" style={{ top: 90, right: -40, width: 240, transform: 'rotate(14deg)' }} />
+      <div className="backdrop-glyph" style={{ fontSize: 260, bottom: -60, right: -40, opacity: 0.45 }}>DOCS</div>
+      <Confetti items={[
+        { kind: 'sparkle', top: 220, left: 990, size: 22, color: 'var(--accent)' },
+        { kind: 'dot',     top: 940, left: 980, size: 8,  color: 'var(--red)' },
+        { kind: 'tick',    top: 920, left: 90,  size: 18, color: 'var(--green)' },
+      ]} />
+    </>}
+  />
+);
+
+const Slide05 = (props) => (
+  <TrackSlide
+    index={5} label="Track C · Setup"
+    trackEyebrow="Track C · 05" trackTitle="SETUP"
+    headline="The plumbing that makes the rest stick."
+    rows={[
+      { n: '01', text: <>Claude Design tuned so outputs match his <em style={{ fontStyle: 'normal', color: 'var(--accent)' }}>voice</em> — not a generic one.</> },
+      { n: '02', text: <>Everything organized so he stops <em style={{ fontStyle: 'normal', color: 'var(--accent)' }}>burning credits</em> re-explaining context.</> },
+    ]}
+    kicker="One person. Running like a team."
+    stickerLabel="Track C · 3 of 3"
+    stickerStyle={{ background: 'var(--off-black)', color: 'var(--white)', border: '1px solid var(--border)', boxShadow: '4px 4px 0 0 var(--accent)' }}
+    decor={<>
+      <div className="tape tape-white" style={{ top: 90, right: -40, width: 240, transform: 'rotate(14deg)' }} />
+      <div className="backdrop-glyph" style={{ fontSize: 260, bottom: -60, right: -40, opacity: 0.45 }}>SETUP</div>
+      <Confetti items={[
+        { kind: 'sparkle', top: 200, left: 90,  size: 22, color: 'var(--accent)' },
+        { kind: 'tick',    top: 920, left: 980, size: 18, color: 'var(--green)' },
+        { kind: 'dot',     top: 880, left: 100, size: 10, color: 'var(--green)' },
+      ]} />
+    </>}
+  />
+);
+
+const Slide06 = (props) => (
+  <SlideShell index={6} label="CTA" showSwipe={false} {...props}>
+    <div className="backdrop-glyph" style={{ fontSize: 360, top: -60, left: -40, opacity: 0.7 }}>SYSTEMS</div>
+    <div className="tape" style={{ top: 100, right: -40, width: 260, transform: 'rotate(14deg)' }} />
+    <div className="tape tape-green" style={{ bottom: 260, left: -50, width: 240, transform: 'rotate(-10deg)' }} />
+    <Confetti items={[
+      { kind: 'sparkle', top: 140, left: 140, size: 24, color: 'var(--accent)', rot: 10 },
+      { kind: 'sparkle', top: 820, left: 880, size: 28, color: 'var(--accent)', rot: -12 },
+      { kind: 'dot',     top: 280, left: 920, size: 10, color: 'var(--green)' },
+      { kind: 'tick',    top: 220, left: 800, size: 20, color: 'var(--green)' },
+      { kind: 'cross',   top: 760, left: 220, size: 16, color: 'var(--fg-3)' },
+    ]} />
+    <div className="slide-content" style={{ justifyContent: 'center' }}>
+      <div className="eyebrow" style={{ marginBottom: 36 }}>The Offer</div>
+      <h2 className="display" style={{ fontSize: 96, marginBottom: 22, lineHeight: 0.95 }}>
+        You don't need{' '}
+        <span style={{ position: 'relative', display: 'inline-block', whiteSpace: 'nowrap', color: 'var(--fg-3)' }}>
+          Claude training.
+          <MarkerStrike width={520} height={20} color="var(--red)" stroke={7} style={{ position: 'absolute', left: 0, top: '45%' }} />
+        </span>
+      </h2>
+      <h2 className="display" style={{ fontSize: 112, marginBottom: 48, lineHeight: 0.95 }}>
+        You need Claude<br/>
+        <span style={{ position: 'relative', display: 'inline-block', whiteSpace: 'nowrap' }}>
+          built around <em>your</em><br/>business.
+          <MarkerUnderline width={720} height={22} color="var(--accent)" stroke={5} style={{ position: 'absolute', left: 0, bottom: -10 }} />
+        </span>
+      </h2>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 28, marginTop: 12, flexWrap: 'wrap' }}>
+        <div style={{ background: 'var(--accent)', color: 'var(--white)', padding: '22px 36px', fontFamily: 'var(--font-mono)', fontSize: 18, fontWeight: 500, letterSpacing: '0.18em', textTransform: 'uppercase', position: 'relative' }}>
+          DM me "AIOS"
+          <span style={{ position: 'absolute', inset: 0, border: '1px solid var(--white)', transform: 'translate(6px, 6px)', pointerEvents: 'none' }} />
+        </div>
+        <SquiggleArrow width={220} height={48} color="var(--accent)" stroke={3} />
+      </div>
+      <p style={{ marginTop: 28, fontFamily: 'var(--font-body)', fontSize: 22, color: 'var(--fg-2)', maxWidth: 720, fontWeight: 300, lineHeight: 1.5, marginBottom: 40 }}>
+        Tell me what that looks like for yours — I'll walk you through it.
+      </p>
+      <div style={{ marginTop: 64, display: 'flex', alignItems: 'baseline', gap: 18 }}>
+        <span className="mono" style={{ fontSize: 12, letterSpacing: '0.2em', color: 'var(--fg-3)' }}>QAMW Consulting</span>
+        <span style={{ width: 24, height: 1, background: 'var(--border)' }} />
+        <span className="mono" style={{ fontSize: 12, letterSpacing: '0.2em', color: 'var(--fg-2)' }}>qamwconsulting.com</span>
+      </div>
+    </div>
+    <div className="sticker" style={{ top: 56, right: 60, transform: 'rotate(-8deg)' }}>End&nbsp;//&nbsp;06&nbsp;of&nbsp;06</div>
+  </SlideShell>
+);
+
+window.QAMWSlides = [Slide01, Slide02, Slide03, Slide04, Slide05, Slide06];
+window.QAMWSlideLabels = ['The Ask', 'The Problem', 'Track A · Training', 'Track B · Documents', 'Track C · Setup', 'CTA'];
+</script>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     Embedded carousel — scales the 1080×1080 slides to fit the
+     landing page container without position:fixed nav elements.
+     ═══════════════════════════════════════════════════════════════════ -->
+<script type="text/babel">
+const { useState, useEffect, useRef } = React;
+
+function EmbeddedCarousel() {
+  const [idx, setIdx] = useState(0);
+  const [scale, setScale] = useState(0.537);
+  const containerRef = useRef(null);
+  const trackRef = useRef(null);
+  const dragState = useRef({ active: false, startX: 0, dx: 0 });
+
+  const slides = window.QAMWSlides || [];
+  const total = slides.length;
+
+  useEffect(() => {
+    const fit = () => {
+      if (containerRef.current) setScale(containerRef.current.offsetWidth / 1080);
+    };
+    fit();
+    window.addEventListener('resize', fit);
+    return () => window.removeEventListener('resize', fit);
+  }, []);
+
+  useEffect(() => {
+    if (trackRef.current) trackRef.current.style.transform = `translateX(${-idx * 1080}px)`;
+  }, [idx]);
+
+  const onPointerDown = (e) => {
+    dragState.current = { active: true, startX: e.clientX, dx: 0 };
+    e.currentTarget.setPointerCapture(e.pointerId);
+  };
+  const onPointerMove = (e) => {
+    if (!dragState.current.active) return;
+    dragState.current.dx = e.clientX - dragState.current.startX;
+    if (trackRef.current) {
+      trackRef.current.style.transition = 'none';
+      trackRef.current.style.transform = `translateX(${-idx * 1080 + dragState.current.dx / scale}px)`;
+    }
+  };
+  const onPointerUp = () => {
+    if (!dragState.current.active) return;
+    const { dx } = dragState.current;
+    dragState.current.active = false;
+    if (trackRef.current) trackRef.current.style.transition = '';
+    if (dx < -60 && idx < total - 1) setIdx(idx + 1);
+    else if (dx > 60 && idx > 0)     setIdx(idx - 1);
+    else if (trackRef.current)        trackRef.current.style.transform = `translateX(${-idx * 1080}px)`;
+  };
+
+  return (
+    <div ref={containerRef} className="carousel-wrap"
+         onPointerDown={onPointerDown} onPointerMove={onPointerMove}
+         onPointerUp={onPointerUp} onPointerCancel={onPointerUp}>
+      <div className="carousel-scaler" style={{ transform: `scale(${scale})` }}>
+        <div ref={trackRef} className="embed-track">
+          {slides.map((S, i) => (
+            <div key={i} className="embed-slot"><S whimsy={true} grain={true} /></div>
+          ))}
+        </div>
+      </div>
+
+      <button className="emb-nav-btn prev" onClick={() => setIdx(Math.max(0, idx - 1))} disabled={idx === 0} aria-label="Previous slide">&#8249;</button>
+      <button className="emb-nav-btn next" onClick={() => setIdx(Math.min(total - 1, idx + 1))} disabled={idx === total - 1} aria-label="Next slide">&#8250;</button>
+
+      <div className="emb-dots">
+        {Array.from({ length: total }).map((_, i) => (
+          <button key={i} className={`emb-dot${i === idx ? ' active' : ''}`} onClick={() => setIdx(i)} aria-label={`Slide ${i + 1}`} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('carousel-root')).render(<EmbeddedCarousel />);
+</script>
+
+</body>
+</html>
