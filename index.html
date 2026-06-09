@@ -643,9 +643,8 @@
 
   /* WORKSHOP EVENT BANNER — remove after June 15 */
   .event-banner {
-    background: rgba(140,82,255,0.08);
-    border-bottom: 1px solid var(--accent);
-    padding: 11px 24px;
+    background: var(--accent);
+    padding: 13px 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -662,17 +661,18 @@
   .event-banner-text {
     font-family: 'DM Mono', monospace;
     font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--body);
+    color: rgba(255,255,255,0.8);
   }
-  .event-banner-text strong { color: var(--white); }
+  .event-banner-text strong { color: #fff; }
   .event-banner-link {
     font-family: 'DM Mono', monospace;
     font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--accent); text-decoration: none; white-space: nowrap;
-    border-bottom: 1px solid rgba(140,82,255,0.4);
-    transition: color 0.2s, border-color 0.2s;
+    color: #fff; text-decoration: none; white-space: nowrap;
+    background: rgba(0,0,0,0.2);
+    padding: 6px 14px;
+    transition: background 0.2s;
   }
-  .event-banner-link:hover { color: var(--white); border-color: var(--white); }
+  .event-banner-link:hover { background: rgba(0,0,0,0.35); }
 </style>
 </head>
 <body>
@@ -683,7 +683,7 @@
     <span class="event-dot"></span>
     <span class="event-banner-text"><strong>Free Workshop — June 15 at 10 AM Pacific</strong> · AI for Nonprofits: What's Actually Possible · 90 Min · Virtual</span>
   </div>
-  <a href="/Nonprofit%20Claude%20Training/workshop-landing.html" class="event-banner-link">Reserve your free spot →</a>
+  <a href="/Nonprofit%20Claude%20Training/workshop-landing.html" class="event-banner-link">Explore the Agenda →</a>
 </div>
 
 <!-- NAV -->
