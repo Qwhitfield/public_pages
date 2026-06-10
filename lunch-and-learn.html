@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QAMW Consulting — Lunch & Learn Resources</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-dark:      #0f0d12;
+      --bg-mid:       #16131c;
+      --bg-light:     #f2f0eb;
+      --accent:       #8c52ff;
+      --accent-lt:    #a370ff;
+      --accent-dim:   rgba(140,82,255,0.18);
+      --green:        #47c47e;
+      --text-primary: #f2f0eb;
+      --text-muted:   #b8b8b8;
+      --border:       #2a2525;
+      --radius:       12px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--bg-dark);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    nav .logo {
+      color: var(--text-primary);
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: .5px;
+    }
+    nav .logo span { color: var(--accent-lt); }
+    nav a.nav-cta {
+      background: var(--accent);
+      color: var(--text-primary);
+      font-weight: 700;
+      font-size: .85rem;
+      padding: 9px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      letter-spacing: .3px;
+      transition: background .2s;
+    }
+    nav a.nav-cta:hover { background: var(--accent-lt); }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(160deg, var(--bg-dark) 0%, var(--bg-mid) 100%);
+      padding: 80px 24px 72px;
+      text-align: center;
+      color: var(--text-primary);
+    }
+    .hero .badge {
+      display: inline-block;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent);
+      color: var(--accent-lt);
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      font-weight: 800;
+      line-height: 1.2;
+      max-width: 700px;
+      margin: 0 auto 20px;
+    }
+    .hero h1 em { color: var(--accent-lt); font-style: normal; }
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 560px;
+      margin: 0 auto 40px;
+    }
+    .hero-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+    }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+      background: var(--accent);
+      color: var(--text-primary);
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 14px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background .2s, transform .15s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--accent-lt); transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--border);
+      color: var(--text-primary);
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 12px 30px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: border-color .2s, background .2s;
+      display: inline-block;
+    }
+    .btn-outline:hover { border-color: var(--accent); background: var(--accent-dim); }
+
+    /* ── SECTION WRAPPER ── */
+    .section { padding: 80px 24px; }
+    .section.alt { background: var(--bg-mid); }
+    .container { max-width: 1000px; margin: 0 auto; }
+    .section-label {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent-lt);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(1.5rem, 3vw, 2.1rem);
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+      line-height: 1.25;
+    }
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin-bottom: 48px;
+    }
+
+    /* ── GUIDE DOWNLOAD ── */
+    .guide-card {
+      background: var(--bg-mid);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px 36px;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .section.alt .guide-card {
+      background: var(--bg-dark);
+    }
+    .guide-icon {
+      width: 72px;
+      height: 72px;
+      background: var(--accent-dim);
+      border: 2px solid var(--accent);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 2rem;
+    }
+    .guide-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .guide-card p {
+      font-size: .95rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    /* ── JOURNEY / PATH ── */
+    .path-steps { display: grid; gap: 0; position: relative; }
+    .path-step {
+      display: flex;
+      gap: 28px;
+      align-items: flex-start;
+      padding: 0 0 44px 0;
+      position: relative;
+    }
+    .path-step:last-child { padding-bottom: 0; }
+    .step-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .step-num {
+      width: 52px;
+      height: 52px;
+      background: var(--bg-mid);
+      color: var(--accent-lt);
+      font-weight: 800;
+      font-size: 1.15rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 2px solid var(--accent);
+      z-index: 1;
+    }
+    .step-line {
+      width: 2px;
+      flex: 1;
+      background: var(--accent);
+      min-height: 40px;
+      margin-top: 6px;
+      opacity: .25;
+    }
+    .path-step:last-child .step-line { display: none; }
+    .step-body { padding-top: 10px; }
+    .step-tag {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--accent-lt);
+      margin-bottom: 6px;
+    }
+    .step-body h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .step-body p {
+      font-size: .95rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+    .step-pill {
+      display: inline-block;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent);
+      color: var(--accent-lt);
+      font-size: .78rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 100px;
+      margin-top: 12px;
+    }
+    .step-pill.green {
+      background: rgba(71,196,126,.12);
+      border-color: rgba(71,196,126,.4);
+      color: var(--green);
+    }
+
+    /* ── OFFER CARD ── */
+    .offer-card {
+      background: var(--bg-dark);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px 36px;
+      position: relative;
+      overflow: hidden;
+    }
+    .offer-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-lt));
+    }
+    .offer-label {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--accent-lt);
+      margin-bottom: 10px;
+    }
+    .offer-card h3 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+    .offer-card .tagline {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+    .offer-items {
+      list-style: none;
+      margin-bottom: 32px;
+    }
+    .offer-items li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: .95rem;
+      color: var(--text-primary);
+    }
+    .offer-items li:last-child { border-bottom: none; }
+    .offer-items li .icon {
+      width: 22px;
+      height: 22px;
+      background: var(--accent-dim);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+      font-size: .72rem;
+      color: var(--accent-lt);
+    }
+    .offer-items li strong { color: var(--text-primary); }
+    .offer-items li span.detail { color: var(--text-muted); }
+    .offer-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+
+    /* ── PROOF ── */
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .proof-card {
+      background: var(--bg-mid);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+    }
+    .proof-card .amount {
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: var(--green);
+      margin-bottom: 8px;
+    }
+    .proof-card p {
+      font-size: .9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── CTA SECTION ── */
+    .cta-section {
+      background: var(--bg-mid);
+      border-top: 1px solid var(--border);
+      padding: 88px 24px;
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+      line-height: 1.25;
+    }
+    .cta-section h2 em { color: var(--accent-lt); font-style: normal; }
+    .cta-section p {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: 0 auto 36px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg-dark);
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: .85rem;
+    }
+    footer strong { color: var(--text-primary); }
+    footer a { color: var(--accent-lt); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .guide-card { flex-direction: column; gap: 20px; }
+      .offer-card { padding: 28px 22px; }
+      .offer-btns { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">QAMW <span>Consulting</span></div>
+  <a class="nav-cta" href="https://calendar.app.google/KgzYFtwUvcFSSgJG9" target="_blank">Book a Discovery Call</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge">Lunch &amp; Learn — Participant Resources</div>
+  <h1>Thanks for being in the room.<br><em>Here's your next step.</em></h1>
+  <p>Everything we covered today is below — your reference guide, the path forward, and how QAMW Consulting can help you stop losing revenue through the gaps in your operation.</p>
+  <div class="hero-btns">
+    <a class="btn-primary" href="#guide">Download Your Guide</a>
+    <a class="btn-outline" href="#path">See How It Works</a>
+  </div>
+</section>
+
+<!-- THANK YOU BAR -->
+<div style="background:var(--bg-mid); border-bottom:1px solid var(--border); padding:14px 24px; text-align:center; font-size:.88rem; color:var(--text-muted);">
+  A special thank you to <strong style="color:var(--text-primary);">Garrett Brown</strong> and <strong style="color:var(--text-primary);">Joe</strong> at <strong style="color:var(--accent-lt);">Mantra Computing, Inc.</strong> for hosting today's workshop.
+</div>
+
+<!-- GUIDE DOWNLOAD -->
+<section class="section alt" id="guide">
+  <div class="container">
+    <p class="section-label">Your Reference Guide</p>
+    <h2 class="section-title">Take today's session with you.</h2>
+    <p class="section-sub">The Participant Guide covers everything we walked through — Speed to Lead, the Customer Intention Window, where revenue leaks, and what the winning sequence looks like.</p>
+
+    <div class="guide-card">
+      <div class="guide-icon">📄</div>
+      <div style="flex:1;">
+        <h3>Winning the Customer Intention Window — Participant Reference Guide</h3>
+        <p>Your complete reference from today's session. Use the self-assessment worksheet to identify exactly where your operation is leaking revenue right now.</p>
+        <a class="btn-primary" href="https://drive.google.com/file/d/1MSeivof1zcQKi5-167gJSdVvXc7pq12a/view?usp=sharing" target="_blank">View the Guide →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE PATH -->
+<section class="section" id="path">
+  <div class="container">
+    <p class="section-label">Your Path Forward</p>
+    <h2 class="section-title">From conversation to a business that runs tighter.</h2>
+    <p class="section-sub">You don't need to figure out AI before fixing the systems underneath it. Here's exactly how we work together — one clear step at a time.</p>
+
+    <div class="path-steps">
+
+      <div class="path-step">
+        <div class="step-left">
+          <div class="step-num">1</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-body">
+          <p class="step-tag">30-Minute Call</p>
+          <h3>Discovery Conversation</h3>
+          <p>We start with a no-cost 30-minute call to understand your operation — how leads come in, where your team gets stuck, and what's falling through the cracks. No pitch. Just a real conversation about whether what we do is the right fit for where you are right now.</p>
+          <span class="step-pill">No cost &middot; No pressure</span>
+        </div>
+      </div>
+
+      <div class="path-step">
+        <div class="step-left">
+          <div class="step-num">2</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-body">
+          <p class="step-tag">14-Day Diagnostic</p>
+          <h3>Systems Audit — The Reality Check</h3>
+          <p>We go inside your operation to map every step of how a lead becomes a booked job. We look at your tools, response process, follow-up, and scheduling — and we find the real gaps, including where AI could actually help (and where it would just make things faster in the wrong direction).</p>
+          <p style="margin-top:10px;">This is not guesswork. It's a structured, 14-day diagnostic built around how your business actually works.</p>
+          <span class="step-pill green">AI opportunities identified here</span>
+        </div>
+      </div>
+
+      <div class="path-step">
+        <div class="step-left">
+          <div class="step-num">3</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-body">
+          <p class="step-tag">Findings Delivered</p>
+          <h3>Full Report with Prioritized Recommendations</h3>
+          <p>You receive a clear, written report — not a deck full of jargon. It identifies exactly where revenue is leaking, what to fix first, what to automate, and what technology decisions make sense for your business. You'll know what your operation needs before any automation is introduced.</p>
+        </div>
+      </div>
+
+      <div class="path-step">
+        <div class="step-left">
+          <div class="step-num">4</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-body">
+          <p class="step-tag">Implementation</p>
+          <h3>DIY or Done-For-You — Your Choice</h3>
+          <p>Once the report is in your hands, you decide how to move forward. Take the recommendations and implement on your own — the report gives you everything you need. Or QAMW can handle implementation for you: process redesign, systems integration, automation build-out, and ongoing support.</p>
+          <span class="step-pill">Do it yourself</span>
+          <span class="step-pill" style="margin-left:8px;">Done for you</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- OFFER -->
+<section class="section alt" id="offer">
+  <div class="container">
+    <p class="section-label">Flagship Offer</p>
+    <h2 class="section-title">The Systems Reality Check</h2>
+    <p class="section-sub">The diagnostic that shows you exactly what your business is leaking — and builds the foundation for AI that actually works.</p>
+
+    <div class="offer-card">
+      <p class="offer-label">14-Day Diagnostic</p>
+      <h3>Systems Reality Check</h3>
+      <p class="tagline">A deep look inside your operation to find where revenue is escaping — across lead response, scheduling, follow-up, quoting, and customer communication.</p>
+
+      <ul class="offer-items">
+        <li>
+          <span class="icon">✦</span>
+          <div><strong>Full lead journey map</strong> <span class="detail">— We trace how a new inquiry moves through your business from first contact to booked job and surface exactly where the handoffs break down.</span></div>
+        </li>
+        <li>
+          <span class="icon">✦</span>
+          <div><strong>Revenue leakage identification</strong> <span class="detail">— We surface the specific delays and gaps costing you money, including ones you may not be aware of.</span></div>
+        </li>
+        <li>
+          <span class="icon">✦</span>
+          <div><strong>AI readiness assessment</strong> <span class="detail">— We identify where automation can protect your momentum and where you need solid systems first, before any AI is introduced.</span></div>
+        </li>
+        <li>
+          <span class="icon">✦</span>
+          <div><strong>Prioritized action plan</strong> <span class="detail">— A clear picture of what to fix first, what to automate, and what your operation needs to run reliably.</span></div>
+        </li>
+        <li>
+          <span class="icon">✦</span>
+          <div><strong>Written report delivered to you</strong> <span class="detail">— No vague summaries. A complete, actionable document you keep regardless of what you decide next.</span></div>
+        </li>
+      </ul>
+
+      <div class="offer-btns">
+        <a class="btn-primary" href="https://qamwconsulting.com/systems-integration-consulting" target="_blank">Learn More →</a>
+        <a class="btn-outline" href="https://calendar.app.google/KgzYFtwUvcFSSgJG9" target="_blank">Book a Discovery Call</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section class="section" id="results">
+  <div class="container">
+    <p class="section-label">Real Results</p>
+    <h2 class="section-title">What a Systems Reality Check actually surfaces.</h2>
+    <p class="section-sub">Real outcomes from past engagements — the kind of clarity that comes from looking at what's actually happening inside an operation.</p>
+
+    <div class="proof-grid">
+      <div class="proof-card">
+        <div class="amount">$300K+</div>
+        <p>ERP transition avoided after a systems audit revealed the problem was process, not software — saving a client from a costly, unnecessary technology overhaul.</p>
+      </div>
+      <div class="proof-card">
+        <div class="amount">$18,000</div>
+        <p>Missed lead recovered at a construction firm through improved intake and follow-up systems. The opportunity was already there — it just needed a process to catch it.</p>
+      </div>
+      <div class="proof-card">
+        <div class="amount">~$15,000</div>
+        <p>In project delays eliminated via a single marketing approval automation — a fix that cost a fraction of the delays it was causing every quarter.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Your window is still open.<br><em>Let's find out what's costing you.</em></h2>
+  <p>A 30-minute conversation is enough to determine whether a Systems Reality Check is the right fit for your business right now.</p>
+  <a class="btn-primary" href="https://calendar.app.google/KgzYFtwUvcFSSgJG9" target="_blank" style="font-size:1.05rem; padding:16px 36px;">Book Your Discovery Call →</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p style="margin-bottom:8px;">
+    <strong>QAMW Consulting</strong> &nbsp;&middot;&nbsp; Quinita Whitfield, Business Operations &amp; Systems Strategist
+  </p>
+  <p>
+    <a href="https://qamwconsulting.com" target="_blank">qamwconsulting.com</a>
+    &nbsp;&middot;&nbsp;
+    <a href="https://qamwconsulting.com/systems-integration-consulting" target="_blank">Systems Reality Check</a>
+    &nbsp;&middot;&nbsp;
+    <a href="https://www.linkedin.com/in/quinita-whitfield-a1724148" target="_blank">LinkedIn</a>
+  </p>
+</footer>
+
+</body>
+</html>
