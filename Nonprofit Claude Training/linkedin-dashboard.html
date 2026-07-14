@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkedIn Dashboard — Quinita Whitfield</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0d0d14; color: #e0e0ee; min-height: 100vh; }
+
+    .header { background: linear-gradient(135deg, #111128 0%, #141430 50%, #0e2347 100%); padding: 36px 48px; border-bottom: 1px solid #22223a; }
+    .header-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-end; }
+    .header h1 { font-size: 26px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .header .sub { color: #7878a0; font-size: 13px; margin-top: 4px; }
+    .header .range { font-size: 12px; color: #5588cc; background: #1a2a44; border: 1px solid #2a3a60; padding: 5px 12px; border-radius: 20px; white-space: nowrap; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
+
+    /* Alert */
+    .alert { background: #1e1408; border: 1px solid #5a3d0a; border-radius: 10px; padding: 16px 20px; margin-bottom: 28px; display: flex; gap: 14px; align-items: flex-start; }
+    .alert-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+    .alert-text { font-size: 13px; color: #c8a060; line-height: 1.65; }
+    .alert-text strong { color: #f0b860; }
+
+    /* Stats row */
+    .stats-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 32px; }
+    .stat-card { background: #13132a; border: 1px solid #22223a; border-radius: 12px; padding: 20px 18px; }
+    .stat-card .lbl { font-size: 11px; color: #6060a0; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 8px; }
+    .stat-card .val { font-size: 30px; font-weight: 700; color: #6699ff; line-height: 1; }
+    .stat-card .note { font-size: 11px; color: #6060a0; margin-top: 6px; }
+
+    /* Section */
+    .section { margin-bottom: 40px; }
+    .section-title { font-size: 15px; font-weight: 600; color: #c0c0dc; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid #1e1e36; display: flex; align-items: center; gap: 8px; }
+    .section-title .dot { width: 8px; height: 8px; border-radius: 50%; }
+    .dot-blue { background: #6699ff; }
+    .dot-purple { background: #9966ff; }
+    .dot-green { background: #44cc88; }
+    .dot-orange { background: #ff9944; }
+
+    /* Posts table */
+    .posts-table { width: 100%; border-collapse: collapse; }
+    .posts-table th { text-align: left; padding: 10px 14px; font-size: 11px; text-transform: uppercase; color: #5858a0; letter-spacing: 0.5px; background: #0f0f22; border-bottom: 1px solid #22223a; }
+    .posts-table td { padding: 14px 14px; font-size: 13px; border-bottom: 1px solid #18183a; vertical-align: top; }
+    .posts-table tbody tr:hover td { background: #13132a; }
+    .hook { font-weight: 600; color: #e8e8f8; display: block; margin-bottom: 3px; line-height: 1.4; }
+    .sub-text { font-size: 11.5px; color: #6060a0; line-height: 1.5; }
+    .date-col { color: #6060a0; font-size: 12px; white-space: nowrap; }
+    .num-cell { text-align: center; }
+    .num-val { font-size: 15px; font-weight: 700; }
+    .num-0 { color: #ff5566; }
+    .num-top { color: #44cc88; }
+    .num-ok { color: #e0e0ee; }
+
+    /* Category badges */
+    .badge { display: inline-block; padding: 3px 9px; border-radius: 4px; font-size: 11px; font-weight: 500; white-space: nowrap; }
+    .b-tools   { background: #142040; color: #6699ff; }
+    .b-story   { background: #2a1440; color: #9966ff; }
+    .b-workshop{ background: #2a1a08; color: #ff9944; }
+    .b-auto    { background: #0e2a1e; color: #44cc88; }
+    .b-personal{ background: #2a0e1e; color: #ff66aa; }
+
+    /* Engagement mini bar */
+    .eng-bar { display: flex; align-items: center; gap: 8px; }
+    .bar-bg { width: 70px; height: 5px; background: #22223a; border-radius: 3px; overflow: hidden; flex-shrink: 0; }
+    .bar-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, #4477ee, #8855ee); }
+
+    /* Charts grid */
+    .charts-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .chart-card { background: #13132a; border: 1px solid #22223a; border-radius: 12px; padding: 20px; }
+    .chart-card h3 { font-size: 13px; font-weight: 600; color: #9090c0; margin-bottom: 16px; }
+    .chart-wrap { height: 210px; }
+
+    /* Sabrina comparison */
+    .bench-table { width: 100%; border-collapse: collapse; background: #13132a; border-radius: 12px; overflow: hidden; border: 1px solid #22223a; }
+    .bench-table th { font-size: 11px; text-transform: uppercase; color: #5858a0; padding: 10px 14px; background: #0f0f22; border-bottom: 1px solid #22223a; text-align: left; }
+    .bench-table td { font-size: 12.5px; padding: 13px 14px; border-bottom: 1px solid #18183a; color: #b0b0d0; vertical-align: top; }
+    .bench-table tr:last-child td { border-bottom: none; }
+    .bench-hook { font-weight: 600; color: #d0d0f0; display: block; margin-bottom: 2px; }
+    .bench-sub { font-size: 11px; color: #5858a0; }
+    .big-num { font-weight: 700; font-size: 15px; text-align: center; }
+    .big-green { color: #44cc88; }
+    .big-mid { color: #99aaff; }
+
+    /* Side-by-side comp */
+    .comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .comp-card { background: #13132a; border: 1px solid #22223a; border-radius: 12px; padding: 20px; }
+    .comp-label-row { font-size: 13px; font-weight: 600; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #22223a; }
+    .you-color { color: #6699ff; }
+    .them-color { color: #9966ff; }
+    .comp-row { display: flex; justify-content: space-between; align-items: baseline; padding: 9px 0; border-bottom: 1px solid #18183a; }
+    .comp-row:last-child { border-bottom: none; }
+    .comp-key { font-size: 12px; color: #6060a0; }
+    .comp-val { font-size: 13px; font-weight: 600; color: #e0e0ee; }
+    .comp-val.red { color: #ff5566; }
+    .comp-val.green { color: #44cc88; }
+
+    /* Insights */
+    .insights-3col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+    .insight { background: #13132a; border: 1px solid #22223a; border-radius: 12px; padding: 20px; }
+    .insight .tag { font-size: 10px; text-transform: uppercase; letter-spacing: 0.6px; font-weight: 600; margin-bottom: 8px; }
+    .tag-do    { color: #44cc88; }
+    .tag-stop  { color: #ff5566; }
+    .tag-study { color: #ff9944; }
+    .tag-test  { color: #6699ff; }
+    .insight h4 { font-size: 13px; font-weight: 600; color: #e0e0ee; margin-bottom: 8px; line-height: 1.4; }
+    .insight p { font-size: 12px; color: #6868a0; line-height: 1.65; }
+    .insight p strong { color: #a0a0cc; }
+
+    /* Weekly plan */
+    .week-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+    .day-card { background: #13132a; border: 1px solid #22223a; border-radius: 12px; padding: 20px; }
+    .day-card .day { font-size: 11px; text-transform: uppercase; letter-spacing: 0.6px; color: #ff9944; margin-bottom: 8px; font-weight: 600; }
+    .day-card h4 { font-size: 13px; font-weight: 600; color: #e0e0ee; margin-bottom: 8px; }
+    .day-card p { font-size: 12px; color: #6060a0; line-height: 1.65; }
+    .format-label { font-size: 11px; background: #1a1a36; color: #6699ff; border: 1px solid #2a2a50; padding: 2px 8px; border-radius: 4px; display: inline-block; margin-bottom: 8px; }
+
+    .footnote { font-size: 11px; color: #4040608; text-align: center; padding: 24px; color: #44445a; }
+
+    /* Reaction type breakdown */
+    .rxn-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .rxn-pill { font-size: 10px; padding: 2px 7px; border-radius: 10px; border: 1px solid #2a2a44; color: #8888c0; }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div>
+      <h1>LinkedIn Content Dashboard</h1>
+      <div class="sub">Quinita Whitfield · Gap Exposer & Non-profit Tech Partner</div>
+      <div class="sub" style="margin-top:6px;color:#5588cc">10 original posts analyzed + Sabrina Ramonov benchmark comparison</div>
+    </div>
+    <div class="range">Jun 7 – Jun 24, 2026</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ALERT -->
+  <div class="alert">
+    <div class="alert-icon">⚠️</div>
+    <div class="alert-text">
+      <strong>Duplicate content detected:</strong> "Helping nonprofits should be easier" was posted 3 times (Jun 7, Jun 10, Jun 13) with near-identical copy. Only the Jun 13 version — the one that included hashtags — got 4 likes. Repeated posts split your own potential reach, and LinkedIn's algorithm down-ranks accounts that recycle content. If a post underperforms, rewrite the hook and reframe the angle — don't repost.
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="lbl">Posts Analyzed</div>
+      <div class="val">10</div>
+      <div class="note">Your original posts only</div>
+    </div>
+    <div class="stat-card">
+      <div class="lbl">Total Reactions</div>
+      <div class="val">11</div>
+      <div class="note">1.1 avg per post</div>
+    </div>
+    <div class="stat-card">
+      <div class="lbl">Total Comments</div>
+      <div class="val">4</div>
+      <div class="note">0.4 avg per post</div>
+    </div>
+    <div class="stat-card">
+      <div class="lbl">Total Shares</div>
+      <div class="val" style="color:#ff5566">0</div>
+      <div class="note">No post was reshared</div>
+    </div>
+    <div class="stat-card">
+      <div class="lbl">Peak Post</div>
+      <div class="val">4</div>
+      <div class="note">Workshop · Jun 13 (w/ hashtags)</div>
+    </div>
+  </div>
+
+  <!-- POSTS TABLE -->
+  <div class="section">
+    <div class="section-title"><span class="dot dot-blue"></span> Your Posts — Full Breakdown</div>
+    <table class="posts-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Post Hook + Summary</th>
+          <th>Category</th>
+          <th style="text-align:center">Reactions</th>
+          <th style="text-align:center">Comments</th>
+          <th style="text-align:center">Shares</th>
+          <th>Reaction Types</th>
+          <th>Total Eng.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="date-col">Jun 24</td>
+          <td>
+            <span class="hook">Here's what big AI doesn't want nonprofit leaders to know...</span>
+            <span class="sub-text">Google Gemini free for nonprofits, HIPAA compliant, Claude Corps comparison · image post</span>
+          </td>
+          <td><span class="badge b-tools">AI Tools</span></td>
+          <td class="num-cell"><span class="num-val num-ok">1</span></td>
+          <td class="num-cell"><span class="num-val num-ok">1</span></td>
+          <td class="num-cell"><span class="num-val num-0">0</span></td>
+          <td><span class="rxn-pill">1 LIKE</span></td>
+          <td><div class="eng-bar"><div class="bar-bg"><div class="bar-fill" style="width:40%"></div></div><span style="font-size:12px;color:#6060a0">2</span></div></td>
+        </tr>
+        <tr>
+          <td class="date-col">Jun 24</td>
+          <td>
+            <span class="hook">Anthropic dropped a free Claude learning path and nobody talked about it.</span>
+            <span class="sub-text">9 courses listed with links, nonprofit gap identified, "comment cohort" CTA</span>
+          </td>
+          <td><span class="badge b-tools">AI Tools</span></td>
+          <td class="num-cell"><span class="num-val num-ok">2</span></td>
+          <td class="num-cell"><span class="num-val num-0">0</span></td>
+          <td class="num-cell"><span class="num-val num-0">0</span></td>
+          <td><span class="rxn-pill">1 LIKE</span> <span class="rxn-pill">1 INTEREST</span></td>
+          <td><div class="eng-bar"><div class="bar-bg"><div class="bar-fill" style="width:40%"></div></div><span style="font-size:12px;color:#6060a0">2</span></div></td>
+        </tr>
+        <tr>
+          <td class="date-col">Jun 23</td>
+          <td>
+            <span class="hook">Chatting with Claude is not doing anything for your nonprofit.</span>
+            <span class="sub-text">Client story: Rashard, solo founder, used AI to plan a community garden in 4 weeks</span>
+          </td>
+          <td><span class="badge b-story">Client Story</span></td>
+          <td class="num-cell"><span class="num-val num-0">0</span></td>
+          <td class="num-cell"><span class="num-val num-ok">1</span></td>
+          <td class="num-cell"><span class="num-val num-0">0</span></td>
+          <td><span class="rxn-pill">—</span></td>
+          <td><div class="eng-bar"><div class="bar-bg"><div class="bar-fill" style="width:20%"></div></div><span style="font-size:12px;color:#6060a0">1</span></div></td>
+        </tr>
+        <tr>
+          <td class="date-col">Jun 17</td>
+          <td>
+            <span class="hook">I'll never forget the cadaver with the tiger chest tattoo.</span>
+            <span class="sub-text">Personal story as voice agent metaphor — when to hand someone the scalpel</span>
+          </td>
+          <td><span class="badge b-story">Story / Analogy</span></td>
+          <td class="num-cell"><span class="num-val num-ok">1</span></td>
+          <td class="num-cell"><span class="num-val num-0">0</span></td>
+          <td class="num-cell"><span class="num-val num-0">0</span></td>
+          <td><span class="rxn-pill">1 LIKE</span></td>
+          <td><div class="eng-bar"><div class="bar-bg"><div class="bar-fill" style="width:20%"></div></div><span style="font-size:12px;color:#6060a0">1</span></div></td>
+        </tr>
+        <tr>
+          <td class="date-col">Jun 13</td>
+          <td>
+            <span class="hook">Helping nonprofits should be easier. <span style="color:#44cc88;font-size:11px">★ TOP PERFORMER</span></span>
+            <span class="sub-text">Free workshop Jun 15 — this version included #NonprofitLeaders #AI hashtags</span>
+          </td>
+          <td><span class="badge b-workshop">Workshop</span></td>
+          <td class="num-cell"><span class="num-val num-top">4</span></td>
+          <td class="num-cell"><span class="num-val num-0">0</span></td>
+          <td class="num-cell"><span class="num-val num-0">0</span></td>
+          <td><span class="rxn-pill">4 LIKE</span></td>
+          <td><div class="eng-bar"><div class="bar-bg"><div class="bar-fill" style="width:80%"></div></div><span style="font-size:12px;color:#44cc88">4</span></div></td>
+        </tr>
+        <tr>
+          <td class="date-col">Jun 11</td>
+          <td>
+            <span class="hook">It's beans for the 20th day in a row.</span>
+            <span class="sub-text">Hyperfixation/fiber analogy → applies to AI inundation · had image attached</span>
+          </td>
+          <td><span class="badge b-personal">Analogy</span></td>
+          <td class="num-cell"><span class="num-val num-ok">1</span></td>
+          <td class="num-cell"><span class="num-val num-ok">1</span></td>
+          <td class="num-cell"><span class="num-val num-0">0</span></td>
+          <td><span class="rxn-pill">1 LIKE</span></td>
+          <td><div class="eng-bar"><div class="bar-bg"><div class="bar-fill" style="width:40%"></div></div><span style="font-size:12px;color:#6060a0">2</span></div></td>
+        </tr>
+        <tr>
+          <td class="date-col">Jun 10</td>
+          <td>
+            <span class="hook">Helping nonprofits should be easier. <span style="color:#ff5566;font-size:11px">DUPLICATE #2</span></span>
+            <span class="sub-text">Same copy as Jun 7 + Jun 13 — image attached but no hashtags — 0 engagement</span>
+          </td>
+          <td><span class="badge b-workshop">Workshop</span></td>
+          <td class="num-cell"><span class="num-val num-0">0</span></td>
+          <td class="num-cell"><span class="num-val num-0">0</span></td>
+          <td class="num-cell"><span class="num-val num-0">0</span></td>
+          <td><span class="rxn-pill">—</span></td>
+          <td><div class="eng-bar"><div class="bar-bg"><div class="bar-fill" style="width:0%"></div></div><span style="font-size:12px;color:#ff5566">0</span></div></td>
+        </tr>
+        <tr>
+          <td class="date-col">Jun 9</td>
+          <td>
+            <span class="hook">There are unwritten rules about response times.</span>
+            <span class="sub-text">Hierarchy of customer contact expectations → Lunch &amp; Learn Jun 10 CTA</span>
+          </td>
+          <td><span class="badge b-auto">Automation</span></td>
+          <td class="num-cell"><span class="num-val num-ok">1</span></td>
+          <td class="num-cell"><span class="num-val num-0">0</span></td>
+          <td class="num-cell"><span class="num-val num-0">0</span></td>
+          <td><span class="rxn-pill">1 LIKE</span></td>
+          <td><div class="eng-bar"><div class="bar-bg"><div class="bar-fill" style="width:20%"></div></div><span style="font-size:12px;color:#6060a0">1</span></div></td>
+        </tr>
+        <tr>
+          <td class="date-col">Jun 8</td>
+          <td>
+            <span class="hook">It's funny to me how the biggest AI fanatics hate voice agents. <span style="color:#ff5566;font-size:11px">0 ENG.</span></span>
+            <span class="sub-text">Practical AI advice — not every situation needs a voice agent → Lunch &amp; Learn CTA</span>
+          </td>
+          <td><span class="badge b-auto">Automation</span></td>
+          <td class="num-cell"><span class="num-val num-0">0</span></td>
+          <td class="num-cell"><span class="num-val num-0">0</span></td>
+          <td class="num-cell"><span class="num-val num-0">0</span></td>
+          <td><span class="rxn-pill">—</span></td>
+          <td><div class="eng-bar"><div class="bar-bg"><div class="bar-fill" style="width:0%"></div></div><span style="font-size:12px;color:#ff5566">0</span></div></td>
+        </tr>
+        <tr>
+          <td class="date-col">Jun 7</td>
+          <td>
+            <span class="hook">Helping nonprofits should be easier. <span style="color:#ff5566;font-size:11px">DUPLICATE #1</span></span>
+            <span class="sub-text">Original version — no image, no hashtags — still got 1 like and 1 comment</span>
+          </td>
+          <td><span class="badge b-workshop">Workshop</span></td>
+          <td class="num-cell"><span class="num-val num-ok">1</span></td>
+          <td class="num-cell"><span class="num-val num-ok">1</span></td>
+          <td class="num-cell"><span class="num-val num-0">0</span></td>
+          <td><span class="rxn-pill">1 LIKE</span></td>
+          <td><div class="eng-bar"><div class="bar-bg"><div class="bar-fill" style="width:40%"></div></div><span style="font-size:12px;color:#6060a0">2</span></div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- CHARTS -->
+  <div class="charts-2col section">
+    <div class="chart-card">
+      <h3>Reactions by Content Category</h3>
+      <div class="chart-wrap">
+        <canvas id="categoryChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <h3>Total Engagement Over Time</h3>
+      <div class="chart-wrap">
+        <canvas id="timelineChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- SABRINA BENCHMARK -->
+  <div class="section">
+    <div class="section-title"><span class="dot dot-purple"></span> Sabrina Ramonov — Benchmark Posts (same period)</div>
+    <table class="bench-table">
+      <thead>
+        <tr>
+          <th style="width:46%">Post Hook</th>
+          <th>Category</th>
+          <th style="text-align:center">Reactions</th>
+          <th style="text-align:center">Comments</th>
+          <th style="text-align:center">Shares</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <span class="bench-hook">Anthropic dropped an entire free learning path for Claude AI and most people have no idea.</span>
+            <span class="bench-sub">9 courses listed · "Pick 1, finish it this week" CTA</span>
+          </td>
+          <td><span class="badge b-tools">AI Tools</span></td>
+          <td class="big-num big-green">2,364</td>
+          <td class="big-num">115</td>
+          <td class="big-num">300</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="bench-hook">The creator of Claude Code said he doesn't prompt Claude anymore.</span>
+            <span class="bench-sub">Loop engineering live masterclass · autonomous agents built live</span>
+          </td>
+          <td><span class="badge b-auto">AI Agents</span></td>
+          <td class="big-num big-green">173</td>
+          <td class="big-num">29</td>
+          <td class="big-num">4</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="bench-hook">Set Up Your AI Marketing Team in Claude (7 Free Skills)</span>
+            <span class="bench-sub">33M+ monthly views, solo — step-by-step setup tutorial</span>
+          </td>
+          <td><span class="badge b-auto">AI Tools</span></td>
+          <td class="big-num big-mid">160</td>
+          <td class="big-num">21</td>
+          <td class="big-num">7</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="bench-hook">If I Wanted to Become an AI Millionaire in 2026, This Is What I'd Do</span>
+            <span class="bench-sub">Full blueprint + 3 one-person business ideas · 4-phase framework</span>
+          </td>
+          <td><span class="badge b-story">Strategy</span></td>
+          <td class="big-num big-mid">261</td>
+          <td class="big-num">29</td>
+          <td class="big-num">5</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="bench-hook">38 researchers gave AI agents real accounts... Then watched AI confidently delete EVERYTHING.</span>
+            <span class="bench-sub">AI safety & permissions — clear guardrails checklist at end</span>
+          </td>
+          <td><span class="badge b-story">Story / Risk</span></td>
+          <td class="big-num big-mid">107</td>
+          <td class="big-num">23</td>
+          <td class="big-num">8</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="bench-hook">AI Loop Engineering (Simply Explained) — Build Autonomous Agents with Claude Code</span>
+            <span class="bench-sub">Long-form educational post · /goal command + routines explained</span>
+          </td>
+          <td><span class="badge b-auto">AI Agents</span></td>
+          <td class="big-num">86</td>
+          <td class="big-num">12</td>
+          <td class="big-num">1</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SIDE-BY-SIDE -->
+  <div class="comp-grid section">
+    <div class="comp-card">
+      <div class="comp-label-row you-color">You (Quinita) — 10 posts</div>
+      <div class="comp-row"><span class="comp-key">Avg Reactions / Post</span><span class="comp-val">1.1</span></div>
+      <div class="comp-row"><span class="comp-key">Avg Comments / Post</span><span class="comp-val">0.4</span></div>
+      <div class="comp-row"><span class="comp-key">Avg Shares / Post</span><span class="comp-val red">0</span></div>
+      <div class="comp-row"><span class="comp-key">Posts with 0 engagement</span><span class="comp-val red">2 of 10</span></div>
+      <div class="comp-row"><span class="comp-key">Duplicate posts</span><span class="comp-val red">3 identical</span></div>
+      <div class="comp-row"><span class="comp-key">Posts with images</span><span class="comp-val">2 of 10</span></div>
+      <div class="comp-row"><span class="comp-key">Primary hook style</span><span class="comp-val">Declarative / personal story</span></div>
+      <div class="comp-row"><span class="comp-key">CTA pattern</span><span class="comp-val">Link in comments</span></div>
+      <div class="comp-row"><span class="comp-key">Reaction type variety</span><span class="comp-val">LIKE + INTEREST only</span></div>
+    </div>
+    <div class="comp-card">
+      <div class="comp-label-row them-color">Sabrina Ramonov — 6 benchmark posts</div>
+      <div class="comp-row"><span class="comp-key">Avg Reactions / Post</span><span class="comp-val green">525</span></div>
+      <div class="comp-row"><span class="comp-key">Avg Comments / Post</span><span class="comp-val green">35</span></div>
+      <div class="comp-row"><span class="comp-key">Avg Shares / Post</span><span class="comp-val green">54</span></div>
+      <div class="comp-row"><span class="comp-key">Posts with 0 engagement</span><span class="comp-val green">0 of 6</span></div>
+      <div class="comp-row"><span class="comp-key">Duplicate posts</span><span class="comp-val green">0</span></div>
+      <div class="comp-row"><span class="comp-key">Posts with images</span><span class="comp-val green">4 of 6</span></div>
+      <div class="comp-row"><span class="comp-key">Primary hook style</span><span class="comp-val">Bold claim + drama + numbered proof</span></div>
+      <div class="comp-row"><span class="comp-key">CTA pattern</span><span class="comp-val">Comment trigger + link combo</span></div>
+      <div class="comp-row"><span class="comp-key">Reaction type variety</span><span class="comp-val">LIKE EMPATHY PRAISE INTEREST APPRECIATION</span></div>
+    </div>
+  </div>
+
+  <!-- INSIGHTS -->
+  <div class="section">
+    <div class="section-title"><span class="dot dot-green"></span> Actionable Insights</div>
+    <div class="insights-3col">
+
+      <div class="insight">
+        <div class="tag tag-stop">❌ Stop Doing</div>
+        <h4>Reposting the same copy</h4>
+        <p>Three versions of "Helping nonprofits should be easier" ran in 6 days. Only the one with <strong>hashtags</strong> got traction (4 likes). LinkedIn's algorithm penalizes duplicate content, and your audience sees it twice. If a post underperforms, rewrite the hook entirely — don't re-publish the same body.</p>
+      </div>
+
+      <div class="insight">
+        <div class="tag tag-study">📊 The Big Gap — Same Topic, 1,182x Difference</div>
+        <h4>Your Claude learning path vs. Sabrina's</h4>
+        <p>You posted the same 9 courses. You got 2 reactions. She got 2,364. The difference: her hook reads as a <strong>leaked secret</strong> ("most people have no idea"), she adds a specificity spike ("a 6-hour bootcamp"), and ends with a single, direct CTA. Your nonprofit angle is genuinely valuable — it just needs to live in the hook, not the body.</p>
+      </div>
+
+      <div class="insight">
+        <div class="tag tag-do">✅ Do More Of This</div>
+        <h4>Named client stories with real quotes</h4>
+        <p>Your Rashard post got a comment despite 0 likes — someone engaged enough to respond. That story format (named person, specific outcome, direct quote with emotion) is your strongest voice. <strong>You have these stories.</strong> Tell one per week with a client quote as the closing line.</p>
+      </div>
+
+      <div class="insight">
+        <div class="tag tag-test">🧪 Test This</div>
+        <h4>Move your CTA earlier and make it a keyword trigger</h4>
+        <p>You used "Comment 'cohort'" — which is exactly Sabrina's highest-engagement pattern. But it was buried in paragraph 4 of your Claude post. Move it to a <strong>standalone line at the end</strong>, and add proof: "I trained 3 nonprofits on this — comment COHORT and I'll send exactly what we built."</p>
+      </div>
+
+      <div class="insight">
+        <div class="tag tag-do">✅ Your Unique Edge</div>
+        <h4>You're the nonprofit-specific lens nobody else has</h4>
+        <p>Sabrina teaches AI to entrepreneurs. You teach it to nonprofit leaders doing mission-critical work with no budget. That's a <strong>distinct niche</strong>. Every post should anchor to that — not just mention it in the body. "Here's what nonprofit leaders need to know about X" is more specific than X alone.</p>
+      </div>
+
+      <div class="insight">
+        <div class="tag tag-test">🧪 Test This</div>
+        <h4>Add images to your storytelling posts</h4>
+        <p>Only 2 of 10 posts had images. Sabrina uses images on 4 of 6. For client stories, try a simple <strong>pull quote graphic</strong> with your brand colors. For lists, use a numbered card. The beans post had an image and got 2 total engagement — your second-best alongside the Claude list post.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WHAT TO POST NEXT WEEK -->
+  <div class="section">
+    <div class="section-title"><span class="dot dot-orange"></span> Next 3 Posts to Write</div>
+    <div class="week-grid">
+      <div class="day-card">
+        <div class="day">Post 1 — Client Story</div>
+        <div class="format-label">Story format · image pull quote</div>
+        <h4>Name a client. Quote them. Show the before/after.</h4>
+        <p>Lead with the problem they had, not your service. End with their exact words (like the Rashard quote). Close: <br><br>"If you're leading a 501c3 and you're tired of going at it alone — comment <strong>COHORT</strong> below."</p>
+      </div>
+      <div class="day-card">
+        <div class="day">Post 2 — Hot Take</div>
+        <div class="format-label">Counterintuitive hook · short bullets</div>
+        <h4>"Most nonprofits are using AI backwards. Here's what to fix first."</h4>
+        <p>5 short bullets. Each one challenges an assumption. End with: "The tool isn't the problem. The setup is." Mirror your own Rashard post insight but make it scalable advice for any nonprofit leader reading.</p>
+      </div>
+      <div class="day-card">
+        <div class="day">Post 3 — Resource List</div>
+        <div class="format-label">Numbered list · image card</div>
+        <h4>"5 free AI tools every nonprofit should know about (and how to use each one)"</h4>
+        <p>Lead with the most surprising tool. For each, add one sentence on the <em>specific</em> nonprofit use case — grant writing, donor comms, program reporting. This is Sabrina's highest-performing format applied to your niche.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footnote">Generated June 24, 2026 · Based on dataset_linkedin-profile-posts_2026-06-24 · Quinita Whitfield / QAMW Consulting</div>
+
+</div>
+
+<script>
+  const gridColor = '#1e1e3a';
+  const tickColor = '#5858a0';
+
+  Chart.defaults.color = tickColor;
+  Chart.defaults.font.size = 11;
+
+  // Category chart
+  new Chart(document.getElementById('categoryChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Workshop', 'AI Tools', 'Story/Analogy', 'Automation'],
+      datasets: [
+        {
+          label: 'Reactions',
+          data: [5, 3, 2, 1],
+          backgroundColor: ['#ff994460', '#6699ff60', '#9966ff60', '#44cc8860'],
+          borderColor:      ['#ff9944',   '#6699ff',   '#9966ff',   '#44cc88'],
+          borderWidth: 1.5,
+          borderRadius: 6
+        },
+        {
+          label: 'Comments',
+          data: [1, 1, 2, 0],
+          backgroundColor: ['#ff994430', '#6699ff30', '#9966ff30', '#44cc8830'],
+          borderColor:      ['#ff994480', '#6699ff80', '#9966ff80', '#44cc8880'],
+          borderWidth: 1,
+          borderRadius: 6
+        }
+      ]
+    },
+    options: {
+      plugins: { legend: { labels: { color: tickColor } } },
+      scales: {
+        x: { ticks: { color: tickColor }, grid: { color: gridColor } },
+        y: { ticks: { color: tickColor }, grid: { color: gridColor }, beginAtZero: true }
+      }
+    }
+  });
+
+  // Timeline
+  new Chart(document.getElementById('timelineChart'), {
+    type: 'line',
+    data: {
+      labels: ['Jun 7', 'Jun 8', 'Jun 9', 'Jun 10', 'Jun 11', 'Jun 13', 'Jun 17', 'Jun 23', 'Jun 24'],
+      datasets: [{
+        label: 'Total Engagement',
+        data: [2, 0, 1, 0, 2, 4, 1, 1, 4],
+        borderColor: '#6699ff',
+        backgroundColor: '#6699ff20',
+        tension: 0.45,
+        fill: true,
+        pointBackgroundColor: [
+          '#6699ff','#ff5566','#6699ff','#ff5566','#6699ff','#44cc88','#6699ff','#6699ff','#6699ff'
+        ],
+        pointRadius: 5,
+        pointHoverRadius: 7
+      }]
+    },
+    options: {
+      plugins: { legend: { labels: { color: tickColor } } },
+      scales: {
+        x: { ticks: { color: tickColor }, grid: { color: gridColor } },
+        y: { ticks: { color: tickColor }, grid: { color: gridColor }, beginAtZero: true, max: 6 }
+      }
+    }
+  });
+</script>
+</body>
+</html>
