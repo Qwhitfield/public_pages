@@ -3,4 +3,4 @@ Allow: /
 Disallow: /construction/
 Disallow: /practice/
 
-Sitemap: https://qamwconsulting.com/sitemap.xml
+Sitemap: https://www.qamwconsulting.com/sitemap.xml

@@ -1,0 +1,63 @@
+# QAMW Consulting
+
+> Seattle-based, Black-owned and women-owned systems consulting firm for
+> owner-operated small and mid-sized businesses ($1M+ revenue) and nonprofits.
+> We find where operations are losing time and money (disconnected tools,
+> manual work, untrustworthy reporting) and deliver a prioritized plan to fix it.
+> Founded and led by Quinita Whitfield, with 14+ years of enterprise data,
+> reporting, and systems experience (Power BI, SAP, Tableau, CRM architecture
+> and automation).
+
+## Flagship offer: Revenue Leak & Systems Audit
+- Flat fee: $5,000
+- Timeline: 2 weeks
+- Fee is credited 100% toward implementation or a Fractional COO retainer
+- Five deliverables:
+  1. Systems Map: full inventory of the tech stack, data touchpoints, and integration gaps
+  2. Data & Reporting Reality Check: which reports and dashboards can't be trusted, and why
+  3. Revenue Leak Analysis: inefficiencies tied to estimated dollar values, ranked by impact
+  4. AI Readiness Score: rated across 5 readiness dimensions
+  5. 30-60 Day Execution Plan: prioritized fixes and automation opportunities
+- Includes a final readout call and 2 weeks of async follow-up
+- Client time required: a couple of hours from key people in week one
+
+## Ongoing work
+- Fractional COO / embedded systems role: $12,000 per month
+- Project-based implementation after the audit
+
+## Other services
+- Nonprofit consulting
+- Nonprofit technical support
+- Systems integration consulting
+- Nonprofit Claude (AI) training: workshop and cohort program
+
+## Who we work with
+- Growing businesses with $1M+ revenue, and nonprofits
+- No dedicated internal data or systems team
+- Operations spread across 3-4+ tools that don't talk to each other
+- Teams spending hours on manual reporting and admin
+- Leaders who want to get more from tools they already own before buying new ones
+
+## Not a fit
+- Pre-revenue businesses, or anyone looking for a cheap quick fix
+- Requests to "just set up a tool" without looking at the workflow
+
+## Location
+Seattle, Washington. Works with clients remotely.
+
+## How to get started
+- Free 20-minute discovery call: https://tidycal.com/quinitaw/discovery-call
+- Free 5-minute Tech Stack Efficiency Audit: https://tally.so/r/gDL5El
+
+## Key pages
+- Home / Systems Audit: https://www.qamwconsulting.com/
+- About: https://www.qamwconsulting.com/about.html
+- Systems Integration Consulting: https://www.qamwconsulting.com/systems-integration-consulting.html
+- Nonprofit Consulting: https://www.qamwconsulting.com/nonprofit-consulting.html
+- Nonprofit Technical Support: https://www.qamwconsulting.com/nonprofit-technical-support.html
+- Nonprofit Claude Workshop: https://www.qamwconsulting.com/Nonprofit%20Claude%20Training/workshop-landing.html
+- Nonprofit AI Cohort: https://www.qamwconsulting.com/Nonprofit%20Claude%20Training/cohort-offer.html
+
+## Founder
+Quinita Whitfield, Business Intelligence and Systems Consultant.
+LinkedIn: https://www.linkedin.com/in/quinita-whitfield
