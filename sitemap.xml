@@ -1,37 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://qamwconsulting.com/</loc>
+    <loc>https://www.qamwconsulting.com/</loc>
+    <lastmod>2026-10-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://qamwconsulting.com/about.html</loc>
+    <loc>https://www.qamwconsulting.com/about.html</loc>
+    <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://qamwconsulting.com/nonprofit-consulting.html</loc>
+    <loc>https://www.qamwconsulting.com/nonprofit-consulting.html</loc>
+    <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://qamwconsulting.com/nonprofit-technical-support.html</loc>
+    <loc>https://www.qamwconsulting.com/nonprofit-technical-support.html</loc>
+    <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://qamwconsulting.com/systems-integration-consulting.html</loc>
+    <loc>https://www.qamwconsulting.com/systems-integration-consulting.html</loc>
+    <lastmod>2026-10-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://qamwconsulting.com/Nonprofit%20Claude%20Training/workshop-landing.html</loc>
+    <loc>https://www.qamwconsulting.com/google-ai-search.html</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.qamwconsulting.com/Nonprofit%20Claude%20Training/workshop-landing.html</loc>
+    <lastmod>2026-10-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://qamwconsulting.com/Nonprofit%20Claude%20Training/cohort-offer.html</loc>
+    <loc>https://www.qamwconsulting.com/Nonprofit%20Claude%20Training/cohort-offer.html</loc>
+    <lastmod>2026-10-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
