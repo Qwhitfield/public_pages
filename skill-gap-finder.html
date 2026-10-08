@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X8MGSYVPNG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-X8MGSYVPNG');
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Skill Gap Finder | QAMW Consulting</title>
+<meta name="description" content="A 90-second quiz matching small businesses and nonprofits to the right Claude for Small Business skills based on their tools and biggest challenges. Built by QAMW Consulting.">
+<link rel="canonical" href="https://www.qamwconsulting.com/skill-gap-finder.html">
+
+<!--
+  SETUP NOTES (read before publishing this page)
+
+  1. RESULTS DELIVERY — TALLY
+     Create a form at tally.so with these fields:
+       - Name (short text, required)
+       - Email (email, required)
+       - Organization (short text)
+       - Anything specific you want covered? (long text, optional)
+     Open the form, copy its ID from the URL (tally.so/forms/XXXXXX -> XXXXXX is the ID),
+     and paste it into TALLY_FORM_ID near the top of the <script> at the bottom of this file,
+     replacing "REPLACE_WITH_YOUR_TALLY_FORM_ID". Until you do that, this page shows a
+     direct mailto link instead so nothing is ever broken for a visitor.
+
+     Optional: add four HIDDEN fields to the Tally form named exactly orgtype, stack,
+     challenges, and top_matches to also capture what the visitor answered in the quiz —
+     this page fills them in automatically via URL parameters once the form ID is set.
+
+  2. HOSTING
+     This is a single self-contained file. Upload it wherever qamwconsulting.com lives
+     (a static host, an HTML/embed block in your site builder, GitHub Pages, etc.) — it
+     needs no server, database, or build step.
+-->
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@500;600;700&display=swap">
+
+<style>
+  :root{
+    --bg:#0F0D12;
+    --bg-mid:#1a1620;
+    --bg-card-dark:#1d1826;
+    --line-dark:#332d45;
+    --line-mid:#cfc7dd;
+    --paper:#f4f2f8;
+    --panel:#ffffff;
+    --line-light:#e2ddec;
+    --accent:#8C52FF;
+    --accent-lt:#A370FF;
+    --accent-dim:rgba(140,82,255,.28);
+    --accent-onlight:#6B3FD1;
+    --accent-tint:#efe7fb;
+    --hover-tint:#f8f6fc;
+    --good:#47C47E;
+    --good-onlight:#2E8F5C;
+    --ink:#17141d;
+    --ink-muted:#635d70;
+    --paper-text:#f1eef7;
+    --paper-muted:#a89bc4;
+    --radius:10px;
+    font-size:16px;
+  }
+  *{box-sizing:border-box}
+  html,body{background:var(--bg)}
+  body{
+    margin:0;
+    color:var(--paper-text);
+    font-family:'Plus Jakarta Sans',system-ui,-apple-system,Segoe UI,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;letter-spacing:-0.02em;text-wrap:balance;margin:0}
+  p{margin:0;line-height:1.55}
+  button{font-family:inherit}
+  a{color:inherit}
+  img{max-width:100%}
+  ::selection{background:var(--accent-dim)}
+  .eyebrow{
+    display:flex;align-items:center;gap:10px;
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--accent);
+  }
+  .eyebrow::before{content:'';display:block;width:22px;height:1px;background:var(--accent)}
+  .eyebrow.on-light{color:var(--accent-onlight)}
+  .eyebrow.on-light::before{background:var(--accent-onlight)}
+
+  .app{min-height:100%;display:flex;flex-direction:column}
+  .topbar{
+    position:sticky;top:env(safe-area-inset-top,0px);z-index:20;
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    padding:16px clamp(16px,4vw,44px);
+    background:var(--bg);border-bottom:1px solid var(--line-dark);
+  }
+  .brand{font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;font-size:.95rem;text-transform:uppercase;color:var(--paper-text);display:flex;align-items:center;gap:8px;white-space:nowrap}
+  .brand-mark{color:var(--accent);font-size:1.1em}
+  .brand-sep{color:var(--paper-muted);font-weight:400}
+  .progress{display:flex;align-items:center;gap:10px;flex:1;max-width:280px}
+  .progress-track{flex:1;height:3px;background:var(--line-dark);border-radius:2px;overflow:hidden}
+  .progress-fill{height:100%;width:0%;background:var(--accent);transition:width .35s ease}
+  .progress-label{font-family:'Barlow Condensed',sans-serif;font-size:.72rem;letter-spacing:.1em;color:var(--paper-muted);white-space:nowrap}
+
+  .stage{flex:1;display:flex;flex-direction:column}
+  .step{width:100%}
+  [hidden]{display:none!important}
+
+  /* ---- Intro ---- */
+  .step-intro{
+    background:var(--bg);
+    padding:clamp(48px,9vw,96px) clamp(16px,6vw,44px) 64px;
+    display:flex;justify-content:center;
+  }
+  .intro-inner{max-width:760px;width:100%;display:flex;flex-direction:column;gap:22px}
+  .intro-inner h1{font-size:clamp(2.1rem,5vw,3.4rem);color:var(--paper-text)}
+  .intro-inner .lede{font-size:clamp(1rem,1.6vw,1.15rem);color:var(--paper-muted);max-width:56ch}
+  .intro-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+  .meta-chip{
+    font-family:'Barlow Condensed',sans-serif;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--paper-muted);border:1px solid var(--line-dark);padding:7px 12px;border-radius:4px;
+  }
+  .source-card{
+    margin-top:8px;border:1px solid var(--line-dark);background:var(--bg-mid);border-radius:var(--radius);
+    padding:18px 20px;display:flex;flex-direction:column;gap:6px;
+  }
+  .source-card .k{font-family:'Barlow Condensed',sans-serif;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+  .source-card p{color:var(--paper-muted);font-size:.92rem}
+
+  /* ---- generic step wrapper (light) ---- */
+  .step-form{
+    background:var(--paper);color:var(--ink);
+    padding:clamp(40px,8vw,72px) clamp(16px,6vw,44px) 110px;
+    display:flex;justify-content:center;flex:1;
+  }
+  .form-inner{max-width:880px;width:100%;display:flex;flex-direction:column;gap:28px}
+  .form-inner h2{font-size:clamp(1.6rem,3.4vw,2.3rem);color:var(--ink)}
+  .form-sub{color:var(--ink-muted);max-width:62ch;font-size:1rem}
+
+  /* org-type cards */
+  .orgtype-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--line-light);border:1px solid var(--line-light);border-radius:var(--radius);overflow:hidden}
+  @media (max-width:640px){.orgtype-grid{grid-template-columns:1fr}}
+  .orgtype-card{
+    background:var(--panel);padding:28px;display:flex;flex-direction:column;gap:10px;cursor:pointer;
+    border:none;text-align:left;font:inherit;color:inherit;
+  }
+  .orgtype-card:hover{background:var(--hover-tint)}
+  .orgtype-card[aria-pressed="true"]{background:var(--ink);color:var(--paper-text)}
+  .orgtype-card[aria-pressed="true"] .ot-desc{color:var(--paper-muted)}
+  .ot-num{font-family:'Barlow Condensed',sans-serif;font-weight:700;color:var(--accent);letter-spacing:.08em;font-size:.78rem;text-transform:uppercase}
+  .ot-title{font-size:1.3rem;font-weight:800;letter-spacing:-0.01em}
+  .ot-desc{color:var(--ink-muted);font-size:.92rem}
+
+  /* checklist groups */
+  .group{display:flex;flex-direction:column;gap:12px;padding-top:18px;border-top:1px solid var(--line-light)}
+  .group:first-of-type{border-top:none;padding-top:0}
+  .group-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:.78rem;color:var(--accent-onlight)}
+  .check-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+  .check-item{
+    display:flex;align-items:center;gap:10px;padding:11px 13px;border:1px solid var(--line-light);
+    border-radius:8px;background:var(--panel);cursor:pointer;font-size:.94rem;transition:border-color .15s, background .15s;
+  }
+  .check-item:hover{border-color:var(--accent)}
+  .check-item input{accent-color:var(--accent);width:16px;height:16px;flex:none}
+  .check-item.checked{border-color:var(--accent);background:var(--accent-tint)}
+  .challenge-item{grid-column:span 1}
+  .challenge-item .check-item{align-items:flex-start}
+
+  /* nav row */
+  .step-nav{
+    position:fixed;left:0;right:0;bottom:0;z-index:15;
+    display:flex;justify-content:center;
+    background:linear-gradient(to top, var(--paper) 60%, rgba(244,242,248,0));
+    padding:22px clamp(16px,6vw,44px) 18px;
+  }
+  .step-nav-inner{max-width:880px;width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .btn{
+    font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:.82rem;
+    padding:14px 26px;border-radius:4px;border:1px solid transparent;cursor:pointer;transition:opacity .15s, background .15s;
+  }
+  .btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-primary:hover{background:var(--accent-lt)}
+  .btn-primary:disabled{opacity:.35;cursor:not-allowed}
+  .btn-ghost{background:transparent;border-color:var(--line-mid);color:var(--ink-muted)}
+  .btn-ghost:hover{border-color:var(--ink);color:var(--ink)}
+  .btn-ghost.dark{border-color:var(--line-dark);color:var(--paper-muted)}
+  .btn-ghost.dark:hover{border-color:var(--paper-muted);color:var(--paper-text)}
+  .count-hint{font-family:'Barlow Condensed',sans-serif;letter-spacing:.08em;font-size:.78rem;color:var(--ink-muted);text-transform:uppercase}
+
+  /* ---- results ---- */
+  .results-hero{background:var(--bg);padding:clamp(44px,8vw,80px) clamp(16px,6vw,44px) 48px}
+  .results-hero-inner{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+  .results-hero h2{font-size:clamp(1.9rem,4vw,2.8rem);color:var(--paper-text)}
+  .chip-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+  .chip{
+    font-family:'Barlow Condensed',sans-serif;font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;
+    padding:6px 12px;border-radius:4px;border:1px solid var(--line-dark);color:var(--paper-muted);
+  }
+  .chip.accentchip{border-color:var(--accent-dim);color:var(--accent-lt)}
+  .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line-dark);border:1px solid var(--line-dark);border-radius:var(--radius);overflow:hidden;margin-top:12px}
+  @media (max-width:700px){.stat-row{grid-template-columns:1fr}}
+  .stat-card{background:var(--bg-card-dark);padding:22px 20px;display:flex;flex-direction:column;gap:4px}
+  .stat-num{font-size:2.1rem;font-weight:800;color:var(--accent);letter-spacing:-0.02em;font-variant-numeric:tabular-nums}
+  .stat-label{font-size:.85rem;color:var(--paper-muted)}
+
+  .asks-band{background:var(--bg-mid);border-top:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark);padding:clamp(40px,7vw,64px) clamp(16px,6vw,44px)}
+  .asks-inner{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:26px}
+  .asks-inner h3{font-size:clamp(1.4rem,2.6vw,1.9rem);color:var(--paper-text);max-width:46ch}
+  .asks-inner > p{color:var(--paper-muted);max-width:64ch}
+  .asks-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--line-dark);border:1px solid var(--line-dark);border-radius:var(--radius);overflow:hidden}
+  @media (max-width:900px){.asks-grid{grid-template-columns:1fr 1fr}}
+  @media (max-width:520px){.asks-grid{grid-template-columns:1fr}}
+  .ask-card{background:var(--bg-card-dark);padding:22px 20px;display:flex;flex-direction:column;gap:10px}
+  .ask-tag{font-family:'Barlow Condensed',sans-serif;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+  .ask-title{font-size:1.05rem;font-weight:700;color:var(--paper-text)}
+  .ask-proof{font-size:.85rem;color:var(--paper-muted);border-top:1px solid var(--line-dark);padding-top:10px;margin-top:auto}
+  .ask-proof b{color:var(--accent-lt);font-variant-numeric:tabular-nums}
+
+  .breakdown{background:var(--paper);color:var(--ink);padding:clamp(44px,8vw,72px) clamp(16px,6vw,44px)}
+  .breakdown-inner{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:52px}
+  .cadence-section{display:flex;flex-direction:column;gap:18px}
+  .cadence-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+  .cadence-head h3{font-size:1.5rem;color:var(--ink)}
+  .cadence-sub{color:var(--ink-muted);font-size:.92rem}
+  .skill-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
+  .skill-card{
+    background:var(--panel);border:1px solid var(--line-light);border-radius:var(--radius);
+    padding:18px;display:flex;flex-direction:column;gap:10px;position:relative;
+  }
+  .skill-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+  .skill-name{font-size:1.05rem;font-weight:700;letter-spacing:-0.01em}
+  .new-badge{
+    font-family:'Barlow Condensed',sans-serif;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
+    background:var(--accent);color:#fff;padding:3px 8px;border-radius:3px;white-space:nowrap;font-weight:700;
+  }
+  .skill-tag{font-family:'Barlow Condensed',sans-serif;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-onlight)}
+  .skill-desc{font-size:.88rem;color:var(--ink-muted);line-height:1.5}
+  .skill-why{font-size:.8rem;color:var(--ink);background:var(--accent-tint);border-radius:6px;padding:8px 10px}
+  .skill-stack{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:8px;border-top:1px solid var(--line-light)}
+  .stack-tag{font-family:'Barlow Condensed',sans-serif;font-size:.68rem;letter-spacing:.05em;color:var(--ink-muted);border:1px solid var(--line-light);padding:3px 8px;border-radius:3px}
+  .stack-tag.match{border-color:var(--good-onlight);color:var(--good-onlight)}
+  .cmd{font-family:'Barlow Condensed',sans-serif;font-size:.72rem;color:var(--ink-muted);letter-spacing:.02em}
+
+  .secondary-band{background:#ece7f3;color:var(--ink);padding:clamp(40px,7vw,60px) clamp(16px,6vw,44px)}
+  .secondary-inner{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+  .secondary-inner h3{font-size:1.3rem;color:var(--ink)}
+
+  .capture-band{background:var(--bg);padding:clamp(48px,8vw,80px) clamp(16px,6vw,44px)}
+  .capture-inner{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+  .capture-inner h3{font-size:clamp(1.5rem,3vw,2.1rem);color:var(--paper-text);max-width:34ch}
+  .capture-inner > p.lede{color:var(--paper-muted);max-width:56ch}
+  .tally-wrap{margin-top:4px;background:var(--bg-mid);border:1px solid var(--line-dark);border-radius:var(--radius);padding:6px;overflow:hidden}
+  .capture-note{font-size:.85rem;color:var(--paper-muted)}
+  .thankyou{border:1px solid var(--line-dark);background:var(--bg-mid);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;gap:8px}
+  .thankyou h4{color:var(--paper-text);font-size:1.15rem}
+  .thankyou p{color:var(--paper-muted);font-size:.92rem}
+
+  footer.site-footer{background:#0b0a10;border-top:1px solid var(--line-dark);padding:26px clamp(16px,6vw,44px);display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+  .foot-left{font-family:'Barlow Condensed',sans-serif;font-size:.74rem;letter-spacing:.06em;color:var(--paper-muted)}
+  .foot-left b{color:var(--paper-text)}
+  .foot-disclaimer{font-size:.72rem;color:#5c5568;max-width:520px}
+
+  @media (prefers-reduced-motion:reduce){.progress-fill{transition:none}}
+</style>
+</head>
+<body>
+
+<div class="app">
+  <div class="topbar">
+    <div class="brand"><span class="brand-mark">●</span>QAMW<span class="brand-sep">/</span>Skill Gap Finder</div>
+    <div class="progress" id="progressWrap" hidden>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <span class="progress-label" id="progressLabel">Step 1 of 3</span>
+    </div>
+  </div>
+
+  <main class="stage" id="stage">
+
+    <!-- INTRO -->
+    <section class="step step-intro" id="step-intro">
+      <div class="intro-inner">
+        <div class="eyebrow">CLAUDE FOR SMALL BUSINESS — SEPT 15, 2026 RELEASE</div>
+        <h1>Which of the 43 new skills are actually for you?</h1>
+        <p class="lede">Claude for Small Business just added 43 workflows and 27 integrations — Shopify, Stripe, QuickBooks, Xero, Gusto, Square, and more. Most owners don't need all 43. Answer three quick questions about your tools and what's slowing you down, and get a curated map of exactly which skills fit, sorted by how often you'd actually use them.</p>
+        <div class="intro-meta">
+          <span class="meta-chip">~90 seconds</span>
+          <span class="meta-chip">3 short questions</span>
+          <span class="meta-chip">Curated, not a feature dump</span>
+        </div>
+        <div class="source-card">
+          <span class="k">Why this exists</span>
+          <p>Built by QAMW Consulting off the Sept 15 Claude for Small Business announcement — the tools change fast, and most owners never read the full release. This gives you the ten-minute version, matched to your setup.</p>
+        </div>
+        <div class="step-nav" style="position:static;background:none;padding:8px 0 0;">
+          <div class="step-nav-inner" style="justify-content:flex-start">
+            <button class="btn btn-primary" id="btnStart">Find my skills →</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 1: ORG TYPE -->
+    <section class="step step-form" id="step-orgtype" hidden>
+      <div class="form-inner">
+        <div class="eyebrow on-light">STEP 1 OF 3</div>
+        <h2>How would you describe your organization?</h2>
+        <p class="form-sub">This tailors a couple of the challenges we ask about next — everything else applies either way.</p>
+        <div class="orgtype-grid" role="radiogroup" aria-label="Organization type">
+          <button type="button" class="orgtype-card" id="ot-smb" role="radio" aria-pressed="false">
+            <span class="ot-num">A</span>
+            <span class="ot-title">Small business</span>
+            <span class="ot-desc">Retail, trades, agencies, professional services, hospitality — for-profit, owner-run.</span>
+          </button>
+          <button type="button" class="orgtype-card" id="ot-np" role="radio" aria-pressed="false">
+            <span class="ot-num">B</span>
+            <span class="ot-title">Nonprofit / mission-driven org</span>
+            <span class="ot-desc">501(c)(3), community org, or grant-funded program — donors and programs instead of customers and sales.</span>
+          </button>
+        </div>
+      </div>
+      <div class="step-nav">
+        <div class="step-nav-inner">
+          <button class="btn btn-ghost" id="back1">← Back</button>
+          <button class="btn btn-primary" id="next1" disabled>Continue →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 2: TECH STACK -->
+    <section class="step step-form" id="step-stack" hidden>
+      <div class="form-inner">
+        <div class="eyebrow on-light">STEP 2 OF 3</div>
+        <h2>What's already in your stack?</h2>
+        <p class="form-sub">Check everything you use today. Skip this entirely if you run mostly on spreadsheets — nearly every skill below also works from an upload or a pasted sheet.</p>
+        <div id="stackGroups"></div>
+      </div>
+      <div class="step-nav">
+        <div class="step-nav-inner">
+          <button class="btn btn-ghost" id="back2">← Back</button>
+          <button class="btn btn-primary" id="next2">Continue →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 3: CHALLENGES -->
+    <section class="step step-form" id="step-challenges" hidden>
+      <div class="form-inner">
+        <div class="eyebrow on-light">STEP 3 OF 3</div>
+        <h2>What's actually slowing you down?</h2>
+        <p class="form-sub">Pick as many as apply — this is what decides your matches. The tools you checked earlier just tell us how each one would plug in.</p>
+        <div id="challengeGroups"></div>
+      </div>
+      <div class="step-nav">
+        <div class="step-nav-inner">
+          <span class="count-hint" id="challengeCount">0 selected</span>
+          <button class="btn btn-primary" id="next3">See my results →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULTS -->
+    <section class="step" id="step-results" hidden>
+      <div class="results-hero">
+        <div class="results-hero-inner">
+          <div class="eyebrow">YOUR CURATED MAP</div>
+          <h2 id="resultsHeadline">Here's what fits your setup</h2>
+          <div id="resultsSummary"></div>
+          <div class="stat-row" id="statRow"></div>
+        </div>
+      </div>
+
+      <div class="asks-band">
+        <div class="asks-inner">
+          <div class="eyebrow">FROM THE RELEASE</div>
+          <h3>The three things owners asked for most — now shipped</h3>
+          <p>Anthropic ran a spring tour through 10 cities and asked 1,000+ owners what to build next. About a third said the same three things, plus one more that kept coming up. Here's what answered each one.</p>
+          <div class="asks-grid" id="asksGrid"></div>
+        </div>
+      </div>
+
+      <div class="breakdown">
+        <div class="breakdown-inner" id="breakdownInner"></div>
+      </div>
+
+      <div class="secondary-band" id="secondaryBand" hidden>
+        <div class="secondary-inner">
+          <div class="eyebrow on-light">ALSO WORTH A LOOK</div>
+          <h3>Fits your stack even though you didn't flag it as a pain point</h3>
+          <div class="skill-grid" id="secondaryGrid"></div>
+        </div>
+      </div>
+
+      <div class="capture-band">
+        <div class="capture-inner">
+          <div class="eyebrow">NEXT STEP</div>
+          <h3>Want this turned into a setup plan?</h3>
+          <p class="lede">Leave your info and Quinita will follow up with your matched skills as a one-pager, plus which ones to set up first given your stack. No pitch attached — just the plan.</p>
+
+          <div id="tallyWrap" class="tally-wrap" hidden>
+            <iframe id="tallyFrame" data-tally-src="" loading="lazy" width="100%" height="410" frameborder="0" marginheight="0" marginwidth="0" title="Get my setup plan"></iframe>
+          </div>
+
+          <div id="tallyNotConfigured" class="thankyou" hidden>
+            <h4>Almost ready</h4>
+            <p>This page is built to submit straight to a Tally form — it just needs the form ID added (see the setup note at the top of the page source). Until then, use the direct link below.</p>
+          </div>
+
+          <p class="capture-note"><a id="mailtoFallback" href="#" style="color:var(--accent-lt)">Prefer email? Send your results to Quinita directly →</a></p>
+
+          <div class="step-nav" style="position:static;background:none;padding:8px 0 0;">
+            <div class="step-nav-inner" style="justify-content:flex-start">
+              <button type="button" class="btn btn-ghost dark" id="retakeBtn">Retake quiz</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="site-footer">
+        <div class="foot-left">Site by <b>QAMW Consulting</b></div>
+        <div class="foot-disclaimer">Independent guide built off Anthropic's public Sept 15, 2026 announcement. Not an official Anthropic product, and not affiliated with or endorsed by Anthropic.</div>
+      </footer>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ================================================================
+     TALLY SETUP — replace this ID once your Tally form exists.
+     See the setup comment at the top of this file for the field list.
+     ================================================================ */
+  var TALLY_FORM_ID = "mV9Bgg";
+  var NOTIFY_EMAIL = "quinita17@gmail.com";
+
+  /* ---------------- DATA ---------------- */
+
+  var STACK_GROUPS = [
+    {title:"Books & Accounting", items:[
+      ["qbo","QuickBooks"],["xero","Xero"],["myob","MYOB"],["netsuite","NetSuite"],["zohobooks","Zoho Books"]
+    ]},
+    {title:"Payments", items:[
+      ["stripe","Stripe"],["square","Square"],["paypal","PayPal"],["airwallex","Airwallex"]
+    ]},
+    {title:"E-commerce", items:[["shopify","Shopify"]]},
+    {title:"CRM & Sales", items:[
+      ["hubspot","HubSpot"],["salesforce","Salesforce"],["zohocrm","Zoho CRM"],["mondaycom","monday.com"]
+    ]},
+    {title:"Payroll", items:[["gusto","Gusto"],["qbpayroll","QuickBooks Payroll"]]},
+    {title:"Email & Comms", items:[
+      ["gmail","Gmail"],["m365","Microsoft 365"],["slack","Slack"],["ringcentral","RingCentral / RingEX"],["zoom","Zoom"]
+    ]},
+    {title:"Docs, Storage & Signature", items:[["gdrive","Google Drive"],["docusign","DocuSign"]]},
+    {title:"Scheduling", items:[["gcal","Google Calendar"]]},
+    {title:"Marketing & Growth", items:[
+      ["tiktokads","TikTok Ads"],["canva","Canva"],["clay","Clay"],["apollo","Apollo"]
+    ]},
+    {title:"Expenses", items:[["expensify","Expensify"],["ramp","Ramp"]]},
+    {title:"Support & Project Mgmt", items:[["zohodesk","Zoho Desk"],["atlassian","Jira / Confluence / Trello / Loom"]]}
+  ];
+
+  var CHALLENGE_GROUPS = [
+    {title:"Growth & sales", items:[
+      ["c1","Leads go cold before I get back to them"],
+      ["c2","I need more leads in the pipeline, period"],
+      ["c3","Proposals or quotes take hours to put together"],
+      ["c21","My CRM is stale and I hate the data entry"]
+    ]},
+    {title:"Visibility & reporting", items:[
+      ["c4","I don't have a clear daily or weekly view of the business"],
+      ["c5","The same recurring report eats half a day every time"]
+    ]},
+    {title:"Money", items:[
+      ["c6","Cash flow keeps me up at night"],
+      ["c7","Bills and vendor invoices pile up"],
+      ["c8","Customers don't pay on time"],
+      ["c9","Payroll is stressful to run"],
+      ["c10","Closing the books each month is a slog"],
+      ["c11","Quarterly or year-end tax prep stresses me out"]
+    ]},
+    {title:"Operations", items:[
+      ["c12","I'm guessing on what and when to reorder"],
+      ["c13","Contracts and NDAs are a blind spot for me"],
+      ["c22","I have a repetitive task I wish were automatic"]
+    ]},
+    {title:"People", items:[
+      ["c14","Hiring takes forever, from posting to onboarding"]
+    ]},
+    {title:"Marketing & reputation", items:[
+      ["c15","Social and content posting is inconsistent"],
+      ["c16","Ad spend feels like a black box"],
+      ["c17","I don't know what customers are saying about us"],
+      ["c18","Customers quietly stop buying and I don't notice"],
+      ["c19","We don't show up in Google or AI search results"]
+    ]},
+    {title:"Customer service", items:[
+      ["c20","Customer emails or tickets pile up"]
+    ]},
+    {title:"Just starting out", items:[
+      ["c24","I'm new to this and don't know where to begin"]
+    ]}
+  ];
+
+  var NP_CHALLENGE = {group:"Grants & funding", id:"c23", label:"Finding and writing grants or RFPs takes over my week"};
+
+  var CADENCE_META = {
+    daily:{label:"Daily", sub:"Touch these most days — they run in the background or take two minutes."},
+    weekly:{label:"Weekly", sub:"Good for a standing weekly rhythm, like a Monday routine."},
+    monthly:{label:"Monthly", sub:"Once-a-month, closing-the-loop work."},
+    quarterly:{label:"Quarterly", sub:"Quarterly check-ins — tax estimates, audits, win-back sweeps."},
+    "as-needed":{label:"As-needed", sub:"Event-driven — reach for these when the moment hits, not on a schedule."}
+  };
+  var CADENCE_ORDER = ["daily","weekly","monthly","quarterly","as-needed"];
+
+  var SKILLS = [
+    {id:"speed-to-lead",name:"Speed to Lead",cmd:"/speed-to-lead",tag:"Lead Response",cadence:"daily",
+     desc:"Answers inbound inquiries the moment they land — qualified, replied to with real openings from your calendar, and logged. Never sends without your OK.",
+     connectors:["hubspot","gmail","m365","zohocrm","salesforce","mondaycom","gcal"],challenges:["c1"],hot:true},
+    {id:"lead-finder",name:"Lead Finder",tag:"Lead Finding",cadence:"as-needed",
+     desc:"Builds a ranked prospect list that looks like your best customers, with the right contact enriched at each company.",
+     connectors:["apollo","hubspot"],challenges:["c2"],hot:true},
+    {id:"grow-pipeline",name:"Grow Pipeline",tag:"Lead Finding",cadence:"weekly",
+     desc:"Fills the funnel end to end — finds prospects, writes outreach in your voice, logs every touch to the CRM. One approval at each handoff.",
+     connectors:["apollo","hubspot","salesforce","zohocrm"],challenges:["c2"],hot:true},
+    {id:"proposal-builder",name:"Proposal Builder",cmd:"/proposal-builder",tag:"Proposal Drafting",cadence:"as-needed",
+     desc:"Turns a voice memo, RFP, or jobsite photos into a branded, priced proposal built on your own past jobs — routed for signature once you approve.",
+     connectors:["docusign","gdrive","m365"],challenges:["c3"],hot:true},
+    {id:"call-list",name:"Call List",cmd:"/call-list",tag:"Lead Finding",cadence:"daily",
+     desc:"Ranks today's top 5 leads worth calling with talking points pulled from email history, and blocks the time on your calendar.",
+     connectors:["hubspot","gcal"],challenges:["c1","c2"]},
+    {id:"crm-autopilot",name:"CRM Autopilot",tag:"CRM Hygiene",cadence:"daily",
+     desc:"Keeps the CRM current without you opening it — logs calls and meetings, drafts follow-ups on deals gone quiet, cleans up duplicates.",
+     connectors:["hubspot","salesforce","zohocrm","mondaycom","gmail","m365"],challenges:["c21"]},
+    {id:"outreach-composer",name:"Outreach Composer",tag:"Lead Finding",cadence:"as-needed",
+     desc:"Writes prospect outreach and follow-up sequences that sound like you actually wrote them, grounded in something specific about each prospect.",
+     connectors:["gmail","m365","hubspot"],challenges:["c2"]},
+    {id:"monday-brief",name:"Monday Brief",cmd:"/monday-brief",tag:"Reporting",cadence:"weekly",
+     desc:"One page every Monday: cash, sales vs. last week, pipeline movement, overdue invoices, and the three things that need you this week.",
+     connectors:["qbo","xero","myob","netsuite","zohobooks","stripe","square","paypal","hubspot","gcal","gmail","m365","slack"],challenges:["c4"],hot:true},
+    {id:"business-pulse",name:"Business Pulse",tag:"Reporting",cadence:"daily",
+     desc:"A one-page cross-functional snapshot on demand — cash, sales trend, pipeline, and the single most important thing to handle today.",
+     connectors:["qbo","xero","myob","netsuite","zohobooks","stripe","square","paypal","hubspot","gcal","gmail","m365","slack"],challenges:["c4"],hot:true},
+    {id:"report-builder",name:"Report Builder",tag:"Reporting",cadence:"weekly",
+     desc:"Describe a recurring report once — sales by location, AR aging, labor as a percent of revenue — and it reruns itself from then on.",
+     connectors:["qbo","xero","myob","netsuite","zohobooks"],challenges:["c5"],hot:true},
+    {id:"report-pack",name:"Report Pack",tag:"Reporting",cadence:"monthly",
+     desc:"Delivers your saved report pack on a set cadence, wrapped in enough business context to act on without opening a spreadsheet.",
+     connectors:["qbo","xero","myob","netsuite","zohobooks"],challenges:["c5"]},
+    {id:"cash-flow-snapshot",name:"Cash Flow Snapshot",tag:"Cash Flow",cadence:"weekly",
+     desc:"A 30/60/90-day cash forecast with confidence bands and named risk flags, built from AR, AP, and payment history.",
+     connectors:["qbo","xero","myob","netsuite","zohobooks","paypal","stripe","square"],challenges:["c6","c9"]},
+    {id:"ap-processor",name:"AP Processor",tag:"Bill Pay",cadence:"weekly",
+     desc:"Reads bills from the inbox or a photo, codes them to the right account, matches them to the PO, and stages the entries for approval.",
+     connectors:["qbo","xero","myob","netsuite","zohobooks","gmail","m365"],challenges:["c7"]},
+    {id:"pay-the-bills",name:"Pay the Bills",tag:"Bill Pay",cadence:"weekly",
+     desc:"Codes the bill pile, checks the cash position, then stages a payment run for one-click approval. Nothing pays itself.",
+     connectors:["qbo","xero","myob","netsuite","zohobooks","gmail","m365","expensify","ramp"],challenges:["c7"]},
+    {id:"invoice-chase",name:"Invoice Chase",tag:"AR Collections",cadence:"weekly",
+     desc:"Drafts overdue-invoice reminders matched to each customer's payment history and tone — gentle for good customers, firm for repeat late payers.",
+     connectors:["qbo","xero","myob","netsuite","zohobooks","paypal","stripe","airwallex"],challenges:["c8"]},
+    {id:"payroll-prep",name:"Payroll Prep",tag:"Payroll",cadence:"weekly",note:"Runs every pay period",
+     desc:"Totals regular, overtime and PTO hours, flags anomalies like missed punches or rate changes, and stages the run for line-by-line approval.",
+     connectors:["gusto","qbpayroll"],challenges:["c9"]},
+    {id:"plan-payroll",name:"Plan Payroll",tag:"Payroll",cadence:"weekly",note:"Runs every pay period",
+     desc:"Forecasts cash across the payroll window, chases invoices to close the gap, then stages the run. Never presses the button for you.",
+     connectors:["gusto","qbpayroll","qbo","xero","myob","netsuite","zohobooks"],challenges:["c9","c6"]},
+    {id:"month-end-prep",name:"Month-End Prep",tag:"Books Close",cadence:"monthly",
+     desc:"Reconciles the ledger against every payment processor, flags duplicates and missing receipts, writes the plain-English P&L narrative.",
+     connectors:["qbo","xero","myob","netsuite","zohobooks","paypal","shopify","square","stripe"],challenges:["c10"]},
+    {id:"close-month",name:"Close the Month",cmd:"/close-month",tag:"Books Close",cadence:"monthly",
+     desc:"The full close: reconciliation, a refreshed 30/60/90 cash forecast off the new numbers, and a distributed close packet for your accountant.",
+     connectors:["qbo","xero","myob","netsuite","zohobooks","gusto","paypal","ramp","shopify","square","stripe"],challenges:["c10"]},
+    {id:"tax-prep",name:"Tax Prep",tag:"Tax Prep",cadence:"quarterly",note:"Also runs once a year for 1099s",
+     desc:"Confirms the books are closed, then calculates the quarterly estimated payment or builds the year-end 1099-NEC packet for your CPA. Prep only, never advice.",
+     connectors:["qbo","xero","myob","netsuite","zohobooks","gusto","paypal","stripe"],challenges:["c11"]},
+    {id:"inventory-planner",name:"Inventory Planner",tag:"Inventory",cadence:"weekly",
+     desc:"Computes sales velocity per item, projects a conservative stockout date, and drafts the reorder plus vendor email before you run out.",
+     connectors:["shopify","square","netsuite","qbo"],challenges:["c12"]},
+    {id:"restock",name:"Restock",tag:"Inventory",cadence:"monthly",
+     desc:"Decides what to reorder and gets it into the books — PO drafted, vendor emailed, and the bill staged to match when it lands.",
+     connectors:["shopify","square","qbo","gmail","m365","gcal","netsuite"],challenges:["c12"]},
+    {id:"contract-review",name:"Contract Review",tag:"Contracts",cadence:"as-needed",
+     desc:"Reads an NDA, MSA, or vendor contract, flags non-standard terms in plain English, and hands back a marked-up redline.",
+     connectors:["gmail","m365","gdrive","docusign"],challenges:["c13"]},
+    {id:"job-post-builder",name:"Job Post Builder",tag:"Hiring",cadence:"as-needed",
+     desc:"Builds the job post, a structured interview guide with scoring rubric, and an offer letter template from one hiring brief.",
+     connectors:["docusign"],challenges:["c14"]},
+    {id:"hiring-screener",name:"Hiring Screener",tag:"Hiring",cadence:"as-needed",
+     desc:"Turns a pile of resumes into a ranked shortlist scored against the job's rubric, with replies drafted and interviews scheduled.",
+     connectors:["gmail","gcal","gusto","docusign","gdrive","m365"],challenges:["c14"]},
+    {id:"social-content-engine",name:"Social Content Engine",tag:"Content & Marketing",cadence:"weekly",
+     desc:"Keeps a rolling posting calendar in your voice, generates on-brand Canva graphics, and stages posts for approval — a standing operation.",
+     connectors:["canva","shopify"],challenges:["c15"]},
+    {id:"canva-creator",name:"Canva Creator",tag:"Content & Marketing",cadence:"as-needed",
+     desc:"Takes an approved brief and executes it end to end: calendar, Canva designs, captions, and staged social sends.",
+     connectors:["canva","hubspot"],challenges:["c15"]},
+    {id:"content-strategy",name:"Content Strategy",tag:"Content & Marketing",cadence:"monthly",
+     desc:"Reads what's actually selling, layers in seasonality, and prioritizes a 30-day content brief — what to push, what to hold.",
+     connectors:["paypal","qbo"],challenges:["c15"]},
+    {id:"ad-manager",name:"Ad Manager",tag:"Ad Performance",cadence:"weekly",
+     desc:"Reads ad performance, explains in plain English what's working and what's burning money, and drafts new copy and creative briefs in your voice.",
+     connectors:["tiktokads"],challenges:["c16"]},
+    {id:"review-reputation",name:"Review & Reputation",tag:"Reputation",cadence:"weekly",
+     desc:"Aggregates Google, Yelp, and Facebook reviews into themes with verbatim quotes, drafts a reply to every one in your voice, flags who's gone quiet.",
+     connectors:["shopify","zohodesk"],challenges:["c17","c18"]},
+    {id:"reactivate",name:"Reactivate",tag:"Reputation",cadence:"monthly",
+     desc:"Finds customers who've quietly stopped buying, ranks them by what the relationship was worth, and drafts a win-back message for each.",
+     connectors:["hubspot","salesforce","zohocrm","mondaycom","paypal","stripe","square"],challenges:["c18"]},
+    {id:"seo-ai-visibility",name:"SEO & AI Visibility",tag:"Findability",cadence:"quarterly",
+     desc:"Audits both classic search and AI answers — rankings, page speed, schema data, and whether AI assistants can even read your site.",
+     connectors:[],challenges:["c19"]},
+    {id:"ticket-deflector",name:"Ticket Deflector",tag:"Customer Support",cadence:"daily",
+     desc:"Drafts a tone-matched reply to any customer email or ticket, pulling real order and refund status first.",
+     connectors:["paypal","square","stripe","shopify","zohodesk","hubspot"],challenges:["c20"]},
+    {id:"inbox-manager",name:"Inbox Manager",tag:"Customer Support",cadence:"daily",
+     desc:"Sorts a full inbox into needs-you, drafted-and-waiting, and handled — and writes the replies in your own voice.",
+     connectors:["gmail","m365"],challenges:["c20"]},
+    {id:"build-agent",name:"Build Agent",tag:"Automation",cadence:"as-needed",
+     desc:"Turns something you do by hand every week into a named, reusable skill you can trigger by name or put on a schedule.",
+     connectors:[],challenges:["c22"]},
+    {id:"build-connector",name:"Build Connector",tag:"Automation",cadence:"as-needed",
+     desc:"Gets Claude talking to the one tool in your stack that never had an official connector, safely and with approval gates.",
+     connectors:[],challenges:["c22"]},
+    {id:"grant-rfp-writer",name:"Grant & RFP Writer",tag:"Grants & RFPs",cadence:"quarterly",nonprofitOnly:true,
+     desc:"Filters daily grant and RFP feeds down to the handful you actually qualify for, runs a go/no-go, then drafts from your past submissions.",
+     connectors:["gdrive","m365","docusign","gcal"],challenges:["c23"]},
+    {id:"brand-style",name:"Brand Style",tag:"Getting Started",cadence:"as-needed",
+     desc:"Sets your brand look and delivery preferences once — every report and page it hands you after that follows automatically.",
+     connectors:[],challenges:["c24"]},
+    {id:"smb-onboard",name:"SMB Onboard",tag:"Getting Started",cadence:"as-needed",
+     desc:"A guided 15–20 minute setup: connect two tools, prove value with one real workflow, and set a weekly rhythm.",
+     connectors:[],challenges:["c24"]}
+  ];
+
+  var SKILL_BY_ID = {};
+  SKILLS.forEach(function(s){ SKILL_BY_ID[s.id]=s; });
+
+  var STACK_LABELS = {};
+  STACK_GROUPS.forEach(function(g){ g.items.forEach(function(it){ STACK_LABELS[it[0]]=it[1]; }); });
+
+  var ASKS = [
+    {tag:"Ask #1",title:"Generating more leads",skillIds:["lead-finder","grow-pipeline"],
+     proof:"Bambi Baby's COO built a lead-capture tool in Claude that tied to <b>$60,000</b> in sales in its first four days."},
+    {tag:"Ask #2",title:"Answering inbound fast",skillIds:["speed-to-lead"],
+     proof:"Bambi Baby again — <b>18%</b> of online revenue was newly attributed to in-person visits two weeks into the pilot."},
+    {tag:"Ask #3",title:"Writing proposals",skillIds:["proposal-builder"],
+     proof:"KANE agency went from <b>weeks</b> to minutes per deal, scoping to signature. One owner made <b>$20,000</b> off proposals built this way."},
+    {tag:"Bonus ask",title:"Daily reporting handled for them",skillIds:["business-pulse","monday-brief","report-builder"],
+     proof:"HireEffect turned a <b>2-hour</b> monthly reporting task into <b>10 seconds</b> across five disconnected systems."}
+  ];
+
+  /* ---------------- STATE ---------------- */
+
+  var state = { orgType:null, stack:{}, challenges:{} };
+  var STEPS = ["intro","orgtype","stack","challenges","results"];
+  var stepIndex = 0;
+
+  function $(id){ return document.getElementById(id); }
+
+  function showStep(name){
+    STEPS.forEach(function(s){ $("step-"+s).hidden = (s!==name); });
+    stepIndex = STEPS.indexOf(name);
+    var pw = $("progressWrap");
+    if(name==="orgtype"||name==="stack"||name==="challenges"){
+      pw.hidden = false;
+      var n = {orgtype:1,stack:2,challenges:3}[name];
+      $("progressFill").style.width = (n/3*100)+"%";
+      $("progressLabel").textContent = "Step "+n+" of 3";
+    } else {
+      pw.hidden = true;
+    }
+    window.scrollTo({top:0,behavior:"auto"});
+  }
+
+  /* ---------------- BUILD STEP 2: STACK ---------------- */
+  (function buildStack(){
+    var host = $("stackGroups");
+    STACK_GROUPS.forEach(function(g){
+      var wrap = document.createElement("div");
+      wrap.className = "group";
+      var h = document.createElement("div");
+      h.className = "group-title";
+      h.textContent = g.title;
+      wrap.appendChild(h);
+      var grid = document.createElement("div");
+      grid.className = "check-grid";
+      g.items.forEach(function(it){
+        var id = "stack-"+it[0];
+        var label = document.createElement("label");
+        label.className = "check-item";
+        label.setAttribute("for",id);
+        var input = document.createElement("input");
+        input.type = "checkbox"; input.id = id; input.value = it[0];
+        input.addEventListener("change",function(){
+          state.stack[it[0]] = input.checked;
+          label.classList.toggle("checked", input.checked);
+        });
+        var span = document.createElement("span");
+        span.textContent = it[1];
+        label.appendChild(input); label.appendChild(span);
+        grid.appendChild(label);
+      });
+      wrap.appendChild(grid);
+      host.appendChild(wrap);
+    });
+  })();
+
+  /* ---------------- BUILD STEP 3: CHALLENGES ---------------- */
+  function buildChallenges(){
+    var host = $("challengeGroups");
+    host.innerHTML = "";
+    var groups = CHALLENGE_GROUPS.slice();
+    if(state.orgType === "nonprofit"){
+      groups = groups.concat([{title:NP_CHALLENGE.group, items:[[NP_CHALLENGE.id, NP_CHALLENGE.label]]}]);
+    }
+    groups.forEach(function(g){
+      var wrap = document.createElement("div");
+      wrap.className = "group";
+      var h = document.createElement("div");
+      h.className = "group-title";
+      h.textContent = g.title;
+      wrap.appendChild(h);
+      var grid = document.createElement("div");
+      grid.className = "check-grid";
+      g.items.forEach(function(it){
+        var id = "chal-"+it[0];
+        var label = document.createElement("label");
+        label.className = "check-item challenge-item";
+        label.setAttribute("for",id);
+        if(state.challenges[it[0]]) label.classList.add("checked");
+        var input = document.createElement("input");
+        input.type = "checkbox"; input.id = id; input.value = it[0];
+        input.checked = !!state.challenges[it[0]];
+        input.addEventListener("change",function(){
+          state.challenges[it[0]] = input.checked;
+          label.classList.toggle("checked", input.checked);
+          updateChallengeCount();
+        });
+        var span = document.createElement("span");
+        span.textContent = it[1];
+        label.appendChild(input); label.appendChild(span);
+        grid.appendChild(label);
+      });
+      wrap.appendChild(grid);
+      host.appendChild(wrap);
+    });
+    updateChallengeCount();
+  }
+
+  function updateChallengeCount(){
+    var n = Object.keys(state.challenges).filter(function(k){ return state.challenges[k]; }).length;
+    $("challengeCount").textContent = n + " selected";
+  }
+
+  /* ---------------- NAV WIRING ---------------- */
+  $("btnStart").addEventListener("click", function(){ showStep("orgtype"); });
+  $("back1").addEventListener("click", function(){ showStep("intro"); });
+  $("back2").addEventListener("click", function(){ showStep("orgtype"); });
+
+  function selectOrgType(type){
+    state.orgType = type;
+    $("ot-smb").setAttribute("aria-pressed", type==="smb" ? "true":"false");
+    $("ot-np").setAttribute("aria-pressed", type==="nonprofit" ? "true":"false");
+    $("next1").disabled = false;
+  }
+  $("ot-smb").addEventListener("click", function(){ selectOrgType("smb"); });
+  $("ot-np").addEventListener("click", function(){ selectOrgType("nonprofit"); });
+
+  $("next1").addEventListener("click", function(){ showStep("stack"); });
+  $("next2").addEventListener("click", function(){ buildChallenges(); showStep("challenges"); });
+  $("next3").addEventListener("click", function(){ renderResults(); showStep("results"); });
+  $("retakeBtn").addEventListener("click", function(){
+    state = { orgType:null, stack:{}, challenges:{} };
+    $("ot-smb").setAttribute("aria-pressed","false");
+    $("ot-np").setAttribute("aria-pressed","false");
+    $("next1").disabled = true;
+    document.querySelectorAll('#stackGroups input[type=checkbox]').forEach(function(i){ i.checked=false; i.closest('.check-item').classList.remove('checked'); });
+    var frame = $("tallyFrame");
+    frame.removeAttribute("src");
+    frame.setAttribute("data-tally-src","");
+    showStep("intro");
+  });
+
+  /* ---------------- RESULTS ---------------- */
+
+  function selectedList(obj){ return Object.keys(obj).filter(function(k){ return obj[k]; }); }
+
+  function matchedConnectors(skill, stackList){
+    return skill.connectors.filter(function(c){ return stackList.indexOf(c)!==-1; });
+  }
+
+  function skillCardHTML(skill, stackList, opts){
+    opts = opts || {};
+    var matched = matchedConnectors(skill, stackList);
+    var stackHTML = "";
+    if(matched.length){
+      stackHTML = matched.map(function(c){ return '<span class="stack-tag match">'+STACK_LABELS[c]+'</span>'; }).join("");
+    } else {
+      stackHTML = '<span class="stack-tag">Works from upload / paste — no connector needed</span>';
+    }
+    var why = "";
+    if(opts.matchedChallengeLabels && opts.matchedChallengeLabels.length){
+      why = '<div class="skill-why">Because you said: “'+opts.matchedChallengeLabels[0]+'”</div>';
+    }
+    var cmd = skill.cmd ? '<div class="cmd">'+skill.cmd+'</div>' : "";
+    var note = skill.note ? ' · '+skill.note : "";
+    return (
+      '<div class="skill-card">'+
+        '<div class="skill-top"><span class="skill-name">'+skill.name+'</span>'+(skill.hot?'<span class="new-badge">New release</span>':'')+'</div>'+
+        '<div class="skill-tag">'+skill.tag+note+'</div>'+
+        '<p class="skill-desc">'+skill.desc+'</p>'+
+        why+
+        cmd+
+        '<div class="skill-stack">'+stackHTML+'</div>'+
+      '</div>'
+    );
+  }
+
+  var CHALLENGE_LABEL_BY_ID = {};
+  CHALLENGE_GROUPS.forEach(function(g){ g.items.forEach(function(it){ CHALLENGE_LABEL_BY_ID[it[0]]=it[1]; }); });
+  CHALLENGE_LABEL_BY_ID[NP_CHALLENGE.id] = NP_CHALLENGE.label;
+
+  /* ---------------- TALLY EMBED ---------------- */
+
+  var tallyLoading = false;
+
+  function loadTallyEmbeds(){
+    if (window.Tally) { window.Tally.loadEmbeds(); return; }
+    if (tallyLoading) return;
+    tallyLoading = true;
+    var s = document.createElement("script");
+    s.src = "https://tally.so/widgets/embed.js";
+    s.onload = function(){ tallyLoading = false; if (window.Tally) window.Tally.loadEmbeds(); };
+    s.onerror = function(){
+      tallyLoading = false;
+      document.querySelectorAll('iframe[data-tally-src]').forEach(function(f){
+        if(!f.getAttribute("src") && f.dataset.tallySrc) f.src = f.dataset.tallySrc;
+      });
+    };
+    document.body.appendChild(s);
+  }
+
+  function mountTallyForm(matches, stackList, challengeList, orgType){
+    var configured = TALLY_FORM_ID.indexOf("REPLACE_WITH") !== 0;
+    $("tallyWrap").hidden = !configured;
+    $("tallyNotConfigured").hidden = configured;
+    if(!configured) return;
+    var topNames = matches.slice(0,6).map(function(s){ return s.name; }).join(", ");
+    var params = new URLSearchParams({
+      alignLeft: "1", hideTitle: "1", transparentBackground: "1", dynamicHeight: "1",
+      orgtype: orgType || "",
+      stack: stackList.map(function(k){ return STACK_LABELS[k]; }).join(", "),
+      challenges: challengeList.map(function(c){ return CHALLENGE_LABEL_BY_ID[c] || c; }).join("; "),
+      top_matches: topNames
+    });
+    var frame = $("tallyFrame");
+    frame.setAttribute("data-tally-src", "https://tally.so/embed/"+TALLY_FORM_ID+"?"+params.toString());
+    frame.removeAttribute("src");
+    loadTallyEmbeds();
+  }
+
+  function setMailtoFallback(matches, stackList, challengeList, orgType){
+    var subject = encodeURIComponent("Skill Gap Finder results for " + (orgType==="nonprofit" ? "my organization" : "my business"));
+    var body = encodeURIComponent(
+      "Org type: "+(orgType||"")+
+      "\nStack: "+stackList.map(function(s){return STACK_LABELS[s];}).join(", ")+
+      "\nChallenges: "+challengeList.map(function(c){return CHALLENGE_LABEL_BY_ID[c]||c;}).join("; ")+
+      "\nTop matches: "+matches.slice(0,6).map(function(s){return s.name;}).join(", ")
+    );
+    $("mailtoFallback").href = "mailto:"+NOTIFY_EMAIL+"?subject="+subject+"&body="+body;
+  }
+
+  function renderResults(){
+    var stackList = selectedList(state.stack);
+    var challengeList = selectedList(state.challenges);
+    var orgType = state.orgType;
+
+    // headline + summary
+    $("resultsHeadline").textContent = orgType==="nonprofit" ? "Here's what fits your organization" : "Here's what fits your business";
+    var summaryHTML = '<div class="chip-row">';
+    if(stackList.length){
+      stackList.forEach(function(s){ summaryHTML += '<span class="chip accentchip">'+STACK_LABELS[s]+'</span>'; });
+    } else {
+      summaryHTML += '<span class="chip">No connectors selected — every match below works from upload too</span>';
+    }
+    summaryHTML += '</div>';
+    $("resultsSummary").innerHTML = summaryHTML;
+
+    // eligible skills (respect nonprofitOnly flag)
+    var eligible = SKILLS.filter(function(s){ return !s.nonprofitOnly || orgType==="nonprofit"; });
+
+    var primary = eligible.filter(function(s){
+      return s.challenges.some(function(c){ return challengeList.indexOf(c)!==-1; });
+    });
+
+    var usedFallback = false;
+    if(primary.length===0){
+      usedFallback = true;
+      var fallbackIds = ["business-pulse","monday-brief"];
+      if(stackList.indexOf("hubspot")!==-1||stackList.indexOf("salesforce")!==-1||stackList.indexOf("zohocrm")!==-1||stackList.indexOf("mondaycom")!==-1){
+        fallbackIds.push("crm-autopilot");
+      } else {
+        fallbackIds.push("lead-finder");
+      }
+      fallbackIds.push("smb-onboard");
+      primary = fallbackIds.map(function(id){ return SKILL_BY_ID[id]; });
+    }
+
+    // stat row
+    var cadenceSet = {};
+    primary.forEach(function(s){ cadenceSet[s.cadence]=true; });
+    var statHTML = "";
+    statHTML += '<div class="stat-card"><div class="stat-num">'+primary.length+'</div><div class="stat-label">Skills matched to you'+(usedFallback?' (starter set)':'')+'</div></div>';
+    statHTML += '<div class="stat-card"><div class="stat-num">'+Object.keys(cadenceSet).length+'</div><div class="stat-label">Different cadences covered</div></div>';
+    statHTML += '<div class="stat-card"><div class="stat-num">'+stackList.length+'</div><div class="stat-label">Tools in your stack we can plug into</div></div>';
+    $("statRow").innerHTML = statHTML;
+
+    // asks band
+    var asksHTML = "";
+    ASKS.forEach(function(a){
+      var names = a.skillIds.map(function(id){ return SKILL_BY_ID[id].name; }).join(" + ");
+      asksHTML += (
+        '<div class="ask-card">'+
+          '<div class="ask-tag">'+a.tag+'</div>'+
+          '<div class="ask-title">'+a.title+'</div>'+
+          '<div class="skill-tag" style="color:var(--accent)">'+names+'</div>'+
+          '<div class="ask-proof">'+a.proof+'</div>'+
+        '</div>'
+      );
+    });
+    $("asksGrid").innerHTML = asksHTML;
+
+    // breakdown grouped by cadence
+    var byCadence = {};
+    CADENCE_ORDER.forEach(function(c){ byCadence[c]=[]; });
+    primary.forEach(function(s){ if(byCadence[s.cadence]) byCadence[s.cadence].push(s); });
+
+    var breakdownHTML = "";
+    CADENCE_ORDER.forEach(function(cad){
+      var list = byCadence[cad];
+      if(!list.length) return;
+      list.sort(function(a,b){
+        var am = a.challenges.filter(function(c){return challengeList.indexOf(c)!==-1;}).length;
+        var bm = b.challenges.filter(function(c){return challengeList.indexOf(c)!==-1;}).length;
+        return bm-am;
+      });
+      breakdownHTML += '<div class="cadence-section">';
+      breakdownHTML += '<div class="cadence-head"><h3>'+CADENCE_META[cad].label+'</h3><span class="cadence-sub">'+CADENCE_META[cad].sub+'</span></div>';
+      breakdownHTML += '<div class="skill-grid">';
+      list.forEach(function(s){
+        var matchedLabels = s.challenges.filter(function(c){return challengeList.indexOf(c)!==-1;}).map(function(c){return CHALLENGE_LABEL_BY_ID[c];});
+        breakdownHTML += skillCardHTML(s, stackList, {matchedChallengeLabels: usedFallback?[]:matchedLabels});
+      });
+      breakdownHTML += '</div></div>';
+    });
+    $("breakdownInner").innerHTML = breakdownHTML;
+
+    // secondary matches: stack overlap, not already in primary
+    var primaryIds = {}; primary.forEach(function(s){ primaryIds[s.id]=true; });
+    var secondary = [];
+    if(stackList.length){
+      secondary = eligible.filter(function(s){
+        if(primaryIds[s.id]) return false;
+        return matchedConnectors(s, stackList).length>0;
+      }).sort(function(a,b){
+        return matchedConnectors(b,stackList).length - matchedConnectors(a,stackList).length;
+      }).slice(0,6);
+    }
+    if(secondary.length){
+      $("secondaryBand").hidden = false;
+      $("secondaryGrid").innerHTML = secondary.map(function(s){ return skillCardHTML(s, stackList, {}); }).join("");
+    } else {
+      $("secondaryBand").hidden = true;
+    }
+
+    mountTallyForm(primary, stackList, challengeList, orgType);
+    setMailtoFallback(primary, stackList, challengeList, orgType);
+  }
+
+})();
+</script>
+</body>
+</html>

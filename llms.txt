@@ -47,7 +47,7 @@ Seattle, Washington. Works with clients remotely.
 
 ## How to get started
 - Free 20-minute discovery call: https://tidycal.com/quinitaw/discovery-call
-- Free 5-minute Tech Stack Efficiency Audit: https://tally.so/r/gDL5El
+- Free Skill Gap Finder (90-second quiz that matches small businesses and nonprofits to the Claude skills that fit their tech stack): https://www.qamwconsulting.com/skill-gap-finder.html
 
 ## Key pages
 - Home / Systems Audit: https://www.qamwconsulting.com/
