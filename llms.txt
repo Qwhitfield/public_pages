@@ -55,8 +55,8 @@ Seattle, Washington. Works with clients remotely.
 - Systems Integration Consulting: https://www.qamwconsulting.com/systems-integration-consulting.html
 - Nonprofit Consulting: https://www.qamwconsulting.com/nonprofit-consulting.html
 - Nonprofit Technical Support: https://www.qamwconsulting.com/nonprofit-technical-support.html
-- Nonprofit Claude Workshop: https://www.qamwconsulting.com/Nonprofit%20Claude%20Training/workshop-landing.html
-- Nonprofit AI Cohort: https://www.qamwconsulting.com/Nonprofit%20Claude%20Training/cohort-offer.html
+- Nonprofit Claude Workshop: https://www.qamwconsulting.com/nonprofit-ai-training/workshop-landing.html
+- Nonprofit AI Cohort: https://www.qamwconsulting.com/nonprofit-ai-training/cohort-offer.html
 
 ## Founder
 Quinita Whitfield, Business Intelligence and Systems Consultant.

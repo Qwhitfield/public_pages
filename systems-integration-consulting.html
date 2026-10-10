@@ -72,155 +72,71 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --black: #0a0a0a; --off-black: #111111; --dark: #1a1a1a; --mid: #2a2a2a;
-    --border: #2f2f2f; --muted: #666; --body: #b8b8b8; --white: #f2f0eb;
-    --accent: #8c52ff; --accent-dim: #7340d4; --accent-soft: rgba(140,82,255,0.1);
-    --green: #47c47e; --red: #e85c47;
-  }
-  html { scroll-behavior: smooth; }
-  body { background: var(--black); color: var(--body); font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 1.7; overflow-x: hidden; }
-  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E"); pointer-events: none; z-index: 999; opacity: 0.4; }
-
-  .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
-  .container-narrow { max-width: 680px; margin: 0 auto; padding: 0 24px; }
-
-  nav { position: sticky; top: 0; z-index: 100; background: rgba(10,10,10,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
-  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.08em; color: var(--white); text-decoration: none; }
-  .nav-logo span { color: var(--accent); }
-  .nav-links { display: flex; gap: 28px; list-style: none; }
-  .nav-links a { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--white); }
-  .nav-cta { background: var(--accent); color: var(--white); font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.05em; text-decoration: none; padding: 10px 20px; transition: background 0.2s; }
-  .nav-cta:hover { background: var(--accent-dim); }
-
-  .breadcrumb { border-bottom: 1px solid var(--border); padding: 12px 24px; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); }
-  .breadcrumb a { color: var(--accent); text-decoration: none; }
-  .breadcrumb a:hover { text-decoration: underline; }
-
-  /* HEADER — full-width with horizontal rule divider */
-  .page-header { padding: 72px 0 56px; border-bottom: 1px solid var(--border); }
-  .page-kicker { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
-  .page-kicker::after { content: ''; display: block; width: 48px; height: 1px; background: var(--accent); }
-  .page-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 8vw, 88px); line-height: 0.93; letter-spacing: 0.01em; color: var(--white); margin-bottom: 32px; }
-  .page-title em { font-style: normal; color: var(--accent); }
-
-  /* HEADER SPLIT */
-  .header-split { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; margin-top: 48px; }
-  .header-split p { font-size: 18px; font-weight: 300; color: var(--body); line-height: 1.65; }
-  .header-right { border-left: 1px solid var(--border); padding-left: 48px; }
-  .header-right-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
-  .header-fact { padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 14px; color: var(--body); display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
-  .header-fact:last-child { border-bottom: none; }
-  .header-fact-val { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--accent); line-height: 1; white-space: nowrap; }
-  .ownership-badge { display: inline-flex; align-items: center; gap: 8px; margin-top: 28px; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--border); padding: 8px 14px; }
-  .ownership-badge span { color: var(--accent); }
-
-  /* ARTICLE SECTIONS */
-  .article-section { padding: 72px 0; border-bottom: 1px solid var(--border); }
-  .article-section:last-of-type { border-bottom: none; }
-  .section-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
-  h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px, 5vw, 52px); line-height: 1.0; color: var(--white); letter-spacing: 0.02em; margin-bottom: 24px; }
-  h3 { font-family: 'DM Sans', sans-serif; font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 12px; margin-top: 40px; }
-  h3:first-child { margin-top: 0; }
-  .prose p { margin-bottom: 20px; }
-  .prose p:last-child { margin-bottom: 0; }
-  .prose strong { color: var(--white); font-weight: 500; }
-  .prose a { color: var(--accent); text-decoration: none; }
-  .prose a:hover { text-decoration: underline; }
-
-  /* PULL QUOTE */
-  .pull-quote { border-left: 3px solid var(--accent); padding: 24px 32px; background: var(--off-black); margin: 40px 0; }
-  .pull-quote p { font-size: 20px; font-weight: 300; color: var(--white); line-height: 1.55; margin: 0; }
-  .pull-quote cite { display: block; margin-top: 12px; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-style: normal; }
-
-  /* CALLOUT */
-  .callout { background: var(--accent-soft); border: 1px solid rgba(140,82,255,0.3); padding: 28px 32px; margin: 36px 0; }
-  .callout-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
-  .callout p { font-size: 15px; color: var(--body); line-height: 1.65; margin: 0; }
-
-  /* DIAGNOSTIC STEPS */
-  .diagnostic-steps { display: grid; grid-template-columns: 80px 1fr; gap: 0; position: relative; margin-top: 36px; }
-  .diagnostic-steps::before { content: ''; position: absolute; left: 39px; top: 20px; bottom: 20px; width: 1px; background: linear-gradient(180deg, var(--accent), var(--border)); }
-  .ds-item { display: contents; }
-  .ds-dot { display: flex; justify-content: center; padding-top: 4px; position: relative; z-index: 1; }
-  .ds-dot span { width: 18px; height: 18px; border-radius: 50%; background: var(--accent); border: 3px solid var(--black); display: block; box-shadow: 0 0 0 1px var(--accent); }
-  .ds-content { padding: 0 0 44px 24px; }
-  .ds-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; margin-bottom: 6px; }
-  .ds-title { font-weight: 700; font-size: 17px; color: var(--white); margin-bottom: 8px; }
-  .ds-body { font-size: 15px; color: var(--muted); line-height: 1.65; }
-
-  /* EXPERTISE SPLIT */
-  .expertise-split { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); margin-top: 32px; }
-  .expertise-cell { background: var(--off-black); padding: 32px 28px; }
-  .expertise-category { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
-  .expertise-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
-  .expertise-list li { padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 14px; color: var(--body); display: flex; gap: 10px; }
-  .expertise-list li:last-child { border-bottom: none; }
-  .expertise-list li::before { content: '—'; color: var(--accent); font-family: 'DM Mono', monospace; flex-shrink: 0; }
-
-  /* RESULT BLOCK */
-  .result-block { border: 1px solid var(--border); background: var(--off-black); margin-top: 36px; }
-  .result-header { padding: 16px 24px; border-bottom: 1px solid var(--border); font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
-  .result-body { display: grid; grid-template-columns: 160px 1fr; }
-  .result-stat { padding: 28px 24px; border-right: 1px solid var(--border); }
-  .result-stat .num { font-family: 'Bebas Neue', sans-serif; font-size: 52px; color: var(--accent); line-height: 1; display: block; margin-bottom: 4px; }
-  .result-stat .lbl { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; line-height: 1.3; }
-  .result-text { padding: 28px 28px; font-size: 15px; color: var(--body); line-height: 1.7; }
-  .result-text strong { color: var(--white); }
-
-  /* FAQ */
-  .faq-list { display: flex; flex-direction: column; margin-top: 32px; }
-  .faq-item { border-bottom: 1px solid var(--border); padding: 28px 0; }
-  .faq-item:first-child { border-top: 1px solid var(--border); }
-  .faq-q { font-weight: 600; font-size: 16px; color: var(--white); margin-bottom: 10px; }
-  .faq-a { font-size: 15px; color: var(--muted); line-height: 1.7; }
-
-  /* CTA */
-  .cta-section { padding: 96px 0; text-align: center; position: relative; overflow: hidden; }
-  .cta-section::before { content: 'SYSTEMS'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: 'Bebas Neue', sans-serif; font-size: clamp(80px, 18vw, 200px); color: var(--off-black); pointer-events: none; white-space: nowrap; letter-spacing: 0.05em; z-index: 0; }
-  .cta-section .container { position: relative; z-index: 1; }
-  .cta-section h2 { margin-bottom: 16px; }
-  .cta-section p { max-width: 500px; margin: 0 auto 40px; font-size: 18px; font-weight: 300; }
-
-  .btn-primary { background: var(--accent); color: var(--white); font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: 0.03em; text-decoration: none; padding: 18px 36px; display: inline-block; transition: background 0.2s, transform 0.15s; position: relative; }
-  .btn-primary::after { content: ''; position: absolute; bottom: -4px; right: -4px; width: 100%; height: 100%; border: 1px solid var(--accent); transition: transform 0.2s; }
-  .btn-primary:hover { background: var(--accent-dim); transform: translate(-2px, -2px); }
-  .btn-primary:hover::after { transform: translate(4px, 4px); }
-  .btn-ghost { color: var(--muted); font-family: 'DM Mono', monospace; font-size: 13px; text-decoration: none; display: inline-block; margin-top: 20px; transition: color 0.2s; }
-  .btn-ghost:hover { color: var(--accent); }
-  .btn-ghost span { color: var(--accent); }
-
-  footer { border-top: 1px solid var(--border); padding: 32px 24px; display: flex; justify-content: space-between; align-items: center; text-align: center; font-size: 13px; color: var(--muted); flex-wrap: wrap; gap: 16px;  }
-  footer a { color: var(--muted); text-decoration: none; }
-  footer a:hover { color: var(--accent); }
-  .footer-links { display: flex; gap: 24px; }
-
-  @media (max-width: 720px) {
-    .nav-links { display: none; }
-    .header-split { grid-template-columns: 1fr; gap: 36px; }
-    .header-right { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 32px; }
-    .expertise-split { grid-template-columns: 1fr; }
-    .result-body { grid-template-columns: 1fr; }
-    .result-stat { border-right: none; border-bottom: 1px solid var(--border); }
-    .footer-links { display: none; }
-  }
-</style>
+<link rel="stylesheet" href="css/theme.css?v=4">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What size company is the right fit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We work best with companies and organizations that have real operational complexity — typically $1M+ in revenue or a team of 10+ people running multiple tools. Earlier-stage companies often don't have enough systems to audit meaningfully. Later-stage enterprises often need a larger team than we are. The sweet spot is the growing SMB or mid-sized nonprofit that's outgrown its original setup."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "We already have an IT person or a part-time ops manager. Is that a problem?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not at all — it usually makes the engagement go faster. We work alongside internal staff and hand off directly to them. The goal is always that your internal team owns the result. We're not trying to create dependency; we're trying to build something that holds up after we're gone."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is this different from hiring a general IT consultant?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "General IT consultants typically focus on infrastructure, hardware, networking, and security. Our focus is on the data and operations layer — the systems that run your business processes, the reports your leadership reads, and the automations that should be handling work your team currently does manually. Those are different problems requiring different expertise."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you work remotely?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — all engagements are remote by default. We're based in Seattle and available throughout the Pacific Northwest for in-person kickoffs or working sessions when that's genuinely useful, but we don't charge a travel premium and we don't require it."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
+<!-- SKILL GAP BANNER -->
+<div class="event-banner">
+  <div class="event-banner-left">
+    <span class="event-dot"></span>
+    <span class="event-banner-text"><strong>New: Claude for Small Business just added 43 skills.</strong> Which ones fit your tools?</span>
+  </div>
+  <a href="/skill-gap-finder.html" class="event-banner-link" target="_blank" rel="noopener">Take the 90-Second Quiz →</a>
+</div>
+
+<!-- NAV -->
 <nav>
   <a class="nav-logo" href="/index.html">QAMW<span>.</span></a>
   <ul class="nav-links">
     <li><a href="/about.html">About</a></li>
-   <li><a href="/index.html">Systems Audit</a></li>
+    <li><a href="/index.html">Systems Audit</a></li>
     <li><a href="/nonprofit-consulting.html">Nonprofit</a></li>
-    <li><a href="/systems-integration-consulting.html">Systems Integration</a></li>
+    <li><a href="/systems-integration-consulting.html" class="active">Systems Integration</a></li>
     <li><a href="/nonprofit-technical-support.html">Tech Support</a></li>
+    <li><a href="https://tidycal.com/quinitaw/discovery-call" target="_blank" rel="noopener">Free Discovery Call</a></li>
   </ul>
-  <a href="/index.html" class="nav-cta">Book Your Audit →</a>
+  <a href="/index.html#price" class="nav-cta">Book Your Audit →</a>
 </nav>
 
 <div class="breadcrumb">
@@ -236,8 +152,7 @@
     <div class="header-split">
       <div>
         <p>You're not missing software. You're missing the layer that connects what you already have — so data flows where it's supposed to go, reports can be trusted, and your team stops rebuilding the same spreadsheet every week.</p>
-        <p>QAMW Consulting is a <strong style="color: var(--white);">Black-owned, women-owned</strong> systems integration practice based in Seattle. We work with SMBs, nonprofits, and growing companies across industries to build the operational infrastructure that makes everything else work.</p>
-        <div class="ownership-badge"><span>■</span> Black-owned &nbsp;·&nbsp; <span>■</span> Women-owned &nbsp;·&nbsp; Seattle, WA</div>
+        <p>QAMW Consulting is a <strong>Black-owned, women-owned</strong> systems integration practice based in Seattle. We work with SMBs, nonprofits, and growing companies across industries to build the operational infrastructure that makes everything else work.</p>
       </div>
       <div class="header-right">
         <div class="header-right-label">By the numbers</div>
@@ -267,7 +182,7 @@
 </header>
 
 <!-- WHAT WE DO -->
-<section class="article-section">
+<section class="article-section surface-light">
   <div class="container-narrow">
     <div class="section-label">The Work</div>
     <h2>What systems integration actually means</h2>
@@ -293,15 +208,15 @@
 </section>
 
 <!-- HOW WE APPROACH IT -->
-<section class="article-section" style="background: var(--off-black);">
+<section class="article-section surface-raised">
   <div class="container">
     <div class="section-label">The Approach</div>
     <h2>Four phases. No surprises.</h2>
-    <p style="max-width: 620px; margin-bottom: 8px;">Whether we're doing a scoped audit or a longer integration build, the work follows the same sequence. You know where you are at every point.</p>
+    <p class="section-sub">Whether we're doing a scoped audit or a longer integration build, the work follows the same sequence. You know where you are at every point.</p>
 
     <div class="diagnostic-steps">
       <div class="ds-item">
-        <div class="ds-dot"><span></span></div>
+        <div class="ds-dot"><span>1</span></div>
         <div class="ds-content">
           <div class="ds-label">Phase 01</div>
           <div class="ds-title">Map what exists</div>
@@ -309,7 +224,7 @@
         </div>
       </div>
       <div class="ds-item">
-        <div class="ds-dot"><span></span></div>
+        <div class="ds-dot"><span>2</span></div>
         <div class="ds-content">
           <div class="ds-label">Phase 02</div>
           <div class="ds-title">Find where trust breaks down</div>
@@ -317,7 +232,7 @@
         </div>
       </div>
       <div class="ds-item">
-        <div class="ds-dot"><span></span></div>
+        <div class="ds-dot"><span>3</span></div>
         <div class="ds-content">
           <div class="ds-label">Phase 03</div>
           <div class="ds-title">Quantify the cost</div>
@@ -325,7 +240,7 @@
         </div>
       </div>
       <div class="ds-item">
-        <div class="ds-dot"><span></span></div>
+        <div class="ds-dot"><span>4</span></div>
         <div class="ds-content">
           <div class="ds-label">Phase 04</div>
           <div class="ds-title">Build and hand off</div>
@@ -337,11 +252,11 @@
 </section>
 
 <!-- EXPERTISE AREAS -->
-<section class="article-section">
+<section class="article-section surface-light">
   <div class="container">
     <div class="section-label">Areas of Expertise</div>
     <h2>Where we're deepest</h2>
-    <p style="max-width: 620px;">Fourteen years of work across industries gives us breadth. But these are the areas where we have the most accumulated experience and can move fastest.</p>
+    <p class="section-sub">Fourteen years of work across industries gives us breadth. But these are the areas where we have the most accumulated experience and can move fastest.</p>
 
     <div class="expertise-split">
       <div class="expertise-cell">
@@ -390,13 +305,14 @@
 </section>
 
 <!-- RESULTS -->
-<section class="article-section" style="background: var(--off-black);">
+<section class="article-section surface-raised">
   <div class="container">
     <div class="section-label">Real Results</div>
     <h2>What this work produces</h2>
-    <p style="max-width: 620px; margin-bottom: 8px;">These are real outcomes from real engagements. Not projections — actual results.</p>
+    <p class="section-sub">These are real outcomes from real engagements. Not projections — actual results.</p>
 
-    <div class="result-block" style="margin-top: 32px;">
+    <div class="result-stack">
+    <div class="result-block">
       <div class="result-header">VEHO — Logistics Operations</div>
       <div class="result-body">
         <div class="result-stat">
@@ -407,7 +323,7 @@
       </div>
     </div>
 
-    <div class="result-block" style="margin-top: 2px;">
+    <div class="result-block">
       <div class="result-header">Single Client Audit — SMB Operations</div>
       <div class="result-body">
         <div class="result-stat">
@@ -418,7 +334,7 @@
       </div>
     </div>
 
-    <div class="result-block" style="margin-top: 2px;">
+    <div class="result-block">
       <div class="result-header">R3 Academy — Nonprofit Analytics</div>
       <div class="result-body">
         <div class="result-stat">
@@ -427,6 +343,7 @@
         </div>
         <div class="result-text">Transformed raw survey exports into a <strong>sentiment analysis pipeline and live Power BI dashboard</strong> that produces executive-ready action reports every reporting cycle — automatically, without manual data work. "As usual, you have blown it out of the water." — Juan Ramos, CEO, R3 Academy</div>
       </div>
+    </div>
     </div>
   </div>
 </section>
@@ -456,52 +373,71 @@
 </section>
 
 <!-- FAQ -->
-<section class="article-section" style="background: var(--off-black);">
+<section class="article-section surface-light">
   <div class="container-narrow">
     <div class="section-label">Questions</div>
     <h2>What people ask before engaging</h2>
     <div class="faq-list">
-      <div class="faq-item">
-        <div class="faq-q">What size company is the right fit?</div>
+      <details class="faq-item" open>
+        <summary>What size company is the right fit?</summary>
         <div class="faq-a">We work best with companies and organizations that have real operational complexity — typically $1M+ in revenue or a team of 10+ people running multiple tools. Earlier-stage companies often don't have enough systems to audit meaningfully. Later-stage enterprises often need a larger team than we are. The sweet spot is the growing SMB or mid-sized nonprofit that's outgrown its original setup.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">We already have an IT person or a part-time ops manager. Is that a problem?</div>
+      </details>
+      <details class="faq-item">
+        <summary>We already have an IT person or a part-time ops manager. Is that a problem?</summary>
         <div class="faq-a">Not at all — it usually makes the engagement go faster. We work alongside internal staff and hand off directly to them. The goal is always that your internal team owns the result. We're not trying to create dependency; we're trying to build something that holds up after we're gone.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">How is this different from hiring a general IT consultant?</div>
+      </details>
+      <details class="faq-item">
+        <summary>How is this different from hiring a general IT consultant?</summary>
         <div class="faq-a">General IT consultants typically focus on infrastructure, hardware, networking, and security. Our focus is on the data and operations layer — the systems that run your business processes, the reports your leadership reads, and the automations that should be handling work your team currently does manually. Those are different problems requiring different expertise.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">Do you work remotely?</div>
+      </details>
+      <details class="faq-item">
+        <summary>Do you work remotely?</summary>
         <div class="faq-a">Yes — all engagements are remote by default. We're based in Seattle and available throughout the Pacific Northwest for in-person kickoffs or working sessions when that's genuinely useful, but we don't charge a travel premium and we don't require it.</div>
-      </div>
+      </details>
     </div>
   </div>
 </section>
 
 <!-- CTA -->
-<section class="cta-section">
+<section id="cta">
   <div class="container">
     <div class="section-label">Start Here</div>
     <h2>Ready to see<br>what's actually broken?</h2>
-    <p>Book a free 20-minute discovery call. We'll talk through your current setup and tell you honestly whether an audit makes sense — and what it would find.</p>
-       <a href="https://tidycal.com/quinitaw/discovery-call" class="btn-primary" target="_blank" rel="noopener">Book an appointment</a>
-    <br>
-    <a href="/index.html" class="btn-ghost">See the full Systems Audit offer <span>→</span></a>
+    <p class="lead">Book a free 20-minute discovery call. We'll talk through your current setup and tell you honestly whether an audit makes sense — and what it would find.</p>
+    <a href="https://tidycal.com/quinitaw/discovery-call" class="btn-primary btn-light" target="_blank" rel="noopener">Book an appointment</a>
+    <p class="cta-alt"><a href="/index.html">See the full Systems Audit offer →</a></p>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-  <a class="nav-logo" href="/index.html" style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:0.08em;color:var(--white);">QAMW<span style="color:var(--accent)">.</span></a>
-  <div class="footer-links">
-    <a href="/nonprofit-consulting.html">Nonprofit Consulting</a>
-    <a href="/nonprofit-technical-support.html">Tech Support</a>
-    <a href="/systems-integration-consulting.html">Systems Integration</a>
-    <a href="/index.html">Systems Audit</a>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="nav-logo" href="/index.html">QAMW<span>.</span></a>
+        <p>Systems consulting that finds where your business leaks time and money, and fixes it with the tools you already own.</p>
+        <div class="tag">Black-owned · Women-owned · Seattle, WA</div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="/index.html">Systems Audit</a>
+        <a href="/nonprofit-consulting.html">Nonprofit Consulting</a>
+        <a href="/systems-integration-consulting.html">Systems Integration</a>
+        <a href="/nonprofit-technical-support.html">Tech Support</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="/about.html">About</a>
+        <a href="https://tidycal.com/quinitaw/discovery-call" target="_blank" rel="noopener">Free Discovery Call</a>
+        <a href="/skill-gap-finder.html" target="_blank" rel="noopener">Skill Gap Finder</a>
+        <a href="https://www.linkedin.com/in/quinita-whitfield" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 QAMW Consulting</span>
+      <span>Seattle, WA</span>
+    </div>
   </div>
-  <span>© 2025 QAMW Consulting · Seattle, WA · Black-owned · Women-owned</span>
 </footer>
 
 </body>

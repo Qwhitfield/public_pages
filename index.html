@@ -70,7 +70,7 @@
     {
       "@type": "Question",
       "name": "Do you also implement the fixes?",
-      "acceptedAnswer": { "@type": "Answer", "text": "The audit is the starting point — you own the roadmap and can take it to any team. If you want me to stay involved for implementation, we can discuss a follow-on engagement. Most clients move forward with me on either a project basis or an ongoing fractional systems role." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, if you want me to. Most clients move into implementation with me, either as a scoped project or through the Fractional COO / embedded role ($12,000/mo), and the $5,000 audit fee is credited 100% toward it. Either way, you own the roadmap outright and can take it to any team." }
     },
     {
       "@type": "Question",
@@ -93,648 +93,15 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --black: #0a0a0a;
-    --off-black: #111111;
-    --dark: #1a1a1a;
-    --mid: #2a2a2a;
-    --border: #2f2f2f;
-    --muted: #666;
-    --body: #b8b8b8;
-    --white: #f2f0eb;
-    --accent: #8c52ff;
-    --accent-dim: #7340d4;
-    --red: #e85c47;
-    --green: #47c47e;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--black);
-    color: var(--body);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 17px;
-    line-height: 1.65;
-    overflow-x: hidden;
-  }
-
-  /* ── UTILITY ── */
-  .mono { font-family: 'DM Mono', monospace; }
-  .accent { color: var(--accent); }
-  .red { color: var(--red); }
-  .green { color: var(--green); }
-  .white { color: var(--white); }
-  .muted { color: var(--muted); }
-
-  /* ── NOISE OVERLAY ── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 999;
-    opacity: 0.4;
-  }
-
-  /* ── LAYOUT ── */
-  .container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-
-  section { padding: 96px 0; }
-
-  /* ── NAV ── */
-  nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(10,10,10,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    padding: 16px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .nav-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    letter-spacing: 0.08em;
-    color: var(--white);
-    text-decoration: none;
-  }
-  .nav-logo span { color: var(--accent); }
-  .nav-links { display: flex; gap: 28px; list-style: none; flex: 1; justify-content: center; }
-  .nav-links a { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--white); }
-  .nav-cta {
-    background: var(--accent);
-    color: var(--white);
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    text-decoration: none;
-    padding: 10px 20px;
-    display: inline-block;
-    transition: background 0.2s;
-  }
-  .nav-cta:hover { background: var(--accent-dim); }
-
-  /* ── HERO ── */
-  #hero {
-    padding: 120px 0 80px;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-eyebrow {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 28px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .hero-eyebrow::after {
-    content: '';
-    display: block;
-    width: 48px;
-    height: 1px;
-    background: var(--accent);
-  }
-  h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(60px, 10vw, 110px);
-    line-height: 0.92;
-    letter-spacing: 0.01em;
-    color: var(--white);
-    margin-bottom: 40px;
-  }
-  h1 em {
-    font-style: normal;
-    color: var(--accent);
-    display: block;
-  }
-  .hero-sub {
-    font-size: 20px;
-    font-weight: 300;
-    color: var(--body);
-    max-width: 580px;
-    line-height: 1.6;
-    margin-bottom: 48px;
-  }
-  .hero-sub strong { color: var(--white); font-weight: 500; }
-
-  .cta-block {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    flex-wrap: wrap;
-  }
-  .btn-primary {
-    background: var(--accent);
-    color: var(--white);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
-    font-size: 15px;
-    letter-spacing: 0.03em;
-    text-decoration: none;
-    padding: 18px 36px;
-    display: inline-block;
-    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-    position: relative;
-  }
-  .btn-primary::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    right: -4px;
-    width: 100%;
-    height: 100%;
-    border: 1px solid var(--accent);
-    transition: transform 0.2s;
-  }
-  .btn-primary:hover {
-    background: var(--accent-dim);
-    transform: translate(-2px, -2px);
-  }
-  .btn-primary:hover::after {
-    transform: translate(4px, 4px);
-  }
-  .price-badge {
-    font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    color: var(--muted);
-  }
-  .price-badge strong { color: var(--accent); font-size: 22px; }
-
-  /* diagonal rule */
-  .hero-divider {
-    margin-top: 80px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border) 20%, var(--border) 80%, transparent);
-  }
-
-  /* ── TRUTH SECTION ── */
-  #truth { padding: 80px 0; }
-  .truth-grid {
-    display: grid;
-    grid-template-columns: 1fr 1px 1fr;
-    gap: 0;
-    border: 1px solid var(--border);
-  }
-  .truth-col {
-    padding: 48px 40px;
-  }
-  .truth-divider { background: var(--border); }
-  .truth-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-  }
-  .truth-label.bad { color: var(--red); }
-  .truth-label.good { color: var(--green); }
-  .truth-list { list-style: none; }
-  .truth-list li {
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 15px;
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-  }
-  .truth-list li:last-child { border-bottom: none; }
-  .truth-list li::before {
-    flex-shrink: 0;
-    margin-top: 3px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-  }
-  .truth-list.bad li::before { content: '✕'; color: var(--red); }
-  .truth-list.good li::before { content: '→'; color: var(--green); }
-
-  /* ── BIG STATEMENT ── */
-  .big-statement {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(36px, 6vw, 72px);
-    line-height: 1.0;
-    color: var(--white);
-    letter-spacing: 0.02em;
-    margin: 60px 0;
-  }
-  .big-statement span { color: var(--accent); }
-
-  /* ── OFFER SECTION ── */
-  #offer { padding: 80px 0 60px; }
-  .section-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 16px;
-  }
-  h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(40px, 6vw, 64px);
-    line-height: 1.0;
-    color: var(--white);
-    letter-spacing: 0.02em;
-    margin-bottom: 20px;
-  }
-  .section-sub {
-    font-size: 18px;
-    font-weight: 300;
-    color: var(--body);
-    max-width: 600px;
-    margin-bottom: 56px;
-  }
-
-  /* deliverables */
-  .deliverables { display: flex; flex-direction: column; gap: 2px; }
-  .deliverable {
-    background: var(--off-black);
-    border: 1px solid var(--border);
-    padding: 32px 36px;
-    display: grid;
-    grid-template-columns: 48px 1fr;
-    gap: 24px;
-    align-items: start;
-    transition: border-color 0.2s, background 0.2s;
-    cursor: default;
-  }
-  .deliverable:hover {
-    border-color: var(--accent);
-    background: #141414;
-  }
-  .deliverable-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 42px;
-    line-height: 1;
-    color: var(--border);
-    transition: color 0.2s;
-  }
-  .deliverable:hover .deliverable-num { color: var(--accent); }
-  .deliverable-title {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
-    font-size: 17px;
-    color: var(--white);
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .deliverable-tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    background: rgba(232, 197, 71, 0.15);
-    color: var(--accent);
-    padding: 3px 8px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-  .deliverable-body { font-size: 15px; color: var(--body); line-height: 1.6; }
-  .deliverable-body ul { margin-top: 10px; padding-left: 20px; }
-  .deliverable-body ul li { margin-bottom: 4px; font-size: 14px; color: var(--muted); }
-
-  /* ── MONEY SECTION ── */
-  #money {
-    padding: 80px 0;
-    background: var(--off-black);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-  .money-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    align-items: center;
-  }
-  .money-stat {
-    padding: 36px;
-    border: 1px solid var(--border);
-    text-align: center;
-  }
-  .money-stat .big-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 72px;
-    line-height: 1;
-    color: var(--accent);
-    display: block;
-    margin-bottom: 8px;
-  }
-  .money-stat p { font-size: 14px; color: var(--muted); }
-
-  .leak-list { list-style: none; }
-  .leak-list li {
-    padding: 12px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 15px;
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-  }
-  .leak-list li:last-child { border-bottom: none; }
-  .leak-list li .icon {
-    font-size: 16px;
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-
-  /* ── TIMELINE ── */
-  #timeline { padding: 80px 0; }
-  .timeline {
-    display: grid;
-    grid-template-columns: 80px 1fr;
-    gap: 0;
-    position: relative;
-  }
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 39px;
-    top: 20px;
-    bottom: 20px;
-    width: 1px;
-    background: linear-gradient(180deg, var(--accent), var(--border));
-  }
-  .tl-item { display: contents; }
-  .tl-dot {
-    display: flex;
-    justify-content: center;
-    padding-top: 4px;
-    position: relative;
-    z-index: 1;
-  }
-  .tl-dot span {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: var(--accent);
-    border: 3px solid var(--black);
-    display: block;
-    box-shadow: 0 0 0 1px var(--accent);
-  }
-  .tl-content {
-    padding: 0 0 48px 24px;
-  }
-  .tl-week {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: 6px;
-  }
-  .tl-title {
-    font-weight: 700;
-    font-size: 17px;
-    color: var(--white);
-    margin-bottom: 8px;
-  }
-  .tl-desc { font-size: 15px; color: var(--muted); }
-
-  /* ── PRICE ── */
-  #price {
-    padding: 80px 0;
-    text-align: center;
-  }
-  .price-card {
-    border: 1px solid var(--accent);
-    padding: 64px 48px;
-    max-width: 580px;
-    margin: 0 auto;
-    position: relative;
-    background: var(--off-black);
-  }
-  .price-card::before {
-    content: 'REVENUE LEAK & SYSTEMS AUDIT';
-    position: absolute;
-    top: -1px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--accent);
-    color: var(--white);
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    padding: 5px 16px;
-    white-space: nowrap;
-  }
-  .price-amount {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 96px;
-    line-height: 1;
-    color: var(--white);
-    margin: 24px 0 8px;
-  }
-  .price-amount sup {
-    font-size: 40px;
-    vertical-align: top;
-    margin-top: 16px;
-    color: var(--accent);
-  }
-  .price-duration {
-    font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    letter-spacing: 0.1em;
-    color: var(--muted);
-    margin-bottom: 32px;
-  }
-  .price-includes {
-    list-style: none;
-    text-align: left;
-    margin-bottom: 40px;
-  }
-  .price-includes li {
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 15px;
-    display: flex;
-    gap: 12px;
-  }
-  .price-includes li:last-child { border-bottom: none; }
-  .price-includes li::before {
-    content: '✓';
-    color: var(--green);
-    font-family: 'DM Mono', monospace;
-    flex-shrink: 0;
-  }
-  .price-note {
-    font-size: 13px;
-    color: var(--muted);
-    margin-top: 20px;
-    font-style: italic;
-  }
-
-  /* ── FOR WHO ── */
-  #who { padding: 80px 0; }
-  #skill-gap { padding: 80px 0; background: var(--off-black); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-  .who-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-  }
-  .who-card {
-    padding: 32px;
-    border: 1px solid var(--border);
-  }
-  .who-card.is-fit { border-color: var(--green); }
-  .who-card.not-fit { opacity: 0.6; }
-  .who-card-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-  }
-  .who-card.is-fit .who-card-label { color: var(--green); }
-  .who-card.not-fit .who-card-label { color: var(--muted); }
-  .who-list { list-style: none; }
-  .who-list li {
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 14px;
-    color: var(--body);
-    display: flex;
-    gap: 10px;
-  }
-  .who-list li:last-child { border-bottom: none; }
-
-  /* ── FAQ ── */
-  #faq { padding: 80px 0; background: var(--off-black); border-top: 1px solid var(--border); }
-  .faq-list { max-width: 700px; }
-  .faq-item {
-    border-bottom: 1px solid var(--border);
-    padding: 28px 0;
-  }
-  .faq-q {
-    font-weight: 600;
-    font-size: 16px;
-    color: var(--white);
-    margin-bottom: 12px;
-    cursor: pointer;
-  }
-  .faq-a { font-size: 15px; color: var(--muted); line-height: 1.7; }
-
-  /* ── FINAL CTA ── */
-  #cta {
-    padding: 120px 0;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  #cta::before {
-    content: 'SYSTEMS';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(120px, 25vw, 280px);
-    color: var(--off-black);
-    pointer-events: none;
-    white-space: nowrap;
-    letter-spacing: 0.05em;
-    z-index: 0;
-  }
-  #cta .container { position: relative; z-index: 1; }
-  #cta h2 { margin-bottom: 16px; }
-  #cta p { max-width: 500px; margin: 0 auto 48px; font-size: 18px; }
-
-  /* ── FOOTER ── */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 32px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 13px;
-    color: var(--muted);
-  }
-  footer a { color: var(--muted); text-decoration: none; }
-  footer a:hover { color: var(--accent); }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 680px) {
-    .truth-grid { grid-template-columns: 1fr; }
-    .truth-divider { display: none; }
-    .money-grid { grid-template-columns: 1fr; }
-    .who-grid { grid-template-columns: 1fr; }
-    .price-card { padding: 48px 24px; }
-    h1 { font-size: 62px; }
-    .timeline { grid-template-columns: 56px 1fr; }
-    .timeline::before { left: 27px; }
-  }
-
-  /* ── ANIMATE IN ── */
-  .fade-up {
-    opacity: 0;
-    transform: translateY(24px);
-    animation: fadeUp 0.6s ease forwards;
-  }
-  @keyframes fadeUp {
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .fade-up:nth-child(1) { animation-delay: 0.1s; }
-  .fade-up:nth-child(2) { animation-delay: 0.2s; }
-  .fade-up:nth-child(3) { animation-delay: 0.3s; }
-  .fade-up:nth-child(4) { animation-delay: 0.4s; }
-
-  /* SKOOL COMMUNITY BANNER */
-  .event-banner {
-    background: var(--accent);
-    padding: 13px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-  .event-banner-left { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-  .event-dot {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: var(--green); flex-shrink: 0;
-    animation: eb-pulse 1.8s infinite;
-  }
-  @keyframes eb-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-  .event-banner-text {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
-    color: rgba(255,255,255,0.8);
-  }
-  .event-banner-text strong { color: #fff; }
-  .event-banner-link {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
-    color: #fff; text-decoration: none; white-space: nowrap;
-    background: rgba(0,0,0,0.2);
-    padding: 6px 14px;
-    transition: background 0.2s;
-  }
-  .event-banner-link:hover { background: rgba(0,0,0,0.35); }
-</style>
+<link rel="stylesheet" href="css/theme.css?v=4">
 </head>
 <body>
 
-<!-- SKOOL COMMUNITY BANNER -->
+<!-- SKILL GAP BANNER -->
 <div class="event-banner">
   <div class="event-banner-left">
     <span class="event-dot"></span>
-    <span class="event-banner-text"><strong>New: Claude for Small Business just added 43 skills</strong> · Which ones fit your tools?</span>
+    <span class="event-banner-text"><strong>New: Claude for Small Business just added 43 skills.</strong> Which ones fit your tools?</span>
   </div>
   <a href="/skill-gap-finder.html" class="event-banner-link" target="_blank" rel="noopener">Take the 90-Second Quiz →</a>
 </div>
@@ -744,74 +111,87 @@
   <a class="nav-logo" href="/index.html">QAMW<span>.</span></a>
   <ul class="nav-links">
     <li><a href="/about.html">About</a></li>
-   <li><a href="/index.html">Systems Audit</a></li>
+    <li><a href="/index.html" class="active">Systems Audit</a></li>
     <li><a href="/nonprofit-consulting.html">Nonprofit</a></li>
     <li><a href="/systems-integration-consulting.html">Systems Integration</a></li>
     <li><a href="/nonprofit-technical-support.html">Tech Support</a></li>
     <li><a href="https://tidycal.com/quinitaw/discovery-call" target="_blank" rel="noopener">Free Discovery Call</a></li>
   </ul>
-  <a href="#cta" class="nav-cta">Book Your Audit →</a>
+  <a href="#price" class="nav-cta">Book Your Audit →</a>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
   <div class="container">
-    <div class="hero-eyebrow fade-up">Revenue Leak &amp; Systems Audit for SMBs and nonprofits | Seattle</div>
+    <div class="hero-eyebrow fade-up">Revenue Leak &amp; Systems Audit · SMBs &amp; Nonprofits · Seattle</div>
     <h1 class="fade-up">
       Your systems<br>
       are costing<br>
       <em>you money.</em>
     </h1>
-    <p class="hero-sub fade-up">
-      <strong>Your team is burning hours.</strong> Here's how we fix it.
-    </p>
-    <p class="hero-sub fade-up" style="font-size:15px;margin-top:-32px;">
-      Grounded in <strong>14+ years of enterprise data, reporting, and operational architecture</strong> (Power BI, SAP, Tableau, CRMs & Automation).
+    <p class="hero-sub fade-up"><strong>Your team is burning hours.</strong> Here's how we fix it.</p>
+    <p class="hero-cred fade-up">
+      Grounded in <strong>14+ years of enterprise data, reporting, and operational architecture</strong> (Power BI, SAP, Tableau, CRMs &amp; Automation).
     </p>
     <div class="cta-block fade-up">
-     <a href="#cta" class="nav-cta">Book Your Audit →</a>
-      <div class="price-badge">Starting at <strong>$5,000</strong> / flat fee</div>
+      <a href="#price" class="btn-primary">Book Your Audit →</a>
+      <div class="price-badge">Starting at <strong>$5,000</strong> flat fee</div>
     </div>
-    <div class="cta-block fade-up" style="margin-top:16px;">
-      <a href="/skill-gap-finder.html" target="_blank" rel="noopener" style="font-family:'DM Mono',monospace;font-size:13px;color:var(--muted);text-decoration:underline;text-underline-offset:4px;">Not ready for a call? Try the free Skill Gap Finder to see which Claude skills fit your tech stack →</a>
+    <div class="hero-alt">
+      <a href="/skill-gap-finder.html" target="_blank" rel="noopener" class="text-link">Not ready for a call? Try the free Skill Gap Finder →</a>
     </div>
-    <div class="hero-divider"></div>
+
+    <div class="proof-strip">
+      <div class="proof-item"><span class="proof-num accent">$500K+</span><span class="proof-label">in inefficiencies identified for one client</span></div>
+      <div class="proof-item"><span class="proof-num">14+ yrs</span><span class="proof-label">enterprise data &amp; systems experience</span></div>
+      <div class="proof-item"><span class="proof-num">2 weeks</span><span class="proof-label">from kickoff to final readout</span></div>
+      <div class="proof-item"><span class="proof-num">5</span><span class="proof-label">concrete deliverables, not a slide deck</span></div>
+    </div>
   </div>
 </section>
 
 <!-- TRUTH -->
-<section id="truth">
+<section id="truth" class="surface-light">
   <div class="container">
+    <div class="section-label">The Diagnosis</div>
     <div class="big-statement">The real problem<br>isn't your <span>tools.</span></div>
-    <div class="truth-grid">
-      <div class="truth-col">
-        <div class="truth-label bad">What you think the problem is</div>
-        <ul class="truth-list bad">
-          <li>We need a better CRM</li>
-          <li>We need to hire more people</li>
-          <li>We need to try AI</li>
-          <li>We need a new dashboard</li>
-          <li>We just need more data</li>
-        </ul>
+    <p class="section-sub">Here's what owners usually ask for, and what's actually going on underneath it.</p>
+
+    <div class="myth-head">
+      <span class="bad">What you think the problem is</span>
+      <span class="good">What's actually happening</span>
+    </div>
+    <div class="myth-rows">
+      <div class="myth-row">
+        <span class="myth">We need a better CRM</span>
+        <span class="myth-arrow">→</span>
+        <span class="reality">Data lives in 4 different tools and none of them agree</span>
       </div>
-      <div class="truth-divider"></div>
-      <div class="truth-col">
-        <div class="truth-label good">What's actually happening</div>
-        <ul class="truth-list good">
-          <li>Data lives in 4 different tools and none of them agree</li>
-          <li>Your team is doing manually what should be automated</li>
-          <li>AI can't work when your inputs are a mess</li>
-          <li>Your reports are built on broken logic</li>
-          <li>You have data — you just can't trust it</li>
-        </ul>
+      <div class="myth-row">
+        <span class="myth">We need to hire more people</span>
+        <span class="myth-arrow">→</span>
+        <span class="reality">Your team is doing manually what should be automated</span>
+      </div>
+      <div class="myth-row">
+        <span class="myth">We need to try AI</span>
+        <span class="myth-arrow">→</span>
+        <span class="reality">AI can't work when your inputs are a mess</span>
+      </div>
+      <div class="myth-row">
+        <span class="myth">We need a new dashboard</span>
+        <span class="myth-arrow">→</span>
+        <span class="reality">Your reports are built on broken logic</span>
+      </div>
+      <div class="myth-row">
+        <span class="myth">We just need more data</span>
+        <span class="myth-arrow">→</span>
+        <span class="reality">You have data. You just can't trust it.</span>
       </div>
     </div>
 
-    <div style="margin-top: 60px; padding: 40px; border-left: 3px solid var(--accent); background: var(--off-black);">
-      <p style="font-size: 20px; color: var(--white); line-height: 1.6; font-weight: 300;">
-        "Everything feels messy, disconnected, and harder than it should be." <br>
-        <span style="color: var(--muted); font-size: 15px; margin-top: 8px; display: block;">— Every SMB owner I've talked to. You're not alone. And it's fixable.</span>
-      </p>
+    <div class="truth-quote">
+      <p>"Everything feels messy, disconnected, and harder than it should be."</p>
+      <span>Every SMB owner I've talked to. You're not alone, and it's fixable.</span>
     </div>
   </div>
 </section>
@@ -820,175 +200,161 @@
 <section id="offer">
   <div class="container">
     <div class="section-label">The Engagement</div>
-    <h2>What you get<br>in 2 weeks</h2>
+    <h2>What you get in 2 weeks</h2>
     <p class="section-sub">Not a slide deck. Not vague recommendations. Five tangible deliverables that show you exactly what's broken and exactly how to fix it.</p>
 
     <div class="deliverables">
       <div class="deliverable">
         <div class="deliverable-num">01</div>
-        <div>
-          <div class="deliverable-title">Systems Map</div>
-          <div class="deliverable-body">
-            A clear picture of how your business actually runs — not how you think it runs. Every tool, every data touchpoint, every handoff. You'll see where things duplicate, where they break, and where the gaps are.
-            <ul>
-              <li>Full inventory of your tech stack and how it connects</li>
-              <li>Where data is created vs. where it should live</li>
-              <li>Visual map of workflows and integration gaps</li>
-            </ul>
-          </div>
-        </div>
+        <div class="deliverable-title">Systems Map</div>
+        <div class="deliverable-body">A clear picture of how your business actually runs, not how you think it runs. Every tool, every data touchpoint, every handoff.</div>
+        <ul>
+          <li>Full inventory of your tech stack and how it connects</li>
+          <li>Where data is created vs. where it should live</li>
+          <li>Visual map of workflows and integration gaps</li>
+        </ul>
       </div>
 
       <div class="deliverable">
         <div class="deliverable-num">02</div>
-        <div>
-          <div class="deliverable-title">Data & Reporting Reality Check</div>
-          <div class="deliverable-body">
-            An honest assessment of your numbers. If you're making decisions with bad data, I'll show you exactly which reports can't be trusted, why, and what it's costing you.
-            <ul>
-              <li>Audit of existing reports and dashboards</li>
-              <li>Identification of data quality issues</li>
-              <li>What decisions are currently risky to make</li>
-            </ul>
-          </div>
-        </div>
+        <div class="deliverable-title">Data &amp; Reporting Reality Check</div>
+        <div class="deliverable-body">An honest assessment of your numbers: which reports can't be trusted, why, and what it's costing you.</div>
+        <ul>
+          <li>Audit of existing reports and dashboards</li>
+          <li>Identification of data quality issues</li>
+          <li>What decisions are currently risky to make</li>
+        </ul>
       </div>
 
-      <div class="deliverable">
-        <div class="deliverable-num">03</div>
+      <div class="deliverable featured">
         <div>
-          <div class="deliverable-title">
-            Revenue Leak Analysis
-            <span class="deliverable-tag">🔑 The Closer</span>
-          </div>
-          <div class="deliverable-body">
-            This is where it gets real. I find the specific places where time and money are disappearing — and I tie everything to dollars. Missed follow-ups. Slow lead response. Manual bottlenecks that shouldn't exist. Duplicate work nobody notices.
-            <ul>
-              <li>Estimated dollar value of identified inefficiencies</li>
-              <li>Priority ranked by impact and ease of fix</li>
-              <li>Before/after comparison of what's possible</li>
-            </ul>
-          </div>
+          <span class="deliverable-tag">🔑 The Closer</span>
+          <div class="deliverable-num">03</div>
+          <div class="deliverable-title">Revenue Leak Analysis</div>
+          <div class="deliverable-body">This is where it gets real. I find the specific places where time and money are disappearing, and I tie everything to dollars. Missed follow-ups. Slow lead response. Manual bottlenecks that shouldn't exist. Duplicate work nobody notices.</div>
         </div>
+        <ul>
+          <li>Estimated dollar value of identified inefficiencies</li>
+          <li>Priority ranked by impact and ease of fix</li>
+          <li>Before/after comparison of what's possible</li>
+        </ul>
       </div>
 
       <div class="deliverable">
         <div class="deliverable-num">04</div>
-        <div>
-          <div class="deliverable-title">AI Readiness Score</div>
-          <div class="deliverable-body">
-            An honest answer to the question every business is asking: <em>can we actually use AI right now?</em> Most can't — not because AI is hard, but because the foundation isn't there. I'll tell you where you stand and what would need to change.
-            <ul>
-              <li>Rated across 5 readiness dimensions</li>
-              <li>What would fail immediately if deployed today</li>
-              <li>What could work fast with minor fixes</li>
-            </ul>
-          </div>
-        </div>
+        <div class="deliverable-title">AI Readiness Score</div>
+        <div class="deliverable-body">An honest answer to <em>can we actually use AI right now?</em> Most can't, not because AI is hard, but because the foundation isn't there.</div>
+        <ul>
+          <li>Rated across 5 readiness dimensions</li>
+          <li>What would fail immediately if deployed today</li>
+          <li>What could work fast with minor fixes</li>
+        </ul>
       </div>
 
       <div class="deliverable">
         <div class="deliverable-num">05</div>
-        <div>
-          <div class="deliverable-title">30–60 Day Execution Plan</div>
-          <div class="deliverable-body">
-            A sequenced action plan — not a 40-page strategy doc nobody reads. Exact fixes in priority order, tool recommendations only when necessary, and clear automation opportunities so you know exactly what to do next.
-            <ul>
-              <li>Prioritized fix list with implementation effort estimates</li>
-              <li>Automation opportunities mapped to your existing stack</li>
-              <li>Optional: where AI fits into your 60-day roadmap</li>
-            </ul>
-          </div>
-        </div>
+        <div class="deliverable-title">30–60 Day Execution Plan</div>
+        <div class="deliverable-body">A sequenced action plan, not a 40-page strategy doc nobody reads. Exact fixes in priority order.</div>
+        <ul>
+          <li>Prioritized fix list with implementation effort estimates</li>
+          <li>Automation opportunities mapped to your existing stack</li>
+          <li>Optional: where AI fits into your 60-day roadmap</li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
 
+<!-- STAT BAND -->
+<section id="stat-band">
+  <div class="container stat-band-inner">
+    <div class="stat-huge">$500K+</div>
+    <div class="stat-copy">
+      <p>in operational inefficiencies identified for one client, through systems alignment alone.</p>
+      <small>No new software. Just fixing what was already there.</small>
+    </div>
+  </div>
+</section>
+
 <!-- MONEY -->
-<section id="money">
+<section id="money" class="surface-raised">
   <div class="container">
     <div class="section-label">The ROI Case</div>
     <h2>What bad systems actually cost</h2>
     <p class="section-sub">This isn't abstract. Bad systems are an ongoing tax on your business. Here's what I find in most audits.</p>
 
-    <div class="money-grid">
-      <div>
-        <ul class="leak-list">
-          <li>
-            <span class="icon">💸</span>
-            <div><strong style="color:var(--white)">Missed follow-ups</strong><br><span style="color:var(--muted);font-size:14px">Leads that came in but fell through gaps in your process — revenue that was already yours</span></div>
-          </li>
-          <li>
-            <span class="icon">⏱️</span>
-            <div><strong style="color:var(--white)">Manual work that should be automated</strong><br><span style="color:var(--muted);font-size:14px">Staff time spent on data entry, copy-paste, and reporting that should run automatically</span></div>
-          </li>
-          <li>
-            <span class="icon">📊</span>
-            <div><strong style="color:var(--white)">Decisions made on bad data</strong><br><span style="color:var(--muted);font-size:14px">When your reports don't agree, someone's guessing. That has a cost.</span></div>
-          </li>
-          <li>
-            <span class="icon">🔁</span>
-            <div><strong style="color:var(--white)">Duplicate work across tools</strong><br><span style="color:var(--muted);font-size:14px">The same information entered three different places by three different people</span></div>
-          </li>
-          <li>
-            <span class="icon">🤖</span>
-            <div><strong style="color:var(--white)">Failed AI / automation attempts</strong><br><span style="color:var(--muted);font-size:14px">Tools purchased, consultants hired, time invested — but no payoff because the foundation wasn't there</span></div>
-          </li>
-        </ul>
+    <div class="leak-grid">
+      <div class="leak-tile">
+        <span class="leak-icon">💸</span>
+        <h3>Missed follow-ups</h3>
+        <p>Leads that came in but fell through gaps in your process. Revenue that was already yours.</p>
       </div>
-
-      <div style="display:flex;flex-direction:column;gap:16px;">
-        <div class="money-stat">
-          <span class="big-num">$500K+</span>
-          <p>in operational inefficiencies identified for one client — through systems alignment alone</p>
-        </div>
-        <div style="padding:24px;border:1px solid var(--border);font-size:14px;color:var(--muted);line-height:1.6;">
-          The audit pays for itself when we find one significant leak. In most cases, we find several. The $5,000 investment is the cost of clarity — not the cost of fixing everything.
-        </div>
+      <div class="leak-tile">
+        <span class="leak-icon">⏱️</span>
+        <h3>Manual work that should be automated</h3>
+        <p>Staff time spent on data entry, copy-paste, and reporting that should run automatically.</p>
+      </div>
+      <div class="leak-tile">
+        <span class="leak-icon">📊</span>
+        <h3>Decisions made on bad data</h3>
+        <p>When your reports don't agree, someone's guessing. That has a cost.</p>
+      </div>
+      <div class="leak-tile">
+        <span class="leak-icon">🔁</span>
+        <h3>Duplicate work across tools</h3>
+        <p>The same information entered three different places by three different people.</p>
+      </div>
+      <div class="leak-tile">
+        <span class="leak-icon">🤖</span>
+        <h3>Failed AI / automation attempts</h3>
+        <p>Tools purchased, consultants hired, time invested, but no payoff because the foundation wasn't there.</p>
+      </div>
+      <div class="leak-tile payback">
+        <h3>The audit pays for itself with one leak.</h3>
+        <p>In most cases, we find several. The $5,000 investment is the cost of clarity, not the cost of fixing everything.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- TIMELINE -->
-<section id="timeline">
+<section id="timeline" class="surface-light">
   <div class="container">
     <div class="section-label">The Process</div>
     <h2>How the 2 weeks work</h2>
-    <p class="section-sub" style="margin-bottom:48px;">No drawn-out engagements. No vague timelines. Here's exactly what happens.</p>
+    <p class="section-sub">No drawn-out engagements. No vague timelines. Here's exactly what happens.</p>
 
-    <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-dot"><span></span></div>
-        <div class="tl-content">
-          <div class="tl-week">Day 1–2</div>
-          <div class="tl-title">Kickoff & Discovery</div>
-          <div class="tl-desc">We map your current tech stack, workflows, and goals. You share access to the tools and data. I start building the picture of how things actually run.</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-dot">1</div>
+        <div class="step-card">
+          <div class="step-day">Days 1–2</div>
+          <div class="step-title">Kickoff &amp; Discovery</div>
+          <div class="step-desc">We map your current tech stack, workflows, and goals. You share access to the tools and data.</div>
         </div>
       </div>
-      <div class="tl-item">
-        <div class="tl-dot"><span></span></div>
-        <div class="tl-content">
-          <div class="tl-week">Days 3–7</div>
-          <div class="tl-title">Systems Deep Dive</div>
-          <div class="tl-desc">I audit your data flows, reporting, integrations, and workflows. I'm looking for where things break, where trust erodes, and where the hidden costs are.</div>
+      <div class="step">
+        <div class="step-dot">2</div>
+        <div class="step-card">
+          <div class="step-day">Days 3–7</div>
+          <div class="step-title">Systems Deep Dive</div>
+          <div class="step-desc">I audit your data flows, reporting, integrations, and workflows, looking for where things break and where the hidden costs are.</div>
         </div>
       </div>
-      <div class="tl-item">
-        <div class="tl-dot"><span></span></div>
-        <div class="tl-content">
-          <div class="tl-week">Days 8–12</div>
-          <div class="tl-title">Analysis & Synthesis</div>
-          <div class="tl-desc">I quantify the leaks, build your AI Readiness Score, and create the prioritized execution plan. Everything gets tied to business impact — time or money.</div>
+      <div class="step">
+        <div class="step-dot">3</div>
+        <div class="step-card">
+          <div class="step-day">Days 8–12</div>
+          <div class="step-title">Analysis &amp; Synthesis</div>
+          <div class="step-desc">I quantify the leaks, build your AI Readiness Score, and create the prioritized plan. Everything tied to time or money.</div>
         </div>
       </div>
-      <div class="tl-item">
-        <div class="tl-dot"><span></span></div>
-        <div class="tl-content">
-          <div class="tl-week">Day 14</div>
-          <div class="tl-title">Readout & Handoff</div>
-          <div class="tl-desc">We walk through all five deliverables together. You leave with a clear picture of what's happening, what it's costing, and exactly what to do about it.</div>
+      <div class="step">
+        <div class="step-dot">4</div>
+        <div class="step-card">
+          <div class="step-day">Day 14</div>
+          <div class="step-title">Readout &amp; Handoff</div>
+          <div class="step-desc">We walk through all five deliverables together. You leave knowing what's happening, what it costs, and what to do.</div>
         </div>
       </div>
     </div>
@@ -1000,6 +366,7 @@
   <div class="container">
     <div class="section-label">Fit Check</div>
     <h2>Is this for you?</h2>
+    <p class="section-sub">This works best for established teams that already have the tools and need them working together.</p>
     <div class="who-grid">
       <div class="who-card is-fit">
         <div class="who-card-label">✓ You're a fit if...</div>
@@ -1026,79 +393,94 @@
 </section>
 
 <!-- SKILL GAP FINDER -->
-<section id="skill-gap">
-  <div class="container">
-    <div class="section-label">Free Tool</div>
-    <h2>Which Claude skills<br>fit your business?</h2>
-    <p class="section-sub" style="margin-bottom:32px;">Claude for Small Business just added 43 skills and 27 integrations, including QuickBooks, Stripe, HubSpot, Shopify, and Gusto. Most businesses need a handful, not all 43. Answer three quick questions about your tools and what's slowing you down, and get a curated map of the skills and connectors that fit your setup.</p>
-    <a href="/skill-gap-finder.html" class="btn-primary" target="_blank" rel="noopener">Take the 90-Second Quiz →</a>
+<section id="skill-gap" class="surface-raised">
+  <div class="container skill-wrap">
+    <div>
+      <div class="section-label">Free Tool</div>
+      <h2>Which Claude skills fit your business?</h2>
+      <p class="section-sub">Claude for Small Business just added 43 skills and 27 integrations, including QuickBooks, Stripe, HubSpot, Shopify, and Gusto. Most businesses need a handful, not all 43. Answer three quick questions and get a curated map of the skills and connectors that fit your setup.</p>
+    </div>
+    <div class="skill-cta">
+      <strong>90 seconds</strong>
+      <p>3 questions · Free · No call required</p>
+      <a href="/skill-gap-finder.html" class="btn-primary" target="_blank" rel="noopener">Take the Quiz →</a>
+    </div>
   </div>
 </section>
 
 <!-- PRICE -->
 <section id="price">
   <div class="container">
-    <div class="section-label" style="text-align:center">Investment</div>
-    <h2 style="text-align:center">The audit is Step 1.<br>The retainer is Step 2.</h2>
+    <div class="center">
+      <div class="section-label">Investment</div>
+      <h2>The audit is Step 1.<br>The retainer is Step 2.</h2>
+    </div>
 
-    <div style="max-width:580px;margin:0 auto 24px;display:flex;gap:2px;">
-      <div style="flex:1;padding:20px 24px;background:var(--off-black);border:1px solid var(--accent);text-align:center;position:relative;">
-        <div style="position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--accent);color:var(--white);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em;padding:3px 12px;white-space:nowrap;">STEP 1 · START HERE</div>
-        <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;margin-top:4px;">Scoped Audit</div>
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:42px;color:var(--white);line-height:1;">$5,000<span style="font-size:20px;color:var(--accent)"> flat</span></div>
-        <div style="font-size:12px;color:var(--muted);margin-top:6px;">Diagnostic gateway. Two weeks. Credited toward Step 2.</div>
+    <div class="tiers">
+      <div class="tier tier-main">
+        <span class="tier-ribbon">STEP 1 · START HERE</span>
+        <div class="tier-name">Revenue Leak &amp; Systems Audit</div>
+        <div class="tier-price">$5,000 <small>flat</small></div>
+        <div class="tier-meta">2 weeks · 5 deliverables · no surprises</div>
+        <ul>
+          <li>Systems Map: full operational picture</li>
+          <li>Data &amp; Reporting Reality Check</li>
+          <li>Revenue Leak Analysis (with dollar estimates)</li>
+          <li>AI Readiness Score across 5 dimensions</li>
+          <li>30–60 Day Execution Plan</li>
+          <li>Final readout call + 2 weeks of async follow-up</li>
+        </ul>
+        <p class="credit-note"><strong>100% credited</strong> toward implementation or the Fractional COO retainer if you move forward with me on execution.</p>
+        <a href="https://tidycal.com/quinitaw/discovery-call" class="btn-primary" target="_blank" rel="noopener">Book Your Audit →</a>
       </div>
-      <div style="flex:1;padding:20px 24px;background:var(--off-black);border:1px solid var(--border);text-align:center;">
-        <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Fractional COO / Embedded Role</div>
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:42px;color:var(--white);line-height:1;">$12,000<span style="font-size:20px;color:var(--muted)">/mo</span></div>
-        <div style="font-size:12px;color:var(--muted);margin-top:6px;">Ongoing execution once the audit maps the fixes</div>
+
+      <div class="tier tier-next">
+        <div class="tier-name">Step 2 · Fractional COO / Embedded Role</div>
+        <div class="tier-price">$12,000 <small>/mo</small></div>
+        <div class="tier-meta">After the audit maps the fixes</div>
+        <p>Ongoing execution of your roadmap, with someone who already knows exactly where everything breaks.</p>
+        <ul>
+          <li>Built on your audit findings</li>
+          <li>Your $5,000 audit fee credited in full</li>
+        </ul>
+        <a href="https://tidycal.com/quinitaw/discovery-call" class="btn-ghost" target="_blank" rel="noopener">Ask about Step 2</a>
       </div>
     </div>
 
-    <div class="price-card">
-      <div class="price-amount"><sup>$</sup>5,000</div>
-      <div class="price-duration">Flat fee · 2 weeks · 5 deliverables</div>
-      <ul class="price-includes">
-        <li>Systems Map — full operational picture</li>
-        <li>Data & Reporting Reality Check</li>
-        <li>Revenue Leak Analysis (with dollar estimates)</li>
-        <li>AI Readiness Score across 5 dimensions</li>
-        <li>30–60 Day Execution Plan</li>
-        <li>Final readout call + 2 weeks of async follow-up</li>
-      </ul>
-      <p style="font-size:14px;color:var(--white);background:rgba(140,82,255,0.1);border:1px solid var(--accent);padding:14px 18px;margin-bottom:24px;">The $5,000 audit fee is credited 100% toward your implementation or Fractional COO retainer if you move forward with us on execution.</p>
-      <a href="#cta" class="btn-primary" style="display:block;text-align:center">Book Your Audit</a>
-      <p class="price-note">Not sure if it's the right fit? <a href="https://tidycal.com/quinitaw/discovery-call" style="color:var(--accent);text-decoration:none;">Start with a free 20-minute discovery call.</a> Or <a href="/skill-gap-finder.html" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;">try the free Skill Gap Finder to see which Claude skills fit your tech stack →</a></p>
-    </div>
+    <p class="price-foot">Not sure it's the right fit? <a href="https://tidycal.com/quinitaw/discovery-call" target="_blank" rel="noopener">Start with a free 20-minute discovery call</a> or <a href="/skill-gap-finder.html" target="_blank" rel="noopener">try the free Skill Gap Finder</a>.</p>
   </div>
 </section>
 
 <!-- FAQ -->
-<section id="faq">
-  <div class="container">
-    <div class="section-label">Questions</div>
-    <h2>What people ask</h2>
+<section id="faq" class="surface-light">
+  <div class="container faq-wrap">
+    <div class="faq-side">
+      <div class="section-label">Questions</div>
+      <h2>What people ask</h2>
+      <p>Don't see your question? Ask it on a free 20-minute call.</p>
+      <a href="https://tidycal.com/quinitaw/discovery-call" target="_blank" rel="noopener">Book a discovery call →</a>
+    </div>
     <div class="faq-list">
-      <div class="faq-item">
-        <div class="faq-q">What if you don't find anything significant?</div>
+      <details class="faq-item" open>
+        <summary>What if you don't find anything significant?</summary>
         <div class="faq-a">I'll tell you that honestly. I'd rather deliver a "you're in better shape than most" report than manufacture problems that aren't there. But in 14+ years of working inside SMBs and enterprise ops, I've yet to find a business where everything was running cleanly. There's almost always more going on under the surface.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">Do you also implement the fixes?</div>
-        <div class="faq-a">The audit is the starting point — you own the roadmap and can take it to any team. If you want me to stay involved for implementation, we can discuss a follow-on engagement. Most clients move forward with me on either a project basis or an ongoing fractional systems role.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">What industries do you work with?</div>
-        <div class="faq-a">I work with $1M+ growing businesses and nonprofits across various industries. While their services differ, the operational headache is almost always the same: software that doesn't talk to each other, hours wasted on manual admin work, and reports leadership can't fully trust. Grounded in 14+ years of enterprise operations, data, and systems integration, I focus on fixing your backend foundation and optimizing the tools you already own—no matter what industry you're in.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">Why $5,000? That feels like a lot.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Do you also implement the fixes?</summary>
+        <div class="faq-a">Yes, if you want me to. Most clients move into implementation with me, either as a scoped project or through the Fractional COO / embedded role ($12,000/mo), and the $5,000 audit fee is credited 100% toward it. Either way, you own the roadmap outright and can take it to any team.</div>
+      </details>
+      <details class="faq-item">
+        <summary>What industries do you work with?</summary>
+        <div class="faq-a">I work with $1M+ growing businesses and nonprofits across various industries. While their services differ, the operational headache is almost always the same: software that doesn't talk to each other, hours wasted on manual admin work, and reports leadership can't fully trust. Grounded in 14+ years of enterprise operations, data, and systems integration, I focus on fixing your backend foundation and optimizing the tools you already own, no matter what industry you're in.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Why $5,000? That feels like a lot.</summary>
         <div class="faq-a">Consider what bad systems are costing you right now. Staff time on manual work. Leads falling through cracks. Decisions made on bad data. AI investments that went nowhere. In most audits, we find inefficiencies worth 10–100x the engagement cost. The audit is the cheapest part of this equation.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">How much of my team's time does this require?</div>
+      </details>
+      <details class="faq-item">
+        <summary>How much of my team's time does this require?</summary>
         <div class="faq-a">I'll need access to your tools and a couple of hours from key people in week one (usually you and one or two ops/admin leads). After that, most of the work happens on my end. You get a status check mid-week, and then we do the final readout together at the end of week two.</div>
-      </div>
+      </details>
     </div>
   </div>
 </section>
@@ -1107,26 +489,42 @@
 <section id="cta">
   <div class="container">
     <div class="section-label">Get Started</div>
-    <h2>Ready to see<br>what's actually<br>happening?</h2>
-    <p>Two weeks. Five deliverables. A clear picture of where you're losing time and money — and exactly how to fix it.</p>
-    <a href="https://tidycal.com/quinitaw/discovery-call" class="btn-primary" target="_blank" rel="noopener">Book an appointment</a>
-    <p style="margin-top:24px;font-family:'DM Mono',monospace;font-size:13px;">Not ready for a call? <a href="/skill-gap-finder.html" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline;text-underline-offset:4px;">Try the free Skill Gap Finder to see which Claude skills fit your tech stack →</a></p>
+    <h2>Ready to see<br>what's actually happening?</h2>
+    <p class="lead">Two weeks. Five deliverables. A clear picture of where you're losing time and money, and exactly how to fix it.</p>
+    <a href="https://tidycal.com/quinitaw/discovery-call" class="btn-primary btn-light" target="_blank" rel="noopener">Book a Free Discovery Call →</a>
+    <p class="cta-alt">Not ready for a call? <a href="/skill-gap-finder.html" target="_blank" rel="noopener">Try the free Skill Gap Finder →</a></p>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div>
-    <div class="nav-logo">QAMW<span style="color:var(--accent)">.</span></div>
-    <div style="font-size:12px;color:var(--muted);margin-top:4px;">Black-owned · Women-owned · Seattle, WA</div>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="nav-logo" href="/index.html">QAMW<span>.</span></a>
+        <p>Systems consulting that finds where your business leaks time and money, and fixes it with the tools you already own.</p>
+        <div class="tag">Black-owned · Women-owned · Seattle, WA</div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="/index.html">Systems Audit</a>
+        <a href="/nonprofit-consulting.html">Nonprofit Consulting</a>
+        <a href="/systems-integration-consulting.html">Systems Integration</a>
+        <a href="/nonprofit-technical-support.html">Tech Support</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="/about.html">About</a>
+        <a href="https://tidycal.com/quinitaw/discovery-call" target="_blank" rel="noopener">Free Discovery Call</a>
+        <a href="/skill-gap-finder.html" target="_blank" rel="noopener">Skill Gap Finder</a>
+        <a href="https://www.linkedin.com/in/quinita-whitfield" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 QAMW Consulting</span>
+      <span>Seattle, WA</span>
+    </div>
   </div>
-  <div style="display:flex;gap:24px;flex-wrap:wrap;">
-    <a href="/about.html">About</a>
-    <a href="/nonprofit-consulting.html">Nonprofit Consulting</a>
-    <a href="/nonprofit-technical-support.html">Tech Support</a>
-    <a href="/systems-integration-consulting.html">Systems Integration</a>
-  </div>
-  <span>© 2026 QAMW Consulting · <a href="https://www.linkedin.com/in/quinita-whitfield" target="_blank" rel="noopener">LinkedIn</a></span>
 </footer>
 
 </body>
