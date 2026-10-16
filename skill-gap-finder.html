@@ -257,6 +257,34 @@
   .capture-inner{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
   .capture-inner h3{font-size:clamp(1.5rem,3vw,2.1rem);color:var(--paper-text);max-width:34ch}
   .capture-inner > p.lede{color:var(--paper-muted);max-width:56ch}
+  .next-steps-container{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:32px}
+  .next-step-header{display:flex;flex-direction:column;gap:14px;max-width:640px}
+  .next-step-header h2{font-size:clamp(1.6rem,3.4vw,2.4rem);color:var(--paper-text)}
+  .next-step-header p{color:var(--paper-muted);font-size:1.05rem}
+  .options-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch}
+  @media (max-width:820px){.options-grid{grid-template-columns:1fr}}
+  .option-card{border-radius:var(--radius);padding:clamp(22px,3vw,32px);display:flex;flex-direction:column;gap:16px;min-width:0}
+  .option-card h3{font-size:1.35rem;line-height:1.25}
+  .option-card p{font-size:.95rem}
+  .card-tag{
+    align-self:flex-start;font-family:'Barlow Condensed',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    padding:5px 10px;border-radius:3px;
+  }
+  .primary-card{background:var(--panel);color:var(--ink);border:2px solid var(--accent);box-shadow:0 18px 50px -20px rgba(140,82,255,.55)}
+  .primary-card .card-tag{background:var(--accent);color:#fff}
+  .primary-card p{color:var(--ink-muted)}
+  .secondary-card{background:var(--bg-mid);color:var(--paper-text);border:1px solid var(--line-dark)}
+  .secondary-card .card-tag{border:1px solid var(--line-dark);color:var(--paper-muted)}
+  .secondary-card p{color:var(--paper-muted)}
+  .secondary-card em{color:var(--paper-text)}
+  .benefit-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+  .benefit-list li{position:relative;padding-left:26px;font-size:.93rem;font-weight:600;color:var(--ink)}
+  .benefit-list li::before{content:'✓';position:absolute;left:0;top:0;color:var(--good-onlight);font-weight:800}
+  .option-card .btn{display:block;text-align:center;text-decoration:none;margin-top:auto}
+  .subtext{font-size:.8rem;text-align:center}
+  .primary-card .subtext{color:var(--ink-muted);margin-top:-6px}
+  .secondary-card .subtext{color:var(--paper-muted)}
+  .secondary-card .capture-note{text-align:center}
   .tally-wrap{margin-top:4px;background:var(--bg-mid);border:1px solid var(--line-dark);border-radius:var(--radius);padding:6px;overflow:hidden}
   .capture-note{font-size:.85rem;color:var(--paper-muted)}
   .thankyou{border:1px solid var(--line-dark);background:var(--bg-mid);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;gap:8px}
@@ -398,22 +426,56 @@
         </div>
       </div>
 
+      <!-- NEXT STEP SECTION -->
       <div class="capture-band">
-        <div class="capture-inner">
-          <div class="eyebrow">NEXT STEP</div>
-          <h3>Want this turned into a setup plan?</h3>
-          <p class="lede">Leave your info and Quinita will follow up with your matched skills as a one-pager, plus which ones to set up first given your stack. No pitch attached — just the plan.</p>
-
-          <div id="tallyWrap" class="tally-wrap" hidden>
-            <iframe id="tallyFrame" data-tally-src="" loading="lazy" width="100%" height="410" frameborder="0" marginheight="0" marginwidth="0" title="Get my setup plan"></iframe>
+        <div class="next-steps-container">
+          <div class="next-step-header">
+            <div class="eyebrow">NEXT STEP</div>
+            <h2>Turn Your Skill Map Into an AI-Ready System</h2>
+            <p>You’ve identified the gaps—now decide how you want to bridge them.</p>
           </div>
 
-          <div id="tallyNotConfigured" class="thankyou" hidden>
-            <h4>Almost ready</h4>
-            <p>This page is built to submit straight to a Tally form — it just needs the form ID added (see the setup note at the top of the page source). Until then, use the direct link below.</p>
-          </div>
+          <div class="options-grid">
 
-          <p class="capture-note"><a id="mailtoFallback" href="#" style="color:var(--accent-lt)">Prefer email? Send your results to Quinita directly →</a></p>
+            <!-- OPTION A: DIRECT DISCOVERY CALL (High Intent) -->
+            <div class="option-card primary-card">
+              <span class="card-tag">RECOMMENDED FOR OPS LEADERS &amp; EXECUTIVES</span>
+              <h3>Option 1: Book a 20-Min AI Readiness Audit</h3>
+              <p>Want us to map these specific integrations directly into your stack? On this call, Quinita will review your matched skills, check your tool compatibility, and show you how to wire Claude into your accounting &amp; CRM without risking data mess.</p>
+
+              <ul class="benefit-list">
+                <li>Custom 1-Page Implementation Roadmap</li>
+                <li>Tool Security &amp; Permission Assessment</li>
+                <li>Clear scoping for a $5,000 full Systems Audit</li>
+              </ul>
+
+              <a href="https://tidycal.com/quinitaw/discovery-call" target="_blank" rel="noopener" class="btn btn-primary" id="bookCallBtn">
+                Book Your 20-Min Strategy Call →
+              </a>
+              <span class="subtext">Direct 1-on-1 session with Quinita</span>
+            </div>
+
+            <!-- OPTION B: WORKSHOP / ON-DEMAND BRIEFING (Nurture / Education) -->
+            <div class="option-card secondary-card">
+              <span class="card-tag">EXPLORING &amp; LEARNING</span>
+              <h3>Option 2: Get the Implementation Plan + Live Workshop</h3>
+              <p>Not ready for a call? Send your quiz matches to your inbox and get instant access to our 20-minute briefing: <em>“Wiring Claude &amp; Meta Muse into SMB &amp; Nonprofit Stacks.”</em></p>
+
+              <!-- Tally form embed: submits contact info plus quiz answers (hidden fields) -->
+              <div id="tallyWrap" class="tally-wrap" hidden>
+                <iframe id="tallyFrame" data-tally-src="" loading="lazy" width="100%" height="410" frameborder="0" marginheight="0" marginwidth="0" title="Send my plan and access the briefing"></iframe>
+              </div>
+
+              <div id="tallyNotConfigured" class="thankyou" hidden>
+                <h4>Almost ready</h4>
+                <p>This page is built to submit straight to a Tally form — it just needs the form ID added (see the setup note at the top of the page source). Until then, use the direct link below.</p>
+              </div>
+
+              <span class="subtext">Includes one-page PDF breakdown + workshop invite</span>
+              <p class="capture-note"><a id="mailtoFallback" href="#" style="color:var(--accent-lt)">Prefer email? Send your results to Quinita directly →</a></p>
+            </div>
+
+          </div>
 
           <div class="step-nav" style="position:static;background:none;padding:8px 0 0;">
             <div class="step-nav-inner" style="justify-content:flex-start">
@@ -789,6 +851,10 @@
     frame.removeAttribute("src");
     frame.setAttribute("data-tally-src","");
     showStep("intro");
+  });
+
+  $("bookCallBtn").addEventListener("click", function(){
+    if (typeof gtag === "function") gtag("event", "book_call_click", { source: "skill_gap_finder", org_type: state.orgType || "" });
   });
 
   /* ---------------- RESULTS ---------------- */
