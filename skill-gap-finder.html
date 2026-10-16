@@ -290,6 +290,7 @@
   .thankyou{border:1px solid var(--line-dark);background:var(--bg-mid);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;gap:8px}
   .thankyou h4{color:var(--paper-text);font-size:1.15rem}
   .thankyou p{color:var(--paper-muted);font-size:.92rem}
+  .thankyou .btn{align-self:flex-start;text-decoration:none;margin-top:6px}
 
   footer.site-footer{background:#0b0a10;border-top:1px solid var(--line-dark);padding:26px clamp(16px,6vw,44px);display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
   .foot-left{font-family:'Barlow Condensed',sans-serif;font-size:.74rem;letter-spacing:.06em;color:var(--paper-muted)}
@@ -459,11 +460,18 @@
             <div class="option-card secondary-card">
               <span class="card-tag">EXPLORING &amp; LEARNING</span>
               <h3>Option 2: Get the Implementation Plan + Live Workshop</h3>
-              <p>Not ready for a call? Send your quiz matches to your inbox and get instant access to our 20-minute briefing: <em>“Wiring Claude &amp; Meta Muse into SMB &amp; Nonprofit Stacks.”</em></p>
+              <p>Not ready for a call? Send Quinita your quiz matches and get instant access to the practical guide: <em>“Claude + Your Tech Stack,”</em> covering which workflows to turn on first and where Meta Muse fits.</p>
 
               <!-- Tally form embed: submits contact info plus quiz answers (hidden fields) -->
               <div id="tallyWrap" class="tally-wrap" hidden>
                 <iframe id="tallyFrame" data-tally-src="" loading="lazy" width="100%" height="410" frameborder="0" marginheight="0" marginwidth="0" title="Send my plan and access the briefing"></iframe>
+              </div>
+
+              <!-- Shown once the Tally form reports a submission -->
+              <div id="guideUnlocked" class="thankyou" hidden>
+                <h4>You're in. Your guide is ready.</h4>
+                <p>Quinita has your quiz matches and will follow up personally. Start with the guide now.</p>
+                <a href="/claude-tech-stack-guide.html" target="_blank" rel="noopener" class="btn btn-primary" id="openGuideBtn">Open the guide →</a>
               </div>
 
               <div id="tallyNotConfigured" class="thankyou" hidden>
@@ -471,7 +479,7 @@
                 <p>This page is built to submit straight to a Tally form — it just needs the form ID added (see the setup note at the top of the page source). Until then, use the direct link below.</p>
               </div>
 
-              <span class="subtext">Includes one-page PDF breakdown + workshop invite</span>
+              <span class="subtext">The guide opens right after you submit</span>
               <p class="capture-note"><a id="mailtoFallback" href="#" style="color:var(--accent-lt)">Prefer email? Send your results to Quinita directly →</a></p>
             </div>
 
@@ -850,7 +858,19 @@
     var frame = $("tallyFrame");
     frame.removeAttribute("src");
     frame.setAttribute("data-tally-src","");
+    $("guideUnlocked").hidden = true;
     showStep("intro");
+  });
+
+  // Tally's embed posts a message to this page when the form is submitted
+  window.addEventListener("message", function(e){
+    if (typeof e.origin !== "string" || e.origin.indexOf("tally.so") === -1) return;
+    var data = e.data;
+    if (typeof data === "string") { try { data = JSON.parse(data); } catch(err) { return; } }
+    if (!data || data.event !== "Tally.FormSubmitted") return;
+    $("tallyWrap").hidden = true;
+    $("guideUnlocked").hidden = false;
+    if (typeof gtag === "function") gtag("event", "guide_signup", { source: "skill_gap_finder", org_type: state.orgType || "" });
   });
 
   $("bookCallBtn").addEventListener("click", function(){
