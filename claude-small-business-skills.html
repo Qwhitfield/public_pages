@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X8MGSYVPNG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-X8MGSYVPNG');
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Which Claude Skills Fit You? | QAMW Consulting</title>
+<meta name="description" content="Claude for Small Business added 43 skills and 27 integrations, including QuickBooks and Gusto. The free Skill Gap Finder shows which ones fit your business in about 90 seconds.">
+<link rel="canonical" href="https://www.qamwconsulting.com/claude-small-business-skills.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: alternating dark/light bands. Hero stat grid, self-ID cards, journey, sample result, question preview, FAQ, bridge to the Systems Reality Check. */
+:root{
+  color-scheme: dark;
+  --bg-dark:#0F0D12;
+  --bg-mid:#1a1620;
+  --bg-card:#1d1826;
+  --bg-light:#f4f2f8;
+  --paper:#ffffff;
+  --accent:#8C52FF;
+  --accent-lt:#A370FF;
+  --accent-ink:#6B3FD1;
+  --accent-dim:rgba(140,82,255,.28);
+  --text-primary:#f1eef7;
+  --text-muted:#a89bc4;
+  --ink:#17141d;
+  --ink-muted:#635d70;
+  --line-dark:#332d45;
+  --line-strong:#4a4160;
+  --line-light:#e2ddec;
+  --display:'Plus Jakarta Sans', 'Segoe UI', Helvetica, Arial, sans-serif;
+  --label:'Barlow Condensed', 'Arial Narrow', 'Roboto Condensed', sans-serif;
+  --gutter:max(clamp(16px,4vw,52px), env(safe-area-inset-left,0px));
+  --gutter-r:max(clamp(16px,4vw,52px), env(safe-area-inset-right,0px));
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--bg-dark)}
+body{margin:0;background:var(--bg-dark);color:var(--text-primary);font-family:var(--display);font-weight:400;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg-dark)}
+a{color:inherit}
+img{max-width:100%}
+::selection{background:var(--accent-dim)}
+h1,h2,h3{font-family:var(--display);font-weight:800;letter-spacing:-.025em;line-height:1.08;margin:0;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-left:var(--gutter);padding-right:var(--gutter-r)}
+section{padding-block:clamp(64px,9vw,104px)}
+.dark{background:var(--bg-dark);color:var(--text-primary)}
+.mid{background:var(--bg-mid);color:var(--text-primary)}
+.light{background:var(--bg-light);color:var(--ink)}
+
+/* Eyebrows */
+.eyebrow{display:flex;align-items:center;gap:10px;font-family:var(--label);font-size:.78rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-lt);margin-bottom:20px}
+.eyebrow::before{content:"";display:block;width:24px;height:1px;background:currentColor;flex:none}
+.light .eyebrow{color:var(--accent-ink)}
+.h2{font-size:clamp(2rem,3.6vw,3rem);max-width:22ch}
+.lede{font-size:1.1rem;max-width:60ch;margin-top:20px}
+.dark .lede,.mid .lede{color:var(--text-muted)}
+.light .lede{color:var(--ink-muted)}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--label);font-weight:700;font-size:1rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:16px 26px;border-radius:4px;border:1px solid transparent;transition:background .2s,color .2s,border-color .2s,transform .2s}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-lt);transform:translateY(-1px)}
+.btn-ghost{border-color:var(--line-strong);color:var(--text-primary)}
+.btn-ghost:hover{border-color:var(--accent-lt);color:var(--accent-lt)}
+.light .btn-ghost{border-color:var(--line-light);color:var(--ink)}
+.light .btn-ghost:hover{border-color:var(--accent-ink);color:var(--accent-ink)}
+.btn:focus-visible,summary:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.btn-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+
+/* Nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(15,13,18,.94);border-bottom:1px solid var(--line-dark);backdrop-filter:blur(8px)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
+.crumb{font-family:var(--label);font-weight:700;letter-spacing:.16em;text-transform:uppercase;font-size:.85rem;display:flex;gap:10px;align-items:center;text-decoration:none}
+.crumb b{color:var(--accent-lt)}
+.crumb span{color:var(--text-muted)}
+.nav .btn{padding:10px 18px;font-size:.85rem}
+
+/* Hero */
+.hero{padding-block:clamp(56px,8vw,96px) clamp(64px,8vw,100px)}
+.hero .wrap{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(36px,5vw,72px);align-items:center}
+.hero-copy{min-width:0}
+.hero h1{font-size:clamp(2.6rem,5.2vw,4.6rem)}
+.hero h1 em{font-style:normal;color:var(--accent-lt)}
+.hero .lede{font-size:1.15rem;color:var(--text-muted)}
+.micro{margin-top:18px;font-family:var(--label);letter-spacing:.14em;text-transform:uppercase;font-size:.8rem;color:var(--text-muted)}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--line-dark);border:1px solid var(--line-dark)}
+.stat{background:var(--bg-mid);padding:28px 24px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between;gap:16px}
+.stat.accent{background:var(--accent);color:#fff}
+.stat .num{font-weight:800;font-size:clamp(2.6rem,4vw,3.6rem);letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.stat .num small{font-size:.45em;letter-spacing:-.01em;margin-left:4px}
+.stat .lbl{font-family:var(--label);font-weight:600;letter-spacing:.1em;text-transform:uppercase;font-size:.85rem;line-height:1.3;color:var(--text-muted)}
+.stat.accent .lbl{color:rgba(255,255,255,.88)}
+@media (prefers-reduced-motion:no-preference){
+  .rise{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+  .rise.d1{animation-delay:.08s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.24s}
+  @keyframes rise{from{transform:translateY(14px)}to{transform:none}}
+}
+
+/* Familiar cards */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line-light);border:1px solid var(--line-light);margin-top:48px}
+.card{position:relative;background:var(--paper);padding:30px 28px 34px;display:flex;flex-direction:column;gap:22px;transition:background .25s,color .25s;min-width:0}
+.card::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--accent);transition:width .35s ease}
+.card:hover{background:var(--bg-dark);color:var(--text-primary)}
+.card:hover::after{width:100%}
+.card q{quotes:none;font-size:1.12rem;font-weight:600;line-height:1.45;letter-spacing:-.01em}
+.tag{margin-top:auto;font-family:var(--label);font-weight:700;letter-spacing:.16em;text-transform:uppercase;font-size:.78rem;color:var(--ink-muted);transition:color .25s}
+.card:hover .tag{color:var(--accent-lt)}
+.after-cards{margin-top:36px;display:flex;flex-wrap:wrap;align-items:center;gap:18px 28px;font-size:1.1rem;font-weight:600}
+.text-link{font-family:var(--label);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:.95rem;color:var(--accent-ink);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px}
+.dark .text-link,.mid .text-link{color:var(--accent-lt)}
+
+/* Journey */
+.journey{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--line-dark);border:1px solid var(--line-dark);margin-top:52px}
+.step{background:var(--bg-dark);padding:30px 26px 34px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.step .n{font-family:var(--label);font-weight:700;font-size:.85rem;letter-spacing:.2em;color:var(--accent-lt)}
+.step h3{font-size:1.35rem;letter-spacing:-.02em}
+.step p{color:var(--text-muted);font-size:.98rem}
+.step:last-child{background:var(--bg-mid);box-shadow:inset 0 3px 0 var(--accent)}
+.search{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.search span{font-size:.92rem;color:var(--text-primary);background:var(--bg-card);border:1px solid var(--line-dark);border-radius:4px;padding:8px 12px}
+
+/* Why it helps */
+.why{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(36px,5vw,72px);align-items:start;margin-top:52px}
+.points{display:flex;flex-direction:column;gap:34px;min-width:0}
+.point h3{font-size:1.3rem;letter-spacing:-.02em;margin-bottom:8px}
+.point p{color:var(--ink-muted);max-width:52ch}
+.point{border-top:1px solid var(--line-light);padding-top:22px}
+.sample{background:var(--bg-dark);color:var(--text-primary);border-radius:4px;overflow:hidden;min-width:0}
+.sample-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 22px;border-bottom:1px solid var(--line-dark);font-family:var(--label);font-weight:700;letter-spacing:.18em;text-transform:uppercase;font-size:.75rem;color:var(--text-muted)}
+.sample-head b{color:var(--accent-lt)}
+.sample-body{padding:24px 22px 26px;display:flex;flex-direction:column;gap:18px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:var(--label);font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:.8rem;padding:6px 10px;border:1px solid var(--line-strong);border-radius:3px;color:var(--text-primary)}
+.chip.on{border-color:var(--accent-lt);color:var(--accent-lt)}
+.said{font-size:.92rem;color:var(--text-muted)}
+.said strong{color:var(--text-primary);font-weight:600}
+.match{border:1px solid var(--line-dark);border-radius:4px;padding:16px 18px;display:flex;flex-direction:column;gap:6px;background:var(--bg-mid)}
+.match-top{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}
+.match h4{margin:0;font-size:1.05rem;font-weight:700}
+.cad{font-family:var(--label);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:.72rem;color:var(--accent-lt)}
+.match p{font-size:.9rem;color:var(--text-muted);line-height:1.5}
+.match.also{border-style:dashed;background:transparent}
+.sample-note{font-size:.8rem;color:var(--text-muted);padding:0 22px 20px}
+
+/* Question preview */
+.qs{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line-dark);border:1px solid var(--line-dark);margin-top:52px}
+.q{background:var(--bg-card);padding:30px 26px 32px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.q .n{font-family:var(--label);font-weight:700;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent-lt)}
+.q h3{font-size:1.3rem;letter-spacing:-.02em}
+.q p{color:var(--text-muted);font-size:.95rem}
+.q .chip.more{border-style:dashed;color:var(--text-muted)}
+
+/* FAQ */
+.faq{margin-top:48px;border-top:1px solid var(--line-light)}
+.faq details{border-bottom:1px solid var(--line-light)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:24px 0;font-weight:700;font-size:clamp(1.05rem,1.6vw,1.25rem);letter-spacing:-.015em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--label);font-weight:600;font-size:1.8rem;line-height:1;color:var(--accent-ink);flex:none;transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq .ans{padding:0 0 26px;max-width:68ch;color:var(--ink-muted);display:flex;flex-direction:column;gap:12px}
+.faq-grid{display:grid;grid-template-columns:.8fr 1.6fr;gap:clamp(32px,5vw,72px);align-items:start}
+.faq-side{position:sticky;top:calc(env(safe-area-inset-top,0px) + 100px);min-width:0}
+.faq-side .faq{margin-top:0}
+
+/* Bridge */
+.bridge .wrap{display:grid;grid-template-columns:1.3fr 1fr;gap:clamp(36px,5vw,72px);align-items:center}
+.bridge-copy{min-width:0;display:flex;flex-direction:column;gap:18px}
+.bridge-copy p{color:var(--text-muted);max-width:58ch}
+.bridge-copy p strong{color:var(--text-primary);font-weight:600}
+.proof{border:1px solid var(--line-dark);background:var(--bg-mid);border-top:3px solid var(--accent)}
+.proof-nums{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--line-dark)}
+.proof-nums div{background:var(--bg-mid);padding:26px 22px}
+.proof-nums .num{font-weight:800;font-size:3rem;letter-spacing:-.04em;line-height:1}
+.proof-nums .lbl{font-family:var(--label);font-weight:600;letter-spacing:.1em;text-transform:uppercase;font-size:.8rem;color:var(--text-muted);margin-top:8px}
+.proof-txt{padding:22px;border-top:1px solid var(--line-dark);font-size:.95rem;color:var(--text-muted)}
+.proof-txt b{display:block;font-family:var(--label);letter-spacing:.16em;text-transform:uppercase;font-size:.78rem;color:var(--accent-lt);margin-bottom:8px}
+
+/* Final CTA */
+.final{text-align:left}
+.final .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:32px}
+.final h2{font-size:clamp(2rem,4vw,3.4rem);max-width:18ch}
+
+/* Footer */
+footer{background:#0b0a10;border-top:1px solid var(--line-dark);color:var(--text-muted);padding-block:40px calc(40px + env(safe-area-inset-bottom,0px));font-size:.85rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px 40px}
+footer .credit{font-family:var(--label);font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--text-primary)}
+footer p{max-width:60ch;color:#7a7088}
+
+@media (max-width:900px){
+  .hero .wrap,.why,.bridge .wrap,.faq-grid{grid-template-columns:1fr}
+  .cards,.qs{grid-template-columns:1fr}
+  .journey{grid-template-columns:1fr 1fr}
+  .faq-side{position:static}
+  .nav .crumb span{display:none}
+}
+@media (max-width:520px){
+  .journey{grid-template-columns:1fr}
+  .stat{min-height:124px;padding:22px 18px}
+  .btn{width:100%;justify-content:center}
+  .nav .btn{width:auto}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="crumb" href="https://www.qamwconsulting.com/"><b>QAMW</b><span>/ Skill Gap Finder</span></a>
+    <a class="btn btn-primary" href="https://www.qamwconsulting.com/skill-gap-finder.html">Find my skills &rarr;</a>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero dark">
+  <div class="wrap">
+    <div class="hero-copy">
+      <div class="eyebrow rise">Claude for Small Business &middot; Sept 15, 2026 release</div>
+      <h1 class="rise d1">You went looking for an AI fix. You found <em>43</em> of them.</h1>
+      <p class="lede rise d2">Claude now plugs into QuickBooks, Gusto, Stripe, HubSpot, Shopify and more. Most owners only need a handful of those skills. The Skill Gap Finder asks three questions and shows you which ones fit the way you already work.</p>
+      <div class="btn-row rise d3">
+        <a class="btn btn-primary" href="https://www.qamwconsulting.com/skill-gap-finder.html">Find my skills &rarr;</a>
+        <a class="btn btn-ghost" href="#questions">Read the common questions</a>
+      </div>
+      <p class="micro rise d3">Free &middot; About 90 seconds &middot; Results on screen right away</p>
+    </div>
+    <div class="stats rise d2" aria-label="The release at a glance">
+      <div class="stat accent"><div class="num">43</div><div class="lbl">New skills in the release</div></div>
+      <div class="stat"><div class="num">27</div><div class="lbl">Integrations, including QuickBooks and Gusto</div></div>
+      <div class="stat"><div class="num">3</div><div class="lbl">Questions in the finder</div></div>
+      <div class="stat"><div class="num">90<small>sec</small></div><div class="lbl">To your curated list</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SOUND FAMILIAR -->
+<section class="light" id="familiar">
+  <div class="wrap">
+    <div class="eyebrow">Who this is for</div>
+    <h2 class="h2">You run a real business on tools that don't talk to each other.</h2>
+    <p class="lede">You're past the duct tape stage. You have a team, a process, and a stack you pay for every month. Then a week like this happens.</p>
+    <div class="cards">
+      <div class="card"><q>It's Friday. Someone exports QuickBooks to Excel so you can see where cash stands.</q><span class="tag">QuickBooks &middot; Excel</span></div>
+      <div class="card"><q>Payroll lives in Gusto. Invoices live in QuickBooks. Jobs live somewhere else. Nobody sees the whole picture.</q><span class="tag">Gusto &middot; QuickBooks &middot; Job software</span></div>
+      <div class="card"><q>You pasted a spreadsheet into ChatGPT. The answer sounded sure of itself. The numbers were wrong.</q><span class="tag">ChatGPT &middot; Spreadsheets</span></div>
+      <div class="card"><q>Closing the month takes a week. Your bookkeeper chases the same missing receipts every time.</q><span class="tag">Month-end close</span></div>
+      <div class="card"><q>You bought a tool last year to fix this. Now you have one more tool.</q><span class="tag">The stack keeps growing</span></div>
+      <div class="card"><q>Your ops manager is the glue. When they take a week off, the reports stop.</q><span class="tag">Reporting</span></div>
+    </div>
+    <div class="after-cards">
+      <span>Two or more of these sound like your week? The finder was made for you.</span>
+      <a class="text-link" href="https://www.qamwconsulting.com/skill-gap-finder.html">Start the finder &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW YOU GOT HERE -->
+<section class="dark" id="path">
+  <div class="wrap">
+    <div class="eyebrow">How most owners end up here</div>
+    <h2 class="h2">Nobody wakes up wanting AI. They want month-end to stop eating a week.</h2>
+    <div class="journey">
+      <div class="step"><span class="n">01</span><h3>Something broke.</h3><p>Cash got tight. A report came out wrong. A payroll run took three tries.</p></div>
+      <div class="step"><span class="n">02</span><h3>You searched.</h3>
+        <div class="search" aria-label="Typical searches">
+          <span>AI for QuickBooks</span>
+          <span>connect Gusto to ChatGPT</span>
+          <span>can AI do my bookkeeping</span>
+        </div>
+      </div>
+      <div class="step"><span class="n">03</span><h3>You got buried.</h3><p>Fifty tools, each promising to fix everything. Then Anthropic shipped 43 new skills in a single day.</p></div>
+      <div class="step"><span class="n">04</span><h3>You landed here.</h3><p>With one real question. Which of these actually fits my business?</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY IT HELPS -->
+<section class="light" id="why">
+  <div class="wrap">
+    <div class="eyebrow">Why the finder helps</div>
+    <h2 class="h2">It starts with what's slowing you down. Then it checks your stack.</h2>
+    <div class="why">
+      <div class="points">
+        <div class="point"><h3>Your pain picks the skills.</h3><p>The last question asks what actually slows you down. That decides your matches. Your tool list only tells the finder how each skill would plug in.</p></div>
+        <div class="point"><h3>Tools you own come first.</h3><p>Every match works with software you already pay for. Run mostly on spreadsheets? Nearly every skill also works from an upload or a pasted sheet.</p></div>
+        <div class="point"><h3>Sorted by how often you'd use it.</h3><p>Weekly, monthly, every pay period. You see what becomes a routine and what you'd touch once a year. Each match tells you why it showed up.</p></div>
+      </div>
+      <div class="sample" aria-label="Sample result">
+        <div class="sample-head"><span>Your curated map</span><b>Sample result</b></div>
+        <div class="sample-body">
+          <div class="chips"><span class="chip on">QuickBooks</span><span class="chip on">Gusto</span></div>
+          <p class="said">Picked: <strong>&ldquo;Closing the books each month is a slog&rdquo;</strong></p>
+          <div class="match">
+            <div class="match-top"><h4>Month-End Prep</h4><span class="cad">Monthly &middot; Books close</span></div>
+            <p>Reconciles the ledger against every payment processor, flags duplicates and missing receipts, and writes a plain-English P&amp;L summary.</p>
+          </div>
+          <div class="match">
+            <div class="match-top"><h4>Close the Month</h4><span class="cad">Monthly &middot; Books close</span></div>
+            <p>The full close, plus a fresh 30/60/90 day cash forecast and a close packet for your accountant.</p>
+          </div>
+          <div class="match also">
+            <div class="match-top"><h4>Plan Payroll</h4><span class="cad">Every pay period</span></div>
+            <p>Also worth a look. Forecasts cash across the payroll window and stages the run. It never presses the button for you.</p>
+          </div>
+        </div>
+        <p class="sample-note">Example built from one real run of the finder. Your list will match your own answers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE THREE QUESTIONS -->
+<section class="mid" id="inside">
+  <div class="wrap">
+    <div class="eyebrow">What's inside</div>
+    <h2 class="h2">Three questions. No jargon.</h2>
+    <div class="qs">
+      <div class="q"><span class="n">Step 1 of 3</span><h3>How would you describe your organization?</h3><p>Small business or nonprofit. It tailors a couple of the questions that come next.</p>
+        <div class="chips"><span class="chip">Small business</span><span class="chip">Nonprofit</span></div></div>
+      <div class="q"><span class="n">Step 2 of 3</span><h3>What's already in your stack?</h3><p>Check what you use today. Skip it if you mostly live in spreadsheets.</p>
+        <div class="chips"><span class="chip">QuickBooks</span><span class="chip">Xero</span><span class="chip">Gusto</span><span class="chip">Stripe</span><span class="chip">Square</span><span class="chip">HubSpot</span><span class="chip">Shopify</span><span class="chip">Google Drive</span><span class="chip more">+ 24 more</span></div></div>
+      <div class="q"><span class="n">Step 3 of 3</span><h3>What's actually slowing you down?</h3><p>Pick as many as you like. This is what decides your matches.</p>
+        <div class="chips"><span class="chip">Cash flow keeps me up at night</span><span class="chip">Payroll is stressful to run</span><span class="chip">The same report eats half a day</span><span class="chip">Leads go cold</span><span class="chip more">+ 19 more</span></div></div>
+    </div>
+    <div class="btn-row"><a class="btn btn-primary" href="https://www.qamwconsulting.com/skill-gap-finder.html">Answer the three questions &rarr;</a></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="light" id="questions">
+  <div class="wrap faq-grid">
+    <div class="faq-side">
+      <div class="eyebrow">Before you start</div>
+      <h2 class="h2">What owners ask on the way in.</h2>
+      <p class="lede">Most people find the finder while trying to get AI to work with their books, payroll, or reports. Here's what they want to know first.</p>
+    </div>
+    <div class="faq">
+      <details open><summary>Can Claude actually connect to my QuickBooks and Gusto?</summary><div class="ans"><p>Yes. The September 15 release added 27 integrations. QuickBooks, Xero, Gusto, Stripe, Square, Shopify, and HubSpot are on the list. The finder shows which skills plug into the tools you check.</p></div></details>
+      <details><summary>Will it change my books or run payroll without me?</summary><div class="ans"><p>The skills in this release are built to prepare the work and wait for your yes. Plan Payroll stages the run and never presses the button. AP Processor stages bill entries for your approval. You stay the one who signs off.</p></div></details>
+      <details><summary>I already tried ChatGPT with my spreadsheets. Why is this different?</summary><div class="ans"><p>A pasted export is a snapshot with no context. These skills read from the system itself and follow the same routine every time.</p><p>One catch. AI is only as right as the data under it. Messy books go in, confident messy answers come out.</p></div></details>
+      <details><summary>My tools don't agree with each other. Will AI fix that?</summary><div class="ans"><p>No. AI reads what's there. When QuickBooks says one number and your job software says another, a summary will just pick one. Someone has to find that gap first. That's the work Quinita does in a Systems Reality Check.</p></div></details>
+      <details><summary>Do I need to be technical to use any of this?</summary><div class="ans"><p>No. You ask for things in plain words, like &ldquo;close the month&rdquo; or &ldquo;give me my Monday brief.&rdquo; The finder itself is three multiple choice questions.</p></div></details>
+      <details><summary>We run mostly on spreadsheets. Is this still for us?</summary><div class="ans"><p>Yes. Skip the tool list in step 2. Nearly every skill works from an upload or a pasted sheet.</p></div></details>
+      <details><summary>Do I have to buy new software?</summary><div class="ans"><p>No. The finder only matches skills to what you already have. Getting more out of the tools you own comes first. Running the skills does need Claude itself.</p></div></details>
+      <details><summary>We're a nonprofit. Does this apply to us?</summary><div class="ans"><p>Yes. Pick nonprofit in step 1. A few questions shift to fit donors, grants, and programs.</p></div></details>
+      <details><summary>What happens after I see my results?</summary><div class="ans"><p>Your list shows up on screen right away. From there you pick your next step. Book a 20-minute AI Readiness Audit with Quinita, or send your matches to your inbox and get the implementation plan plus a 20-minute workshop briefing.</p></div></details>
+      <details><summary>Is this an official Anthropic tool?</summary><div class="ans"><p>No. QAMW Consulting built it as an independent guide to Anthropic's public September 15, 2026 announcement. It is not affiliated with or endorsed by Anthropic.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- BRIDGE -->
+<section class="dark bridge" id="beyond">
+  <div class="wrap">
+    <div class="bridge-copy">
+      <div class="eyebrow">When the skill isn't the problem</div>
+      <h2 class="h2">Some gaps live between your tools.</h2>
+      <p>The finder tells you which skills fit. It can't tell you whether QuickBooks, Gusto, and your job software agree on the numbers. In a lot of growing companies, they don't. Automating on top of that moves the mess faster.</p>
+      <p><strong>Quinita Whitfield</strong> has spent 14 years in business intelligence and systems work. Her <strong>Systems Reality Check</strong> is a 14-day, ground-level diagnostic. It answers two questions. What is actually broken? In what order should you fix it?</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="https://tidycal.com/quinitaw/discovery-call" target="_blank" rel="noopener" id="bookCallBtn">Book a discovery call &rarr;</a>
+        <a class="btn btn-ghost" href="https://www.qamwconsulting.com/skill-gap-finder.html">Take the finder first</a>
+      </div>
+    </div>
+    <div class="proof">
+      <div class="proof-nums">
+        <div><div class="num">7</div><div class="lbl">Disconnected tools</div></div>
+        <div><div class="num">0</div><div class="lbl">New software bought</div></div>
+      </div>
+      <p class="proof-txt"><b>Case study &middot; Beehaven</b>A field services company ran seven tools that didn't talk. Quinita built one clear view on what they already owned and talked them out of a costly ERP purchase.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="light final">
+  <div class="wrap">
+    <h2>Three questions. About 90 seconds. A short list you'll actually use.</h2>
+    <a class="btn btn-primary" href="https://www.qamwconsulting.com/skill-gap-finder.html">Find my skills &rarr;</a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="credit">Site by QAMW Consulting</span>
+    <p>Independent guide built off Anthropic's public Sept 15, 2026 Claude for Small Business announcement. Not an official Anthropic product, and not affiliated with or endorsed by Anthropic.</p>
+  </div>
+</footer>
+
+<script>
+  // Track which CTA sends people into the quiz vs. straight to booking
+  document.querySelectorAll('a[href*="skill-gap-finder.html"]').forEach(function(a, i){
+    a.addEventListener('click', function(){
+      if (typeof gtag === 'function') gtag('event', 'start_quiz_click', { source: 'skills_landing', position: i + 1 });
+    });
+  });
+  var book = document.getElementById('bookCallBtn');
+  if (book) book.addEventListener('click', function(){
+    if (typeof gtag === 'function') gtag('event', 'book_call_click', { source: 'skills_landing' });
+  });
+</script>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Can Claude actually connect to my QuickBooks and Gusto?","acceptedAnswer":{"@type":"Answer","text":"Yes. The September 15 release added 27 integrations. QuickBooks, Xero, Gusto, Stripe, Square, Shopify, and HubSpot are on the list. The finder shows which skills plug into the tools you check."}},
+{"@type":"Question","name":"Will it change my books or run payroll without me?","acceptedAnswer":{"@type":"Answer","text":"The skills in this release are built to prepare the work and wait for your yes. Plan Payroll stages the run and never presses the button. AP Processor stages bill entries for your approval."}},
+{"@type":"Question","name":"I already tried ChatGPT with my spreadsheets. Why is this different?","acceptedAnswer":{"@type":"Answer","text":"A pasted export is a snapshot with no context. These skills read from the system itself and follow the same routine every time. AI is only as right as the data under it."}},
+{"@type":"Question","name":"My tools don't agree with each other. Will AI fix that?","acceptedAnswer":{"@type":"Answer","text":"No. AI reads what's there. Someone has to find the gap between systems first. That's the work Quinita does in a Systems Reality Check."}},
+{"@type":"Question","name":"We run mostly on spreadsheets. Is this still for us?","acceptedAnswer":{"@type":"Answer","text":"Yes. Nearly every skill works from an upload or a pasted sheet."}},
+{"@type":"Question","name":"Is this an official Anthropic tool?","acceptedAnswer":{"@type":"Answer","text":"No. QAMW Consulting built it as an independent guide to Anthropic's public September 15, 2026 announcement. It is not affiliated with or endorsed by Anthropic."}}
+]}
+</script>
+
+</body>
+</html>
