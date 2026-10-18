@@ -12,6 +12,9 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>Nonprofit Tech Support Retainers | QAMW Consulting</title>
 <meta name="description" content="Ongoing CRM, reporting, and integration support for nonprofits, from $1,500/month. A technical partner who knows your systems, without a full-time hire.">
 <link rel="canonical" href="https://www.qamwconsulting.com/nonprofit-technical-support.html">
@@ -105,183 +108,72 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --black: #0a0a0a; --off-black: #111111; --dark: #1a1a1a; --mid: #2a2a2a;
-    --border: #2f2f2f; --muted: #666; --body: #b8b8b8; --white: #f2f0eb;
-    --accent: #8c52ff; --accent-dim: #7340d4; --accent-soft: rgba(140,82,255,0.1);
-    --green: #47c47e; --red: #e85c47;
-  }
-  html { scroll-behavior: smooth; }
-  body { background: var(--black); color: var(--body); font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 1.7; overflow-x: hidden; }
-  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E"); pointer-events: none; z-index: 999; opacity: 0.4; }
-
-  .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
-  .container-narrow { max-width: 680px; margin: 0 auto; padding: 0 24px; }
-
- /* NAV */
-  nav {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(10,10,10,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    padding: 16px 24px;
-    display: flex; justify-content: space-between; align-items: center;
-  }
- .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.08em; color: var(--white); text-decoration: none; }
-  .nav-logo span { color: var(--accent); }
-.nav-links { display: flex; gap: 28px; list-style: none; flex: 1; justify-content: center; }
-  .nav-links a { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--white); }
-  .nav-cta { background: var(--accent); color: var(--white); font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.05em; text-decoration: none; padding: 10px 20px; transition: background 0.2s; }
-  .nav-cta:hover { background: var(--accent-dim); }
-
-
-  .breadcrumb { border-bottom: 1px solid var(--border); padding: 12px 24px; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); }
-  .breadcrumb a { color: var(--accent); text-decoration: none; }
-  .breadcrumb a:hover { text-decoration: underline; }
-
-  /* HEADER — two column editorial */
-  .page-header { padding: 72px 0 0; border-bottom: 1px solid var(--border); }
-  .header-grid { display: grid; grid-template-columns: 1fr 340px; gap: 60px; align-items: start; padding-bottom: 64px; }
-  .page-kicker { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
-  .page-kicker::after { content: ''; display: block; width: 48px; height: 1px; background: var(--accent); }
-  .page-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(44px, 7vw, 76px); line-height: 0.95; letter-spacing: 0.01em; color: var(--white); margin-bottom: 24px; }
-  .page-title em { font-style: normal; color: var(--accent); }
-  .page-deck { font-size: 18px; font-weight: 300; color: var(--body); line-height: 1.6; }
-
-  /* SIDEBAR CARD */
-  .sidebar-card { border: 1px solid var(--border); background: var(--off-black); padding: 28px 24px; position: sticky; top: 88px; }
-  .sidebar-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
-  .sidebar-item { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 14px; color: var(--body); display: flex; gap: 10px; }
-  .sidebar-item:last-of-type { border-bottom: none; }
-  .sidebar-item::before { content: '→'; color: var(--accent); font-family: 'DM Mono', monospace; font-size: 11px; flex-shrink: 0; margin-top: 2px; }
-  .sidebar-cta { margin-top: 20px; display: block; background: var(--accent); color: var(--white); text-align: center; padding: 14px; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; text-decoration: none; transition: background 0.2s; }
-  .sidebar-cta:hover { background: var(--accent-dim); }
-  .ownership-badge { display: flex; align-items: center; gap: 8px; margin-top: 16px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
-  .ownership-badge span { color: var(--accent); }
-
-  /* ARTICLE SECTIONS */
-  .article-section { padding: 72px 0; border-bottom: 1px solid var(--border); }
-  .article-section:last-of-type { border-bottom: none; }
-  .section-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
-
-  h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px, 5vw, 52px); line-height: 1.0; color: var(--white); letter-spacing: 0.02em; margin-bottom: 24px; }
-  h3 { font-family: 'DM Sans', sans-serif; font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 12px; margin-top: 40px; }
-  h3:first-child { margin-top: 0; }
-
-  .prose p { margin-bottom: 20px; }
-  .prose p:last-child { margin-bottom: 0; }
-  .prose strong { color: var(--white); font-weight: 500; }
-
-  /* SCENARIO LAYOUT — numbered situations */
-  .scenario-list { display: flex; flex-direction: column; gap: 2px; margin-top: 28px; }
-  .scenario {
-    display: grid; grid-template-columns: 60px 1fr;
-    background: var(--off-black); border: 1px solid var(--border);
-    transition: border-color 0.2s;
-  }
-  .scenario:hover { border-color: var(--accent); }
-  .scenario-num {
-    display: flex; align-items: flex-start; justify-content: center;
-    padding: 28px 0 28px;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 36px; line-height: 1;
-    color: var(--border);
-    border-right: 1px solid var(--border);
-    transition: color 0.2s;
-  }
-  .scenario:hover .scenario-num { color: var(--accent); }
-  .scenario-body { padding: 24px 28px; }
-  .scenario-title { font-weight: 700; font-size: 16px; color: var(--white); margin-bottom: 8px; }
-  .scenario-desc { font-size: 14px; color: var(--muted); line-height: 1.65; }
-  .scenario-tag { display: inline-block; margin-top: 10px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); background: var(--accent-soft); padding: 3px 8px; }
-
-  /* PRICING TIERS */
-  .tier-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); margin-top: 36px; }
-  .tier-card { background: var(--off-black); padding: 36px 32px; }
-  .tier-card.featured { background: var(--dark); border: 1px solid var(--accent); position: relative; }
-  .tier-badge { position: absolute; top: -1px; left: 50%; transform: translateX(-50%); background: var(--accent); color: var(--white); font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; padding: 4px 12px; white-space: nowrap; }
-  .tier-name { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
-  .tier-price { font-family: 'Bebas Neue', sans-serif; font-size: 48px; line-height: 1; color: var(--white); margin-bottom: 4px; }
-  .tier-price sup { font-size: 24px; vertical-align: top; margin-top: 8px; color: var(--accent); }
-  .tier-cadence { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); margin-bottom: 24px; }
-  .tier-includes { list-style: none; display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--border); padding-top: 20px; }
-  .tier-includes li { padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 14px; color: var(--body); display: flex; gap: 10px; }
-  .tier-includes li:last-child { border-bottom: none; }
-  .tier-includes li::before { content: '✓'; color: var(--green); font-family: 'DM Mono', monospace; font-size: 11px; flex-shrink: 0; margin-top: 2px; }
-
-  /* PULL QUOTE */
-  .pull-quote { border-left: 3px solid var(--accent); padding: 24px 32px; background: var(--off-black); margin: 40px 0; }
-  .pull-quote p { font-size: 20px; font-weight: 300; color: var(--white); line-height: 1.55; margin: 0; }
-  .pull-quote cite { display: block; margin-top: 12px; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-style: normal; }
-
-  /* CALLOUT */
-  .callout { background: var(--accent-soft); border: 1px solid rgba(140,82,255,0.3); padding: 28px 32px; margin: 36px 0; }
-  .callout-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
-  .callout p { font-size: 15px; color: var(--body); line-height: 1.65; margin: 0; }
-
-  /* TOOLS GRID */
-  .tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); margin: 32px 0; }
-  .tool-cell { background: var(--off-black); padding: 20px 18px; }
-  .tool-name { font-weight: 700; font-size: 14px; color: var(--white); margin-bottom: 4px; }
-  .tool-context { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); line-height: 1.4; }
-
-  /* FAQ */
-  .faq-list { display: flex; flex-direction: column; margin-top: 32px; }
-  .faq-item { border-bottom: 1px solid var(--border); padding: 28px 0; }
-  .faq-item:first-child { border-top: 1px solid var(--border); }
-  .faq-q { font-weight: 600; font-size: 16px; color: var(--white); margin-bottom: 10px; }
-  .faq-a { font-size: 15px; color: var(--muted); line-height: 1.7; }
-
-  /* CTA */
-  .cta-section { padding: 96px 0; text-align: center; position: relative; overflow: hidden; }
-  .cta-section::before { content: 'SUPPORT'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: 'Bebas Neue', sans-serif; font-size: clamp(80px, 18vw, 200px); color: var(--off-black); pointer-events: none; white-space: nowrap; letter-spacing: 0.05em; z-index: 0; }
-  .cta-section .container { position: relative; z-index: 1; }
-  .cta-section h2 { margin-bottom: 16px; }
-  .cta-section p { max-width: 500px; margin: 0 auto 40px; font-size: 18px; font-weight: 300; }
-
-  .btn-primary { background: var(--accent); color: var(--white); font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: 0.03em; text-decoration: none; padding: 18px 36px; display: inline-block; transition: background 0.2s, transform 0.15s; position: relative; }
-  .btn-primary::after { content: ''; position: absolute; bottom: -4px; right: -4px; width: 100%; height: 100%; border: 1px solid var(--accent); transition: transform 0.2s; }
-  .btn-primary:hover { background: var(--accent-dim); transform: translate(-2px, -2px); }
-  .btn-primary:hover::after { transform: translate(4px, 4px); }
-  .btn-ghost { color: var(--muted); font-family: 'DM Mono', monospace; font-size: 13px; text-decoration: none; display: inline-block; margin-top: 20px; transition: color 0.2s; }
-  .btn-ghost:hover { color: var(--accent); }
-  .btn-ghost span { color: var(--accent); }
-
- footer { border-top: 1px solid var(--border); padding: 32px 24px; display: flex; flex-direction: column; align-items: center; text-align: center; font-size: 13px; color: var(--muted); gap: 16px; }
-  footer a { color: var(--muted); text-decoration: none; }
-  footer a:hover { color: var(--accent); }
-  .footer-links { display: flex; gap: 24px; }
-
-  @media (max-width: 780px) {
-    .nav-links { display: none; }
-    .header-grid { grid-template-columns: 1fr; }
-    .sidebar-card { position: static; }
-    .tier-grid { grid-template-columns: 1fr; }
-    .tools-grid { grid-template-columns: 1fr 1fr; }
-    .scenario { grid-template-columns: 1fr; }
-    .scenario-num { border-right: none; border-bottom: 1px solid var(--border); padding: 16px 28px; justify-content: flex-start; }
-    .footer-links { display: none; }
-  }
-</style>
+<link rel="stylesheet" href="css/theme.css?v=4">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is there a minimum contract length?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — three months minimum on both tiers. Technical support works best when the consultant understands your specific systems and context. That takes a few weeks to develop, and a one-month engagement doesn't give us enough time to be genuinely useful. After three months, retainers renew monthly with 30-day notice to end."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if we need more hours in a given month?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We'll let you know when you're approaching your cap and give you the option to add hours at a flat hourly rate for that month. We don't quietly go over and invoice you for it — we ask first."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you work with nonprofits outside Seattle?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — all support is delivered remotely. We have clients across the Pacific Northwest and nationwide. The Seattle base just means we're in your time zone and occasionally available for in-person meetings when that makes sense."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between this and the Systems Audit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Systems Audit is a one-time diagnostic — it tells you what's broken and gives you a roadmap. Technical support is the ongoing relationship that handles the work. Many clients do the audit first to understand what they're dealing with, then move into a support retainer to implement and maintain the fixes."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
+<!-- SKILL GAP BANNER -->
+<div class="event-banner">
+  <div class="event-banner-left">
+    <span class="event-dot"></span>
+    <span class="event-banner-text"><strong>New: Claude for Small Business just added 43 skills.</strong> Which ones fit your tools?</span>
+  </div>
+  <a href="claude-small-business-skills.html" class="event-banner-link">See Which Ones Fit You →</a>
+</div>
+
+<!-- NAV -->
 <nav>
   <a class="nav-logo" href="/index.html">QAMW<span>.</span></a>
   <ul class="nav-links">
-      <li><a href="/about.html">About</a></li>
-   <li><a href="/index.html">Systems Audit</a></li>
-    <li><a href="/nonprofit-consulting.html">NonProfit consulting</a></li>
+    <li><a href="/about.html">About</a></li>
+    <li><a href="/index.html">Systems Audit</a></li>
+    <li><a href="/nonprofit-consulting.html">Nonprofit</a></li>
     <li><a href="/systems-integration-consulting.html">Systems Integration</a></li>
-    <li><a href="/nonprofit-technical-support.html">Tech Support</a></li>
-    
+    <li><a href="/nonprofit-technical-support.html" class="active">Tech Support</a></li>
+    <li><a href="https://tidycal.com/quinitaw/discovery-call" target="_blank" rel="noopener">Free Discovery Call</a></li>
   </ul>
-  <a href="/index.html" class="nav-cta">Book Your Audit →</a>
+  <a href="/index.html#price" class="nav-cta">Book Your Audit →</a>
 </nav>
-
 
 <div class="breadcrumb">
   <a href="/index.html">QAMW Consulting</a> &nbsp;/&nbsp; Nonprofit Technical Support
@@ -304,15 +196,14 @@
         <div class="sidebar-item">Data cleanup & migration help</div>
         <div class="sidebar-item">Staff training & documentation</div>
         <div class="sidebar-item">Tool evaluation & procurement</div>
-       <div class="sidebar-item"> <a href="https://tidycal.com/quinitaw/discovery-call" class="nav-cta" target="_blank" rel="noopener">Book Your Tech Discovery →</a> </div>
-        <div class="ownership-badge"><span>■</span> Black-owned &nbsp;·&nbsp; <span>■</span> Women-owned · Seattle</div>
+       <a href="https://tidycal.com/quinitaw/discovery-call" class="btn-primary" target="_blank" rel="noopener">Book Your Tech Discovery →</a>
       </div>
     </div>
   </div>
 </header>
 
 <!-- WHO THIS IS FOR -->
-<section class="article-section">
+<section class="article-section surface-light">
   <div class="container-narrow">
     <div class="section-label">The Situation</div>
     <h2>Most nonprofits aren't ready for a full implementation. They just need help.</h2>
@@ -335,11 +226,11 @@
 </section>
 
 <!-- WHAT WE HANDLE -->
-<section class="article-section" style="background: var(--off-black);">
+<section class="article-section surface-raised">
   <div class="container">
     <div class="section-label">What Gets Handled</div>
     <h2>The situations we're built for</h2>
-    <p style="max-width: 620px; margin-bottom: 8px;">These are the actual scenarios that come up in a support retainer. Not hypothetical — these are real tickets from real nonprofit clients.</p>
+    <p class="section-sub">These are the actual scenarios that come up in a support retainer. Not hypothetical — these are real tickets from real nonprofit clients.</p>
 
     <div class="scenario-list">
       <div class="scenario">
@@ -387,11 +278,11 @@
 </section>
 
 <!-- TOOLS WE SUPPORT -->
-<section class="article-section">
+<section class="article-section surface-light">
   <div class="container">
     <div class="section-label">Tools We Know</div>
     <h2>Platforms we support across nonprofit tech stacks</h2>
-    <p style="max-width: 620px;">This isn't a comprehensive vendor list — it's the tools we've worked with repeatedly enough to know where they break and how to fix them quickly.</p>
+    <p class="section-sub">This isn't a comprehensive vendor list — it's the tools we've worked with repeatedly enough to know where they break and how to fix them quickly.</p>
 
     <div class="tools-grid">
       <div class="tool-cell">
@@ -440,18 +331,18 @@
 </section>
 
 <!-- PRICING -->
-<section class="article-section" style="background: var(--off-black);">
+<section class="article-section" id="price">
   <div class="container">
     <div class="section-label">How It's Priced</div>
     <h2>Retainer options built for nonprofit budgets</h2>
-    <p style="max-width: 620px;">We keep pricing simple and transparent. No hourly billing surprises, no scope creep invoices. You pick the level of support you need and we deliver within it.</p>
+    <p class="section-sub">We keep pricing simple and transparent. No hourly billing surprises, no scope creep invoices. You pick the level of support you need and we deliver within it.</p>
 
-    <div class="tier-grid">
-      <div class="tier-card">
+    <div class="tiers main-right">
+      <div class="tier tier-next">
         <div class="tier-name">Essential Support</div>
-        <div class="tier-price"><sup>$</sup>1,500</div>
-        <div class="tier-cadence">per month · 3-month minimum</div>
-        <ul class="tier-includes">
+        <div class="tier-price">$1,500</div>
+        <div class="tier-meta">per month · 3-month minimum</div>
+        <ul>
           <li>Up to 8 hours of technical support monthly</li>
           <li>CRM troubleshooting and minor fixes</li>
           <li>Reporting questions and dashboard updates</li>
@@ -459,12 +350,12 @@
           <li>Monthly check-in call (30 min)</li>
         </ul>
       </div>
-      <div class="tier-card featured">
-        <div class="tier-badge">MOST COMMON</div>
-        <div class="tier-name" style="margin-top: 8px;">Systems Partner</div>
-        <div class="tier-price"><sup>$</sup>3,000</div>
-        <div class="tier-cadence">per month · 3-month minimum</div>
-        <ul class="tier-includes">
+      <div class="tier tier-main">
+        <span class="tier-ribbon">MOST COMMON</span>
+        <div class="tier-name">Systems Partner</div>
+        <div class="tier-price">$3,000</div>
+        <div class="tier-meta">per month · 3-month minimum</div>
+        <ul>
           <li>Up to 20 hours of technical support monthly</li>
           <li>CRM administration and configuration</li>
           <li>Integration maintenance and fixes</li>
@@ -476,12 +367,12 @@
       </div>
     </div>
 
-    <p style="font-size: 14px; color: var(--muted); margin-top: 20px; text-align: center;">Need something outside these tiers? We scope custom engagements for larger organizations. <a href="https://tidycal.com/quinitaw/discovery-call" style="color: var(--accent); text-decoration: none;">Start with a discovery call.</a></p>
+    <p class="price-foot">Need something outside these tiers? We scope custom engagements for larger organizations. <a href="https://tidycal.com/quinitaw/discovery-call" target="_blank" rel="noopener">Start with a discovery call.</a></p>
   </div>
 </section>
 
 <!-- ABOUT -->
-<section class="article-section">
+<section class="article-section surface-raised">
   <div class="container-narrow">
     <div class="section-label">About QAMW</div>
     <h2>Who's actually doing the work</h2>
@@ -497,52 +388,82 @@
 </section>
 
 <!-- FAQ -->
-<section class="article-section" style="background: var(--off-black);">
+<section class="article-section surface-light">
   <div class="container-narrow">
     <div class="section-label">Questions</div>
     <h2>What people ask before signing on</h2>
     <div class="faq-list">
-      <div class="faq-item">
-        <div class="faq-q">Is there a minimum contract length?</div>
+      <details class="faq-item" open>
+        <summary>Is there a minimum contract length?</summary>
         <div class="faq-a">Yes — three months minimum on both tiers. Technical support works best when the consultant understands your specific systems and context. That takes a few weeks to develop, and a one-month engagement doesn't give us enough time to be genuinely useful. After three months, retainers renew monthly with 30-day notice to end.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">What if we need more hours in a given month?</div>
+      </details>
+      <details class="faq-item">
+        <summary>What if we need more hours in a given month?</summary>
         <div class="faq-a">We'll let you know when you're approaching your cap and give you the option to add hours at a flat hourly rate for that month. We don't quietly go over and invoice you for it — we ask first.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">Do you work with nonprofits outside Seattle?</div>
+      </details>
+      <details class="faq-item">
+        <summary>Do you work with nonprofits outside Seattle?</summary>
         <div class="faq-a">Yes — all support is delivered remotely. We have clients across the Pacific Northwest and nationwide. The Seattle base just means we're in your time zone and occasionally available for in-person meetings when that makes sense.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">What's the difference between this and the Systems Audit?</div>
+      </details>
+      <details class="faq-item">
+        <summary>What's the difference between this and the Systems Audit?</summary>
         <div class="faq-a">The Systems Audit is a one-time diagnostic — it tells you what's broken and gives you a roadmap. Technical support is the ongoing relationship that handles the work. Many clients do the audit first to understand what they're dealing with, then move into a support retainer to implement and maintain the fixes.</div>
-      </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- SKILL GAP FINDER -->
+<section class="article-section surface-raised" id="skill-gap">
+  <div class="container">
+    <div class="callout">
+      <div class="callout-label">Free Tool · Skill Gap Finder</div>
+      <p>Wondering whether the new Claude for Small Business skills could take some of this work off your team's plate? The free Skill Gap Finder matches your existing tools, like QuickBooks, Salesforce, Google Workspace, or Microsoft 365, to the Claude skills and connectors that fit. Three questions, about 90 seconds.</p>
+      <a href="/skill-gap-finder.html" class="btn-primary" target="_blank" rel="noopener">Take the 90-Second Quiz →</a>
     </div>
   </div>
 </section>
 
 <!-- CTA -->
-<section class="cta-section">
+<section id="cta">
   <div class="container">
     <div class="section-label">Get Started</div>
     <h2>Ready for a technical partner who actually knows your systems?</h2>
-    <p>Start with a 20-minute discovery call. We'll talk through what you're dealing with and whether a support retainer is the right fit.</p>
-   <a href="https://tidycal.com/quinitaw/discovery-call" class="btn-primary" target="_blank" rel="noopener">Book an appointment</a>
-    <br>
-    <a href="/nonprofit-consulting.html" class="btn-ghost">Learn about full nonprofit consulting <span>→</span></a>
+    <p class="lead">Start with a 20-minute discovery call. We'll talk through what you're dealing with and whether a support retainer is the right fit.</p>
+    <a href="https://tidycal.com/quinitaw/discovery-call" class="btn-primary btn-light" target="_blank" rel="noopener">Book an appointment</a>
+    <p class="cta-alt"><a href="/nonprofit-consulting.html">Learn about full nonprofit consulting →</a></p>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-  <a class="nav-logo" href="/index.html" style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:0.08em;color:var(--white);">QAMW<span style="color:var(--accent)">.</span></a>
-  <div class="footer-links">
-    <a href="/nonprofit-consulting.html">Nonprofit Consulting</a>
-    <a href="/nonprofit-technical-support.html">Tech Support</a>
-    <a href="/systems-integration-consulting.html">Systems Integration</a>
-    <a href="/index.html">Systems Audit</a>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="nav-logo" href="/index.html">QAMW<span>.</span></a>
+        <p>Systems consulting that finds where your business leaks time and money, and fixes it with the tools you already own.</p>
+        <div class="tag">Black-owned · Women-owned · Seattle, WA</div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="/index.html">Systems Audit</a>
+        <a href="/nonprofit-consulting.html">Nonprofit Consulting</a>
+        <a href="/systems-integration-consulting.html">Systems Integration</a>
+        <a href="/nonprofit-technical-support.html">Tech Support</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="/about.html">About</a>
+        <a href="https://tidycal.com/quinitaw/discovery-call" target="_blank" rel="noopener">Free Discovery Call</a>
+        <a href="/skill-gap-finder.html" target="_blank" rel="noopener">Skill Gap Finder</a>
+        <a href="https://www.linkedin.com/in/quinita-whitfield" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 QAMW Consulting</span>
+      <span>Seattle, WA</span>
+    </div>
   </div>
-  <span>© 2025 QAMW Consulting · Seattle, WA · Black-owned · Women-owned</span>
 </footer>
 
 </body>

@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X8MGSYVPNG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-X8MGSYVPNG');
+</script>
+<meta charset="utf-8" />
+<title>Free Workshop: AI for Nonprofits | QAMW Consulting</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="description" content="A free one-hour working session that shows nonprofit leaders what AI actually looks like inside the work they do every day. Join the waitlist." />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg-dark:      #0f0d12;
+    --bg-mid:       #16131c;
+    --bg-light:     #f2f0eb;
+    --accent:       #8c52ff;
+    --accent-lt:    #a370ff;
+    --accent-dim:   rgba(140,82,255,0.18);
+    --green:        #47c47e;
+    --text-primary: #f2f0eb;
+    --text-muted:   #b8b8b8;
+    --border:       #2a2525;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Nav ── */
+  nav {
+    height: 72px; padding: 0 52px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0;
+    background: var(--bg-dark); z-index: 100;
+  }
+  .nav-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 1rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--text-primary); text-decoration: none;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-cta {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 0.78rem;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    background: var(--accent); color: #fff;
+    padding: 10px 22px; text-decoration: none;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--accent-lt); }
+
+  /* ── Urgency banner ── */
+  .urgency-banner {
+    background: var(--accent-dim);
+    border-bottom: 1px solid var(--accent);
+    padding: 11px 52px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .urgency-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--green); flex-shrink: 0;
+    animation: pulse 1.8s infinite;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+  .urgency-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .urgency-text strong { color: var(--text-primary); }
+
+  /* ── Eyebrow ── */
+  .eyebrow {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 20px;
+  }
+  .eyebrow::before {
+    content: ''; display: block;
+    width: 24px; height: 1px; background: var(--accent);
+  }
+  .eyebrow-muted {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--text-muted); margin-bottom: 20px;
+  }
+  .eyebrow-muted::before {
+    content: ''; display: block;
+    width: 24px; height: 1px; background: var(--text-muted);
+  }
+
+  /* ── Buttons ── */
+  .btn-primary {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 0.82rem;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    background: var(--accent); color: #fff;
+    padding: 16px 32px; border: none; cursor: pointer;
+    text-decoration: none; display: inline-block;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: var(--accent-lt); }
+  .btn-ghost {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 0.82rem;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    border: 1px solid var(--border); color: var(--text-muted);
+    padding: 16px 32px; text-decoration: none; display: inline-block;
+    background: transparent; cursor: pointer; transition: all 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ── Hero ── */
+  .hero {
+    padding: 100px 52px 80px;
+    display: grid; grid-template-columns: 1fr 380px;
+    gap: 60px; align-items: start;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-headline {
+    font-size: clamp(2.8rem, 5vw, 4.4rem);
+    font-weight: 800; line-height: 1.05; letter-spacing: -0.03em;
+    color: var(--text-primary); margin-bottom: 24px;
+  }
+  .hero-headline span { color: var(--accent); }
+  .hero-sub {
+    font-size: 1rem; font-weight: 300; color: var(--text-muted);
+    max-width: 520px; line-height: 1.8; margin-bottom: 36px;
+  }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  /* ── Stat grid (hero right panel) ── */
+  .stat-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2px; background: var(--border);
+  }
+  .stat-card {
+    background: var(--bg-mid); padding: 28px 22px;
+  }
+  .stat-card.accent-card { background: var(--accent); }
+  .stat-card.green-card  { background: var(--bg-mid); border-top: 3px solid var(--green); }
+  .sc-num {
+    font-size: 2.4rem; font-weight: 800;
+    letter-spacing: -0.03em; line-height: 1;
+    margin-bottom: 6px; color: var(--text-primary);
+  }
+  .stat-card.green-card .sc-num { color: var(--green); }
+  .sc-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.66rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text-muted); line-height: 1.3;
+  }
+  .stat-card.accent-card .sc-num,
+  .stat-card.accent-card .sc-label { color: #fff; }
+
+  /* ── Light section ── */
+  .section-light {
+    background: var(--bg-light);
+    padding: 100px 52px;
+    border-bottom: 1px solid #ddd;
+    color: #111;
+  }
+  .section-light .eyebrow { color: var(--accent); }
+  .section-light .eyebrow::before { background: var(--accent); }
+  .section-light .section-headline { color: #111; }
+  .section-light .section-body { color: #444; }
+
+  /* ── Dark section ── */
+  .section-dark {
+    background: var(--bg-dark);
+    padding: 100px 52px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-mid {
+    background: var(--bg-mid);
+    padding: 100px 52px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-headline {
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 800; letter-spacing: -0.025em; line-height: 1.1;
+    color: var(--text-primary); margin-bottom: 16px;
+  }
+  .section-body {
+    font-size: 0.95rem; font-weight: 300; color: var(--text-muted);
+    max-width: 600px; line-height: 1.8; margin-bottom: 52px;
+  }
+
+  /* ── What we'll cover — topic cards ── */
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px; background: #ddd;
+  }
+  .topic-card {
+    background: #fff;
+    padding: 32px 28px;
+    transition: background 0.2s, color 0.2s;
+    position: relative;
+  }
+  .topic-card::after {
+    content: ''; display: block;
+    position: absolute; bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--accent);
+    transition: width 0.3s;
+  }
+  .topic-card:hover { background: #0f0d12; }
+  .topic-card:hover .tc-title { color: var(--text-primary); }
+  .topic-card:hover .tc-body { color: var(--text-muted); }
+  .topic-card:hover::after { width: 100%; }
+  .tc-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 14px;
+    display: block;
+  }
+  .tc-title {
+    font-size: 1rem; font-weight: 700;
+    color: #111; margin-bottom: 10px; line-height: 1.3;
+    transition: color 0.2s;
+  }
+  .tc-body {
+    font-size: 0.88rem; font-weight: 300;
+    color: #555; line-height: 1.7;
+    transition: color 0.2s;
+  }
+
+  /* ── Who this is for ── */
+  .who-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2px; background: var(--border);
+    margin-bottom: 52px;
+  }
+  .who-card {
+    background: var(--bg-mid); padding: 32px 28px;
+  }
+  .who-check {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--green); margin-bottom: 10px; display: block;
+  }
+  .who-title {
+    font-size: 0.95rem; font-weight: 600;
+    color: var(--text-primary); margin-bottom: 8px;
+  }
+  .who-body {
+    font-size: 0.88rem; font-weight: 300;
+    color: var(--text-muted); line-height: 1.7;
+  }
+
+  /* ── Real questions section ── */
+  .questions-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2px; background: #ddd;
+    margin-bottom: 52px;
+  }
+  .question-card {
+    background: #fff; padding: 32px 28px;
+  }
+  .q-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 12px; display: block;
+  }
+  .q-text {
+    font-size: 1rem; font-weight: 600;
+    color: #111; margin-bottom: 10px; line-height: 1.4;
+    font-style: italic;
+  }
+  .q-answer {
+    font-size: 0.88rem; font-weight: 300;
+    color: #444; line-height: 1.7;
+  }
+
+  /* ── About ── */
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: start;
+  }
+  .cred-list {
+    list-style: none; margin-top: 28px;
+  }
+  .cred-list li {
+    font-size: 0.9rem; font-weight: 300;
+    color: var(--text-muted); line-height: 1.6;
+    padding: 14px 0; border-bottom: 1px solid var(--border);
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .cred-list li::before {
+    content: '→';
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.9rem; color: var(--accent);
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .testimonial-block {
+    background: var(--bg-mid);
+    border-left: 3px solid var(--accent);
+    padding: 28px 24px; margin-top: 36px;
+  }
+  .testimonial-text {
+    font-size: 0.95rem; font-weight: 300;
+    color: var(--text-primary); line-height: 1.8;
+    font-style: italic; margin-bottom: 14px;
+  }
+  .testimonial-attr {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* ── CTA section ── */
+  .cta-section {
+    background: var(--bg-light);
+    padding: 100px 52px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+  }
+  .cta-section .eyebrow {
+    justify-content: center;
+    color: var(--accent);
+  }
+  .cta-headline {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 800; letter-spacing: -0.025em; line-height: 1.1;
+    color: #111; margin-bottom: 16px;
+  }
+  .cta-sub {
+    font-size: 1rem; font-weight: 300;
+    color: #555; max-width: 500px;
+    margin: 0 auto 36px; line-height: 1.8;
+  }
+  .event-details {
+    display: inline-flex; gap: 0;
+    background: var(--border); margin-bottom: 36px;
+  }
+  .event-detail {
+    background: #fff; padding: 16px 28px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: #333; border-right: 1px solid #ddd;
+  }
+  .event-detail:last-child { border-right: none; }
+  .event-detail span { display: block; color: var(--accent); font-size: 1.1rem; margin-top: 4px; }
+
+  /* ── Footer ── */
+  footer {
+    background: #000; padding: 40px 52px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 0.9rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--text-primary);
+  }
+  .footer-logo span { color: var(--accent); }
+  .footer-copy {
+    font-size: 0.78rem; color: #555;
+    font-weight: 300;
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .urgency-banner { padding: 11px 24px; }
+    .hero {
+      padding: 60px 24px;
+      grid-template-columns: 1fr;
+    }
+    .stat-grid { margin-top: 0; }
+    .section-dark, .section-mid, .section-light { padding: 60px 24px; }
+    .topics-grid { grid-template-columns: 1fr; }
+    .who-grid { grid-template-columns: 1fr; }
+    .questions-grid { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .cta-section { padding: 60px 24px; }
+    .event-details { flex-direction: column; gap: 2px; }
+    .event-detail { border-right: none; border-bottom: 1px solid #ddd; }
+    footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; }
+  }
+</style>
+<link rel="canonical" href="https://www.qamwconsulting.com/nonprofit-ai-training/workshop-landing.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.qamwconsulting.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Free Workshop: AI for Nonprofits",
+      "item": "https://www.qamwconsulting.com/nonprofit-ai-training/workshop-landing.html"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <a href="/index.html" class="nav-logo">QAMW <span>Consulting</span></a>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSdN9_BipwECNsyzP9tHAvzVWCbnJFTFv5ke1Ty6H-SAbEaD9A/viewform" class="nav-cta" target="_blank">Join the Waitlist</a>
+</nav>
+
+<!-- Urgency banner -->
+<div class="urgency-banner">
+  <div class="urgency-dot"></div>
+  <p class="urgency-text"><strong>Next session: dates announced soon.</strong> &nbsp;·&nbsp; Free, one hour, live on Google Meet &nbsp;·&nbsp; Space is limited</p>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow">Free Workshop · Next session: dates announced soon.</div>
+    <h1 class="hero-headline">
+      AI for Nonprofits:<br>
+      <span>What's Actually<br>Possible in 2026</span>
+    </h1>
+    <p class="hero-sub">
+      Not a product demo. A real conversation about where AI fits the work nonprofit teams actually do — grant writing, reporting, donor communications, and more.
+    </p>
+    <div class="hero-actions">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdN9_BipwECNsyzP9tHAvzVWCbnJFTFv5ke1Ty6H-SAbEaD9A/viewform" class="btn-primary" target="_blank">Join the Waitlist</a>
+      <a href="#questions" class="btn-ghost">See What We'll Cover</a>
+    </div>
+  </div>
+
+  <!-- Stat grid -->
+  <div class="stat-grid">
+    <div class="stat-card accent-card">
+      <div class="sc-num">Free</div>
+      <div class="sc-label">No cost, ever</div>
+    </div>
+    <div class="stat-card">
+      <div class="sc-num">1 hr</div>
+      <div class="sc-label">One focused session</div>
+    </div>
+    <div class="stat-card green-card">
+      <div class="sc-num">25+</div>
+      <div class="sc-label">Nonprofits served via Catchafire</div>
+    </div>
+    <div class="stat-card">
+      <div class="sc-num">Live</div>
+      <div class="sc-label">Ask questions in real time</div>
+    </div>
+  </div>
+</section>
+
+<!-- What we'll cover -->
+<section class="section-light" id="questions">
+  <div class="eyebrow-muted" style="color: var(--accent);">
+    <span style="display:block;width:24px;height:1px;background:var(--accent);"></span>
+    What We'll Cover
+  </div>
+  <h2 class="section-headline" style="color:#111;">Six things your team is probably already wondering about.</h2>
+  <p class="section-body">We're not starting from scratch. These are the real questions that come up most when I work with nonprofit leaders — and we're going to work through them together.</p>
+
+  <div class="topics-grid">
+    <div class="topic-card">
+      <span class="tc-num">01</span>
+      <div class="tc-title">Grant Writing & Research</div>
+      <div class="tc-body">How AI can help you draft faster, research funders, and stop staring at a blank page — without losing your organization's voice.</div>
+    </div>
+    <div class="topic-card">
+      <span class="tc-num">02</span>
+      <div class="tc-title">Impact Reporting & Data Storytelling</div>
+      <div class="tc-body">How to turn program data into funder-ready narratives without spending three days in a spreadsheet.</div>
+    </div>
+    <div class="topic-card">
+      <span class="tc-num">03</span>
+      <div class="tc-title">Donor Communications</div>
+      <div class="tc-body">How AI can help you write stewardship emails, thank you letters, and campaign copy that actually sounds like you wrote it.</div>
+    </div>
+    <div class="topic-card">
+      <span class="tc-num">04</span>
+      <div class="tc-title">Workflow Automation</div>
+      <div class="tc-body">Where automation actually saves time for small teams — and what's not worth the setup cost for a 5-person org.</div>
+    </div>
+    <div class="topic-card">
+      <span class="tc-num">05</span>
+      <div class="tc-title">AI Policy & Readiness</div>
+      <div class="tc-body">What an AI policy actually needs to say, how to think about org-level accounts versus personal ones, and where to start.</div>
+    </div>
+    <div class="topic-card">
+      <span class="tc-num">06</span>
+      <div class="tc-title">Survey Analysis & Community Feedback</div>
+      <div class="tc-body">How to use AI to surface themes in feedback data — exit surveys, interviews, community input — without losing the nuance.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Real questions section -->
+<section class="section-dark">
+  <div class="eyebrow">Real Questions · From Real Nonprofit Leaders</div>
+  <h2 class="section-headline">You're not the only one wondering.</h2>
+  <p class="section-body">This workshop wasn't built from a template. The topics and questions come directly from 30+ Catchafire consulting engagements and ongoing conversations with nonprofit leaders across the country. If any of this sounds familiar, that's because it came from people doing the same work you are.</p>
+
+  <div class="questions-grid">
+    <div class="question-card">
+      <span class="q-label">On Databases & Automation</span>
+      <div class="q-text">"I manage our donor database on top of everything else. I'm not a tech person. Can AI actually help me automate some of what I'm doing manually?"</div>
+      <div class="q-answer">We'll cover how AI fits into CRM and database workflows — what it can help with now, what still needs human hands, and how to think about automation when you don't have a dedicated tech person on staff.</div>
+    </div>
+    <div class="question-card">
+      <span class="q-label">On Getting Started</span>
+      <div class="q-text">"All five of us have used AI personally but we don't have an org-level account or a policy. Where do we even start?"</div>
+      <div class="q-answer">We'll walk through exactly this — how to move from scattered personal use to something intentional, shared, and actually useful for your team's daily work.</div>
+    </div>
+    <div class="question-card">
+      <span class="q-label">On Reporting</span>
+      <div class="q-text">"Impact Reporting and Data Storytelling is top of my list. We've already talked AI strategy — now I want to actually do something with our data."</div>
+      <div class="q-answer">We're going hands-on with this. Not theory — actual ways to use AI to turn program data and community feedback into something a funder or board can act on.</div>
+    </div>
+    <div class="question-card">
+      <span class="q-label">On Program Documentation</span>
+      <div class="q-text">"Knowledge management is a real gap for us. Stuff lives in people's heads. How do we change that without adding more work?"</div>
+      <div class="q-answer">We'll look at how AI can help you capture, organize, and make institutional knowledge accessible — without turning documentation into another project nobody has time for.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Who this is for -->
+<section class="section-mid">
+  <div class="eyebrow">Who This Is For</div>
+  <h2 class="section-headline">You don't need to be a tech person.</h2>
+  <p class="section-body">This session is for nonprofit leaders at every level of AI familiarity — from "I've never tried it" to "I use it personally but not sure how it fits our org."</p>
+
+  <div class="who-grid">
+    <div class="who-card">
+      <span class="who-check">✓ This is for you if...</span>
+      <div class="who-title">You lead or work at a nonprofit</div>
+      <div class="who-body">Executive directors, program managers, development staff, operations leads, communications coordinators — anyone doing the actual work.</div>
+    </div>
+    <div class="who-card">
+      <span class="who-check">✓ This is for you if...</span>
+      <div class="who-title">You're the "accidental techie"</div>
+      <div class="who-body">You didn't sign up to manage the database or figure out the AI strategy, but here you are. This is exactly where to start.</div>
+    </div>
+    <div class="who-card">
+      <span class="who-check">✓ This is for you if...</span>
+      <div class="who-title">Your team is using AI informally</div>
+      <div class="who-body">People are using ChatGPT on their personal accounts but there's no org-level plan. We'll talk about how to bring that together intentionally.</div>
+    </div>
+    <div class="who-card">
+      <span class="who-check">✓ This is for you if...</span>
+      <div class="who-title">You want real answers, not a demo</div>
+      <div class="who-body">You've sat through enough vendor webinars. This is a working session — bring your actual questions. We'll work through them together.</div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section class="section-dark">
+  <div class="eyebrow">Your Host</div>
+  <div class="about-grid">
+    <div>
+      <h2 class="section-headline">Quinita Whitfield</h2>
+      <p style="font-size:0.95rem;font-weight:300;color:var(--text-muted);line-height:1.8;margin-bottom:24px;">
+        Business Intelligence and Data Analytics Consultant. Principal at QAMW Consulting. 14+ years in data systems and organizational analytics.
+      </p>
+      <p style="font-size:0.95rem;font-weight:300;color:var(--text-muted);line-height:1.8;margin-bottom:8px;">
+        I've spent years working with nonprofits through Catchafire — on AI strategy, CRM systems, data collection, survey analysis, and Google Workspace. I understand the constraints small teams work under. And I'm not interested in telling you to buy tools you don't need.
+      </p>
+      <ul class="cred-list">
+        <li>M.S. in Business Analytics — applied expertise in data governance and workflow design</li>
+        <li>25+ nonprofits served via Catchafire across AI, data, and tech systems</li>
+        <li>$63,874 in total Catchafire impact value — Superstar Volunteer status</li>
+        <li>Experience with Asana, Airtable, Monday.com, Power BI, HubSpot, and more</li>
+      </ul>
+    </div>
+    <div>
+      <div class="testimonial-block">
+        <div class="testimonial-text">"As usual you have blown it out of the water. Thank you so absolutely much for your amazing work. I can't express how much we appreciate this!"</div>
+        <div class="testimonial-attr">Juan Ramos · R3 Student Outreach</div>
+      </div>
+      <div class="testimonial-block" style="margin-top:16px;">
+        <div class="testimonial-text">"Quinita is amazing. Very knowledgeable! She listened intently to understand what our tech stack is and limitations and helped to find the optimal solution to our needs."</div>
+        <div class="testimonial-attr">Rachel T. · Grants Manager, BUDUDA America Foundation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="eyebrow" style="justify-content:center;">Join the Waitlist · It's Free</div>
+  <h2 class="cta-headline">One hour. Real answers.</h2>
+  <p class="cta-sub">Bring your questions. We'll work through them together.</p>
+
+  <div style="display:flex;justify-content:center;margin-bottom:36px;">
+    <div class="event-details">
+      <div class="event-detail">Date<span>Next session: dates announced soon.</span></div>
+      <div class="event-detail">Time<span>10:00 AM PT</span></div>
+      <div class="event-detail">Format<span>Google Meet</span></div>
+      <div class="event-detail">Cost<span>Free</span></div>
+    </div>
+  </div>
+
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSdN9_BipwECNsyzP9tHAvzVWCbnJFTFv5ke1Ty6H-SAbEaD9A/viewform" class="btn-primary" target="_blank" style="font-size:0.9rem;padding:18px 40px;">Join the Waitlist</a>
+  <p style="margin-top:20px;font-size:0.8rem;color:#888;">You'll receive the Google Meet link immediately after registering.</p>
+</section>
+
+<!-- Cohort teaser -->
+<section class="section-dark" style="padding-top:60px;padding-bottom:60px;">
+  <div class="eyebrow">What Comes Next</div>
+  <div class="cohort-teaser">
+    <p>For organizations ready to go further after the workshop, I run a small-group implementation cohort — 3 to 5 nonprofits, four weeks, implementation not education. You leave with a working grant proposal agent, a team-ready knowledge base, and an internal SOP. <strong>At the end of the workshop I'll share the details and a time-limited offer for attendees only.</strong></p>
+    <a href="cohort-offer.html" class="cohort-teaser-link">See the full cohort details →</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-logo">QAMW <span>Consulting</span></div>
+  <div class="footer-copy">quinitaw@qamwconsulting.com &nbsp;·&nbsp; Site by QAMW Consulting</div>
+</footer>
+
+</body>
+</html>
