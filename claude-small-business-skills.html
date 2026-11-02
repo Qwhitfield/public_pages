@@ -6,6 +6,9 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  var qamwConsent = null;
+  try { qamwConsent = localStorage.getItem('qamw_cookie_consent'); } catch (e) {}
+  gtag('consent', 'default', { analytics_storage: qamwConsent === 'denied' ? 'denied' : 'granted', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
   gtag('js', new Date());
 
   gtag('config', 'G-X8MGSYVPNG');
@@ -427,5 +430,6 @@ footer p{max-width:60ch;color:#7a7088}
 ]}
 </script>
 
+<script src="js/cookie-consent.js" defer></script>
 </body>
 </html>
