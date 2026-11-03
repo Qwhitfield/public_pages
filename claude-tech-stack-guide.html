@@ -6,6 +6,9 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  var qamwConsent = null;
+  try { qamwConsent = localStorage.getItem('qamw_cookie_consent'); } catch (e) {}
+  gtag('consent', 'default', { analytics_storage: qamwConsent === 'denied' ? 'denied' : 'granted', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
   gtag('js', new Date());
 
   gtag('config', 'G-X8MGSYVPNG');
@@ -379,5 +382,6 @@ footer .credit{font-family:var(--label);font-weight:700;letter-spacing:.16em;tex
     if (typeof gtag === 'function') gtag('event', 'book_call_click', { source: 'tech_stack_guide' });
   });
 </script>
+<script src="js/cookie-consent.js" defer></script>
 </body>
 </html>

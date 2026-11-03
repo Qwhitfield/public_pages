@@ -459,6 +459,7 @@ details.faq-item[open] summary::after { content: '–'; }
 footer { background: var(--black); border-top: 1px solid var(--border); padding: 64px 0 28px; }
 .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; padding-bottom: 44px; border-bottom: 1px solid var(--border); }
 .footer-brand p { font-size: 15px; color: var(--body); margin-top: 10px; max-width: 300px; line-height: 1.55; }
+.footer-brand .footer-cred { font-size: 13px; color: var(--muted); }
 .footer-brand .tag { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: var(--muted); margin-top: 14px; }
 .footer-col h4 { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; font-weight: 500; }
 .footer-col a { display: block; color: var(--body); text-decoration: none; font-size: 15px; padding: 5px 0; transition: color 0.2s; }
@@ -789,4 +790,17 @@ h2.label-heading { line-height: 1.5; }
   .founder-story p { font-size: 17px; }
   .accent-statement { padding: 64px 0; }
   .method-card { padding: 28px 22px; }
+}
+
+/* ── PRICING: three-step path (Review → Scoped → Retainer) ── */
+.tiers.three { grid-template-columns: 1.3fr 1fr 1fr; gap: 20px; }
+.tiers.three .tier { padding: 44px 28px 32px; }
+.tiers.three .tier-ribbon { left: 28px; }
+.tiers.three .tier-main .tier-price { font-size: 92px; }
+.tiers.three .tier-next .tier-price { font-size: 56px; }
+.hero-cred.hero-path { font-size: 16px; }
+.scope-note { font-size: 13px; color: var(--muted); line-height: 1.55; margin: 16px 0 0; font-family: 'DM Mono', monospace; letter-spacing: 0.02em; }
+@media (max-width: 960px) {
+  .tiers.three { grid-template-columns: 1fr; gap: 36px; }
+  .tiers.three .tier-main .tier-price { font-size: 88px; }
 }
