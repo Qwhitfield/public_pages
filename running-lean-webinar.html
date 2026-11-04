@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X8MGSYVPNG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  var qamwConsent = null;
+  try { qamwConsent = localStorage.getItem('qamw_cookie_consent'); } catch (e) {}
+  gtag('consent', 'default', { analytics_storage: qamwConsent === 'denied' ? 'denied' : 'granted', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+  gtag('js', new Date());
+
+  gtag('config', 'G-X8MGSYVPNG');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Running Lean at $1M | Free Webinar | QAMW Consulting</title>
+<meta name="description" content="Free live webinar, Thursday Nov 19 at 3 PM PT, for $1M+ business owners: stop paying for tools your team works around. A real case walkthrough, plus recording and transcript for every registrant.">
+<link rel="canonical" href="https://www.qamwconsulting.com/running-lean-webinar.html">
+<meta property="og:title" content="Running Lean at $1M: Make the Tools You Already Pay For Work Together">
+<meta property="og:description" content="You pay for the tools. Your team still does the work. A free live webinar on getting your systems to pull their weight before you hire or buy anything new.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.qamwconsulting.com/running-lean-webinar.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/theme.css?v=7">
+<style>
+  #hero { padding-bottom: 96px; }
+  .event-meta { font-family: 'DM Mono', monospace; font-size: 14px; color: var(--body); line-height: 1.7; }
+  .event-meta strong { color: var(--white); font-weight: 500; }
+
+  /* Plain, readable copy sections */
+  .read { max-width: 720px; }
+  .read p { font-size: 19px; line-height: 1.7; margin-bottom: 20px; }
+  .surface-light .read p { color: var(--ink-body); }
+  .read p strong { font-weight: 700; }
+  .surface-light .read p strong { color: var(--ink); }
+  .read p.kicker { font-size: 24px; line-height: 1.45; font-weight: 500; }
+  .surface-light .read p.kicker { color: var(--ink); }
+
+  .scenes { list-style: none; margin: 8px 0 40px; }
+  .scenes li { font-size: 21px; line-height: 1.5; color: var(--ink); padding: 20px 0 20px 40px; border-bottom: 1px solid var(--ink-line); position: relative; }
+  .scenes li:first-child { border-top: 1px solid var(--ink-line); }
+  .scenes li::before { content: '→'; position: absolute; left: 0; color: var(--accent-ink); font-family: 'DM Mono', monospace; }
+
+  .math { font-family: 'DM Mono', monospace; font-size: 17px; color: var(--white); border-left: 3px solid var(--accent); padding: 6px 0 6px 22px; margin: 8px 0 32px; line-height: 1.9; }
+  .math span { color: var(--accent); }
+
+  .learn { list-style: none; counter-reset: learn; margin-top: 8px; }
+  .learn li { counter-increment: learn; padding: 24px 0 24px 64px; border-bottom: 1px solid var(--border); position: relative; font-size: 19px; color: var(--body); line-height: 1.55; }
+  .learn li:first-child { border-top: 1px solid var(--border); }
+  .learn li::before { content: counter(learn, decimal-leading-zero); position: absolute; left: 0; top: 22px; font-family: 'Bebas Neue', sans-serif; font-size: 34px; color: var(--accent); line-height: 1; }
+  .learn li strong { color: var(--white); display: block; font-size: 21px; margin-bottom: 4px; }
+
+  .host { display: grid; grid-template-columns: 160px 1fr; gap: 36px; align-items: start; }
+  .host img { width: 160px; height: 160px; object-fit: cover; filter: grayscale(15%); }
+  .host-name { font-family: 'Bebas Neue', sans-serif; font-size: 40px; color: var(--ink); line-height: 1; margin-bottom: 6px; }
+  .host-logos { font-family: 'DM Mono', monospace; font-size: 13px; color: var(--ink-body); margin: -8px 0 18px; }
+  .host-logos strong { color: var(--ink); font-weight: 500; }
+  .host-role { font-family: 'DM Mono', monospace; font-size: 13px; color: var(--accent-ink); letter-spacing: 0.06em; margin-bottom: 18px; }
+
+  .get { margin-top: 48px; border: 1px solid var(--accent); background: var(--accent-soft); padding: 32px; }
+  .get-label { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; font-weight: 500; }
+  .get ul { list-style: none; display: flex; flex-wrap: wrap; gap: 10px 32px; margin-bottom: 18px; }
+  .get li { font-size: 19px; color: var(--body); padding-left: 26px; position: relative; }
+  .get li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-family: 'DM Mono', monospace; }
+  .get li strong { color: var(--white); }
+  .read .get p { font-size: 16px; color: var(--body); margin: 0; }
+  #cta .event-meta { color: rgba(255,255,255,0.9); margin: -24px 0 40px; }
+  #cta .event-meta strong { color: #fff; }
+
+  @media (max-width: 720px) {
+    .scenes li { font-size: 19px; padding-left: 32px; }
+    .learn li { padding-left: 52px; }
+    .host { grid-template-columns: 1fr; gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="/index.html">QAMW<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="/about.html">About</a></li>
+    <li><a href="/index.html">Systems Audit</a></li>
+    <li><a href="/nonprofit-consulting.html">Nonprofit</a></li>
+    <li><a href="/systems-integration-consulting.html">Systems Integration</a></li>
+    <li><a href="/nonprofit-technical-support.html">Tech Support</a></li>
+  </ul>
+  <a href="https://tidycal.com/quinitaw/running-lean-at-1m-make-the-tools-you-already-pay-for-work-together" class="nav-cta js-register" target="_blank" rel="noopener">Save My Seat →</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-eyebrow fade-up">Free Live Webinar · For $1M+ Business Owners</div>
+    <h1 class="fade-up">
+      You pay for<br>
+      the tools.<br>
+      <em>Your team still<br>does the work.</em>
+    </h1>
+    <p class="hero-sub fade-up"><strong>Running Lean at $1M:</strong> Make the tools you already pay for work together, before you hire or buy anything new.</p>
+    <p class="hero-cred fade-up">90 minutes. Live. First we walk through a real case of a growing business losing hours every week, and how they got them back. Then we work through your issue.</p>
+    <div class="cta-block fade-up">
+      <a href="https://tidycal.com/quinitaw/running-lean-at-1m-make-the-tools-you-already-pay-for-work-together" class="btn-primary js-register" target="_blank" rel="noopener">Save My Seat →</a>
+      <div class="event-meta"><strong>Thursday, November 19</strong> · 3:00 PM PT<br>Free · Online · Live Q&amp;A</div>
+    </div>
+  </div>
+</section>
+
+<!-- SOUND FAMILIAR -->
+<section class="surface-light">
+  <div class="container read">
+    <div class="section-label">Sound Familiar?</div>
+    <h2>This is your week.</h2>
+    <ul class="scenes">
+      <li>It's Friday afternoon and someone is still building Monday's report by hand.</li>
+      <li>The same customer lives in your CRM, your accounting software, and a spreadsheet. None of them match.</li>
+      <li>You ask "how did we do last month?" and get three different numbers from three different people.</li>
+      <li>You're paying for software features nobody uses, because nobody had time to set them up.</li>
+      <li>Every bottleneck ends the same way: "We need to hire someone."</li>
+      <li>You are the integration. When you're out for a week, things slip.</li>
+      <li>You tried an AI tool. It became one more login nobody opens.</li>
+    </ul>
+    <p class="kicker">If you nodded at three or more of those, these 90 minutes are for you.</p>
+  </div>
+</section>
+
+<!-- THE COST -->
+<section>
+  <div class="container read">
+    <div class="section-label">The Real Problem</div>
+    <h2>At $1M, the duct tape<br>stops holding.</h2>
+    <p>What got you here was hustle, spreadsheets, and you personally knowing where everything lives. That works at $500K. At $1M and beyond, it turns into a hidden payroll cost.</p>
+    <p>Do the math on your own team:</p>
+    <div class="math">
+      3 people × 5 hrs/week on copy-paste &amp; reports<br>
+      × 52 weeks = <span>780 hours a year</span><br>
+      That's a part-time hire you're already paying for.
+    </div>
+    <p>And that's before missed follow-ups, invoices that go out late, and decisions made on numbers nobody trusts.</p>
+    <p><strong>The fix usually isn't new software or another hire.</strong> It's getting the tools you already own to actually talk to each other. That's what this webinar is about.</p>
+  </div>
+</section>
+
+<!-- WHAT YOU'LL LEARN -->
+<section class="surface-raised">
+  <div class="container read">
+    <div class="section-label">In 90 Minutes</div>
+    <h2>What you'll walk away with</h2>
+    <ol class="learn">
+      <li><strong>A real case, start to finish</strong>A growing business with the same disconnected tools you have: what was broken, what it was costing them, and what changed.</li>
+      <li><strong>Your issue, worked through live</strong>Bring the workflow that eats your team's week. We'll take real problems from the room and work through them together.</li>
+      <li><strong>Where your hours are actually going</strong>The specific spots where duplicate entry and manual reporting hide in a $1M business, and how to find them in your own week.</li>
+      <li><strong>Why "hire" and "buy" are usually the wrong first move</strong>What to check before you add headcount or another subscription.</li>
+      <li><strong>How to get the tools you own working together</strong>Practical ways to connect your CRM, accounting, and project tools so information gets entered once.</li>
+      <li><strong>Where AI actually helps at your size</strong>And where it just adds another tab nobody opens.</li>
+      <li><strong>A simple way to decide what to fix first</strong>So Monday morning you know exactly where to start.</li>
+    </ol>
+
+    <div class="get">
+      <div class="get-label">Everyone who registers gets</div>
+      <ul>
+        <li><strong>The full recording</strong></li>
+        <li><strong>The transcript</strong></li>
+        <li><strong>1 workflow optimized</strong> live in the session</li>
+      </ul>
+      <p>Can't make it live? Register anyway. The recording and transcript go to everyone on the list.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FIT -->
+<section>
+  <div class="container">
+    <div class="section-label">Who It's For</div>
+    <h2>Is this your seat?</h2>
+    <p class="section-sub">Built for owners and operators who already have the tools and need them pulling their weight.</p>
+    <div class="who-grid">
+      <div class="who-card is-fit">
+        <div class="who-card-label">✓ Come if...</div>
+        <ul class="who-list">
+          <li><span>→</span> You run or operate a business doing $1M or more</li>
+          <li><span>→</span> Your team juggles 3+ tools that don't share information</li>
+          <li><span>→</span> You don't have a dedicated systems or data person</li>
+          <li><span>→</span> You're about to hire or buy software to solve a "capacity" problem</li>
+          <li><span>→</span> You want straight answers, not a software demo</li>
+        </ul>
+      </div>
+      <div class="who-card not-fit">
+        <div class="who-card-label">✕ Skip it if...</div>
+        <ul class="who-list">
+          <li><span>—</span> You're pre-revenue or still choosing your first tools</li>
+          <li><span>—</span> You have an in-house IT or data team handling this already</li>
+          <li><span>—</span> You're looking for a one-click AI miracle</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOST -->
+<section class="surface-light">
+  <div class="container read">
+    <div class="section-label">Your Host</div>
+    <div class="host">
+      <img src="Quinita-Headshot-2.jpg" alt="Quinita Whitfield" width="160" height="160">
+      <div>
+        <div class="host-name">Quinita Whitfield</div>
+        <div class="host-role">Founder, QAMW Consulting · Fractional COO</div>
+        <div class="host-logos">Enterprise experience: <strong>Microsoft</strong> · <strong>Columbia Sportswear</strong> · <strong>Veho</strong></div>
+        <p>I've spent 14+ years inside enterprise operations, data, and reporting at companies like Microsoft, Columbia Sportswear, and Veho, working in Power BI, SAP, Tableau, CRMs, and automation. Now I bring that to growing businesses that don't have a systems team, and I keep seeing the same thing: <strong>good companies paying for tools their people work around.</strong></p>
+        <p>This webinar is the session I wish every owner got before they signed another software contract or posted another job.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section id="cta">
+  <div class="container">
+    <div class="section-label">Free · Live · 90 Minutes</div>
+    <h2>Stop paying twice<br>for the same work.</h2>
+    <p class="lead">Bring your messiest workflow. Leave knowing what to fix first.</p>
+    <p class="event-meta"><strong>Thursday, November 19</strong> · 3:00 PM PT · Online<br>Recording + transcript included</p>
+    <a href="https://tidycal.com/quinitaw/running-lean-at-1m-make-the-tools-you-already-pay-for-work-together" class="btn-primary btn-light js-register" target="_blank" rel="noopener">Save My Seat →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="nav-logo" href="/index.html">QAMW<span>.</span></a>
+        <p>Systems consulting that finds where your business leaks time and money, and fixes it with the tools you already own.</p>
+        <div class="tag">Black-owned · Women-owned · Seattle, WA</div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="/index.html">Systems Audit</a>
+        <a href="/nonprofit-consulting.html">Nonprofit Consulting</a>
+        <a href="/systems-integration-consulting.html">Systems Integration</a>
+        <a href="/nonprofit-technical-support.html">Tech Support</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="/about.html">About</a>
+        <a href="https://tidycal.com/quinitaw/discovery-call" target="_blank" rel="noopener">Free Discovery Call</a>
+        <a href="/skill-gap-finder.html" target="_blank" rel="noopener">Skill Gap Finder</a>
+        <a href="https://www.linkedin.com/in/quinita-whitfield" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 QAMW Consulting · <a href="/privacy.html">Privacy</a></span>
+      <span>Seattle, WA</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.js-register').forEach(function (a) {
+    a.addEventListener('click', function () {
+      if (typeof gtag === 'function') gtag('event', 'webinar_register_click', { webinar: 'running-lean-at-1m' });
+    });
+  });
+</script>
+<script src="js/cookie-consent.js" defer></script>
+</body>
+</html>
