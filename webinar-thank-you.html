@@ -43,7 +43,21 @@
   .share-alt a { color: var(--body); margin: 0 10px; text-underline-offset: 4px; }
   .share-alt a:hover { color: var(--white); }
   .share-status { min-height: 1.4em; margin-top: 14px; font-family: 'DM Mono', monospace; font-size: 13px; color: var(--green); }
-  @media (max-width: 960px) { .magnet-grid { grid-template-columns: 1fr; } }
+  #hero { padding-bottom: 88px; }
+  #mini-audit { border-top: 1px solid var(--border); padding: 88px 0; }
+  .mini-wrap { display: grid; grid-template-columns: 1.4fr 1fr; gap: 56px; align-items: center; }
+  .mini-lead { font-size: 20px; color: var(--white); line-height: 1.5; margin-bottom: 24px; max-width: 540px; }
+  .mini-list { list-style: none; }
+  .mini-list li { padding: 10px 0 10px 28px; position: relative; font-size: 17px; color: var(--body); border-bottom: 1px solid var(--border); }
+  .mini-list li:last-child { border-bottom: none; }
+  .mini-list li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-family: 'DM Mono', monospace; }
+  .mini-card { background: var(--paper); color: var(--ink-body); padding: 36px 32px 30px; box-shadow: 0 0 0 1px var(--accent), 0 30px 80px -20px rgba(140,82,255,0.55); text-align: center; }
+  .mini-name { font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-ink); font-weight: 500; margin-bottom: 6px; }
+  .mini-price { font-family: 'Bebas Neue', sans-serif; font-size: 88px; line-height: 0.95; color: var(--ink); }
+  .mini-meta { font-family: 'DM Mono', monospace; font-size: 13px; color: var(--ink-body); margin: 8px 0 24px; }
+  .mini-card .btn-primary { display: block; text-align: center; }
+  .mini-note { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--ink-body); margin-top: 16px; }
+  @media (max-width: 960px) { .magnet-grid { grid-template-columns: 1fr; } .mini-wrap { grid-template-columns: 1fr; gap: 36px; } }
 </style>
 </head>
 <body>
@@ -70,8 +84,31 @@
       <em>See you there.</em>
     </h1>
     <p class="hero-sub fade-up">Thanks for registering. Your confirmation and join link are on their way to your inbox.</p>
-    <p class="hero-cred fade-up">Add it to your calendar now so it doesn't get buried. Below are a few free resources to dig into before we meet.</p>
+    <p class="hero-cred fade-up">Add it to your calendar now so it doesn't get buried.</p>
     <p class="ty-event fade-up">Registered for: <strong>Running Lean at $1M: Make the Tools You Already Pay For Work Together</strong></p>
+  </div>
+</section>
+
+<!-- MINI AUDIT -->
+<section id="mini-audit">
+  <div class="container mini-wrap">
+    <div>
+      <div class="section-label">Fast-Track</div>
+      <h2>Don't want to wait<br>for the webinar?</h2>
+      <p class="mini-lead">Grab a Mini Audit slot today. We pick the one workflow costing your team the most and take it apart together, live.</p>
+      <ul class="mini-list">
+        <li>One workflow, audited with you in a 1-hour session</li>
+        <li>Where it breaks, what it's costing you, and what to change</li>
+        <li>A clear next step your team can act on that week</li>
+      </ul>
+    </div>
+    <div class="mini-card">
+      <div class="mini-name">Mini Audit</div>
+      <div class="mini-price">$250</div>
+      <div class="mini-meta">1-hour session · one workflow</div>
+      <a href="https://tidycal.com/quinitaw/systems-discovery" class="btn-primary js-mini" target="_blank" rel="noopener">Grab a Mini Audit Slot →</a>
+      <p class="mini-note">A $100 deposit holds your slot.</p>
+    </div>
   </div>
 </section>
 
@@ -204,6 +241,11 @@
   });
 
   document.getElementById('emailShare').addEventListener('click', function () { track('email'); });
+  document.querySelectorAll('.js-mini').forEach(function (a) {
+    a.addEventListener('click', function () {
+      if (typeof gtag === 'function') gtag('event', 'mini_audit_click', { source: 'webinar_thank_you' });
+    });
+  });
   document.getElementById('linkedinShare').addEventListener('click', function () { track('linkedin'); });
 })();
 </script>
