@@ -74,6 +74,26 @@
   #cta .event-meta { color: rgba(255,255,255,0.9); margin: -24px 0 40px; }
   #cta .event-meta strong { color: #fff; }
 
+  /* Registration popup */
+  .reg-open, .reg-open body { overflow: hidden; }
+  .reg-modal { position: fixed; inset: 0; z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 24px; }
+  .reg-modal[hidden] { display: none; }
+  .reg-backdrop { position: absolute; inset: 0; background: rgba(10,10,10,0.78); }
+  .reg-panel { position: relative; width: 100%; max-width: 760px; max-height: calc(100vh - 48px); display: flex; flex-direction: column; background: #fff; box-shadow: 0 0 0 1px var(--accent), 0 30px 80px -20px rgba(140,82,255,0.55); animation: regIn 0.25s ease both; }
+  .reg-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; padding: 22px 24px 18px; background: var(--off-black); }
+  .reg-label { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 4px; }
+  .reg-title { font-family: 'Bebas Neue', sans-serif; font-size: 36px; line-height: 1; color: var(--white); }
+  .reg-close { background: none; border: 1px solid var(--border); color: var(--white); font-size: 26px; line-height: 1; width: 40px; height: 40px; cursor: pointer; flex-shrink: 0; }
+  .reg-close:hover { border-color: var(--accent); }
+  .reg-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .reg-body { overflow-y: auto; -webkit-overflow-scrolling: touch; min-height: 420px; }
+  @keyframes regIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  @media (max-width: 560px) {
+    .reg-modal { padding: 0; }
+    .reg-panel { max-height: 100vh; height: 100%; max-width: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { .reg-panel { animation: none; } }
+
   @media (max-width: 720px) {
     .scenes li { font-size: 19px; padding-left: 32px; }
     .learn li { padding-left: 52px; }
@@ -264,12 +284,68 @@
   </div>
 </footer>
 
+<!-- REGISTRATION POPUP -->
+<div class="reg-modal" id="regModal" role="dialog" aria-modal="true" aria-labelledby="regTitle" hidden>
+  <div class="reg-backdrop" data-close></div>
+  <div class="reg-panel">
+    <div class="reg-head">
+      <div>
+        <div class="reg-label">Thursday, Nov 19 · 3:00 PM PT · 90 min</div>
+        <div class="reg-title" id="regTitle">Save your seat</div>
+      </div>
+      <button type="button" class="reg-close" data-close aria-label="Close">×</button>
+    </div>
+    <div class="reg-body" id="regBody"></div>
+  </div>
+</div>
+
 <script>
+(function () {
+  var TIDYCAL_PATH = 'quinitaw/running-lean-at-1m-make-the-tools-you-already-pay-for-work-together';
+  var modal = document.getElementById('regModal');
+  var body = document.getElementById('regBody');
+  var loaded = false;
+  var lastFocus = null;
+
+  // Load the TidyCal embed the first time the popup opens, so it renders at full size.
+  function loadEmbed() {
+    if (loaded) return;
+    loaded = true;
+    var el = document.createElement('div');
+    el.className = 'tidycal-embed';
+    el.setAttribute('data-path', TIDYCAL_PATH);
+    body.appendChild(el);
+    var s = document.createElement('script');
+    s.src = 'https://asset-tidycal.b-cdn.net/js/embed.js';
+    s.async = true;
+    document.body.appendChild(s);
+  }
+
+  function open() {
+    lastFocus = document.activeElement;
+    modal.hidden = false;
+    document.documentElement.classList.add('reg-open');
+    loadEmbed();
+    modal.querySelector('.reg-close').focus();
+  }
+  function close() {
+    modal.hidden = true;
+    document.documentElement.classList.remove('reg-open');
+    if (lastFocus) lastFocus.focus();
+  }
+
   document.querySelectorAll('.js-register').forEach(function (a) {
-    a.addEventListener('click', function () {
+    a.addEventListener('click', function (e) {
       if (typeof gtag === 'function') gtag('event', 'webinar_register_click', { webinar: 'running-lean-at-1m' });
+      e.preventDefault();
+      open();
     });
   });
+  modal.querySelectorAll('[data-close]').forEach(function (el) { el.addEventListener('click', close); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !modal.hidden) close();
+  });
+})();
 </script>
 <script src="js/cookie-consent.js" defer></script>
 </body>
