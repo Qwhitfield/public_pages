@@ -73,11 +73,6 @@
        <priority>0.5000</priority>
   </url>
   <url>
-       <loc>https://www.qamwconsulting.com/practice/fieldservice-landing-v2.html</loc>
-       <lastmod>2026-10-09T03:08:30+00:00</lastmod>
-       <priority>0.5000</priority>
-  </url>
-  <url>
        <loc>https://www.qamwconsulting.com/chiro/CRM_reality.html</loc>
        <lastmod>2026-10-09T03:08:30+00:00</lastmod>
        <priority>0.5000</priority>
@@ -91,5 +86,15 @@
        <loc>https://www.qamwconsulting.com/running-lean-webinar.html</loc>
        <lastmod>2026-11-03T00:00:00+00:00</lastmod>
        <priority>0.8000</priority>
+  </url>
+  <url>
+       <loc>https://www.qamwconsulting.com/field-services.html</loc>
+       <lastmod>2026-11-25T00:00:00+00:00</lastmod>
+       <priority>0.9000</priority>
+  </url>
+  <url>
+       <loc>https://www.qamwconsulting.com/stop-jobs-falling-through-the-cracks.html</loc>
+       <lastmod>2026-11-25T00:00:00+00:00</lastmod>
+       <priority>0.7000</priority>
   </url>
 </urlset>

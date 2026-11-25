@@ -26,6 +26,7 @@
 - Project-based implementation after the audit
 
 ## Other services
+- Field service and construction systems consulting
 - Nonprofit consulting
 - Nonprofit technical support
 - Systems integration consulting
@@ -53,6 +54,8 @@ Seattle, Washington. Works with clients remotely.
 - Home / Systems Audit: https://www.qamwconsulting.com/
 - About: https://www.qamwconsulting.com/about.html
 - Systems Integration Consulting: https://www.qamwconsulting.com/systems-integration-consulting.html
+- Field Service Systems Consulting: https://www.qamwconsulting.com/field-services.html
+- Guide: How to stop jobs falling through the cracks in field service: https://www.qamwconsulting.com/stop-jobs-falling-through-the-cracks.html
 - Nonprofit Consulting: https://www.qamwconsulting.com/nonprofit-consulting.html
 - Nonprofit Technical Support: https://www.qamwconsulting.com/nonprofit-technical-support.html
 - Nonprofit Claude Workshop: https://www.qamwconsulting.com/nonprofit-ai-training/workshop-landing.html
