@@ -40,8 +40,9 @@
     "url": "https://www.qamwconsulting.com/"
   },
   "areaServed": [
-    "Seattle, WA",
-    "Pacific Northwest"
+    { "@type": "Country", "name": "United States" },
+    { "@type": "State", "name": "Washington" },
+    { "@type": "City", "name": "Seattle" }
   ],
   "audience": {
     "@type": "Audience",
@@ -75,7 +76,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/theme.css?v=4">
+<link rel="stylesheet" href="css/theme.css?v=8">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -107,10 +108,18 @@
     },
     {
       "@type": "Question",
+      "name": "What is systems integration consulting?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Systems integration consulting connects the separate software tools an organization runs on (CRM, accounting, project management, forms, reporting) so data moves between them automatically and stays consistent. It usually starts with a tech stack audit to map what you have, then builds the integrations, automations, and reports that remove manual re-entry."
+      }
+    },
+    {
+      "@type": "Question",
       "name": "Do you work remotely?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes — all engagements are remote by default. We're based in Seattle and available throughout the Pacific Northwest for in-person kickoffs or working sessions when that's genuinely useful, but we don't charge a travel premium and we don't require it."
+        "text": "Yes. Engagements are remote by default for organizations anywhere in the U.S. We're based in Seattle and work hybrid across Greater Seattle, Sammamish, Bellevue, and Redmond for in-person kickoffs or working sessions when that's genuinely useful. We don't charge a travel premium and we don't require it."
       }
     }
   ]
@@ -280,7 +289,7 @@
           <li>QuickBooks and accounting system integration</li>
           <li>Zapier, Make, and n8n workflow automation</li>
           <li>API-based integrations between platforms</li>
-          <li>AI readiness assessment and implementation</li>
+          <li><span><a href="/ai-readiness-consulting.html">AI readiness assessment</a> and implementation</span></li>
           <li>Process mapping and documentation</li>
         </ul>
       </div>
@@ -394,8 +403,12 @@
         <div class="faq-a">General IT consultants typically focus on infrastructure, hardware, networking, and security. Our focus is on the data and operations layer — the systems that run your business processes, the reports your leadership reads, and the automations that should be handling work your team currently does manually. Those are different problems requiring different expertise.</div>
       </details>
       <details class="faq-item">
+        <summary>What is systems integration consulting?</summary>
+        <div class="faq-a">Systems integration consulting connects the separate software tools an organization runs on (CRM, accounting, project management, forms, reporting) so data moves between them automatically and stays consistent. It usually starts with a tech stack audit to map what you have, then builds the integrations, automations, and reports that remove manual re-entry.</div>
+      </details>
+      <details class="faq-item">
         <summary>Do you work remotely?</summary>
-        <div class="faq-a">Yes — all engagements are remote by default. We're based in Seattle and available throughout the Pacific Northwest for in-person kickoffs or working sessions when that's genuinely useful, but we don't charge a travel premium and we don't require it.</div>
+        <div class="faq-a">Yes. Engagements are remote by default for organizations anywhere in the U.S. We're based in Seattle and work hybrid across Greater Seattle, Sammamish, Bellevue, and Redmond for in-person kickoffs or working sessions when that's genuinely useful. We don't charge a travel premium and we don't require it.</div>
       </details>
     </div>
   </div>
@@ -424,9 +437,14 @@
       <div class="footer-col">
         <h4>Services</h4>
         <a href="/index.html">Systems Audit</a>
-        <a href="/nonprofit-consulting.html">Nonprofit Consulting</a>
+        <a href="/ai-readiness-consulting.html">AI Readiness</a>
+        <a href="/data-strategy-consulting.html">Data Strategy &amp; Power BI</a>
         <a href="/systems-integration-consulting.html">Systems Integration</a>
+        <a href="/nonprofit-consulting.html">Nonprofit Consulting</a>
+        <a href="/nonprofit-data-systems-consulting.html">Nonprofit Data Systems</a>
+        <a href="/startup-smb-data-strategy.html">Startups &amp; SMBs</a>
         <a href="/nonprofit-technical-support.html">Tech Support</a>
+        <a href="/seattle-eastside-it-data-consulting.html">Seattle &amp; Eastside</a>
       </div>
       <div class="footer-col">
         <h4>Connect</h4>
@@ -438,7 +456,7 @@
     </div>
     <div class="footer-bottom">
       <span>© 2026 QAMW Consulting · <a href="/privacy.html">Privacy</a></span>
-      <span>Seattle, WA</span>
+      <span>Serving organizations remotely across the U.S. and hybrid across Greater Seattle &amp; Sammamish, WA</span>
     </div>
   </div>
 </footer>

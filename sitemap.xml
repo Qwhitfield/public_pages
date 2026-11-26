@@ -4,8 +4,33 @@
 
   <url>
        <loc>https://www.qamwconsulting.com/</loc>
-       <lastmod>2026-10-09T03:08:30+00:00</lastmod>
+       <lastmod>2026-11-26T00:00:00+00:00</lastmod>
        <priority>1.0000</priority>
+  </url>
+  <url>
+       <loc>https://www.qamwconsulting.com/ai-readiness-consulting.html</loc>
+       <lastmod>2026-11-26T00:00:00+00:00</lastmod>
+       <priority>0.9000</priority>
+  </url>
+  <url>
+       <loc>https://www.qamwconsulting.com/data-strategy-consulting.html</loc>
+       <lastmod>2026-11-26T00:00:00+00:00</lastmod>
+       <priority>0.9000</priority>
+  </url>
+  <url>
+       <loc>https://www.qamwconsulting.com/nonprofit-data-systems-consulting.html</loc>
+       <lastmod>2026-11-26T00:00:00+00:00</lastmod>
+       <priority>0.9000</priority>
+  </url>
+  <url>
+       <loc>https://www.qamwconsulting.com/startup-smb-data-strategy.html</loc>
+       <lastmod>2026-11-26T00:00:00+00:00</lastmod>
+       <priority>0.9000</priority>
+  </url>
+  <url>
+       <loc>https://www.qamwconsulting.com/seattle-eastside-it-data-consulting.html</loc>
+       <lastmod>2026-11-26T00:00:00+00:00</lastmod>
+       <priority>0.9000</priority>
   </url>
   <url>
        <loc>https://www.qamwconsulting.com/claude-small-business-skills.html</loc>
@@ -39,7 +64,7 @@
   </url>
   <url>
        <loc>https://www.qamwconsulting.com/systems-integration-consulting.html</loc>
-       <lastmod>2026-10-09T03:08:30+00:00</lastmod>
+       <lastmod>2026-11-26T00:00:00+00:00</lastmod>
        <priority>0.8000</priority>
   </url>
   <url>
