@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X8MGSYVPNG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  var qamwConsent = null;
+  try { qamwConsent = localStorage.getItem('qamw_cookie_consent'); } catch (e) {}
+  gtag('consent', 'default', { analytics_storage: qamwConsent === 'denied' ? 'denied' : 'granted', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+  gtag('js', new Date());
+
+  gtag('config', 'G-X8MGSYVPNG');
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Systems Gap Checklist | QAMW Consulting</title>
+<meta name="description" content="A free 3-minute checklist for nonprofits and small businesses: find where your tools, data and team are out of sync before you add more software or AI. Built by QAMW Consulting.">
+<link rel="canonical" href="https://www.qamwconsulting.com/systems-gap-checklist.html">
+
+<!--
+  SETUP NOTES
+
+  RESULTS DELIVERY — TALLY
+  Create a Tally form with these visible fields:
+    - Name (short text, required)
+    - Email (email, required)
+    - Organization (short text)
+    - Phone (phone, optional)
+  Then add HIDDEN fields named exactly:
+    orgtype, size, role, tools, score, tier, gaps, headache, timeline
+  This page fills those in automatically with the visitor's checklist answers.
+  Copy the form ID from its URL (tally.so/forms/XXXXXX -> XXXXXX) into
+  TALLY_FORM_ID in the <script> at the bottom of this file.
+  Until then, visitors see an "Email my results" button instead, so nothing is broken.
+  Turn on Tally's email notification (Integrations > Email) so each submission lands in your inbox.
+-->
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Barlow+Condensed:wght@500;600;700&display=swap">
+
+<style>
+  :root{
+    --bg:#0F0D12;
+    --bg-mid:#1a1620;
+    --bg-card-dark:#1d1826;
+    --line-dark:#332d45;
+    --line-mid:#cfc7dd;
+    --paper:#f4f2f8;
+    --panel:#fdfcfe;
+    --line-light:#e2ddec;
+    --accent:#8C52FF;
+    --accent-lt:#A370FF;
+    --accent-dim:rgba(140,82,255,.28);
+    --accent-onlight:#6B3FD1;
+    --accent-tint:#efe7fb;
+    --hover-tint:#f8f6fc;
+    --good:#47C47E;
+    --good-onlight:#2E8F5C;
+    --warn-onlight:#A4601A;
+    --bad-onlight:#B23A48;
+    --ink:#17141d;
+    --ink-muted:#635d70;
+    --paper-text:#f1eef7;
+    --paper-muted:#a89bc4;
+    --radius:10px;
+    font-size:16px;
+  }
+  *{box-sizing:border-box}
+  html,body{background:var(--bg)}
+  body{margin:0;color:var(--paper-text);font-family:'Plus Jakarta Sans',system-ui,-apple-system,Segoe UI,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:800;letter-spacing:-0.02em;text-wrap:balance;margin:0}
+  p{margin:0;line-height:1.55}
+  button,textarea{font-family:inherit}
+  a{color:inherit}
+  ::selection{background:var(--accent-dim)}
+  [hidden]{display:none!important}
+
+  .eyebrow{display:flex;align-items:center;gap:10px;font-family:'Barlow Condensed',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+  .eyebrow::before{content:'';display:block;width:22px;height:1px;background:var(--accent)}
+  .eyebrow.on-light{color:var(--accent-onlight)}
+  .eyebrow.on-light::before{background:var(--accent-onlight)}
+
+  .app{min-height:100vh;display:flex;flex-direction:column}
+  .topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px clamp(16px,4vw,44px);background:var(--bg);border-bottom:1px solid var(--line-dark)}
+  .brand{font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;font-size:.95rem;text-transform:uppercase;color:var(--paper-text);display:flex;align-items:center;gap:8px;white-space:nowrap;text-decoration:none}
+  .brand-mark{color:var(--accent);font-size:1.1em}
+  .brand-sep{color:var(--paper-muted);font-weight:400}
+  .progress{display:flex;align-items:center;gap:10px;flex:1;max-width:280px}
+  .progress-track{flex:1;height:3px;background:var(--line-dark);border-radius:2px;overflow:hidden}
+  .progress-fill{height:100%;width:0%;background:var(--accent);transition:width .35s ease}
+  .progress-label{font-family:'Barlow Condensed',sans-serif;font-size:.72rem;letter-spacing:.1em;color:var(--paper-muted);white-space:nowrap}
+
+  .stage{flex:1;display:flex;flex-direction:column}
+  .step{width:100%}
+
+  /* ---- Intro ---- */
+  .step-intro{background:var(--bg);padding:clamp(48px,9vw,96px) clamp(16px,6vw,44px) 64px;display:flex;justify-content:center}
+  .intro-inner{max-width:760px;width:100%;display:flex;flex-direction:column;gap:22px}
+  .intro-inner h1{font-size:clamp(2.1rem,5vw,3.4rem);color:var(--paper-text)}
+  .intro-inner .lede{font-size:clamp(1rem,1.6vw,1.15rem);color:var(--paper-muted);max-width:58ch}
+  .intro-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+  .meta-chip{font-family:'Barlow Condensed',sans-serif;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--paper-muted);border:1px solid var(--line-dark);padding:7px 12px;border-radius:4px}
+  .area-preview{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;background:var(--line-dark);border:1px solid var(--line-dark);border-radius:var(--radius);overflow:hidden;margin-top:6px}
+  @media (max-width:720px){.area-preview{grid-template-columns:1fr 1fr}}
+  .area-preview div{background:var(--bg-mid);padding:16px 14px;display:flex;flex-direction:column;gap:4px}
+  .area-preview b{font-family:'Barlow Condensed',sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-lt)}
+  .area-preview span{font-size:.86rem;color:var(--paper-text);font-weight:600}
+
+  /* ---- light form steps ---- */
+  .step-form{background:var(--paper);color:var(--ink);padding:clamp(40px,8vw,72px) clamp(16px,6vw,44px) 120px;display:flex;justify-content:center;flex:1}
+  .form-inner{max-width:880px;width:100%;display:flex;flex-direction:column;gap:28px}
+  .form-inner h2{font-size:clamp(1.6rem,3.4vw,2.3rem);color:var(--ink)}
+  .form-sub{color:var(--ink-muted);max-width:62ch;font-size:1rem}
+
+  .orgtype-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--line-light);border:1px solid var(--line-light);border-radius:var(--radius);overflow:hidden}
+  @media (max-width:640px){.orgtype-grid{grid-template-columns:1fr}}
+  .orgtype-card{background:var(--panel);padding:26px;display:flex;flex-direction:column;gap:10px;cursor:pointer;border:none;text-align:left;font:inherit;color:inherit}
+  .orgtype-card:hover{background:var(--hover-tint)}
+  .orgtype-card[aria-checked="true"]{background:var(--ink);color:var(--paper-text)}
+  .orgtype-card[aria-checked="true"] .ot-desc{color:var(--paper-muted)}
+  .ot-num{font-family:'Barlow Condensed',sans-serif;font-weight:700;color:var(--accent);letter-spacing:.08em;font-size:.78rem;text-transform:uppercase}
+  .ot-title{font-size:1.25rem;font-weight:800;letter-spacing:-0.01em}
+  .ot-desc{color:var(--ink-muted);font-size:.92rem}
+
+  .group{display:flex;flex-direction:column;gap:12px;padding-top:20px;border-top:1px solid var(--line-light)}
+  .group.first{border-top:none;padding-top:0}
+  .group-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:.78rem;color:var(--accent-onlight)}
+  .group-note{font-size:.88rem;color:var(--ink-muted);margin-top:-6px}
+
+  .opt-row{display:flex;flex-wrap:wrap;gap:8px}
+  .opt{padding:11px 16px;border:1px solid var(--line-light);border-radius:8px;background:var(--panel);cursor:pointer;font-size:.94rem;color:var(--ink);transition:border-color .15s,background .15s}
+  .opt:hover{border-color:var(--accent)}
+  .opt[aria-checked="true"]{border-color:var(--accent);background:var(--accent-tint);font-weight:600}
+
+  .check-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px}
+  .check-item{display:flex;align-items:center;gap:10px;padding:11px 13px;border:1px solid var(--line-light);border-radius:8px;background:var(--panel);cursor:pointer;font-size:.94rem;transition:border-color .15s,background .15s}
+  .check-item:hover{border-color:var(--accent)}
+  .check-item input{accent-color:var(--accent);width:16px;height:16px;flex:none}
+  .check-item.checked{border-color:var(--accent);background:var(--accent-tint)}
+  .check-item small{display:block;color:var(--ink-muted);font-size:.78rem}
+
+  /* checklist questions */
+  .q-list{display:flex;flex-direction:column;gap:2px;background:var(--line-light);border:1px solid var(--line-light);border-radius:var(--radius);overflow:hidden}
+  .q{background:var(--panel);padding:18px 20px;display:grid;grid-template-columns:1fr auto;gap:14px 24px;align-items:center}
+  @media (max-width:680px){.q{grid-template-columns:1fr}}
+  .q-text{font-size:1rem;font-weight:600;line-height:1.45}
+  .q-num{font-family:'Barlow Condensed',sans-serif;font-weight:700;color:var(--accent-onlight);letter-spacing:.06em;margin-right:8px}
+  .yn{display:flex;border:1px solid var(--line-mid);border-radius:4px;overflow:hidden;flex:none;align-self:start}
+  .yn button{border:none;background:var(--panel);padding:10px 16px;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:.8rem;color:var(--ink-muted);cursor:pointer;border-left:1px solid var(--line-mid)}
+  .yn button:first-child{border-left:none}
+  .yn button:hover{color:var(--ink);background:var(--hover-tint)}
+  .yn button[aria-checked="true"]{background:var(--ink);color:#fff}
+
+  textarea.field{width:100%;min-height:110px;padding:14px;border:1px solid var(--line-mid);border-radius:8px;background:var(--panel);font-size:1rem;color:var(--ink);resize:vertical;line-height:1.5}
+  textarea.field:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+
+  /* nav row */
+  .step-nav{position:fixed;left:0;right:0;bottom:0;z-index:15;display:flex;justify-content:center;background:linear-gradient(to top,var(--paper) 60%,rgba(244,242,248,0));padding:22px clamp(16px,6vw,44px) 18px}
+  .step-nav.static{position:static;background:none;padding:8px 0 0}
+  .step-nav-inner{max-width:880px;width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .btn{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:.82rem;padding:14px 26px;border-radius:4px;border:1px solid transparent;cursor:pointer;transition:opacity .15s,background .15s;text-decoration:none;text-align:center}
+  .btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-primary:hover{background:var(--accent-lt)}
+  .btn-primary:disabled{opacity:.35;cursor:not-allowed}
+  .btn-ghost{background:transparent;border-color:var(--line-mid);color:var(--ink-muted)}
+  .btn-ghost:hover{border-color:var(--ink);color:var(--ink)}
+  .btn-ghost.dark{border-color:var(--line-dark);color:var(--paper-muted)}
+  .btn-ghost.dark:hover{border-color:var(--paper-muted);color:var(--paper-text)}
+  .count-hint{font-family:'Barlow Condensed',sans-serif;letter-spacing:.08em;font-size:.78rem;color:var(--ink-muted);text-transform:uppercase}
+
+  /* ---- results ---- */
+  .results-hero{background:var(--bg);padding:clamp(44px,8vw,80px) clamp(16px,6vw,44px) 48px}
+  .results-hero-inner{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+  .results-hero h2{font-size:clamp(1.9rem,4vw,2.8rem);color:var(--paper-text)}
+  .results-hero .lede{color:var(--paper-muted);max-width:66ch;font-size:1.02rem}
+  .chip-row{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-family:'Barlow Condensed',sans-serif;font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;padding:6px 12px;border-radius:4px;border:1px solid var(--line-dark);color:var(--paper-muted)}
+  .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line-dark);border:1px solid var(--line-dark);border-radius:var(--radius);overflow:hidden;margin-top:10px}
+  @media (max-width:700px){.stat-row{grid-template-columns:1fr}}
+  .stat-card{background:var(--bg-card-dark);padding:22px 20px;display:flex;flex-direction:column;gap:4px}
+  .stat-card.accent{background:var(--accent)}
+  .stat-card.accent .stat-num,.stat-card.accent .stat-label{color:#fff}
+  .stat-num{font-size:2.1rem;font-weight:800;color:var(--accent-lt);letter-spacing:-0.02em;font-variant-numeric:tabular-nums}
+  .stat-label{font-size:.85rem;color:var(--paper-muted)}
+
+  .breakdown{background:var(--paper);color:var(--ink);padding:clamp(44px,8vw,72px) clamp(16px,6vw,44px)}
+  .breakdown-inner{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:26px}
+  .breakdown-inner > h3{font-size:clamp(1.4rem,2.6vw,1.9rem)}
+  .area-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media (max-width:820px){.area-grid{grid-template-columns:1fr}}
+  .area-card{background:var(--panel);border:1px solid var(--line-light);border-radius:var(--radius);padding:22px;display:flex;flex-direction:column;gap:12px;border-top:3px solid var(--good-onlight)}
+  .area-card.gap{border-top-color:var(--bad-onlight)}
+  .area-card.some{border-top-color:var(--warn-onlight)}
+  .area-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .area-name{font-size:1.15rem;font-weight:800}
+  .area-status{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--good-onlight);white-space:nowrap}
+  .area-card.gap .area-status{color:var(--bad-onlight)}
+  .area-card.some .area-status{color:var(--warn-onlight)}
+  .area-flags{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+  .area-flags li{font-size:.88rem;color:var(--ink);padding-left:18px;position:relative;line-height:1.45}
+  .area-flags li::before{content:'';position:absolute;left:0;top:.55em;width:8px;height:2px;background:var(--bad-onlight)}
+  .area-flags li em{font-style:normal;color:var(--ink-muted)}
+  .area-why{font-size:.9rem;color:var(--ink-muted)}
+  .area-fix{font-size:.88rem;background:var(--accent-tint);border-radius:6px;padding:10px 12px;color:var(--ink)}
+  .area-fix b{font-family:'Barlow Condensed',sans-serif;letter-spacing:.1em;text-transform:uppercase;font-size:.72rem;color:var(--accent-onlight);display:block;margin-bottom:2px}
+  .insight{background:var(--ink);color:var(--paper-text);border-radius:var(--radius);padding:22px 24px;display:flex;flex-direction:column;gap:8px}
+  .insight p{color:var(--paper-muted);font-size:.95rem}
+
+  .capture-band{background:var(--bg);padding:clamp(48px,8vw,80px) clamp(16px,6vw,44px)}
+  .next-steps-container{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:32px}
+  .next-step-header{display:flex;flex-direction:column;gap:14px;max-width:640px}
+  .next-step-header h2{font-size:clamp(1.6rem,3.4vw,2.4rem);color:var(--paper-text)}
+  .next-step-header p{color:var(--paper-muted);font-size:1.05rem}
+  .options-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch}
+  @media (max-width:820px){.options-grid{grid-template-columns:1fr}}
+  .option-card{border-radius:var(--radius);padding:clamp(22px,3vw,32px);display:flex;flex-direction:column;gap:16px;min-width:0}
+  .option-card h3{font-size:1.35rem;line-height:1.25}
+  .option-card p{font-size:.95rem}
+  .card-tag{align-self:flex-start;font-family:'Barlow Condensed',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:5px 10px;border-radius:3px}
+  .primary-card{background:var(--panel);color:var(--ink);border:1px solid var(--line-light);border-top:3px solid var(--accent)}
+  .primary-card .card-tag{background:var(--accent);color:#fff}
+  .primary-card p{color:var(--ink-muted)}
+  .secondary-card{background:var(--bg-mid);color:var(--paper-text);border:1px solid var(--line-dark)}
+  .secondary-card .card-tag{border:1px solid var(--line-dark);color:var(--paper-muted)}
+  .secondary-card p{color:var(--paper-muted)}
+  .benefit-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+  .benefit-list li{position:relative;padding-left:26px;font-size:.93rem;font-weight:600;color:var(--ink)}
+  .benefit-list li::before{content:'✓';position:absolute;left:0;top:0;color:var(--good-onlight);font-weight:800}
+  .option-card .btn{display:block;margin-top:auto}
+  .subtext{font-size:.8rem;text-align:center}
+  .primary-card .subtext{color:var(--ink-muted);margin-top:-6px}
+  .secondary-card .subtext{color:var(--paper-muted)}
+  .tally-wrap{margin-top:4px;background:var(--accent-tint);border:1px solid var(--accent-lt);border-radius:var(--radius);padding:14px 16px 6px;overflow:hidden;color-scheme:light}
+  .thankyou{border:1px solid var(--line-dark);background:var(--bg-card-dark);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;gap:8px}
+  .thankyou h4{color:var(--paper-text);font-size:1.15rem}
+  .thankyou p{color:var(--paper-muted);font-size:.92rem}
+  .thankyou .btn{align-self:flex-start;margin-top:6px}
+
+  footer.site-footer{background:#0b0a10;border-top:1px solid var(--line-dark);padding:26px clamp(16px,6vw,44px);display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+  .foot-left{font-family:'Barlow Condensed',sans-serif;font-size:.74rem;letter-spacing:.06em;color:var(--paper-muted)}
+  .foot-left b{color:var(--paper-text)}
+  .foot-left a{color:var(--accent-lt);text-decoration:none}
+
+  @media (prefers-reduced-motion:reduce){.progress-fill{transition:none}}
+
+  @media print{
+    .topbar,.step-nav,.capture-band,footer.site-footer{display:none!important}
+    html,body,.results-hero,.stat-card,.insight{background:#fff!important;color:#17141d!important}
+    .results-hero h2,.results-hero .lede,.stat-num,.stat-label,.chip,.insight p,.insight h4{color:#17141d!important}
+    .stat-row{background:#ccc}
+    .area-card{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <div class="topbar">
+    <a class="brand" href="/"><span class="brand-mark">●</span>QAMW<span class="brand-sep">/</span>Systems Gap Checklist</a>
+    <div class="progress" id="progressWrap" hidden>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <span class="progress-label" id="progressLabel">Step 1 of 4</span>
+    </div>
+  </div>
+
+  <main class="stage">
+
+    <!-- INTRO -->
+    <section class="step step-intro" id="step-intro">
+      <div class="intro-inner">
+        <div class="eyebrow">FREE CHECKLIST · NONPROFITS &amp; SMALL BUSINESSES</div>
+        <h1>Where are your tools and your team out of sync?</h1>
+        <p class="lede">Donor data in three places. Grant reports that take a week. Staff re-typing the same information into two systems. This checklist finds the gaps between how your team says work happens and how your tools are actually wired, before you spend money on more software or AI.</p>
+        <div class="intro-meta">
+          <span class="meta-chip">About 3 minutes</span>
+          <span class="meta-chip">13 yes / no questions</span>
+          <span class="meta-chip">Results on screen, no email required</span>
+        </div>
+        <div class="area-preview" aria-label="What the checklist covers">
+          <div><b>01</b><span>Data ownership</span></div>
+          <div><b>02</b><span>Consistency</span></div>
+          <div><b>03</b><span>Traceability</span></div>
+          <div><b>04</b><span>People dependency</span></div>
+          <div><b>05</b><span>Automation readiness</span></div>
+        </div>
+        <div class="step-nav static">
+          <div class="step-nav-inner" style="justify-content:flex-start">
+            <button class="btn btn-primary" id="btnStart">Start the checklist →</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 1: ABOUT YOUR ORG -->
+    <section class="step step-form" id="step-about" hidden>
+      <div class="form-inner">
+        <div class="eyebrow on-light">STEP 1 OF 4</div>
+        <h2>Tell me about your organization</h2>
+        <p class="form-sub">This tailors the questions to how you actually work. Nonprofits see donors, grants and programs instead of customers and sales.</p>
+
+        <div class="group first">
+          <div class="group-title">Type of organization</div>
+          <div class="orgtype-grid" role="radiogroup" aria-label="Organization type">
+            <button type="button" class="orgtype-card" role="radio" aria-checked="false" data-org="nonprofit">
+              <span class="ot-num">A</span>
+              <span class="ot-title">Nonprofit / mission-driven</span>
+              <span class="ot-desc">501(c)(3), community organization or grant-funded program: donors, grants and programs.</span>
+            </button>
+            <button type="button" class="orgtype-card" role="radio" aria-checked="false" data-org="smb">
+              <span class="ot-num">B</span>
+              <span class="ot-title">Small business</span>
+              <span class="ot-desc">Services, trades, retail, agencies, practices: customers, sales and operations.</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="group">
+          <div class="group-title">How many people work there?</div>
+          <div class="group-note">Staff only. Count part-time, leave out volunteers.</div>
+          <div class="opt-row" role="radiogroup" aria-label="Team size" data-field="size">
+            <button type="button" class="opt" role="radio" aria-checked="false" data-val="Just me">Just me</button>
+            <button type="button" class="opt" role="radio" aria-checked="false" data-val="2–10">2–10</button>
+            <button type="button" class="opt" role="radio" aria-checked="false" data-val="11–50">11–50</button>
+            <button type="button" class="opt" role="radio" aria-checked="false" data-val="51–200">51–200</button>
+            <button type="button" class="opt" role="radio" aria-checked="false" data-val="200+">200+</button>
+          </div>
+        </div>
+
+        <div class="group">
+          <div class="group-title">Your role</div>
+          <div class="opt-row" role="radiogroup" aria-label="Your role" data-field="role">
+            <button type="button" class="opt" role="radio" aria-checked="false" data-val="Executive Director / Owner / CEO">Executive Director / Owner / CEO</button>
+            <button type="button" class="opt" role="radio" aria-checked="false" data-val="Operations or finance lead">Operations or finance lead</button>
+            <button type="button" class="opt" role="radio" aria-checked="false" data-val="Development / fundraising or sales lead">Development / fundraising or sales lead</button>
+            <button type="button" class="opt" role="radio" aria-checked="false" data-val="Staff / team member">Staff / team member</button>
+            <button type="button" class="opt" role="radio" aria-checked="false" data-val="Board member">Board member</button>
+            <button type="button" class="opt" role="radio" aria-checked="false" data-val="Consultant or advisor">Consultant or advisor</button>
+          </div>
+        </div>
+      </div>
+      <div class="step-nav">
+        <div class="step-nav-inner">
+          <button class="btn btn-ghost" id="back1">← Back</button>
+          <button class="btn btn-primary" id="next1" disabled>Continue →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 2: TOOLS -->
+    <section class="step step-form" id="step-tools" hidden>
+      <div class="form-inner">
+        <div class="eyebrow on-light">STEP 2 OF 4</div>
+        <h2>Where does your information live today?</h2>
+        <p class="form-sub">Check everything your team uses, even the spreadsheet nobody admits to. The number of places your data lives is one of the biggest predictors of gaps.</p>
+        <div id="toolGroups"></div>
+      </div>
+      <div class="step-nav">
+        <div class="step-nav-inner">
+          <button class="btn btn-ghost" id="back2">← Back</button>
+          <span class="count-hint" id="toolCount">0 selected</span>
+          <button class="btn btn-primary" id="next2">Continue →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 3: CHECKLIST -->
+    <section class="step step-form" id="step-check" hidden>
+      <div class="form-inner">
+        <div class="eyebrow on-light">STEP 3 OF 4</div>
+        <h2>The checklist</h2>
+        <p class="form-sub">Answer for how things work today, not how they're supposed to work. If you're not sure, pick “Not sure”. That's useful information too.</p>
+        <div id="checkGroups"></div>
+      </div>
+      <div class="step-nav">
+        <div class="step-nav-inner">
+          <button class="btn btn-ghost" id="back3">← Back</button>
+          <span class="count-hint" id="answerCount">0 of 13 answered</span>
+          <button class="btn btn-primary" id="next3" disabled>Continue →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 4: WRAP-UP -->
+    <section class="step step-form" id="step-wrap" hidden>
+      <div class="form-inner">
+        <div class="eyebrow on-light">STEP 4 OF 4</div>
+        <h2>Last two questions</h2>
+        <p class="form-sub">These help me point you to the right next step.</p>
+
+        <div class="group first">
+          <div class="group-title">What's the biggest systems headache right now?</div>
+          <div class="group-note">Optional, but the more specific the better. “Our donor list and our email list never match.”</div>
+          <textarea class="field" id="headache" maxlength="600" placeholder="In a sentence or two…"></textarea>
+        </div>
+
+        <div class="group">
+          <div class="group-title">When do you want this fixed?</div>
+          <div class="opt-row" role="radiogroup" aria-label="Timeline" data-field="timeline">
+            <button type="button" class="opt" role="radio" aria-checked="false" data-val="Just exploring">Just exploring</button>
+            <button type="button" class="opt" role="radio" aria-checked="false" data-val="Within 6 months">Within 6 months</button>
+            <button type="button" class="opt" role="radio" aria-checked="false" data-val="Within 3 months">Within 3 months</button>
+            <button type="button" class="opt" role="radio" aria-checked="false" data-val="It's urgent">It's urgent</button>
+          </div>
+        </div>
+      </div>
+      <div class="step-nav">
+        <div class="step-nav-inner">
+          <button class="btn btn-ghost" id="back4">← Back</button>
+          <button class="btn btn-primary" id="next4" disabled>See my results →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULTS -->
+    <section class="step" id="step-results" hidden>
+      <div class="results-hero">
+        <div class="results-hero-inner">
+          <div class="eyebrow">YOUR SYSTEMS GAP RESULTS</div>
+          <h2 id="tierHeadline"></h2>
+          <p class="lede" id="tierBody"></p>
+          <div class="chip-row" id="chipRow"></div>
+          <div class="stat-row" id="statRow"></div>
+        </div>
+      </div>
+
+      <div class="breakdown">
+        <div class="breakdown-inner">
+          <div class="eyebrow on-light">BREAKDOWN BY AREA</div>
+          <h3>Where the gaps are, and the first fix for each</h3>
+          <div class="area-grid" id="areaGrid"></div>
+          <div class="insight" id="toolInsight" hidden></div>
+        </div>
+      </div>
+
+      <div class="capture-band">
+        <div class="next-steps-container">
+          <div class="next-step-header">
+            <div class="eyebrow">NEXT STEP</div>
+            <h2>Turn this checklist into a plan</h2>
+            <p>You can see where the cracks are. The next step is finding out exactly where your systems break, and fixing them with the tools you already pay for first.</p>
+          </div>
+
+          <div class="options-grid">
+            <div class="option-card primary-card">
+              <span class="card-tag">READY TO FIX IT</span>
+              <h3>Book a free discovery call</h3>
+              <p>We'll walk through your results together, talk about what's breaking, and see whether a Systems Reality Check is the right fit.</p>
+              <ul class="benefit-list">
+                <li>Your results reviewed with you, gap by gap</li>
+                <li>The 1–2 fixes that would save the most time</li>
+                <li>Honest answer on whether you need outside help</li>
+              </ul>
+              <a href="https://calendar.app.google/RdJ5FcWSo2DGMLKY6" target="_blank" rel="noopener" class="btn btn-primary" id="bookCallBtn">Book a free call →</a>
+              <span class="subtext">30 minutes with Quinita, no pitch deck</span>
+            </div>
+
+            <div class="option-card secondary-card">
+              <span class="card-tag">NOT READY FOR A CALL</span>
+              <h3>Send your results to Quinita</h3>
+              <p>Share your answers and I'll follow up personally with a few notes on where I'd start, based on your specific gaps.</p>
+
+              <div id="tallyWrap" class="tally-wrap" hidden>
+                <iframe id="tallyFrame" data-tally-src="" loading="lazy" width="100%" height="420" frameborder="0" marginheight="0" marginwidth="0" title="Send my results to Quinita"></iframe>
+              </div>
+
+              <div id="sentThanks" class="thankyou" hidden>
+                <h4>Got it. Thank you.</h4>
+                <p>Quinita has your results and will follow up personally. Want a copy for your team?</p>
+                <button type="button" class="btn btn-primary" id="printBtn">Print or save my results</button>
+              </div>
+
+              <div id="emailFallback" hidden>
+                <a href="#" class="btn btn-primary" id="emailBtn">Email my results to Quinita →</a>
+                <p class="subtext" style="margin-top:10px">Opens your email app with your results filled in</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-nav static">
+            <div class="step-nav-inner" style="justify-content:flex-start">
+              <button type="button" class="btn btn-ghost dark" id="retakeBtn">Retake checklist</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="site-footer">
+        <div class="foot-left">Site by <b>QAMW Consulting</b> · <a href="/">qamwconsulting.com</a></div>
+      </footer>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ================================================================
+     TALLY SETUP: paste the new form's ID here (see notes at top).
+     ================================================================ */
+  var TALLY_FORM_ID = "REPLACE_WITH_YOUR_TALLY_FORM_ID";
+  var CONTACT_EMAIL = "quinitaw@qamwconsulting.com";
+
+  /* ---------------- DATA ---------------- */
+
+  var TOOL_GROUPS = [
+    {title:"Donor, client or customer records", items:[
+      ["salesforce","Salesforce / Nonprofit Cloud"],["bloomerang","Bloomerang"],["donorperfect","DonorPerfect"],
+      ["lgl","Little Green Light"],["neon","Neon CRM"],["blackbaud","Blackbaud / Raiser's Edge"],
+      ["hubspot","HubSpot"],["zohocrm","Zoho CRM"],["othercrm","Other CRM or database"]]},
+    {title:"Money", items:[
+      ["qbo","QuickBooks"],["xero","Xero"],["aplos","Aplos"],["intacct","Sage Intacct"],
+      ["donationtools","Givebutter / Donorbox / online giving"],["payments","Stripe / Square / PayPal"],["payroll","Gusto or other payroll"]]},
+    {title:"Programs, people & outreach", items:[
+      ["casemgmt","Case or program management (e.g. Apricot)"],["volunteer","Volunteer management"],
+      ["events","Event or ticketing tool"],["emailmkt","Mailchimp / Constant Contact"],
+      ["forms","Google Forms / Jotform / Tally"],["scheduling","Scheduling or booking tool"]]},
+    {title:"Everyday work", items:[
+      ["gworkspace","Google Workspace"],["m365","Microsoft 365"],["pm","Asana / monday / ClickUp"],
+      ["airtable","Airtable"],["notion","Notion"],["sheets","Spreadsheets (Excel or Google Sheets)"],["paper","Paper forms or notebooks"]]}
+  ];
+
+  var AREAS = [
+    {id:"own", name:"Data ownership",
+     why:"When nobody owns the data, errors linger and everyone keeps their own copy.",
+     fix:"Name one owner for each core set of data and write down who fixes what when a number is wrong.",
+     np_fix:"Name one owner each for donor, program, finance and volunteer data, and write down who fixes what when a number is wrong."},
+    {id:"cons", name:"Consistency",
+     why:"Teams spend meetings debating whose number is right instead of acting on it, and people re-type the same information.",
+     fix:"Agree on definitions for your five most-used terms and pick one system as the source for each key number.",
+     np_fix:"Agree on what counts as an “active donor” or a “participant served,” and pick one system as the source for each number you report to funders."},
+    {id:"trace", name:"Traceability",
+     why:"Reports take days because every number has to be rebuilt by hand, and nobody can double-check them.",
+     fix:"Write down, step by step, how your top three reports get made before automating any of them.",
+     np_fix:"Write down, step by step, how your grant reports and board updates get made before automating any of them."},
+    {id:"dep", name:"People dependency",
+     why:"Your reporting lives in one person's head or one person's spreadsheet. A vacation or a resignation breaks it.",
+     fix:"Find the manual clean-up steps and the person who does them, then get those steps documented or built into the system."},
+    {id:"ready", name:"Automation readiness",
+     why:"Automating messy data just makes mistakes faster. Automation and AI amplify whatever is underneath them.",
+     fix:"Close the gaps above first, then connect your systems so data flows between them without re-typing."}
+  ];
+
+  // gapWhen: the answer that signals a gap. "Not sure" always counts as a gap.
+  var QUESTIONS = [
+    {id:"q1", area:"own", gapWhen:"no",
+     smb:"Does every core set of data (customers, sales, finances) have a named owner?",
+     np:"Does every core set of data (donors, programs, finances, volunteers) have a named owner?"},
+    {id:"q2", area:"own", gapWhen:"no",
+     smb:"If a number is wrong, do you know who's responsible for fixing it?"},
+    {id:"q3", area:"own", gapWhen:"no",
+     smb:"Is at least one person responsible for keeping your data accurate?"},
+    {id:"q4", area:"cons", gapWhen:"no",
+     smb:"Would your sales, finance and operations teams report the same revenue number today?",
+     np:"Would your development, finance and program teams report the same total raised this year?"},
+    {id:"q5", area:"cons", gapWhen:"no",
+     smb:"Are terms like “qualified lead” or “active customer” defined the same way across teams?",
+     np:"Are terms like “active donor” or “participant served” defined the same way across teams?"},
+    {id:"q6", area:"cons", gapWhen:"no",
+     smb:"Do key dates (order dates, due dates, appointments) come from one shared source?",
+     np:"Do key dates (gift dates, grant deadlines, program sessions) come from one shared source?"},
+    {id:"q7", area:"cons", gapWhen:"no",
+     smb:"Can you build your monthly report without re-typing data from one system into another?",
+     np:"Can you pull together a grant report or board update without re-typing data from one system into another?"},
+    {id:"q8", area:"trace", gapWhen:"no",
+     smb:"Can you trace where a key number comes from without reverse-engineering a spreadsheet?",
+     np:"Can you trace where a number in a grant report comes from without reverse-engineering a spreadsheet?"},
+    {id:"q9", area:"trace", gapWhen:"no",
+     smb:"Are the steps that turn raw data into reports written down somewhere, not just in someone's head?"},
+    {id:"q10", area:"dep", gapWhen:"yes",
+     smb:"Would your reporting break if one key person left tomorrow?"},
+    {id:"q11", area:"dep", gapWhen:"yes",
+     smb:"Do you have to clean up or fix data by hand before you can use it?"},
+    {id:"q12", area:"ready", gapWhen:"no",
+     smb:"Do you trust your data enough to automate decisions with it today?"},
+    {id:"q13", area:"ready", gapWhen:"no",
+     smb:"If your data lives in more than one system, is it pulled together somewhere other than Excel or Google Sheets?"}
+  ];
+
+  var TIERS = {
+    solid:{label:"Solid", head:"Your foundation is solid",
+      body:"You've done the unglamorous work: clear owners, consistent numbers, documented steps. You're in a good position to connect systems or start an AI project, as long as you start with a clear goal and give it the same care as any other project."},
+    risk:{label:"At risk", head:"Your foundation is at risk",
+      body:"You're clearly working on it, but there are cracks that will show up the moment you try to automate or grow. Most organizations are right here. The good news: these gaps are fixable, and fixing them pays off right away in less re-typing and faster reporting."},
+    work:{label:"Work to do", head:"You have foundation work to do",
+      body:"Your systems are holding together through effort, not structure. It works until someone is out of office. Before adding new tools or AI, the priority is a single source of truth, clear owners and written-down steps. Automation and AI amplify whatever is underneath them."}
+  };
+
+  var ORG_LABEL = {nonprofit:"Nonprofit", smb:"Small business"};
+
+  /* ---------------- STATE ---------------- */
+
+  var state;
+  function resetState(){ state = {org:null, size:null, role:null, timeline:null, tools:{}, answers:{}}; }
+  resetState();
+
+  var STEPS = ["intro","about","tools","check","wrap","results"];
+  var STEP_NUM = {about:1, tools:2, check:3, wrap:4};
+  function $(id){ return document.getElementById(id); }
+
+  function showStep(name){
+    STEPS.forEach(function(s){ $("step-"+s).hidden = (s!==name); });
+    var n = STEP_NUM[name];
+    $("progressWrap").hidden = !n;
+    if(n){
+      $("progressFill").style.width = (n/4*100)+"%";
+      $("progressLabel").textContent = "Step "+n+" of 4";
+    }
+    window.scrollTo({top:0,behavior:"auto"});
+  }
+
+  function qText(q){ return (state.org==="nonprofit" && q.np) ? q.np : q.smb; }
+
+  /* ---------------- STEP 1 ---------------- */
+  var orgCards = document.querySelectorAll(".orgtype-card");
+  orgCards.forEach(function(c){
+    c.addEventListener("click", function(){
+      state.org = c.dataset.org;
+      orgCards.forEach(function(o){ o.setAttribute("aria-checked", o===c ? "true":"false"); });
+      checkStep1();
+    });
+  });
+  document.querySelectorAll(".opt-row").forEach(function(row){
+    var field = row.dataset.field;
+    row.querySelectorAll(".opt").forEach(function(b){
+      b.addEventListener("click", function(){
+        state[field] = b.dataset.val;
+        row.querySelectorAll(".opt").forEach(function(o){ o.setAttribute("aria-checked", o===b ? "true":"false"); });
+        checkStep1(); checkStep4();
+      });
+    });
+  });
+  function checkStep1(){ $("next1").disabled = !(state.org && state.size && state.role); }
+  function checkStep4(){ $("next4").disabled = !state.timeline; }
+
+  /* ---------------- STEP 2 ---------------- */
+  var TOOL_LABEL = {};
+  (function buildTools(){
+    var host = $("toolGroups");
+    TOOL_GROUPS.forEach(function(g, gi){
+      var wrap = document.createElement("div");
+      wrap.className = "group" + (gi===0 ? " first" : "");
+      var h = document.createElement("div"); h.className = "group-title"; h.textContent = g.title;
+      wrap.appendChild(h);
+      var grid = document.createElement("div"); grid.className = "check-grid";
+      g.items.forEach(function(it){
+        TOOL_LABEL[it[0]] = it[1];
+        var label = document.createElement("label"); label.className = "check-item";
+        var input = document.createElement("input"); input.type = "checkbox"; input.value = it[0];
+        input.addEventListener("change", function(){
+          state.tools[it[0]] = input.checked;
+          label.classList.toggle("checked", input.checked);
+          var n = selected(state.tools).length;
+          $("toolCount").textContent = n + " selected";
+        });
+        var span = document.createElement("span"); span.textContent = it[1];
+        label.appendChild(input); label.appendChild(span);
+        grid.appendChild(label);
+      });
+      wrap.appendChild(grid);
+      host.appendChild(wrap);
+    });
+  })();
+
+  /* ---------------- STEP 3 ---------------- */
+  function buildChecklist(){
+    var host = $("checkGroups");
+    host.innerHTML = "";
+    var num = 0;
+    AREAS.forEach(function(a, ai){
+      var wrap = document.createElement("div");
+      wrap.className = "group" + (ai===0 ? " first" : "");
+      var h = document.createElement("div"); h.className = "group-title";
+      h.textContent = String(ai+1).padStart(2,"0") + " · " + a.name;
+      wrap.appendChild(h);
+      var list = document.createElement("div"); list.className = "q-list";
+      QUESTIONS.filter(function(q){ return q.area===a.id; }).forEach(function(q){
+        num++;
+        var row = document.createElement("div"); row.className = "q";
+        var t = document.createElement("div"); t.className = "q-text";
+        var n = document.createElement("span"); n.className = "q-num"; n.textContent = String(num).padStart(2,"0");
+        t.appendChild(n); t.appendChild(document.createTextNode(qText(q)));
+        var yn = document.createElement("div"); yn.className = "yn"; yn.setAttribute("role","radiogroup");
+        yn.setAttribute("aria-label", qText(q));
+        [["yes","Yes"],["no","No"],["unsure","Not sure"]].forEach(function(o){
+          var b = document.createElement("button"); b.type = "button"; b.textContent = o[1];
+          b.setAttribute("role","radio");
+          b.setAttribute("aria-checked", state.answers[q.id]===o[0] ? "true":"false");
+          b.addEventListener("click", function(){
+            state.answers[q.id] = o[0];
+            yn.querySelectorAll("button").forEach(function(x){ x.setAttribute("aria-checked", x===b ? "true":"false"); });
+            updateAnswerCount();
+          });
+          yn.appendChild(b);
+        });
+        row.appendChild(t); row.appendChild(yn);
+        list.appendChild(row);
+      });
+      wrap.appendChild(list);
+      host.appendChild(wrap);
+    });
+    updateAnswerCount();
+  }
+  function updateAnswerCount(){
+    var n = Object.keys(state.answers).length;
+    $("answerCount").textContent = n + " of " + QUESTIONS.length + " answered";
+    $("next3").disabled = n < QUESTIONS.length;
+  }
+
+  /* ---------------- NAV ---------------- */
+  $("btnStart").addEventListener("click", function(){ showStep("about"); });
+  $("back1").addEventListener("click", function(){ showStep("intro"); });
+  $("next1").addEventListener("click", function(){ showStep("tools"); });
+  $("back2").addEventListener("click", function(){ showStep("about"); });
+  $("next2").addEventListener("click", function(){ buildChecklist(); showStep("check"); });
+  $("back3").addEventListener("click", function(){ showStep("tools"); });
+  $("next3").addEventListener("click", function(){ showStep("wrap"); });
+  $("back4").addEventListener("click", function(){ buildChecklist(); showStep("check"); });
+  $("next4").addEventListener("click", function(){ renderResults(); showStep("results"); });
+
+  $("retakeBtn").addEventListener("click", function(){
+    resetState();
+    document.querySelectorAll('[aria-checked="true"]').forEach(function(el){ el.setAttribute("aria-checked","false"); });
+    document.querySelectorAll('#toolGroups input').forEach(function(i){ i.checked=false; i.closest(".check-item").classList.remove("checked"); });
+    $("toolCount").textContent = "0 selected";
+    $("headache").value = "";
+    $("next1").disabled = true; $("next4").disabled = true;
+    var f = $("tallyFrame"); f.removeAttribute("src"); f.setAttribute("data-tally-src","");
+    $("sentThanks").hidden = true;
+    showStep("intro");
+  });
+
+  /* ---------------- RESULTS ---------------- */
+  function selected(obj){ return Object.keys(obj).filter(function(k){ return obj[k]; }); }
+  function isGap(q){ var a = state.answers[q.id]; return a==="unsure" || a===q.gapWhen; }
+  function answerLabel(a){ return a==="yes" ? "Yes" : a==="no" ? "No" : "Not sure"; }
+
+  var summary = {};
+
+  function renderResults(){
+    var gaps = QUESTIONS.filter(isGap);
+    var score = gaps.length;
+    var tierKey = score <= 3 ? "solid" : score <= 8 ? "risk" : "work";
+    var tier = TIERS[tierKey];
+    var toolList = selected(state.tools);
+    var areasFlagged = AREAS.filter(function(a){ return gaps.some(function(q){ return q.area===a.id; }); });
+
+    $("tierHeadline").textContent = tier.head;
+    $("tierBody").textContent = tier.body;
+
+    var chips = [ORG_LABEL[state.org], state.size + " staff", state.role, state.timeline];
+    $("chipRow").innerHTML = "";
+    chips.forEach(function(c){ var s=document.createElement("span"); s.className="chip"; s.textContent=c; $("chipRow").appendChild(s); });
+
+    $("statRow").innerHTML =
+      '<div class="stat-card accent"><span class="stat-num">'+score+' / '+QUESTIONS.length+'</span><span class="stat-label">Gaps found</span></div>'+
+      '<div class="stat-card"><span class="stat-num">'+areasFlagged.length+' of '+AREAS.length+'</span><span class="stat-label">Areas that need attention</span></div>'+
+      '<div class="stat-card"><span class="stat-num">'+toolList.length+'</span><span class="stat-label">Places your information lives</span></div>';
+
+    var grid = $("areaGrid");
+    grid.innerHTML = "";
+    AREAS.forEach(function(a){
+      var qs = QUESTIONS.filter(function(q){ return q.area===a.id; });
+      var flagged = qs.filter(isGap);
+      var card = document.createElement("div");
+      card.className = "area-card" + (flagged.length===qs.length ? " gap" : flagged.length ? " some" : "");
+      var status = flagged.length===0 ? "Strong" : flagged.length+" of "+qs.length+" flagged";
+      var html = '<div class="area-top"><span class="area-name"></span><span class="area-status">'+status+'</span></div>';
+      card.innerHTML = html;
+      card.querySelector(".area-name").textContent = a.name;
+      if(flagged.length){
+        var ul = document.createElement("ul"); ul.className = "area-flags";
+        flagged.forEach(function(q){
+          var li = document.createElement("li");
+          li.textContent = qText(q) + " ";
+          var em = document.createElement("em"); em.textContent = "You said: " + answerLabel(state.answers[q.id]);
+          li.appendChild(em); ul.appendChild(li);
+        });
+        card.appendChild(ul);
+        var why = document.createElement("p"); why.className = "area-why"; why.textContent = a.why;
+        card.appendChild(why);
+        var fix = document.createElement("div"); fix.className = "area-fix";
+        fix.innerHTML = "<b>First fix</b>";
+        fix.appendChild(document.createTextNode((state.org==="nonprofit" && a.np_fix) ? a.np_fix : a.fix));
+        card.appendChild(fix);
+      } else {
+        var ok = document.createElement("p"); ok.className = "area-why";
+        ok.textContent = "No gaps flagged here. Keep it that way as you add tools or people.";
+        card.appendChild(ok);
+      }
+      grid.appendChild(card);
+    });
+
+    var ins = $("toolInsight");
+    var hasSheets = state.tools.sheets || state.tools.paper;
+    if(toolList.length >= 5 || (hasSheets && toolList.length >= 3)){
+      ins.hidden = false;
+      ins.innerHTML = '<div class="eyebrow">WORTH NOTING</div><h4></h4><p></p>';
+      ins.querySelector("h4").textContent = "Your information lives in " + toolList.length + " places.";
+      ins.querySelector("p").textContent = hasSheets
+        ? "When spreadsheets or paper sit alongside your other systems, they usually end up being the real source of truth, and the hardest part to automate. Mapping which system owns which information is often the fastest win."
+        : "Every extra system is another place for the same information to drift out of sync. Mapping which system owns which information, and connecting the rest to it, is often the fastest win.";
+    } else { ins.hidden = true; }
+
+    summary = {
+      orgtype: ORG_LABEL[state.org], size: state.size, role: state.role,
+      tools: toolList.map(function(k){ return TOOL_LABEL[k]; }).join(", "),
+      score: score + "/" + QUESTIONS.length, tier: tier.label,
+      gaps: gaps.map(function(q){ return qText(q) + " (" + answerLabel(state.answers[q.id]) + ")"; }).join(" | "),
+      headache: $("headache").value.trim(), timeline: state.timeline
+    };
+
+    mountCapture();
+    if (typeof gtag === "function") gtag("event", "gap_checklist_complete", { org_type: state.org, tier: tierKey, score: score });
+  }
+
+  /* ---------------- CAPTURE (Tally or email) ---------------- */
+  var tallyLoading = false;
+  function loadTallyEmbeds(){
+    if (window.Tally) { window.Tally.loadEmbeds(); return; }
+    if (tallyLoading) return;
+    tallyLoading = true;
+    var s = document.createElement("script");
+    s.src = "https://tally.so/widgets/embed.js";
+    s.onload = function(){ tallyLoading = false; if (window.Tally) window.Tally.loadEmbeds(); };
+    s.onerror = function(){
+      tallyLoading = false;
+      var f = $("tallyFrame"); if(!f.getAttribute("src") && f.dataset.tallySrc) f.src = f.dataset.tallySrc;
+    };
+    document.body.appendChild(s);
+  }
+
+  function mountCapture(){
+    var configured = TALLY_FORM_ID.indexOf("REPLACE_WITH") !== 0;
+    $("tallyWrap").hidden = !configured;
+    $("emailFallback").hidden = configured;
+    if(configured){
+      var p = new URLSearchParams({alignLeft:"1", hideTitle:"1", transparentBackground:"1", dynamicHeight:"1"});
+      Object.keys(summary).forEach(function(k){ p.set(k, summary[k] || ""); });
+      var f = $("tallyFrame");
+      f.setAttribute("data-tally-src", "https://tally.so/embed/"+TALLY_FORM_ID+"?"+p.toString());
+      f.removeAttribute("src");
+      loadTallyEmbeds();
+    } else {
+      var body = "Hi Quinita, here are my Systems Gap Checklist results.\n\n" +
+        "Name: \nOrganization: \n\n" +
+        "Type: "+summary.orgtype+"\nStaff: "+summary.size+"\nRole: "+summary.role+"\nTimeline: "+summary.timeline+"\n" +
+        "Score: "+summary.score+" gaps ("+summary.tier+")\n\n" +
+        "Biggest headache: "+(summary.headache || "-")+"\n\n" +
+        "Tools: "+(summary.tools || "-")+"\n\n" +
+        "Gaps flagged:\n- "+(summary.gaps ? summary.gaps.split(" | ").join("\n- ") : "none");
+      $("emailBtn").href = "mailto:"+CONTACT_EMAIL+"?subject="+encodeURIComponent("Systems Gap Checklist results")+"&body="+encodeURIComponent(body);
+    }
+  }
+
+  window.addEventListener("message", function(e){
+    if (typeof e.origin !== "string" || e.origin.indexOf("tally.so") === -1) return;
+    var data = e.data;
+    if (typeof data === "string") { try { data = JSON.parse(data); } catch(err) { return; } }
+    if (!data || data.event !== "Tally.FormSubmitted") return;
+    $("tallyWrap").hidden = true;
+    $("sentThanks").hidden = false;
+    if (typeof gtag === "function") gtag("event", "gap_checklist_submit", { org_type: state.org || "" });
+  });
+
+  $("emailBtn").addEventListener("click", function(){
+    if (typeof gtag === "function") gtag("event", "gap_checklist_email", { org_type: state.org || "" });
+  });
+  $("bookCallBtn").addEventListener("click", function(){
+    if (typeof gtag === "function") gtag("event", "book_call_click", { source: "systems_gap_checklist", org_type: state.org || "" });
+  });
+  $("printBtn").addEventListener("click", function(){ window.print(); });
+})();
+</script>
+</body>
+</html>
