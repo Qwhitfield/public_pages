@@ -26,9 +26,13 @@
 - Project-based implementation after the audit
 
 ## Other services
+- AI readiness consulting for small businesses, startups, and nonprofits
+- Data strategy consulting and Power BI
+- Systems integration consulting (tech stack audits, connecting disconnected tools)
+- Nonprofit data systems consulting (donor data, grant reporting, AI readiness)
+- Data strategy for startups and SMBs, including fractional data strategist work
 - Nonprofit consulting
 - Nonprofit technical support
-- Systems integration consulting
 - Nonprofit Claude (AI) training: workshop and cohort program
 
 ## Who we work with
@@ -39,11 +43,11 @@
 - Leaders who want to get more from tools they already own before buying new ones
 
 ## Not a fit
-- Pre-revenue businesses, or anyone looking for a cheap quick fix
+- Anyone looking for a cheap quick fix (pre-revenue startups are welcome if they have budget for the work)
 - Requests to "just set up a tool" without looking at the workflow
 
 ## Location
-Seattle, Washington. Works with clients remotely.
+Based in Seattle, Washington. Serves organizations remotely across the U.S. and hybrid (in person) across Greater Seattle and the Eastside: Seattle, Sammamish, Bellevue, Redmond, Issaquah, Kirkland, and Renton.
 
 ## How to get started
 - Free 20-minute discovery call: https://tidycal.com/quinitaw/discovery-call
@@ -52,7 +56,12 @@ Seattle, Washington. Works with clients remotely.
 ## Key pages
 - Home / Systems Audit: https://www.qamwconsulting.com/
 - About: https://www.qamwconsulting.com/about.html
+- AI Readiness Consulting: https://www.qamwconsulting.com/ai-readiness-consulting.html
+- Data Strategy Consulting: https://www.qamwconsulting.com/data-strategy-consulting.html
 - Systems Integration Consulting: https://www.qamwconsulting.com/systems-integration-consulting.html
+- Nonprofit Data Systems Consulting: https://www.qamwconsulting.com/nonprofit-data-systems-consulting.html
+- Data Strategy for Startups & SMBs: https://www.qamwconsulting.com/startup-smb-data-strategy.html
+- Seattle & Eastside IT and Data Consulting: https://www.qamwconsulting.com/seattle-eastside-it-data-consulting.html
 - Nonprofit Consulting: https://www.qamwconsulting.com/nonprofit-consulting.html
 - Nonprofit Technical Support: https://www.qamwconsulting.com/nonprofit-technical-support.html
 - Nonprofit Claude Workshop: https://www.qamwconsulting.com/nonprofit-ai-training/workshop-landing.html

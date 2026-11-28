@@ -804,3 +804,11 @@ h2.label-heading { line-height: 1.5; }
   .tiers.three { grid-template-columns: 1fr; gap: 36px; }
   .tiers.three .tier-main .tier-price { font-size: 88px; }
 }
+
+/* SEO service pages: lists and links inside prose, expertise lists, callouts */
+.prose ul { margin: 0 0 20px 22px; }
+.prose li { font-size: 18px; line-height: 1.7; margin-bottom: 8px; }
+.surface-light .prose li { color: var(--ink-body); }
+.expertise-list a, .callout a { color: var(--accent); text-decoration: underline; text-underline-offset: 4px; }
+.surface-light .expertise-list a, .surface-light .callout a { color: var(--accent-ink); }
+@media (max-width: 760px) { .prose li { font-size: 17px; } }
