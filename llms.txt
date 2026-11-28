@@ -47,7 +47,7 @@
 - Requests to "just set up a tool" without looking at the workflow
 
 ## Location
-Based in Seattle, Washington. Serves organizations remotely across the U.S. and hybrid (in person) across Greater Seattle and the Eastside: Seattle, Sammamish, Bellevue, Redmond, Issaquah, Kirkland, and Renton.
+Based in Seattle, Washington. Remote for organizations across the U.S. and North America. Hybrid and in person across the Seattle and Tacoma metros: King, Pierce, and Snohomish Counties, including Seattle, Tacoma, Sammamish, Bellevue, Redmond, and Everett.
 
 ## How to get started
 - Free 20-minute discovery call: https://tidycal.com/quinitaw/discovery-call
