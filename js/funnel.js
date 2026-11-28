@@ -17,7 +17,7 @@ window.QAMW_FUNNEL = {
     'meta-smb': '4d45be1af6',              // SMB form (rule adds tag meta-smb)
     default: '4d45be1af6'                  // Organic / no ?src=. Swap in a third form's uid to keep ad numbers clean
   },
-  KIT_CHECKOUT: '',                        // TODO $9 AI-Ready Business Kit checkout URL
+  KIT_CHECKOUT: 'https://mbg-consulting.kit.com/products/untitled-digital-download',                        // TODO $9 AI-Ready Business Kit checkout URL
   WEBINAR_URL: 'https://www.qamwconsulting.com/running-lean-webinar',  // Dec 11 webinar registration
   PDF_URL: '/downloads/5-fixes-to-make-ai-actually-know-your-business.pdf'
 };
