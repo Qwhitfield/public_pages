@@ -1,20 +1,23 @@
 /* AI Fixes funnel: shared config, source tracking, and Meta Pixel.
    ------------------------------------------------------------------
+   Flow: Meta ad (A or B) -> ai-ready-kit.html (Kit form, free 5 Fixes PDF)
+         -> 5-ai-fixes-thank-you.html ($9 offer) -> Kit checkout ($9, later $47)
+
    FILL IN BEFORE LAUNCH (search this file for "TODO"):
-   1. META_PIXEL_ID  - from Meta Events Manager.
-   2. KIT_FORMS      - the form "action" URL from Kit (Form > Embed > HTML).
-                       One form is enough: every signup also sends its
-                       source in the custom field "lead_source", so you can
-                       build one Kit segment or tag rule per source.
-                       Optional: give a source its own form to auto-tag it.
-   3. KIT_CHECKOUT   - the Kit Commerce checkout link for the $9 kit.
-   4. WEBINAR_URL    - Dec 11 webinar registration link (leave '' to hide).
+   1. KIT_FORMS    - the form "action" URL for each Kit form
+                     (Kit: Forms > your form > Publish/Embed > HTML, copy the
+                     address after action=). One form per ad set, each with a
+                     Kit rule that adds its tag (meta-np / meta-smb).
+                     "default" is used for organic traffic with no ?src=.
+   2. KIT_CHECKOUT - the Kit Commerce checkout link for the $9 kit.
+   Ad links: ai-ready-kit.html?src=np  and  ai-ready-kit.html?src=smb
 */
 window.QAMW_FUNNEL = {
   META_PIXEL_ID: '1159245596503132',                       // Meta Pixel ID (number only)
   KIT_FORMS: {
-    default: '',                           // TODO e.g. 'https://app.kit.com/forms/1234567/subscriptions'
-    // 'meta-np': '', 'meta-smb': '', 'meta-seattle': ''   (optional per-source forms)
+    'meta-np': '',                         // TODO Ad set A form (rule adds tag meta-np)
+    'meta-smb': '',                        // TODO Ad set B form (rule adds tag meta-smb)
+    default: ''                            // TODO form for organic / no ?src= (can reuse one of the above)
   },
   KIT_CHECKOUT: '',                        // TODO $9 AI-Ready Business Kit checkout URL
   WEBINAR_URL: 'https://www.qamwconsulting.com/running-lean-webinar',  // Dec 11 webinar registration
@@ -24,10 +27,10 @@ window.QAMW_FUNNEL = {
 (function () {
   var C = window.QAMW_FUNNEL;
 
-  // ---- Source: ?src=np|smb|seattle|li|ig|skool|alignable|email|webinar ----
+  // ---- Source: ?src=np|smb|li|ig|skool|alignable|email|webinar ----
   var MAP = {
-    np: 'meta-np', smb: 'meta-smb', seattle: 'meta-seattle',
-    'meta-np': 'meta-np', 'meta-smb': 'meta-smb', 'meta-seattle': 'meta-seattle',
+    np: 'meta-np', smb: 'meta-smb',
+    'meta-np': 'meta-np', 'meta-smb': 'meta-smb',
     li: 'li', linkedin: 'li', ig: 'ig', instagram: 'ig', skool: 'skool',
     alignable: 'alignable', email: 'email', webinar: 'webinar'
   };
@@ -39,8 +42,8 @@ window.QAMW_FUNNEL = {
     else src = sessionStorage.getItem('qamw_src');
   } catch (e) {}
   C.source = src || 'direct';
-  // Copy variant: np, smb, seattle, or default
-  C.variant = C.source === 'meta-np' ? 'np' : C.source === 'meta-smb' ? 'smb' : C.source === 'meta-seattle' ? 'seattle' : 'default';
+  // Copy variant: np, smb, or default
+  C.variant = C.source === 'meta-np' ? 'np' : C.source === 'meta-smb' ? 'smb' : 'default';
 
   // ---- Meta Pixel (skipped if no ID, or if the visitor declined cookies) ----
   var consent = null;

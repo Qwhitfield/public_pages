@@ -41,6 +41,7 @@
   .ty-price { font-family: 'Bebas Neue', sans-serif; font-size: 64px; line-height: 1; color: var(--ink); }
   .ty-price small { font-family: 'DM Sans', sans-serif; font-size: 15px; color: var(--ink-body); margin-left: 8px; }
   .ty-offer ul { margin: 14px 0 0 20px; color: var(--ink-body); }
+  .ty-offer ul strong { color: var(--ink); }
   .ty-offer li { margin-bottom: 6px; }
   .webinar { display: none; }
   .webinar.show { display: block; }
@@ -67,22 +68,25 @@
   </div>
 </section>
 
-<section class="surface-light">
+<section class="surface-light" id="kit">
   <div class="container">
     <div class="ty-offer">
       <div>
-        <div class="section-label">Want the shortcut?</div>
+        <div class="section-label">Next step · Want the shortcut?</div>
         <h2>Do Fix 1 and Fix 2 tonight, not someday.</h2>
-        <p class="section-sub" style="margin-bottom:0">The AI-Ready Business Kit gives you the fill-in business brain template, a prompt that interviews you and writes it for you, and 12 copy-and-paste prompts for the work that eats your week.</p>
+        <p class="section-sub" style="margin-bottom:0">The AI-Ready Business Kit does the heavy lifting for you, so AI sounds like your business in about 30 minutes.</p>
         <ul>
-          <li>30-minute setup for Claude, ChatGPT, Gemini, or Copilot</li>
-          <li>Works for small businesses, startups, and nonprofits</li>
+          <li><strong>Business brain template:</strong> your offers or programs, who you serve, how you sound, and how work moves</li>
+          <li><strong>"Interview me" prompt:</strong> AI asks you the questions and writes your brain for you</li>
+          <li><strong>A finished example</strong> so you can see what good looks like</li>
+          <li><strong>12 copy-and-paste prompts</strong> for emails, proposals and grants, meeting notes, weekly reports, and process cleanup</li>
+          <li><strong>Setup steps</strong> for Claude, ChatGPT, Gemini, and Copilot</li>
         </ul>
       </div>
       <div>
         <div class="ty-price">$9<small>one-time</small></div>
-        <p style="color:var(--ink-body);margin:8px 0 20px">10-page PDF, delivered instantly by email.</p>
-        <a href="/ai-ready-kit.html" id="ty-kit" class="btn-primary">See what's in the kit →</a>
+        <p style="color:var(--ink-body);margin:8px 0 20px">10-page PDF, delivered instantly by email. Works for small businesses, startups, and nonprofits.</p>
+        <a href="#" id="kit-buy" class="btn-primary">Get the kit for $9 →</a>
       </div>
     </div>
   </div>
@@ -110,6 +114,10 @@
   var C = window.QAMW_FUNNEL;
   document.getElementById('ty-dl').href = C.PDF_URL;
 
+  // Readers clicking the link inside the PDF arrive with ?ref=pdf: not a new lead
+  if (new URLSearchParams(location.search).get('ref') === 'pdf') {
+    document.querySelector('.ty-hero').style.display = 'none';
+  } else {
   // Meta "Lead" + GA sign_up: once per browser session, so a refresh doesn't double count
   var fired = false;
   try { fired = sessionStorage.getItem('qamw_lead_fired') === '1'; } catch (e) {}
@@ -118,9 +126,21 @@
     gtag('event', 'sign_up', { method: 'kit' });
     try { sessionStorage.setItem('qamw_lead_fired', '1'); } catch (e) {}
   }
+  }
 
-  document.getElementById('ty-kit').addEventListener('click', function () {
-    gtag('event', 'select_promotion', { promotion_name: 'AI-Ready Business Kit from thank-you' });
+  // $9 checkout button (Kit Commerce)
+  var buy = document.getElementById('kit-buy');
+  if (C.KIT_CHECKOUT) {
+    var u = new URL(C.KIT_CHECKOUT);
+    u.searchParams.set('utm_source', C.source);
+    buy.href = u.toString();
+  } else {
+    buy.textContent = 'Checkout opening soon';
+  }
+  buy.addEventListener('click', function (e) {
+    if (!C.KIT_CHECKOUT) { e.preventDefault(); return; }
+    C.track('InitiateCheckout', { value: 9, currency: 'USD', content_name: 'AI-Ready Business Kit' });
+    gtag('event', 'begin_checkout', { value: 9, currency: 'USD', lead_source: C.source });
   });
 
   if (C.WEBINAR_URL) {
