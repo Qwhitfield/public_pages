@@ -49,6 +49,7 @@
   .lp-cover-k { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
   .lp-cover-t { font-family: 'Bebas Neue', sans-serif; font-size: 34px; line-height: 0.95; color: var(--white); margin-top: 8px; }
   .lp-cover-t em { font-style: normal; color: var(--accent); }
+  #kit-form-slot { min-height: 120px; }
   .lp-form label { display: block; font-size: 13px; color: var(--muted); margin: 0 0 6px; font-family: 'DM Mono', monospace; letter-spacing: 0.08em; text-transform: uppercase; }
   .lp-form input { width: 100%; background: var(--black); border: 1px solid var(--border); color: var(--white); font: inherit; font-size: 16px; padding: 14px 14px; margin-bottom: 16px; }
   .lp-form input:focus { outline: none; border-color: var(--accent); }
@@ -96,15 +97,8 @@
         <div class="lp-cover-k">Free PDF · 6 pages</div>
         <div class="lp-cover-t">5 Fixes to Make AI <em>Actually Know</em> Your Business</div>
       </div>
-      <form class="lp-form" id="lp-form" method="post" action="">
-        <label for="fn">First name</label>
-        <input id="fn" type="text" name="fields[first_name]" autocomplete="given-name" required>
-        <label for="em">Email</label>
-        <input id="em" type="email" name="email_address" autocomplete="email" required>
-        <input type="hidden" name="fields[lead_source]" id="lead_source" value="">
-        <button type="submit" class="btn-primary">Send me the 5 fixes →</button>
-        <p class="lp-error" id="lp-error">The form isn't connected yet. Please email quinitaw@qamwconsulting.com and I'll send the guide directly.</p>
-      </form>
+      <div id="kit-form-slot"></div>
+      <p class="lp-error" id="lp-error">The form didn't load. Please email quinitaw@qamwconsulting.com and I'll send the guide directly.</p>
       <p class="lp-fine">Free. You'll also get occasional emails from me about systems, data, and AI for small teams. Unsubscribe anytime. <a href="/privacy.html" style="color:var(--muted)">Privacy</a></p>
     </div>
   </div>
@@ -167,18 +161,28 @@
     document.querySelectorAll('[data-v="' + k + '"]').forEach(function (el) { el.innerHTML = v[k]; });
   });
 
-  var form = document.getElementById('lp-form');
-  var action = C.KIT_FORMS[C.source] || C.KIT_FORMS['default'];
-  document.getElementById('lead_source').value = C.source;
-  if (action) form.action = action;
-  form.addEventListener('submit', function (e) {
-    if (!form.action || form.getAttribute('action') === '') {
-      e.preventDefault();
-      document.getElementById('lp-error').style.display = 'block';
-      return;
-    }
+  // Load the Kit form for this ad set
+  var uid = C.KIT_FORM_UIDS[C.source] || C.KIT_FORM_UIDS['default'];
+  var slot = document.getElementById('kit-form-slot');
+  var ks = document.createElement('script');
+  ks.async = true;
+  ks.setAttribute('data-uid', uid);
+  ks.src = C.KIT_DOMAIN + '/' + uid + '/index.js';
+  ks.onerror = function () { document.getElementById('lp-error').style.display = 'block'; };
+  slot.appendChild(ks);
+
+  // Count the lead in Meta + GA when the Kit form is submitted (works with "show a success message")
+  document.addEventListener('submit', function (e) {
+    if (!e.target.closest || !e.target.closest('#kit-form-slot')) return;
+    var email = e.target.querySelector('input[type="email"], input[name="email_address"]');
+    if (email && !email.value) return;
+    var fired = false;
+    try { fired = sessionStorage.getItem('qamw_lead_fired') === '1'; } catch (err) {}
+    if (fired) return;
+    C.track('Lead', { content_name: '5 Fixes PDF', lead_source: C.source });
     gtag('event', 'generate_lead', { lead_source: C.source });
-  });
+    try { sessionStorage.setItem('qamw_lead_fired', '1'); } catch (err) {}
+  }, true);
 })();
 </script>
 <script src="js/cookie-consent.js" defer></script>

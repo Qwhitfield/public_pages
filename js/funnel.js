@@ -3,21 +3,19 @@
    Flow: Meta ad (A or B) -> ai-ready-kit.html (Kit form, free 5 Fixes PDF)
          -> 5-ai-fixes-thank-you.html ($9 offer) -> Kit checkout ($9, later $47)
 
-   FILL IN BEFORE LAUNCH (search this file for "TODO"):
-   1. KIT_FORMS    - the form "action" URL for each Kit form
-                     (Kit: Forms > your form > Publish/Embed > HTML, copy the
-                     address after action=). One form per ad set, each with a
-                     Kit rule that adds its tag (meta-np / meta-smb).
-                     "default" is used for organic traffic with no ?src=.
-   2. KIT_CHECKOUT - the Kit Commerce checkout link for the $9 kit.
+   Kit forms: each ad set loads its own Kit form (by uid), and a Kit rule
+   on each form adds the tag (meta-np / meta-smb). Organic visits with no
+   ?src= use the "default" form.
+   Still TODO: KIT_CHECKOUT, the Kit Commerce checkout link for the $9 kit.
    Ad links: ai-ready-kit.html?src=np  and  ai-ready-kit.html?src=smb
 */
 window.QAMW_FUNNEL = {
   META_PIXEL_ID: '1159245596503132',                       // Meta Pixel ID (number only)
-  KIT_FORMS: {
-    'meta-np': '',                         // TODO Ad set A form (rule adds tag meta-np)
-    'meta-smb': '',                        // TODO Ad set B form (rule adds tag meta-smb)
-    default: ''                            // TODO form for organic / no ?src= (can reuse one of the above)
+  KIT_DOMAIN: 'https://mbg-consulting.kit.com',
+  KIT_FORM_UIDS: {
+    'meta-np': '9a74da6b20',               // Nonprofit form (rule adds tag meta-np)
+    'meta-smb': '4d45be1af6',              // SMB form (rule adds tag meta-smb)
+    default: '4d45be1af6'                  // Organic / no ?src=. Swap in a third form's uid to keep ad numbers clean
   },
   KIT_CHECKOUT: '',                        // TODO $9 AI-Ready Business Kit checkout URL
   WEBINAR_URL: 'https://www.qamwconsulting.com/running-lean-webinar',  // Dec 11 webinar registration
