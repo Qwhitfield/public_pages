@@ -29,13 +29,6 @@
 <script src="js/funnel.js"></script>
 <style>
   .lp-nav { padding: 22px 24px; border-bottom: 1px solid var(--border); }
-  .ty-bar { display: none; background: var(--accent-soft); border-bottom: 1px solid var(--accent); padding: 22px 24px; }
-  .ty-bar.show { display: block; }
-  .ty-bar .container { display: flex; justify-content: space-between; align-items: center; gap: 18px; flex-wrap: wrap; }
-  .ty-bar strong { color: var(--white); font-size: 18px; }
-  .ty-bar p { color: var(--body); margin-top: 4px; }
-  .ty-dl { font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; text-decoration: none; border: 1px solid var(--accent); padding: 12px 18px; white-space: nowrap; }
-  .ty-dl:hover { background: var(--accent); }
   .kit-hero { padding: 64px 0 80px; }
   .kit-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 56px; align-items: start; }
   .kit-kicker { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 18px; }
@@ -71,17 +64,6 @@
 <body>
 
 <div class="lp-nav"><a class="nav-logo" href="/index.html">QAMW<span>.</span></a></div>
-
-<!-- Shown only after signup (Kit redirects here with ?signup=1) -->
-<div class="ty-bar" id="ty-bar">
-  <div class="container">
-    <div>
-      <strong>You're in. Your guide is on its way to your inbox.</strong>
-      <p>Don't want to wait? Download it now. Then read on: there's a faster way to do all five fixes.</p>
-    </div>
-    <a class="ty-dl" id="ty-dl" href="/downloads/5-fixes-to-make-ai-actually-know-your-business.pdf" download>Download the PDF ↓</a>
-  </div>
-</div>
 
 <section class="kit-hero">
   <div class="container kit-grid">
@@ -144,19 +126,6 @@
 (function () {
   var C = window.QAMW_FUNNEL;
   var params = new URLSearchParams(location.search);
-
-  // Signup confirmation + Meta "Lead" event (only when Kit redirects here with ?signup=1)
-  if (params.get('signup') === '1') {
-    document.getElementById('ty-bar').classList.add('show');
-    document.getElementById('ty-dl').href = C.PDF_URL;
-    var fired = false;
-    try { fired = sessionStorage.getItem('qamw_lead_fired') === '1'; } catch (e) {}
-    if (!fired) {
-      C.track('Lead', { content_name: '5 Fixes PDF', lead_source: C.source });
-      gtag('event', 'sign_up', { method: 'kit', lead_source: C.source });
-      try { sessionStorage.setItem('qamw_lead_fired', '1'); } catch (e) {}
-    }
-  }
 
   // $9 checkout link (Kit Commerce)
   var buy = document.getElementById('kit-buy');
